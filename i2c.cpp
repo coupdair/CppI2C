@@ -12,7 +12,7 @@
 #include <string.h>
 //#include <string> #for C++
 
-#define VERSION "v0.0.0"
+#define VERSION "v0.0.1d"
 
 //Program option/documentation
 //{argp
@@ -122,5 +122,7 @@ int main(int argc, char **argv)
     print_args(&arguments);
   }//print default option values
 
-  return 0;
+  return system("ls");
+
+//  return 0;
 }//main
