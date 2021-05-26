@@ -130,7 +130,7 @@ int main(int argc, char **argv)
   cmd<<"i2cdetect -l > "<<ftb;
   if(!system(std::string(cmd.str()).c_str()))
   {
-    printf("I2C bus(es):\n");
+    printf("I2C bus(es):\n");fflush(stdout);
     cmd=std::ostringstream();cmd<<"cat "<<ftb;
     system(std::string(cmd.str()).c_str());
   }
@@ -140,7 +140,7 @@ int main(int argc, char **argv)
   cmd=std::ostringstream();cmd<<"i2cdetect -y "<<arguments.integer<<" > "<<ftd;
   if(!system(std::string(cmd.str()).c_str()))
   {
-    printf("\nI2C devices:\n");
+    printf("\nI2C devices:\n");fflush(stdout);
     cmd=std::ostringstream();cmd<<"cat "<<ftd;
     system(std::string(cmd.str()).c_str());
   }
