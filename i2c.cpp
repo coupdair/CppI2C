@@ -11,9 +11,11 @@
 
 #include <string.h>
 #include <string>
-#include <sstream>
+#include <sstream>  // std::ostringstream
+#include <iostream> // std::ios, std::istream, std::cout
+#include <fstream>  // std::filebuf
 
-#define VERSION "v0.0.2d"
+#define VERSION "v0.0.2e"
 
 //Program option/documentation
 //{argp
@@ -150,8 +152,16 @@ int main(int argc, char **argv)
   if(!system(std::string(cmd.str()).c_str()))
   {
     printf("\nI2C devices:\n");fflush(stdout);
-    cmd=std::ostringstream();cmd<<"cat "<<ftd;
-    system(std::string(cmd.str()).c_str());
+    std::filebuf fb;
+    if(fb.open(ftd,std::ios::in))
+    {
+      std::istream is(&fb);char tmp[256];
+      //skip first line
+      is.getline(tmp,256);
+      //read first address
+      int i;is>>i;
+      std::cout<<"1st address=0x"<<i<<std::endl;
+    }
   }
   else {printf("error: while accessing I2C bus, see \"%s\"\n",std::string(cmd.str()).c_str());return 1;}
 
