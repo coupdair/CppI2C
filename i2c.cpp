@@ -10,9 +10,10 @@
 #include <stdlib.h>
 
 #include <string.h>
-//#include <string> #for C++
+#include <string>
+#include <sstream>
 
-#define VERSION "v0.0.1e"
+#define VERSION "v0.0.1g"
 
 //Program option/documentation
 //{argp
@@ -122,9 +123,20 @@ int main(int argc, char **argv)
     print_args(&arguments);
   }//print default option values
 
-  if(!system("ls > /dev/shm/list.txt"))
-    system("cat /dev/shm/list.txt");
-  else return 1;
-  
+  std::ostringstream cmd;
+  std::string ftb="/dev/shm/i2c_bus_list.txt";
+  cmd<<"i2cdetect -l > "<<ftb;
+  if(!system(std::string(cmd.str()).c_str()))
+  {
+    printf("I2C bus(es):\n");
+    cmd.flush();cmd<<"; cat "<<ftb;
+printf("cmd: %s\n",std::string(cmd.str()).c_str());
+    system(std::string(cmd.str()).c_str());
+  }
+  else {printf("error: while accessing I2C buses, see \"%s\"\n",std::string(cmd.str()).c_str());return 1;}
+/*
+  ftd="/dev/shm/i2c_device_list.txt";
+  cmd<<"i2cdetect -y "<<i<<" > "<<ftd;
+*/
   return 0;
 }//main
