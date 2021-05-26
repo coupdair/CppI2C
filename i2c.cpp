@@ -16,7 +16,7 @@
 #include <fstream>  // std::filebuf
 #include <vector>   // std::vector
 
-#define VERSION "v0.0.3e"
+#define VERSION "v0.0.3f"
 
 //Program option/documentation
 //{argp
@@ -99,6 +99,22 @@ static struct argp argp = { options, parse_option, args_doc, doc };
 
 //}argp
 
+///list of I2C buses
+int i2c_bus_list()
+{
+  //system calls
+  std::ostringstream cmd;
+  std::string ftb="/dev/shm/i2c_bus_list.txt";
+  cmd<<"i2cdetect -l > "<<ftb;
+  if(!system(std::string(cmd.str()).c_str()))
+  {
+    printf("I2C bus(es):\n");fflush(stdout);
+    cmd=std::ostringstream();cmd<<"cat "<<ftb;
+    system(std::string(cmd.str()).c_str());
+  }
+  else {printf("error: while accessing I2C buses, see \"%s\"\n",std::string(cmd.str()).c_str());return 1;}
+  return 0;
+}//i2c_bus_list
 
 //! CLI option parse and ...
 int main(int argc, char **argv)
@@ -126,21 +142,14 @@ int main(int argc, char **argv)
     print_args(&arguments);
   }//print default option values
 
-//system calls
-  std::ostringstream cmd;
 ///list of I2C buses
-  std::string ftb="/dev/shm/i2c_bus_list.txt";
-  cmd<<"i2cdetect -l > "<<ftb;
-  if(!system(std::string(cmd.str()).c_str()))
-  {
-    printf("I2C bus(es):\n");fflush(stdout);
-    cmd=std::ostringstream();cmd<<"cat "<<ftb;
-    system(std::string(cmd.str()).c_str());
-  }
-  else {printf("error: while accessing I2C buses, see \"%s\"\n",std::string(cmd.str()).c_str());return 1;}
+  i2c_bus_list();
+  
 ///table of I2C devices
+  //system calls
+  std::ostringstream cmd;
   std::string ftd="/dev/shm/i2c_device_list.txt";
-  cmd=std::ostringstream();cmd<<"i2cdetect -y "<<arguments.integer<<" > "<<ftd;
+  cmd<<"i2cdetect -y "<<arguments.integer<<" > "<<ftd;
   if(!system(std::string(cmd.str()).c_str()))
   {
     printf("\nI2C device table:\n");fflush(stdout);
@@ -148,6 +157,7 @@ int main(int argc, char **argv)
     system(std::string(cmd.str()).c_str());
   }
   else {printf("error: while accessing I2C bus, see \"%s\"\n",std::string(cmd.str()).c_str());return 1;}
+
 ///list of I2C devices
   std::vector<int> device_addresses;
   cmd=std::ostringstream();cmd<<"sed -i \"s/--//g;s/..://\" "<<ftd;
