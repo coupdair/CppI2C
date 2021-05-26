@@ -15,7 +15,7 @@
 #include <iostream> // std::ios, std::istream, std::cout
 #include <fstream>  // std::filebuf
 
-#define VERSION "v0.0.2f"
+#define VERSION "v0.0.2"
 
 //Program option/documentation
 //{argp
@@ -154,18 +154,26 @@ int main(int argc, char **argv)
     printf("\nI2C devices:\n");fflush(stdout);
     std::filebuf fb;
     if(fb.open(ftd,std::ios::in))
-    {
-	  //get hexa. addresses
+    {//get hexa. addresses
       std::istream is(&fb);
-      is.setf(std::ios::hex);
+      is.setf(std::ios::hex,std::ios::basefield);//set hex as the basefield
       //skip first line
       char tmp[256];is.getline(tmp,256);
-      //read first address
-      int i;is>>i;
-      std::cout.setf(std::ios::hex,std::ios::basefield); // set hex as the basefield
-      std::cout.setf(std::ios::showbase);                // activate showbase
-      std::cout<<"1st address="<<i<<std::endl;
-    }
+      //read addresses
+      int i,j;
+      j=0;
+      is>>i;
+      std::cout.setf(std::ios::showbase);//activate showbase
+      while(!is.eof())
+      {
+        std::cout.setf(std::ios::dec,std::ios::basefield);//set dec as the basefield
+        std::cout<<j++<<":";
+        std::cout.setf(std::ios::hex,std::ios::basefield);//set hex as the basefield
+        std::cout<<"="<<i<<std::endl;
+		is>>i;
+		if(j>128) break;
+      }//loop
+    }else {printf("error: while accessing file: \"%s\"\n",ftd.c_str());return 1;}
   }
   else {printf("error: while accessing I2C bus, see \"%s\"\n",std::string(cmd.str()).c_str());return 1;}
 
