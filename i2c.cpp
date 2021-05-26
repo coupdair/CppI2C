@@ -15,7 +15,7 @@
 #include <iostream> // std::ios, std::istream, std::cout
 #include <fstream>  // std::filebuf
 
-#define VERSION "v0.0.2e"
+#define VERSION "v0.0.2f"
 
 //Program option/documentation
 //{argp
@@ -155,12 +155,16 @@ int main(int argc, char **argv)
     std::filebuf fb;
     if(fb.open(ftd,std::ios::in))
     {
-      std::istream is(&fb);char tmp[256];
+	  //get hexa. addresses
+      std::istream is(&fb);
+      is.setf(std::ios::hex);
       //skip first line
-      is.getline(tmp,256);
+      char tmp[256];is.getline(tmp,256);
       //read first address
       int i;is>>i;
-      std::cout<<"1st address=0x"<<i<<std::endl;
+      std::cout.setf(std::ios::hex,std::ios::basefield); // set hex as the basefield
+      std::cout.setf(std::ios::showbase);                // activate showbase
+      std::cout<<"1st address="<<i<<std::endl;
     }
   }
   else {printf("error: while accessing I2C bus, see \"%s\"\n",std::string(cmd.str()).c_str());return 1;}
