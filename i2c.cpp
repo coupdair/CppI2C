@@ -16,7 +16,7 @@
 #include <fstream>  // std::filebuf
 #include <vector>   // std::vector
 
-#define VERSION "v0.0.3d"
+#define VERSION "v0.0.3e"
 
 //Program option/documentation
 //{argp
@@ -153,7 +153,7 @@ int main(int argc, char **argv)
   cmd=std::ostringstream();cmd<<"sed -i \"s/--//g;s/..://\" "<<ftd;
   if(!system(std::string(cmd.str()).c_str()))
   {
-    printf("\nI2C devices:\n");fflush(stdout);
+    if(arguments.verbose) {printf("\nI2C devices:\n");fflush(stdout);}
     std::filebuf fb;
     if(fb.open(ftd,std::ios::in))
     {//get hexa. addresses
@@ -168,10 +168,13 @@ int main(int argc, char **argv)
       std::cout.setf(std::ios::showbase);//activate showbase
       while(!is.eof())
       {
-        std::cout.setf(std::ios::dec,std::ios::basefield);//set dec as the basefield
-        std::cout<<j++<<":";
-        std::cout.setf(std::ios::hex,std::ios::basefield);//set hex as the basefield
-        std::cout<<"="<<i<<std::endl;
+		if(arguments.verbose)
+		{
+          std::cout.setf(std::ios::dec,std::ios::basefield);//set dec as the basefield
+          std::cout<<j++<<":";
+          std::cout.setf(std::ios::hex,std::ios::basefield);//set hex as the basefield
+          std::cout<<"="<<i<<std::endl;
+        }//verbose
         device_addresses.push_back(i);
 		is>>i;
 		if(j>128) break;
@@ -181,7 +184,7 @@ int main(int argc, char **argv)
   else {printf("error: while accessing I2C bus, see \"%s\"\n",std::string(cmd.str()).c_str());return 1;}
 
 ///vector of I2C devices
-  std::cout<<"I2C devices address(es):";
+  std::cout<<"\nI2C devices address(es):";
   std::cout.setf(std::ios::showbase);//activate showbase
   std::cout.setf(std::ios::hex,std::ios::basefield);//set hex as the basefield
   std::vector<int>::iterator it=device_addresses.begin();std::cout<<"  "<<*it;
