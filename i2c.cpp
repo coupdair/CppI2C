@@ -13,7 +13,7 @@
 #include <string>
 #include <sstream>
 
-#define VERSION "v0.0.1g"
+#define VERSION "v0.0.1"
 
 //Program option/documentation
 //{argp
@@ -23,15 +23,15 @@ const char *argp_program_version=VERSION;
 const char *argp_program_bug_address="sebastien.coudert@ganil.fr";
 //! [argp] documentation of program
 static char doc[]=
-   "ArgParse: ArgP minimal/template program\
-\n  ArgParse."VERSION"\
+   "i2c: I2C bus and its devices\
+\n  i2c."VERSION"\
 \n\
 examples:\n\
-  ArgParse --help\n\
-  ArgParse -v\n\
-  ArgParse -v -i 12 -s XYZ\n\
-  ArgParse -V\n\
-  ArgParse --usage";
+  i2c --help\n\
+  i2c -v\n\
+  i2c -v -i 1 -s XYZ\n\
+  i2c -V\n\
+  i2c --usage";
 
 //! [argp] A description of the arguments
 static char args_doc[] = "";
@@ -40,7 +40,7 @@ static char args_doc[] = "";
 static struct argp_option options[]=
 {
   {"verbose",  'v', 0, 0,           "Produce verbose output" },
-  {"integer",  'i', "VALUE", 0,     "get integer value" },
+  {"integer",  'i', "VALUE", 0,     "bus index, e.g. 1" },
   {"string",   's', "STRING", 0,    "get string" },
 //default options
   { 0 }
@@ -103,7 +103,7 @@ int main(int argc, char **argv)
   //CLI arguments
   struct arguments arguments;
   arguments.verbose=0;
-  arguments.integer=123;
+  arguments.integer=1;
   arguments.string="ABC";
 
 //! - print default option values (static)
@@ -123,20 +123,28 @@ int main(int argc, char **argv)
     print_args(&arguments);
   }//print default option values
 
+//system calls
   std::ostringstream cmd;
+///list I2C buses
   std::string ftb="/dev/shm/i2c_bus_list.txt";
   cmd<<"i2cdetect -l > "<<ftb;
   if(!system(std::string(cmd.str()).c_str()))
   {
     printf("I2C bus(es):\n");
-    cmd.flush();cmd<<"; cat "<<ftb;
-printf("cmd: %s\n",std::string(cmd.str()).c_str());
+    cmd=std::ostringstream();cmd<<"cat "<<ftb;
     system(std::string(cmd.str()).c_str());
   }
   else {printf("error: while accessing I2C buses, see \"%s\"\n",std::string(cmd.str()).c_str());return 1;}
-/*
-  ftd="/dev/shm/i2c_device_list.txt";
-  cmd<<"i2cdetect -y "<<i<<" > "<<ftd;
-*/
+///list I2C devices
+  std::string ftd="/dev/shm/i2c_device_list.txt";
+  cmd=std::ostringstream();cmd<<"i2cdetect -y "<<arguments.integer<<" > "<<ftd;
+  if(!system(std::string(cmd.str()).c_str()))
+  {
+    printf("\nI2C devices:\n");
+    cmd=std::ostringstream();cmd<<"cat "<<ftd;
+    system(std::string(cmd.str()).c_str());
+  }
+  else {printf("error: while accessing I2C bus, see \"%s\"\n",std::string(cmd.str()).c_str());return 1;}
+
   return 0;
 }//main
