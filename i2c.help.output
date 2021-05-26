@@ -1,0 +1,21 @@
+Usage: i2c [OPTION...] 
+i2c: I2C bus and its devices
+  i2c.v0.0.1
+examples:
+  i2c --help
+  i2c -v
+  i2c -v -i 1 -s XYZ
+  i2c -V
+  i2c --usage
+
+  -i, --integer=VALUE        bus index, e.g. 1
+  -s, --string=STRING        get string (unsed)
+  -v, --verbose              Produce verbose output
+  -?, --help                 Give this help list
+      --usage                Give a short usage message
+  -V, --version              Print program version
+
+Mandatory or optional arguments to long options are also mandatory or optional
+for any corresponding short options.
+
+Report bugs to sebastien.coudert@ganil.fr.

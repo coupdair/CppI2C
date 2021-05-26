@@ -41,7 +41,7 @@ static struct argp_option options[]=
 {
   {"verbose",  'v', 0, 0,           "Produce verbose output" },
   {"integer",  'i', "VALUE", 0,     "bus index, e.g. 1" },
-  {"string",   's', "STRING", 0,    "get string" },
+  {"string",   's', "STRING", 0,    "get string (unsed)" },
 //default options
   { 0 }
 };//options (CLI)
