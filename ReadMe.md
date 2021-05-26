@@ -6,8 +6,9 @@ I2C
 
 # use
 
-TODO
+`make run`
 
 # misc.
 
-`wget http://193.48.111.15:8080/hello`
+- `wget http://193.48.111.15:8080/hello` fail
+- `wget http://localhost:8080/hello` done
