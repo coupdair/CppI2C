@@ -13,7 +13,7 @@
 #include <string>
 #include <sstream>
 
-#define VERSION "v0.0.1"
+#define VERSION "v0.0.2d"
 
 //Program option/documentation
 //{argp
@@ -125,7 +125,7 @@ int main(int argc, char **argv)
 
 //system calls
   std::ostringstream cmd;
-///list I2C buses
+///list of I2C buses
   std::string ftb="/dev/shm/i2c_bus_list.txt";
   cmd<<"i2cdetect -l > "<<ftb;
   if(!system(std::string(cmd.str()).c_str()))
@@ -135,9 +135,18 @@ int main(int argc, char **argv)
     system(std::string(cmd.str()).c_str());
   }
   else {printf("error: while accessing I2C buses, see \"%s\"\n",std::string(cmd.str()).c_str());return 1;}
-///list I2C devices
+///table of I2C devices
   std::string ftd="/dev/shm/i2c_device_list.txt";
   cmd=std::ostringstream();cmd<<"i2cdetect -y "<<arguments.integer<<" > "<<ftd;
+  if(!system(std::string(cmd.str()).c_str()))
+  {
+    printf("\nI2C device table:\n");fflush(stdout);
+    cmd=std::ostringstream();cmd<<"cat "<<ftd;
+    system(std::string(cmd.str()).c_str());
+  }
+  else {printf("error: while accessing I2C bus, see \"%s\"\n",std::string(cmd.str()).c_str());return 1;}
+///list of I2C devices
+  cmd=std::ostringstream();cmd<<"sed -i \"s/--//g;s/..://\" "<<ftd;
   if(!system(std::string(cmd.str()).c_str()))
   {
     printf("\nI2C devices:\n");fflush(stdout);
