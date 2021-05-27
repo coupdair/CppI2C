@@ -27,7 +27,7 @@
 //I2C lib.
 #include "i2c_tools.hpp"
 
-#define VERSION "v0.0.2d"
+#define VERSION "v0.0.2e"
 
 //Program option/documentation
 //{argp
@@ -140,7 +140,7 @@ void http_service::main(std::string /*url*/)
 
   ///list of I2C devices
   std::vector<int> device_addresses;
-//  i2c_device_list(1,device_addresses,1);
+  i2c_device_list(1,device_addresses,1);
 
   ///vector of I2C devices
   std::cout<<"\nI2C devices address(es):";
