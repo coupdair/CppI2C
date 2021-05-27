@@ -27,7 +27,7 @@
 //I2C lib.
 #include "i2c_tools.hpp"
 
-#define VERSION "v0.0.2h"
+#define VERSION "v0.0.2i"
 
 //Program option/documentation
 //{argp
@@ -150,11 +150,21 @@ void http_service::main(std::string /*url*/)
   std::cout.setf(std::ios::hex,std::ios::basefield);//set hex as the basefield
   std::vector<int>::iterator it=device_addresses.begin();
   std::cout<<"  "<<*it;
-  response().out()<<"  "<<*it;
+  std::ostringstream hex;
+  hex.setf(std::ios::showbase);//activate showbase
+  hex.setf(std::ios::hex,std::ios::basefield);//set hex as the basefield
+  hex.width(4);hex.fill('0');
+  hex<<*it;
+  response().out()<<"  "<<hex.str();
   for(++it;it!=device_addresses.end();++it)
   {
      std::cout<<", "<<*it;
-     response().out()<<"\n, "<<*it;
+     hex=std::ostringstream();
+     hex.setf(std::ios::showbase);//activate showbase
+     hex.setf(std::ios::hex,std::ios::basefield);//set hex as the basefield
+     hex.width(4);hex.fill('0');
+     hex<<*it;
+     response().out()<<", "<<hex.str();
   }//device loop
   std::cout<<'.'<<std::endl;
   response().out()<<".<br />\n";
@@ -165,6 +175,9 @@ void http_service::main(std::string /*url*/)
         "</html>\n";
 }//http_service::main
 
+//}C++CMS
+
+//! main function
 int main(int argc,char ** argv)
 {
     //CLI arguments
