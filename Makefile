@@ -13,7 +13,7 @@ version: i2c
 	./i2c --version | tee VERSION
 
 run: i2c
-	./i2c -i 1 | tee i2c.txt
+	./i2c -i 1 | tee i2c-bus.txt
 
 web: i2c-web.cpp config.js i2c_tools.hpp
 	g++ -I../CppCMS/cppcms/ -I../CppCMS/cppcms/booster -I../CppCMS/cppcms/build -I../CppCMS/cppcms/build/booster  -O2 -Wall -g i2c-web.cpp -o i2c-web -L../CppCMS/cppcms/build -L../CppCMS/cppcms/build/booster -lcppcms -lbooster

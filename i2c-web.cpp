@@ -27,7 +27,7 @@
 //I2C lib.
 #include "i2c_tools.hpp"
 
-#define VERSION "v0.0.2g"
+#define VERSION "v0.0.2h"
 
 //Program option/documentation
 //{argp
@@ -155,9 +155,10 @@ void http_service::main(std::string /*url*/)
   {
      std::cout<<", "<<*it;
      response().out()<<"\n, "<<*it;
-  }
+  }//device loop
   std::cout<<'.'<<std::endl;
   response().out()<<".<br />\n";
+
 //HTML tail
   response().out()<<
         "</body>\n"
