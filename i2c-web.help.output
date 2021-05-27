@@ -1,0 +1,24 @@
+Usage: i2c-web [OPTION...] 
+i2c-web: I2C bus and its devices on HTTP
+  i2c-web.v0.0.2
+examples:
+  i2c-web --help
+  i2c-web -v
+  i2c-web -v -i 1 -s XYZ
+  i2c-web -V
+  i2c-web --usage
+
+  -c, --config=STRING        configuration file in JSON for C++CMS web server,
+                             e.g. config.js
+  -i, --integer=VALUE        bus index, e.g. 1
+  -s, --string=STRING        get string (unsed)
+  -v, --verbose              Produce verbose output
+  -?, --help                 Give this help list
+      --usage                Give a short usage message
+      --version              Print program version
+  -V, --version              Produce version output and exit
+
+Mandatory or optional arguments to long options are also mandatory or optional
+for any corresponding short options.
+
+Report bugs to sebastien.coudert@ganil.fr.
