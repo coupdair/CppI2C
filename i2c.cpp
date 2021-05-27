@@ -18,7 +18,7 @@
 
 #include "i2c_tools.hpp"
 
-#define VERSION "v0.0.4d"
+#define VERSION "v0.0.4"
 
 //Program option/documentation
 //{argp
@@ -44,6 +44,7 @@ static char args_doc[] = "";
 //! [argp] The options and its description
 static struct argp_option options[]=
 {
+  {"version",  'V', 0, 0,           "Produce version output and exit" },
   {"verbose",  'v', 0, 0,           "Produce verbose output" },
   {"integer",  'i', "VALUE", 0,     "bus index, e.g. 1" },
   {"string",   's', "STRING", 0,    "get string (unsed)" },
@@ -54,6 +55,8 @@ static struct argp_option options[]=
 //! [argp] Used by main to communicate with parse_option
 struct arguments
 {
+  //! display version (boolean)
+  int version;
   //! verbose mode (boolean)
   int verbose;
   //! integer value
@@ -70,6 +73,9 @@ parse_option(int key, char *arg, struct argp_state *state)
   struct arguments *arguments=(struct arguments *)(state->input);
   switch (key)
   {
+    case 'V':
+      arguments->version=1;
+      break;
     case 'v':
       arguments->verbose=1;
       break;
@@ -89,7 +95,8 @@ parse_option(int key, char *arg, struct argp_state *state)
 //! [argp] print argument values
 void print_args(struct arguments *p_arguments)
 {
-  printf (".verbose=%s\n.integer=%d\n.string=%s\n"
+  printf (".version=%s\n.verbose=%s\n.integer=%d\n.string=%s\n"
+  , p_arguments->version?"yes":"no"
   , p_arguments->verbose?"yes":"no"
   , p_arguments->integer
   , p_arguments->string
@@ -106,6 +113,7 @@ int main(int argc, char **argv)
 {
   //CLI arguments
   struct arguments arguments;
+  arguments.version=0;
   arguments.verbose=0;
   arguments.integer=1;
   arguments.string="ABC";
@@ -119,6 +127,13 @@ int main(int argc, char **argv)
 
 //! - Parse arguments (see parse_option) and eventually show usage, help or version and exit for these lasts
   argp_parse(&argp, argc, argv, 0, 0, &arguments);
+
+  if(arguments.version)
+  {
+    std::cout<<VERSION<<std::endl;
+    std::cout<<"i2c-tools."<<VERSION_I2C_TOOLS<<std::endl;
+    return 0;
+  }//version
 
   ///print option values
   if(arguments.verbose)

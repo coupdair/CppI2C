@@ -1,6 +1,6 @@
 Usage: i2c [OPTION...] 
 i2c: I2C bus and its devices
-  i2c.v0.0.4d
+  i2c.v0.0.4e
 examples:
   i2c --help
   i2c -v
@@ -13,7 +13,8 @@ examples:
   -v, --verbose              Produce verbose output
   -?, --help                 Give this help list
       --usage                Give a short usage message
-  -V, --version              Print program version
+      --version              Print program version
+  -V, --version              Produce version output and exit
 
 Mandatory or optional arguments to long options are also mandatory or optional
 for any corresponding short options.
