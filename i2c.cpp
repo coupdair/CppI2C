@@ -16,7 +16,9 @@
 #include <fstream>  // std::filebuf
 #include <vector>   // std::vector
 
-#define VERSION "v0.0.3"
+#include "i2c_tools.hpp"
+
+#define VERSION "v0.0.4d"
 
 //Program option/documentation
 //{argp
@@ -98,74 +100,6 @@ void print_args(struct arguments *p_arguments)
 static struct argp argp = { options, parse_option, args_doc, doc };
 
 //}argp
-
-///list of I2C buses
-int i2c_bus_list()
-{
-  //system calls
-  std::ostringstream cmd;
-  std::string ftb="/dev/shm/i2c_bus_list.txt";
-  cmd<<"i2cdetect -l > "<<ftb;
-  if(!system(std::string(cmd.str()).c_str()))
-  {
-    printf("I2C bus(es):\n");fflush(stdout);
-    cmd=std::ostringstream();cmd<<"cat "<<ftb;
-    system(std::string(cmd.str()).c_str());
-  }
-  else {printf("error: while accessing I2C buses, see \"%s\"\n",std::string(cmd.str()).c_str());return 1;}
-  return 0;
-}//i2c_bus_list
-
-///list of I2C devices
-int i2c_device_list(const int bus_index, std::vector<int> &device_addresses, const int verbose=0)
-{
-///table of I2C devices
-  //system calls
-  std::ostringstream cmd;
-  std::string ftd="/dev/shm/i2c_device_list.txt";
-  cmd<<"i2cdetect -y "<<bus_index<<" > "<<ftd;
-  if(!system(std::string(cmd.str()).c_str()))
-  {
-    printf("\nI2C device table:\n");fflush(stdout);
-    cmd=std::ostringstream();cmd<<"cat "<<ftd;
-    system(std::string(cmd.str()).c_str());
-  }
-  else {printf("error: while accessing I2C bus, see \"%s\"\n",std::string(cmd.str()).c_str());return 1;}
-
-///list of I2C devices
-  cmd=std::ostringstream();cmd<<"sed -i \"s/--//g;s/..://\" "<<ftd;
-  if(!system(std::string(cmd.str()).c_str()))
-  {
-    if(verbose) {printf("\nI2C devices:\n");fflush(stdout);}
-    std::filebuf fb;
-    if(fb.open(ftd,std::ios::in))
-    {//get hexa. addresses
-      std::istream is(&fb);
-      is.setf(std::ios::hex,std::ios::basefield);//set hex as the basefield
-      //skip first line
-      char tmp[256];is.getline(tmp,256);
-      //read addresses
-      int i,j;
-      j=0;
-      is>>i;
-      std::cout.setf(std::ios::showbase);//activate showbase
-      while(!is.eof())
-      {
-		if(verbose)
-		{
-          std::cout.setf(std::ios::dec,std::ios::basefield);//set dec as the basefield
-          std::cout<<j++<<":";
-          std::cout.setf(std::ios::hex,std::ios::basefield);//set hex as the basefield
-          std::cout<<"="<<i<<std::endl;
-        }//verbose
-        device_addresses.push_back(i);
-		is>>i;
-		if(j>128) break;
-      }//loop
-    }else {printf("error: while accessing file: \"%s\"\n",ftd.c_str());return 1;}
-  }
-  else {printf("error: while accessing I2C bus, see \"%s\"\n",std::string(cmd.str()).c_str());return 1;}
-}//i2c_bus_list
 
 //! CLI option parse and ...
 int main(int argc, char **argv)
