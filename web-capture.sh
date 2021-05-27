@@ -1,8 +1,10 @@
 #!/bin/bash
 
 echo 'web capture will start in a while ...'
-sleep 6
+sleep 4
 
+#clean
+rm i2c-bus*
 #get HTML content
 wget http://localhost:8080/i2c-bus
 
