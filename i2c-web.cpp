@@ -27,7 +27,7 @@
 //I2C lib.
 #include "i2c_tools.hpp"
 
-#define VERSION "v0.0.1"
+#define VERSION "v0.0.2d"
 
 //Program option/documentation
 //{argp
@@ -137,15 +137,15 @@ void http_service::main(std::string /*url*/)
         "<html>\n"
         "<body>\n"
         "  <h1>I2C bus #1</h1>\n";
-/*
+
   ///list of I2C devices
   std::vector<int> device_addresses;
-  i2c_device_list(1,device_addresses,1);
+//  i2c_device_list(1,device_addresses,1);
 
   ///vector of I2C devices
   std::cout<<"\nI2C devices address(es):";
   response().out()<<"\nI2C devices address(es):";
-  
+/*
   std::cout.setf(std::ios::showbase);//activate showbase
   std::cout.setf(std::ios::hex,std::ios::basefield);//set hex as the basefield
   std::vector<int>::iterator it=device_addresses.begin();
@@ -211,4 +211,3 @@ int main(int argc,char ** argv)
     }
 }//main
 // vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4
-

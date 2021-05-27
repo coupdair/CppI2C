@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo 'web capture will start in a while ...'
-sleep 4
+sleep 6
 
 #clean
 rm i2c-bus*

@@ -1,5 +1,6 @@
 <html>
 <body>
   <h1>I2C bus #1</h1>
-</body>
+
+I2C devices address(es):</body>
 </html>
