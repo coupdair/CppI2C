@@ -27,7 +27,7 @@
 //I2C lib.
 #include "i2c_tools.hpp"
 
-#define VERSION "v0.0.2j"
+#define VERSION "v0.0.2"
 
 //Program option/documentation
 //{argp
@@ -132,7 +132,7 @@ public:
 
 void http_service::main(std::string /*url*/)
 {
-  int verbose=1;
+  int verbose=1;//[0-2]
 //HTML head
   response().out()<<
         "<html>\n"
@@ -141,30 +141,33 @@ void http_service::main(std::string /*url*/)
 
   ///list of I2C devices
   std::vector<int> device_addresses;
-  i2c_device_list(1,device_addresses,verbose);
+  i2c_device_list(1,device_addresses,(verbose>1));
 
   ///vector of I2C devices
-  std::cout<<"\nI2C devices address(es):";
-  response().out()<<"\nI2C devices address(es):";
-  std::cout.setf(std::ios::showbase);//activate showbase
-  std::cout.setf(std::ios::hex,std::ios::basefield);//set hex as the basefield
+  //output
   std::vector<int>::iterator it=device_addresses.begin();
-  std::cout<<"  "<<*it;
+  response().out()       <<"\nI2C devices address(es):";
+  if(verbose>0) std::cout<<"\nI2C devices address(es):";
+  //format hex
   std::ostringstream hex;
   hex<<"0x";
   hex.setf(std::ios::hex,std::ios::basefield);//set hex as the basefield
   hex.width(2);hex.fill('0');
   hex<<*it;
-  response().out()<<"  "<<hex.str();
+  //output
+  response().out()       <<hex.str();
+  if(verbose>0) std::cout<<hex.str();
   for(++it;it!=device_addresses.end();++it)
   {
-     std::cout<<", "<<*it;
-     hex=std::ostringstream();
-     hex<<"0x";
-     hex.setf(std::ios::hex,std::ios::basefield);//set hex as the basefield
-     hex.width(2);hex.fill('0');
-     hex<<*it;
-     response().out()<<", "<<hex.str();
+    //format hex
+    hex=std::ostringstream();
+    hex<<"0x";
+    hex.setf(std::ios::hex,std::ios::basefield);//set hex as the basefield
+    hex.width(2);hex.fill('0');
+    hex<<*it;
+    //output
+    response().out()       <<", "<<hex.str();
+    if(verbose>0) std::cout<<", "<<hex.str();
   }//device loop
   std::cout<<'.'<<std::endl;
   response().out()<<".<br />\n";

@@ -18,7 +18,7 @@
 
 #include "i2c_tools.hpp"
 
-#define VERSION "v0.0.4"
+#define VERSION "v0.0.5"
 
 //Program option/documentation
 //{argp
