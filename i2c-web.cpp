@@ -27,7 +27,7 @@
 //I2C lib.
 #include "i2c_tools.hpp"
 
-#define VERSION "v0.0.2"
+#define VERSION "v0.0.3d"
 
 //Program option/documentation
 //{argp
@@ -135,17 +135,28 @@ void http_service::main(std::string /*url*/)
   int verbose=1;//[0-2]
 //HTML head
   response().out()<<
-        "<html>\n"
-        "<body>\n"
-        "  <h1>I2C bus #1</h1>\n";
+    "<html>\n"
+    "<body>\n";
+//I2C bus
+  response().out()<<"  <h1>I2C bus(es)</h1>\n";
+
+//I2C table
+  response().out()<<
+    "  <h1>I2C bus #1</h1>\n"
+    "  <h2>as table</h2>\n"
+    "  <pre>TODO</pre\n";
+
+//devices
+  response().out()<<
+    "  <h2>as list</h2>\n";
 
   ///list of I2C devices
   std::vector<int> device_addresses;
   i2c_device_list(1,device_addresses,(verbose>1));
 
   ///vector of I2C devices
-  //output
   std::vector<int>::iterator it=device_addresses.begin();
+  //output
   response().out()       <<"\nI2C devices address(es):";
   if(verbose>0) std::cout<<"\nI2C devices address(es):";
   //format hex
@@ -174,8 +185,8 @@ void http_service::main(std::string /*url*/)
 
 //HTML tail
   response().out()<<
-        "</body>\n"
-        "</html>\n";
+    "</body>\n"
+    "</html>\n";
 }//http_service::main
 
 //}C++CMS
