@@ -27,7 +27,7 @@
 //I2C lib.
 #include "i2c_tools.hpp"
 
-#define VERSION "v0.0.3d"
+#define VERSION "v0.0.3e"
 
 //Program option/documentation
 //{argp
@@ -144,7 +144,7 @@ void http_service::main(std::string /*url*/)
   response().out()<<
     "  <h1>I2C bus #1</h1>\n"
     "  <h2>as table</h2>\n"
-    "  <pre>TODO</pre\n";
+    "  <pre>TODO</pre>\n";
 
 //devices
   response().out()<<
