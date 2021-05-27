@@ -27,7 +27,7 @@
 //I2C lib.
 #include "i2c_tools.hpp"
 
-#define VERSION "v0.0.1d"
+#define VERSION "v0.0.1e"
 
 //Program option/documentation
 //{argp
@@ -121,16 +121,16 @@ static struct argp argp = { options, parse_option, args_doc, doc };
 //}argp
 
 //C++CMS
-class my_hello_world : public cppcms::application {
+class http_service: public cppcms::application {
 public:
-    my_hello_world(cppcms::service &srv) :
+    http_service(cppcms::service &srv) :
         cppcms::application(srv) 
     {
     }
     virtual void main(std::string url);
-};//my_hello_world
+};//http_service
 
-void my_hello_world::main(std::string /*url*/)
+void http_service::main(std::string /*url*/)
 {
     response().out()<<
         "<html>\n"
@@ -138,7 +138,7 @@ void my_hello_world::main(std::string /*url*/)
         "  <h1>Hello world for I2C</h1>\n"
         "</body>\n"
         "</html>\n";
-}//my_hello_world::main
+}//http_service::main
 
 int main(int argc,char ** argv)
 {
@@ -177,7 +177,7 @@ int main(int argc,char ** argv)
   std::cout<<argv[0]<<" is running (Ctrl+C to stop), have look to http://localhost:8080/hello."<<std::endl;
     try {
         cppcms::service srv(argc,argv);
-        srv.applications_pool().mount(cppcms::applications_factory<my_hello_world>());
+        srv.applications_pool().mount(cppcms::applications_factory<http_service>());
         srv.run();
     }
     catch(std::exception const &e) {
