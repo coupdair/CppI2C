@@ -27,7 +27,7 @@
 //I2C lib.
 #include "i2c_tools.hpp"
 
-#define VERSION "v0.0.2e"
+#define VERSION "v0.0.2f"
 
 //Program option/documentation
 //{argp
@@ -132,6 +132,7 @@ public:
 
 void http_service::main(std::string /*url*/)
 {
+  int verbose=1;
 //HTML head
   response().out()<<
         "<html>\n"
@@ -140,17 +141,15 @@ void http_service::main(std::string /*url*/)
 
   ///list of I2C devices
   std::vector<int> device_addresses;
-  i2c_device_list(1,device_addresses,1);
+  i2c_device_list(1,device_addresses,verbose);
 
   ///vector of I2C devices
   std::cout<<"\nI2C devices address(es):";
   response().out()<<"\nI2C devices address(es):";
-/*
   std::cout.setf(std::ios::showbase);//activate showbase
   std::cout.setf(std::ios::hex,std::ios::basefield);//set hex as the basefield
   std::vector<int>::iterator it=device_addresses.begin();
   std::cout<<"  "<<*it;
-  /*
   response().out()<<"  "<<*it;
   for(++it;it!=device_addresses.end();++it)
   {
@@ -159,7 +158,6 @@ void http_service::main(std::string /*url*/)
   }
   std::cout<<'.'<<std::endl;
   response().out()<<'.<br />\n';
-  */
 //HTML tail
   response().out()<<
         "</body>\n"
