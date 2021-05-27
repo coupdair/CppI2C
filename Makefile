@@ -1,6 +1,6 @@
-all: i2c help
+all: i2c help version
 
-i2c: i2c.cpp
+i2c: i2c.cpp i2c_tools.hpp
 	g++ i2c.cpp -o i2c
 
 help: i2c
@@ -11,3 +11,10 @@ version: i2c
 
 run: i2c
 	./i2c -i 1 | tee i2c.txt
+
+web: i2c-web.cpp config.js i2c_tools.hpp
+	g++ -I../CppCMS/cppcms/ -I../CppCMS/cppcms/booster -I../CppCMS/cppcms/build -I../CppCMS/cppcms/build/booster  -O2 -Wall -g i2c-web.cpp -o i2c-web -L../CppCMS/cppcms/build -L../CppCMS/cppcms/build/booster -lcppcms -lbooster
+
+run-web: web
+	LD_LIBRARY_PATH="../CppCMS/cppcms/build;../CppCMS/cppcms/build/booster" ./i2c-web -c config.js -i 1 | tee i2c-web.txt
+#	wget http://localhost:8080/hello
