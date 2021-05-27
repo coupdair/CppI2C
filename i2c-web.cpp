@@ -27,7 +27,7 @@
 //I2C lib.
 #include "i2c_tools.hpp"
 
-#define VERSION "v0.0.1e"
+#define VERSION "v0.0.1"
 
 //Program option/documentation
 //{argp
@@ -120,22 +120,48 @@ static struct argp argp = { options, parse_option, args_doc, doc };
 
 //}argp
 
-//C++CMS
+//HTTP service using C++CMS
 class http_service: public cppcms::application {
 public:
     http_service(cppcms::service &srv) :
         cppcms::application(srv) 
     {
-    }
+    }//constructor
     virtual void main(std::string url);
 };//http_service
 
 void http_service::main(std::string /*url*/)
 {
-    response().out()<<
+//HTML head
+  response().out()<<
         "<html>\n"
         "<body>\n"
-        "  <h1>Hello world for I2C</h1>\n"
+        "  <h1>I2C bus #1</h1>\n";
+/*
+  ///list of I2C devices
+  std::vector<int> device_addresses;
+  i2c_device_list(1,device_addresses,1);
+
+  ///vector of I2C devices
+  std::cout<<"\nI2C devices address(es):";
+  response().out()<<"\nI2C devices address(es):";
+  
+  std::cout.setf(std::ios::showbase);//activate showbase
+  std::cout.setf(std::ios::hex,std::ios::basefield);//set hex as the basefield
+  std::vector<int>::iterator it=device_addresses.begin();
+  std::cout<<"  "<<*it;
+  /*
+  response().out()<<"  "<<*it;
+  for(++it;it!=device_addresses.end();++it)
+  {
+     std::cout<<", "<<*it;
+     response().out()<<"\n, "<<*it;
+  }
+  std::cout<<'.'<<std::endl;
+  response().out()<<'.<br />\n';
+  */
+//HTML tail
+  response().out()<<
         "</body>\n"
         "</html>\n";
 }//http_service::main
