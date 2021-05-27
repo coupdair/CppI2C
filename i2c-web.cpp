@@ -27,7 +27,7 @@
 //I2C lib.
 #include "i2c_tools.hpp"
 
-#define VERSION "v0.0.2i"
+#define VERSION "v0.0.2j"
 
 //Program option/documentation
 //{argp
@@ -151,18 +151,18 @@ void http_service::main(std::string /*url*/)
   std::vector<int>::iterator it=device_addresses.begin();
   std::cout<<"  "<<*it;
   std::ostringstream hex;
-  hex.setf(std::ios::showbase);//activate showbase
+  hex<<"0x";
   hex.setf(std::ios::hex,std::ios::basefield);//set hex as the basefield
-  hex.width(4);hex.fill('0');
+  hex.width(2);hex.fill('0');
   hex<<*it;
   response().out()<<"  "<<hex.str();
   for(++it;it!=device_addresses.end();++it)
   {
      std::cout<<", "<<*it;
      hex=std::ostringstream();
-     hex.setf(std::ios::showbase);//activate showbase
+     hex<<"0x";
      hex.setf(std::ios::hex,std::ios::basefield);//set hex as the basefield
-     hex.width(4);hex.fill('0');
+     hex.width(2);hex.fill('0');
      hex<<*it;
      response().out()<<", "<<hex.str();
   }//device loop
