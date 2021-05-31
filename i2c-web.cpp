@@ -127,33 +127,33 @@ static struct argp argp = { options, parse_option, args_doc, doc };
 //HTTP service using C++CMS
 class http_service: public cppcms::application {
 public:
-    http_service(cppcms::service &srv) :
-        cppcms::application(srv) 
-    {
-        dispatcher().assign("",&http_service::main,this);
-        mapper().assign("");
+  http_service(cppcms::service &srv) :
+    cppcms::application(srv) 
+  {
+    dispatcher().assign("",&http_service::main,this);
+    mapper().assign("");
 
-        dispatcher().assign("/bus",&http_service::bus,this);
-        mapper().assign("bus","/bus");
+    dispatcher().assign("/bus",&http_service::bus,this);
+    mapper().assign("bus","/bus");
 
-        dispatcher().assign("/devices",&http_service::devices,this);
-        mapper().assign("devices","/devices");
+    dispatcher().assign("/devices",&http_service::devices,this);
+    mapper().assign("devices","/devices");
 
-        dispatcher().assign("/system",&http_service::system,this);
-        mapper().assign("system","/system");
+    dispatcher().assign("/system",&http_service::system,this);
+    mapper().assign("system","/system");
 
-        mapper().root("/i2c-bus");
-    }//constructor
-    void ini(content::master &c)
-    {
-        c.title = "PiPoE for IC2";
-    }//ini
-    void main()
-    {
-        content::master c;
-        ini(c);
-        render("main",c);
-    }//main
+    mapper().root("/i2c-bus");
+  }//constructor
+  void ini(content::master &c)
+  {
+      c.title = "PiPoE for IC2";
+  }//ini
+  void main()
+  {
+    content::master c;
+    ini(c);
+    render("main",c);
+  }//main
   void system()
   {
     content::page c;

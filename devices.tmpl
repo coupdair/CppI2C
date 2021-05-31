@@ -1,6 +1,6 @@
 <% skin web_skin %>
 <% view devices uses content::devices extends master %>
-<% template title() %><% include master::title() %> :: devices<% end %>
+<% template title() %>devices on <% include master::title() %><% end %>
 <% template page_content() %>
   <%= content_head | raw %>
   <% foreach dev in device_list %>
