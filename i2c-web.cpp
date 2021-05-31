@@ -28,7 +28,7 @@
 #include "i2c_tools.hpp"
 #include "os_tools.hpp"
 
-#define VERSION "v0.0.7d"
+#define VERSION "v0.0.7"
 
 //Program option/documentation
 //{argp
