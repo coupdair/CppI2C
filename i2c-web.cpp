@@ -27,7 +27,7 @@
 //I2C lib.
 #include "i2c_tools.hpp"
 
-#define VERSION "v0.0.3e"
+#define VERSION "v0.0.6d"
 
 //Program option/documentation
 //{argp
@@ -139,21 +139,25 @@ void http_service::main(std::string /*url*/)
     "<body>\n";
 //I2C bus
   response().out()<<"  <h1>I2C bus(es)</h1>\n";
+  std::string s;
+  i2c_bus_list(s);
+  response().out()<<s;
 
+//I2C devices
+  ///list of I2C devices
+  std::vector<int> device_addresses;
+  i2c_device_list(1,device_addresses,s,(verbose>1));
 //I2C table
-  response().out()<<
-    "  <h1>I2C bus #1</h1>\n"
+  response().out()
+  <<"  <h1>I2C bus #1</h1>\n"
     "  <h2>as table</h2>\n"
-    "  <pre>TODO</pre>\n";
+    "  <pre>"
+  <<s
+  <<"</pre>\n";
 
 //devices
   response().out()<<
     "  <h2>as list</h2>\n";
-
-  ///list of I2C devices
-  std::vector<int> device_addresses;
-  i2c_device_list(1,device_addresses,(verbose>1));
-
   ///vector of I2C devices
   std::vector<int>::iterator it=device_addresses.begin();
   //output
