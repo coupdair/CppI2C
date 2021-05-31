@@ -31,7 +31,7 @@
 #include "i2c_tools.hpp"
 #include "os_tools.hpp"
 
-#define VERSION "v0.0.8i"
+#define VERSION "v0.0.8j"
 
 //Program option/documentation
 //{argp
@@ -136,8 +136,8 @@ public:
         dispatcher().assign("/news",&http_service::news,this);
         mapper().assign("news","/news");
 
-        dispatcher().assign("/page",&http_service::page,this);
-        mapper().assign("page","/page");
+        dispatcher().assign("/system",&http_service::system,this);
+        mapper().assign("page","/system");
 
         mapper().root("/i2c-bus");
     }//constructor
@@ -151,7 +151,7 @@ public:
         ini(c);
         render("intro",c);
     }//intro
-  void page()
+  void system()
   {
     content::page c;
     ini(c);
@@ -166,7 +166,7 @@ public:
     + s
     + "  </pre>\n";
     render("page",c);
-  }//page
+  }//system
     void news()
     {
         content::news c;
