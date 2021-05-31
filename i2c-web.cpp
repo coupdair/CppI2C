@@ -238,6 +238,7 @@ int main(int argc,char ** argv)
   {
     std::cout<<VERSION<<std::endl;
     std::cout<<"i2c-tools."<<VERSION_I2C_TOOLS<<std::endl;
+    std::cout<<"os-tools." <<VERSION_OS_TOOLS <<std::endl;
     return 0;
   }//version
 

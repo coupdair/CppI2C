@@ -16,7 +16,7 @@
 #include <fstream>  // std::filebuf
 #include <vector>   // std::vector
 
-#define VERSION_I2C_TOOLS "v0.0.0d"
+#define VERSION_OS_TOOLS "v0.0.1e"
 
 ///list of I2C buses
 int os_pretty_name(std::string &out)
