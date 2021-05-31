@@ -31,7 +31,7 @@
 #include "i2c_tools.hpp"
 #include "os_tools.hpp"
 
-#define VERSION "v0.0.8h"
+#define VERSION "v0.0.8i"
 
 //Program option/documentation
 //{argp
@@ -151,14 +151,24 @@ public:
         ini(c);
         render("intro",c);
     }//intro
-    void page()
-    {
-        content::page c;
-        ini(c);
-        c.page_title = "About";
-        c.page_content = "<p>A page about this web site</p>";
-        render("page",c);
-    }//page
+  void page()
+  {
+    content::page c;
+    ini(c);
+    c.page_title = "system";
+    //Linux
+    std::string s;
+    os_pretty_name(s);
+    c.page_content=
+      "  <h1>Linux OS</h1>\n"
+      "  <h2>distribution</h2>\n"
+      "  <pre>\n";
+      /*
+    <<s
+    <<"  </pre>\n";
+    * */
+    render("page",c);
+  }//page
     void news()
     {
         content::news c;
@@ -236,15 +246,6 @@ void http_service::main()
   response().out()
   <<".\n"
     "  </pre>\n";
-
-//Linux
-  os_pretty_name(s);
-  response().out()
-  <<"  <h1>Linux OS</h1>\n"
-    "  <h2>distribution</h2>\n"
-    "  <pre>\n"
-  <<s
-  <<"  </pre>\n";
 
 //HTML tail
   response().out()<<
