@@ -3,6 +3,9 @@ LD_LIBRARY_PATH=LD_LIBRARY_PATH="../CppCMS/cppcms/build;../CppCMS/cppcms/build/b
 #all: i2c help version  web web-help web-version
 all: web web-help web-version
 
+code:
+	geany ReadMe.md Makefile i2c_tools.hpp i2c.cpp config.js i2c-web.cpp &
+
 i2c: i2c.cpp i2c_tools.hpp
 	g++ i2c.cpp -o i2c
 

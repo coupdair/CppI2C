@@ -18,7 +18,7 @@
 
 #include "i2c_tools.hpp"
 
-#define VERSION "v0.0.5"
+#define VERSION "v0.0.6d"
 
 //Program option/documentation
 //{argp
@@ -143,7 +143,10 @@ int main(int argc, char **argv)
   }//print default option values
 
 ///list of I2C buses
-  i2c_bus_list();
+  std::string s;
+  i2c_bus_list(s);
+  std::cout<<"I2C bus(es):"<<std::endl;
+  std::cout<<s;
 ///list of I2C devices
   std::vector<int> device_addresses;
   i2c_device_list(arguments.integer,device_addresses,arguments.verbose);

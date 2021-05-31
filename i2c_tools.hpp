@@ -16,22 +16,36 @@
 #include <fstream>  // std::filebuf
 #include <vector>   // std::vector
 
-#define VERSION_I2C_TOOLS "v0.0.5"
+#define VERSION_I2C_TOOLS "v0.0.6d"
 
 ///list of I2C buses
-int i2c_bus_list()
+int i2c_bus_list(std::string &out,bool print=false)
 {
   //system calls
   std::ostringstream cmd;
   std::string ftb="/dev/shm/i2c_bus_list.txt";
   cmd<<"i2cdetect -l > "<<ftb;
-  if(!system(std::string(cmd.str()).c_str()))
+  //error
+  if(system(std::string(cmd.str()).c_str())) {printf("error: while accessing I2C buses, see \"%s\"\n",std::string(cmd.str()).c_str());return 1;}
+  //print
+  if(print)
   {
     printf("I2C bus(es):\n");fflush(stdout);
     cmd=std::ostringstream();cmd<<"cat "<<ftb;
     system(std::string(cmd.str()).c_str());
   }
-  else {printf("error: while accessing I2C buses, see \"%s\"\n",std::string(cmd.str()).c_str());return 1;}
+  //store
+  std::ifstream fb;
+  fb.open(ftb,std::ios::in);
+  if(!fb.is_open()){printf("error: while accessing file: \"%s\"\n",ftb.c_str());return 1;}
+  out.assign((std::istreambuf_iterator<char>(fb))
+            ,(std::istreambuf_iterator<char>(  ))
+            );
+  fb.close();
+/*/debug
+std::cout<<"I2C bus(es):"<<std::endl;
+std::cout<<"|"<<out<<"|"<<std::endl;
+*/
   return 0;
 }//i2c_bus_list
 
