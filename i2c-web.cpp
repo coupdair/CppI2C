@@ -26,8 +26,9 @@
 
 //I2C lib.
 #include "i2c_tools.hpp"
+#include "os_tools.hpp"
 
-#define VERSION "v0.0.6"
+#define VERSION "v0.0.7d"
 
 //Program option/documentation
 //{argp
@@ -195,6 +196,15 @@ void http_service::main(std::string /*url*/)
   response().out()
   <<".\n"
     "  </pre>\n";
+
+//Linux
+  os_pretty_name(s);
+  response().out()
+  <<"  <h1>Linux OS</h1>\n"
+    "  <h2>distribution</h2>\n"
+    "  <pre>\n"
+  <<s
+  <<"  </pre>\n";
 
 //HTML tail
   response().out()<<
