@@ -31,7 +31,7 @@
 #include "i2c_tools.hpp"
 #include "os_tools.hpp"
 
-#define VERSION "v0.0.9f"
+#define VERSION "v0.0.9g"
 
 //Program option/documentation
 //{argp
@@ -133,6 +133,9 @@ public:
     dispatcher().assign("",&http_service::main,this);
     mapper().assign("");
 
+    dispatcher().assign("/no_template",&http_service::no_template,this);
+    mapper().assign("no_template","/no_template");
+
     dispatcher().assign("/bus",&http_service::bus,this);
     mapper().assign("bus","/bus");
 
@@ -167,7 +170,7 @@ public:
       "  <h2>distribution</h2>\n"
       "  <pre>\n"
     + s
-    + "  </pre>\n";
+    + "\n  </pre>\n";
     render("page",c);
   }//system
 
@@ -226,34 +229,46 @@ public:
     render("devices",c);
   }//devices
   virtual void bus();
+  virtual void no_template();
 };//http_service
 
 void http_service::bus()
+{
+  int verbose=1;//[0-2]
+  content::page c;
+  ini(c);
+  c.page_title = "I2C bus(es)";
+  //I2C bus
+  std::string s;
+  i2c_bus_list(s);
+  c.page_content
+  = "  <pre>\n"
+  + s
+  + "  </pre>\n";
+  render("page",c);
+}//http_service::bus
+
+void http_service::no_template()
 {
   int verbose=1;//[0-2]
 //HTML head
   response().out()<<
     "<html>\n"
     "<body>\n";
-//I2C bus
-  std::string s;
-  i2c_bus_list(s);
+    
+//message
+  std::string s("no (content) template");
   response().out()
-  <<"  <h1>I2C bus(es)</h1>\n"
+  <<"  <h1>no template</h1>\n"
     "  <pre>\n"
   <<s
   <<"  </pre>\n";
-
-//I2C devices
-  ///list of I2C devices
-  std::vector<int> device_addresses;
-  i2c_device_list(1,device_addresses,s,(verbose>1));
 
 //HTML tail
   response().out()<<
     "</body>\n"
     "</html>\n";
-}//http_service::bus
+}//http_service::no_template
 
 //}C++CMS
 
