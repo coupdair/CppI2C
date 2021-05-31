@@ -27,7 +27,7 @@
 //I2C lib.
 #include "i2c_tools.hpp"
 
-#define VERSION "v0.0.6f"
+#define VERSION "v0.0.6"
 
 //Program option/documentation
 //{argp
@@ -150,6 +150,7 @@ void http_service::main(std::string /*url*/)
   ///list of I2C devices
   std::vector<int> device_addresses;
   i2c_device_list(1,device_addresses,s,(verbose>1));
+
 //I2C table
   response().out()
   <<"  <h1>I2C bus #1</h1>\n"
@@ -238,7 +239,7 @@ int main(int argc,char ** argv)
   }//print default option values
 
   //web service
-  std::cout<<argv[0]<<" is running (Ctrl+C to stop), have look to http://localhost:8080/hello."<<std::endl;
+  std::cout<<argv[0]<<" is running (Ctrl+C to stop), have look to http://localhost:8080/i2c-bus."<<std::endl;
     try {
         cppcms::service srv(argc,argv);
         srv.applications_pool().mount(cppcms::applications_factory<http_service>());
