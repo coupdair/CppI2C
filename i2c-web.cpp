@@ -31,7 +31,7 @@
 #include "i2c_tools.hpp"
 #include "os_tools.hpp"
 
-#define VERSION "v0.0.9d"
+#define VERSION "v0.0.9e"
 
 //Program option/documentation
 //{argp
@@ -134,13 +134,13 @@ public:
         mapper().assign("");
 
         dispatcher().assign("/bus",&http_service::bus,this);
-        mapper().assign("page","/bus");
+        mapper().assign("bus","/bus");
 
         dispatcher().assign("/devices",&http_service::devices,this);
         mapper().assign("devices","/devices");
 
         dispatcher().assign("/system",&http_service::system,this);
-        mapper().assign("page","/system");
+        mapper().assign("system","/system");
 
         mapper().root("/i2c-bus");
     }//constructor
