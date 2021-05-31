@@ -27,7 +27,7 @@
 //I2C lib.
 #include "i2c_tools.hpp"
 
-#define VERSION "v0.0.6d"
+#define VERSION "v0.0.6e"
 
 //Program option/documentation
 //{argp
@@ -153,7 +153,7 @@ void http_service::main(std::string /*url*/)
     "  <h2>as table</h2>\n"
     "  <pre>"
   <<s
-  <<"</pre>\n";
+  <<"  </pre>\n";
 
 //devices
   response().out()<<
@@ -161,7 +161,9 @@ void http_service::main(std::string /*url*/)
   ///vector of I2C devices
   std::vector<int>::iterator it=device_addresses.begin();
   //output
-  response().out()       <<"\nI2C devices address(es):";
+  response().out()
+  <<"\nI2C devices address(es):"
+    "  <pre>";
   if(verbose>0) std::cout<<"\nI2C devices address(es):";
   //format hex
   std::ostringstream hex;
@@ -185,7 +187,9 @@ void http_service::main(std::string /*url*/)
     if(verbose>0) std::cout<<", "<<hex.str();
   }//device loop
   std::cout<<'.'<<std::endl;
-  response().out()<<".<br />\n";
+  response().out()
+  <<".<br />\n"
+    "  </pre>\n";
 
 //HTML tail
   response().out()<<

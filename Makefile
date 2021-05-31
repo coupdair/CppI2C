@@ -5,7 +5,7 @@ all: web web-help web-version
 #all: i2c help version
 
 code:
-	geany ReadMe.md Makefile i2c_tools.hpp i2c.cpp config.js i2c-web.cpp &
+	geany ReadMe.md Makefile i2c_tools.hpp i2c.cpp config.js i2c-web.cpp web-capture.sh &
 
 i2c: i2c.cpp i2c_tools.hpp
 	g++ i2c.cpp -o i2c
