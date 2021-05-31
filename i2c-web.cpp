@@ -31,7 +31,7 @@
 #include "i2c_tools.hpp"
 #include "os_tools.hpp"
 
-#define VERSION "v0.0.8e"
+#define VERSION "v0.0.8f"
 
 //Program option/documentation
 //{argp
@@ -139,11 +139,11 @@ public:
         dispatcher().assign("/page",&http_service::page,this);
         mapper().assign("page","/page");
 
-        mapper().root("/myapp");
+        mapper().root("/i2c-bus");
     }//constructor
     void ini(content::master &c)
     {
-        c.title = "My Web Site";
+        c.title = "PiPoE for IC2";
     }//ini
     void intro()
     {
