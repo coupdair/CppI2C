@@ -31,7 +31,7 @@
 #include "i2c_tools.hpp"
 #include "os_tools.hpp"
 
-#define VERSION "v0.0.8k"
+#define VERSION "v0.0.8l"
 
 //Program option/documentation
 //{argp
@@ -175,55 +175,53 @@ public:
         ini(c);
     std::string s;
         
-  //I2C devices
-  ///list of I2C devices
-  std::vector<int> device_addresses;
-  i2c_device_list(1,device_addresses,s,(verbose>1));
+    //I2C devices
+    ///list of I2C devices
+    std::vector<int> device_addresses;
+    i2c_device_list(1,device_addresses,s,(verbose>1));
 
-//I2C table
-  c.content_head
-  = "  <h1>I2C bus #1</h1>\n"
-    "  <h2>as table</h2>\n"
-    "  I2C devices table:\n"
-    "  <pre>\n"
-  + s
-  + "  </pre>\n";
-/*
-//devices
-  c.content_head
-  +="  <h2>as list</h2>\n"
-    "\nI2C devices address(es):\n"
-    "  <pre>\n";
-  ///vector of I2C devices
-  std::vector<int>::iterator it=device_addresses.begin();
-  //output
-  if(verbose>0) std::cout<<"\nI2C devices address(es):";
-  //format hex
-  std::ostringstream hex;
-  hex<<"0x";
-  hex.setf(std::ios::hex,std::ios::basefield);//set hex as the basefield
-  hex.width(2);hex.fill('0');
-  hex<<*it;
-  //output
-  response().out()       <<hex.str();
-  if(verbose>0) std::cout<<hex.str();
-  for(++it;it!=device_addresses.end();++it)
-  {
+    //I2C table
+    c.content_head
+    = "  <h1>I2C bus #1</h1>\n"
+      "  <h2>as table</h2>\n"
+      "  I2C devices table:\n"
+      "  <pre>\n"
+    + s
+    + "  </pre>\n";
+
+    //devices
+    c.content_head
+    +="  <h2>as list</h2>\n"
+      "\nI2C devices address(es):\n"
+      "  <pre>\n";
+    ///vector of I2C devices
+    std::vector<int>::iterator it=device_addresses.begin();
+    //output
+    if(verbose>0) std::cout<<"\nI2C devices address(es):";
     //format hex
-    hex=std::ostringstream();
+    std::ostringstream hex;
     hex<<"0x";
     hex.setf(std::ios::hex,std::ios::basefield);//set hex as the basefield
     hex.width(2);hex.fill('0');
     hex<<*it;
     //output
-c.news_list.push_back(hex.str());
-    if(verbose>0) std::cout<<", "<<hex.str();
-  }//device loop
-  std::cout<<'.'<<std::endl;
-*/
-        render("news",c);
-    }//news
-    virtual void main();
+    if(verbose>0) std::cout<<hex.str();
+    for(++it;it!=device_addresses.end();++it)
+    {
+      //format hex
+      hex=std::ostringstream();
+      hex<<"0x";
+      hex.setf(std::ios::hex,std::ios::basefield);//set hex as the basefield
+      hex.width(2);hex.fill('0');
+      hex<<*it;
+      //output
+      c.news_list.push_back(hex.str());
+      if(verbose>0) std::cout<<", "<<hex.str();
+    }//device loop
+    std::cout<<'.'<<std::endl;
+    render("news",c);
+  }//news
+  virtual void main();
 };//http_service
 
 void http_service::main()
