@@ -31,7 +31,7 @@
 #include "i2c_tools.hpp"
 #include "os_tools.hpp"
 
-#define VERSION "v0.0.8"
+#define VERSION "v0.0.9d"
 
 //Program option/documentation
 //{argp
@@ -133,6 +133,9 @@ public:
         dispatcher().assign("",&http_service::main,this);
         mapper().assign("");
 
+        dispatcher().assign("/bus",&http_service::bus,this);
+        mapper().assign("page","/bus");
+
         dispatcher().assign("/devices",&http_service::devices,this);
         mapper().assign("devices","/devices");
 
@@ -145,12 +148,12 @@ public:
     {
         c.title = "PiPoE for IC2";
     }//ini
-    void intro()
+    void main()
     {
         content::master c;
         ini(c);
-        render("intro",c);
-    }//intro
+        render("main",c);
+    }//main
   void system()
   {
     content::page c;
@@ -222,10 +225,10 @@ public:
     std::cout<<'.'<<std::endl;
     render("devices",c);
   }//devices
-  virtual void main();
+  virtual void bus();
 };//http_service
 
-void http_service::main()
+void http_service::bus()
 {
   int verbose=1;//[0-2]
 //HTML head
@@ -246,56 +249,11 @@ void http_service::main()
   std::vector<int> device_addresses;
   i2c_device_list(1,device_addresses,s,(verbose>1));
 
-//I2C table
-  response().out()
-  <<"  <h1>I2C bus #1</h1>\n"
-    "  <h2>as table</h2>\n"
-    "  I2C devices table:\n"
-    "  <pre>\n"
-  <<s
-  <<"  </pre>\n";
-
-//devices
-  response().out()<<
-    "  <h2>as list</h2>\n";
-  ///vector of I2C devices
-  std::vector<int>::iterator it=device_addresses.begin();
-  //output
-  response().out()
-  <<"\nI2C devices address(es):\n"
-    "  <pre>\n";
-  if(verbose>0) std::cout<<"\nI2C devices address(es):";
-  //format hex
-  std::ostringstream hex;
-  hex<<"0x";
-  hex.setf(std::ios::hex,std::ios::basefield);//set hex as the basefield
-  hex.width(2);hex.fill('0');
-  hex<<*it;
-  //output
-  response().out()       <<hex.str();
-  if(verbose>0) std::cout<<hex.str();
-  for(++it;it!=device_addresses.end();++it)
-  {
-    //format hex
-    hex=std::ostringstream();
-    hex<<"0x";
-    hex.setf(std::ios::hex,std::ios::basefield);//set hex as the basefield
-    hex.width(2);hex.fill('0');
-    hex<<*it;
-    //output
-    response().out()       <<", "<<hex.str();
-    if(verbose>0) std::cout<<", "<<hex.str();
-  }//device loop
-  std::cout<<'.'<<std::endl;
-  response().out()
-  <<".\n"
-    "  </pre>\n";
-
 //HTML tail
   response().out()<<
     "</body>\n"
     "</html>\n";
-}//http_service::main
+}//http_service::bus
 
 //}C++CMS
 

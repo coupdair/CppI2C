@@ -6,7 +6,7 @@ sleep 6
 #get HTML content
 wb=i2c-bus
 list=
-for d in $wb $wb/system $wb/devices
+for d in $wb $wb/bus $wb/devices $wb/system
 do
   f=`basename $d`
   echo 'get '$f
