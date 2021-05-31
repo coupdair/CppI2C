@@ -31,7 +31,7 @@
 #include "i2c_tools.hpp"
 #include "os_tools.hpp"
 
-#define VERSION "v0.0.9g"
+#define VERSION "v0.0.9"
 
 //Program option/documentation
 //{argp
@@ -133,8 +133,8 @@ public:
     dispatcher().assign("",&http_service::main,this);
     mapper().assign("");
 
-    dispatcher().assign("/no_template",&http_service::no_template,this);
-    mapper().assign("no_template","/no_template");
+//    dispatcher().assign("/no_template",&http_service::no_template,this);
+//    mapper().assign("no_template","/no_template");
 
     dispatcher().assign("/bus",&http_service::bus,this);
     mapper().assign("bus","/bus");
