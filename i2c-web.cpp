@@ -162,11 +162,9 @@ public:
     c.page_content=
       "  <h1>Linux OS</h1>\n"
       "  <h2>distribution</h2>\n"
-      "  <pre>\n";
-      /*
-    <<s
-    <<"  </pre>\n";
-    * */
+      "  <pre>\n"
+    + s
+    + "  </pre>\n";
     render("page",c);
   }//page
     void news()
