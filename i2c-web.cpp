@@ -31,7 +31,7 @@
 #include "i2c_tools.hpp"
 #include "os_tools.hpp"
 
-#define VERSION "v0.0.8f"
+#define VERSION "v0.0.8g"
 
 //Program option/documentation
 //{argp
@@ -130,7 +130,7 @@ public:
     http_service(cppcms::service &srv) :
         cppcms::application(srv) 
     {
-        dispatcher().assign("",&http_service::intro,this);
+        dispatcher().assign("",&http_service::main,this);
         mapper().assign("");
 
         dispatcher().assign("/news",&http_service::news,this);
@@ -168,9 +168,91 @@ public:
         c.news_list.push_back("This is the last message!");
         render("news",c);
     }//news
-    //virtual void main(std::string url);
+    virtual void main();
 };//http_service
 
+void http_service::main()
+{
+  int verbose=1;//[0-2]
+//HTML head
+  response().out()<<
+    "<html>\n"
+    "<body>\n";
+//I2C bus
+  std::string s;
+  i2c_bus_list(s);
+  response().out()
+  <<"  <h1>I2C bus(es)</h1>\n"
+    "  <pre>\n"
+  <<s
+  <<"  </pre>\n";
+
+//I2C devices
+  ///list of I2C devices
+  std::vector<int> device_addresses;
+  i2c_device_list(1,device_addresses,s,(verbose>1));
+
+//I2C table
+  response().out()
+  <<"  <h1>I2C bus #1</h1>\n"
+    "  <h2>as table</h2>\n"
+    "  I2C devices table:\n"
+    "  <pre>\n"
+  <<s
+  <<"  </pre>\n";
+
+//devices
+  response().out()<<
+    "  <h2>as list</h2>\n";
+  ///vector of I2C devices
+  std::vector<int>::iterator it=device_addresses.begin();
+  //output
+  response().out()
+  <<"\nI2C devices address(es):\n"
+    "  <pre>\n";
+  if(verbose>0) std::cout<<"\nI2C devices address(es):";
+  //format hex
+  std::ostringstream hex;
+  hex<<"0x";
+  hex.setf(std::ios::hex,std::ios::basefield);//set hex as the basefield
+  hex.width(2);hex.fill('0');
+  hex<<*it;
+  //output
+  response().out()       <<hex.str();
+  if(verbose>0) std::cout<<hex.str();
+  for(++it;it!=device_addresses.end();++it)
+  {
+    //format hex
+    hex=std::ostringstream();
+    hex<<"0x";
+    hex.setf(std::ios::hex,std::ios::basefield);//set hex as the basefield
+    hex.width(2);hex.fill('0');
+    hex<<*it;
+    //output
+    response().out()       <<", "<<hex.str();
+    if(verbose>0) std::cout<<", "<<hex.str();
+  }//device loop
+  std::cout<<'.'<<std::endl;
+  response().out()
+  <<".\n"
+    "  </pre>\n";
+
+//Linux
+  os_pretty_name(s);
+  response().out()
+  <<"  <h1>Linux OS</h1>\n"
+    "  <h2>distribution</h2>\n"
+    "  <pre>\n"
+  <<s
+  <<"  </pre>\n";
+
+//HTML tail
+  response().out()<<
+    "</body>\n"
+    "</html>\n";
+}//http_service::main
+
+//}C++CMS
 
 int main(int argc,char ** argv)
 {
