@@ -27,7 +27,7 @@
 //I2C lib.
 #include "i2c_tools.hpp"
 
-#define VERSION "v0.0.6e"
+#define VERSION "v0.0.6f"
 
 //Program option/documentation
 //{argp
@@ -138,10 +138,13 @@ void http_service::main(std::string /*url*/)
     "<html>\n"
     "<body>\n";
 //I2C bus
-  response().out()<<"  <h1>I2C bus(es)</h1>\n";
   std::string s;
   i2c_bus_list(s);
-  response().out()<<s;
+  response().out()
+  <<"  <h1>I2C bus(es)</h1>\n"
+    "  <pre>\n"
+  <<s
+  <<"  </pre>\n";
 
 //I2C devices
   ///list of I2C devices
@@ -151,7 +154,8 @@ void http_service::main(std::string /*url*/)
   response().out()
   <<"  <h1>I2C bus #1</h1>\n"
     "  <h2>as table</h2>\n"
-    "  <pre>"
+    "  I2C devices table:\n"
+    "  <pre>\n"
   <<s
   <<"  </pre>\n";
 
@@ -162,8 +166,8 @@ void http_service::main(std::string /*url*/)
   std::vector<int>::iterator it=device_addresses.begin();
   //output
   response().out()
-  <<"\nI2C devices address(es):"
-    "  <pre>";
+  <<"\nI2C devices address(es):\n"
+    "  <pre>\n";
   if(verbose>0) std::cout<<"\nI2C devices address(es):";
   //format hex
   std::ostringstream hex;
@@ -188,7 +192,7 @@ void http_service::main(std::string /*url*/)
   }//device loop
   std::cout<<'.'<<std::endl;
   response().out()
-  <<".<br />\n"
+  <<".\n"
     "  </pre>\n";
 
 //HTML tail
