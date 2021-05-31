@@ -31,7 +31,7 @@
 #include "i2c_tools.hpp"
 #include "os_tools.hpp"
 
-#define VERSION "v0.0.8l"
+#define VERSION "v0.0.8"
 
 //Program option/documentation
 //{argp
@@ -133,8 +133,8 @@ public:
         dispatcher().assign("",&http_service::main,this);
         mapper().assign("");
 
-        dispatcher().assign("/news",&http_service::news,this);
-        mapper().assign("news","/news");
+        dispatcher().assign("/devices",&http_service::devices,this);
+        mapper().assign("devices","/devices");
 
         dispatcher().assign("/system",&http_service::system,this);
         mapper().assign("page","/system");
@@ -168,11 +168,11 @@ public:
     render("page",c);
   }//system
 
-  void news()
+  void devices()
   {
     int verbose=1;//[0-2]
-        content::news c;
-        ini(c);
+    content::devices c;
+    ini(c);
     std::string s;
         
     //I2C devices
@@ -187,13 +187,14 @@ public:
       "  I2C devices table:\n"
       "  <pre>\n"
     + s
-    + "  </pre>\n";
+    + "  </pre>\n"
+    ;
 
     //devices
     c.content_head
     +="  <h2>as list</h2>\n"
       "\nI2C devices address(es):\n"
-      "  <pre>\n";
+    ;
     ///vector of I2C devices
     std::vector<int>::iterator it=device_addresses.begin();
     //output
@@ -215,12 +216,12 @@ public:
       hex.width(2);hex.fill('0');
       hex<<*it;
       //output
-      c.news_list.push_back(hex.str());
+      c.device_list.push_back(hex.str());
       if(verbose>0) std::cout<<", "<<hex.str();
     }//device loop
     std::cout<<'.'<<std::endl;
-    render("news",c);
-  }//news
+    render("devices",c);
+  }//devices
   virtual void main();
 };//http_service
 
@@ -344,4 +345,3 @@ int main(int argc,char ** argv)
     }
 }//main
 // vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4
-

@@ -6,19 +6,19 @@
 
 namespace content
 {
-  struct master : public cppcms::base_content
+  struct master: public cppcms::base_content
   {
     std::string title;
   };//master
-  struct page : public master
+  struct page: public master
   {
     std::string page_title, page_content;
   };//page
-  struct news : public master
+  struct devices: public master
   {
     std::string content_head;
-    std::list<std::string> news_list;
-  };//news
+    std::list<std::string> device_list;
+  };//devices
 }//content
 
 #endif //CONTENT_H
