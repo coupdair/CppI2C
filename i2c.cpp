@@ -18,7 +18,7 @@
 
 #include "i2c_tools.hpp"
 
-#define VERSION "v0.0.6e"
+#define VERSION "v0.0.6"
 
 //Program option/documentation
 //{argp
@@ -149,7 +149,9 @@ int main(int argc, char **argv)
   std::cout<<s;
 ///list of I2C devices
   std::vector<int> device_addresses;
-  i2c_device_list(arguments.integer,device_addresses,arguments.verbose);
+  i2c_device_list(arguments.integer,device_addresses,s,arguments.verbose);
+  std::cout<<"\nI2C devices address table:"<<std::endl;
+  std::cout<<s;
 
 ///vector of I2C devices
   std::cout<<"\nI2C devices address(es):";

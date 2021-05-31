@@ -1,6 +1,6 @@
 Usage: i2c [OPTION...] 
 i2c: I2C bus and its devices
-  i2c.v0.0.6e
+  i2c.v0.0.6
 examples:
   i2c --help
   i2c -v

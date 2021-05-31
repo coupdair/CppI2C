@@ -16,10 +16,10 @@
 #include <fstream>  // std::filebuf
 #include <vector>   // std::vector
 
-#define VERSION_I2C_TOOLS "v0.0.6e"
+#define VERSION_I2C_TOOLS "v0.0.6"
 
 ///list of I2C buses
-int i2c_bus_list(std::string &out,bool print=false)
+int i2c_bus_list(std::string &out,const bool print=false)
 {
   //system calls
   std::ostringstream cmd;
@@ -55,7 +55,7 @@ std::cout<<"|"<<out<<"|"<<std::endl;
  *  \param [out] device_addresses: device addresses of selected I2C bus, e.g. 0x18,0x19,0x1F
 **/
 template<typename T>
-int i2c_device_list(const int bus_index, std::vector<T> &device_addresses, const int verbose=0)
+int i2c_device_list(const int bus_index, std::vector<T> &device_addresses, std::string &out, const int verbose=0, const bool print=false)
 {
 ///table of I2C devices
   //system calls
@@ -63,10 +63,22 @@ int i2c_device_list(const int bus_index, std::vector<T> &device_addresses, const
   std::string ftd="/dev/shm/i2c_device_list.txt";
   cmd<<"i2cdetect -y "<<bus_index<<" > "<<ftd;
   if(system(std::string(cmd.str()).c_str())) {printf("error: while accessing I2C bus, see \"%s\"\n",std::string(cmd.str()).c_str());return 1;}
-  printf("\nI2C device table:\n");fflush(stdout);
-  cmd=std::ostringstream();cmd<<"cat "<<ftd;
-  system(std::string(cmd.str()).c_str());
-
+ //print
+  if(print)
+  {
+    printf("\nI2C device table:\n");fflush(stdout);
+    cmd=std::ostringstream();cmd<<"cat "<<ftd;
+    system(std::string(cmd.str()).c_str());
+  }
+///get table
+  //store
+  std::ifstream fi;
+  fi.open(ftd,std::ios::in);
+  if(!fi.is_open()){printf("error: while accessing file: \"%s\"\n",ftd.c_str());return 1;}
+  out.assign((std::istreambuf_iterator<char>(fi))
+            ,(std::istreambuf_iterator<char>(  ))
+            );
+  fi.close();
 ///list of I2C devices
   cmd=std::ostringstream();cmd<<"sed -i \"s/--//g;s/..://\" "<<ftd;
   if(system(std::string(cmd.str()).c_str())) {printf("error: while accessing I2C bus, see \"%s\"\n",std::string(cmd.str()).c_str());return 1;}
@@ -97,6 +109,7 @@ int i2c_device_list(const int bus_index, std::vector<T> &device_addresses, const
     is>>i;
     if(j>128) break;
   }//loop
+  fb.close();
   return 0;
 }//i2c_device_list
 
