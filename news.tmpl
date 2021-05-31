@@ -2,6 +2,7 @@
 <% view news uses content::news extends master %>
 <% template title() %><% include master::title() %> :: News<% end %>
 <% template page_content() %>
+  <%= content_head | raw %>
   <% foreach message in news_list %>
     <ul>
     <% item %>

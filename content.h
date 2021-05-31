@@ -14,9 +14,11 @@ namespace content
   {
     std::string page_title, page_content;
   };//page
-    struct news : public master {
-        std::list<std::string> news_list;
-    };//news
+  struct news : public master
+  {
+    std::string content_head;
+    std::list<std::string> news_list;
+  };//news
 }//content
 
 #endif //CONTENT_H
