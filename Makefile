@@ -20,7 +20,8 @@ run: i2c
 	./i2c -i 1 | tee i2c-bus.txt
 
 web: i2c-web.cpp config.js i2c_tools.hpp
-	g++ -I../CppCMS/cppcms/ -I../CppCMS/cppcms/booster -I../CppCMS/cppcms/build -I../CppCMS/cppcms/build/booster  -O2 -Wall -g i2c-web.cpp -o i2c-web -L../CppCMS/cppcms/build -L../CppCMS/cppcms/build/booster -lcppcms -lbooster
+	../CppCMS/cppcms/bin/cppcms_tmpl_cc master.tmpl page.tmpl news.tmpl intro.tmpl -o web_skin.cpp
+	g++ -I../CppCMS/cppcms/ -I../CppCMS/cppcms/booster -I../CppCMS/cppcms/build -I../CppCMS/cppcms/build/booster  -O2 -Wall -g i2c-web.cpp web_skin.cpp -o i2c-web -L../CppCMS/cppcms/build -L../CppCMS/cppcms/build/booster -lcppcms -lbooster
 
 web-help: web
 	$(LD_LIBRARY_PATH) ./i2c-web --help | tee i2c-web.help.output

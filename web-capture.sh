@@ -3,14 +3,27 @@
 echo 'web capture will start in a while ...'
 sleep 6
 
-#clean
-rm i2c-bus i2c-bus.? i2c-bus.?? i2c-bus.html
 #get HTML content
-wget http://localhost:8080/i2c-bus
-mv i2c-bus i2c-bus.html
+wb=i2c-bus
+list=
+for d in $wb $wb/page $wb/news
+do
+  f=`basename $d`
+  echo 'get '$f
+  #clean
+  rm $f $f.? $f.?? $f.html
+  #get web page
+  wget http://localhost:8080/$d
+  mv $f $f.html
+  list=$list' '$f.html
+done
 
 sleep 1
 #stop web service
 killall i2c-web
 
-cat i2c-bus.html
+for f in $list
+do
+  echo $f':'
+  cat $f
+done
