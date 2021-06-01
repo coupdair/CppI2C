@@ -32,7 +32,7 @@
 #include "i2c_tools.hpp"
 #include "os_tools.hpp"
 
-#define VERSION "v0.1.1f"
+#define VERSION "v0.1.1g"
 
 //Program option/documentation
 //{argp
@@ -304,7 +304,8 @@ std::cout<<__func__<<" page"<<std::endl;
 std::cout<<__func__<<" page"<<std::endl;
     int verbose=1;//[0-2]
         content::message c;
-        if(request().request_method()=="POST") {
+        if(request().request_method()=="POST")
+        {
             c.info.load(context());
             //content transfer GUI to core
             if(c.info.validate())
@@ -315,10 +316,7 @@ std::cout<<__func__<<" page"<<std::endl;
             	c.age=c.info.age.value();
             	c.board=c.info.board.value();
             	c.info.clear();
-            	if(verbose>0)
-            	{
-					std::cout<<c.value_list();
-				}
+            	if(verbose>0) std::cout<<c.value_list();
             }//valid
         }//POST
         render("message",c);

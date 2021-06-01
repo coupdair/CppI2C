@@ -78,7 +78,17 @@ namespace content
     //GUI (HMTL)
     info_form info;
     //value list
-    std::string value_list(void){std::string s="todo\n"; return s;};
+    std::string value_list(void)
+    {
+      std::ostringstream s("data:");
+      s<<"\n - name="<<name;
+      s<<"\n - state="<<state;
+      s<<"\n - sex="<<sex;
+      s<<"\n - age="<<age;
+      s<<"\n - "<<std::string((board)?"have a":"havn't")<<" board";
+      s<<std::endl;
+      return s.str();
+    }//value_list
   };//message
   
 }//content
