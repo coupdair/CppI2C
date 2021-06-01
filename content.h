@@ -30,18 +30,24 @@ namespace content
     cppcms::widgets::select marital;
     cppcms::widgets::numeric<double> age;
     cppcms::widgets::submit submit;
+    cppcms::widgets::checkbox board;
     info_form()
     {
+		//widget titles
         name.message("Your Name");
         sex.message("Sex");
         marital.message("Marital Status");
         age.message("Your Age");
         submit.value("Send");
+        board.message("You have a board");
+        //order widgets
         add(name);
         add(sex);
         add(marital);
         add(age);
+        add(board);
         add(submit);
+        //values and behavious
         sex.add("Male","male");
         sex.add("Female","female");
         marital.add("Single","single");
@@ -55,7 +61,8 @@ namespace content
     {
         if(!form::validate()) 
             return false;
-        if(marital.selected_id()!="single" && age.value()<18) {
+        if(marital.selected_id()!="single" && age.value()<18)
+        {
             marital.valid(false);
             return false;
         }
@@ -67,8 +74,11 @@ namespace content
     //data
     std::string name,state,sex;
     double age;
+    bool board;
     //GUI (HMTL)
     info_form info;
+    //value list
+    std::string value_list(void){std::string s="todo\n"; return s;};
   };//message
   
 }//content

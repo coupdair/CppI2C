@@ -32,7 +32,7 @@
 #include "i2c_tools.hpp"
 #include "os_tools.hpp"
 
-#define VERSION "v0.1.1e"
+#define VERSION "v0.1.1f"
 
 //Program option/documentation
 //{argp
@@ -299,22 +299,30 @@ std::cout<<__func__<<" page"<<std::endl;
     render("devices",c);
   }//devices
   
-    void device_setup()
-    {
+  void device_setup()
+  {
 std::cout<<__func__<<" page"<<std::endl;
+    int verbose=1;//[0-2]
         content::message c;
         if(request().request_method()=="POST") {
             c.info.load(context());
-            if(c.info.validate()) {
+            //content transfer GUI to core
+            if(c.info.validate())
+            {
             	c.name=c.info.name.value();
             	c.sex=c.info.sex.selected_id();
             	c.state=c.info.marital.selected_id();
             	c.age=c.info.age.value();
+            	c.board=c.info.board.value();
             	c.info.clear();
+            	if(verbose>0)
+            	{
+					std::cout<<c.value_list();
+				}
             }//valid
         }//POST
         render("message",c);
-    }//device_setup
+  }//device_setup
 
   virtual void bus();
   virtual void no_template();
