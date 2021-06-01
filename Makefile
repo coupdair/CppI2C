@@ -31,6 +31,7 @@ web-version: web
 
 run-web: web
 	#sleep a while then get HTML and stop service
-	./web-capture.sh &
+#	./web-capture.sh &
+	echo "firefox http://localhost:8080/i2c-bus/setup"
 	#run i2c-web
 	$(LD_LIBRARY_PATH) ./i2c-web -c config.js -i 1 | tee i2c-web.txt
