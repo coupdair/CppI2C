@@ -32,7 +32,7 @@
 #include "i2c_tools.hpp"
 #include "os_tools.hpp"
 
-#define VERSION "v0.1.0l"
+#define VERSION "v0.1.0m"
 
 //Program option/documentation
 //{argp
@@ -222,8 +222,11 @@ public:
     ///duration
     booster::locale::date_time_duration duration(time_point,booster::locale::date_time(std::time(NULL)));
     std::ostringstream si;
-    si<<duration.second()<<"s";
-//    ss<<duration.get(booster::locale::period::marks::period_mark::second)<<"s";
+    int i=123;
+//    i=booster::locale::period::second(duration);
+    i=booster::locale::period::second(time_point);
+std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
+    si<<i<<"s";
     c.page_content+=
       "  system access duration:\n"
       "  <pre>\n"
