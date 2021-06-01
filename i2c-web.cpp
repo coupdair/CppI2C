@@ -32,7 +32,7 @@
 #include "i2c_tools.hpp"
 #include "os_tools.hpp"
 
-#define VERSION "v0.1.0f"
+#define VERSION "v0.1.0g"
 
 //Program option/documentation
 //{argp
@@ -164,9 +164,7 @@ public:
     ini(c);
     c.page_title = "system";
     ///date
-//    booster::locale::date_time time_point=booster::locale::date_time(std::time(NULL));
-//    booster::locale::date_time time_point(time(0));
-    ///TZ
+    //TZ
     booster::locale::generator g;
     std::locale loc=g("en_US.UTF-8");
     std::locale::global(loc);
@@ -174,12 +172,14 @@ public:
     booster::locale::time_zone::global(tz);
     //time
     booster::locale::date_time time_point;
-    time_point=booster::locale::period::year(1970) + booster::locale::period::february() + booster::locale::period::day(5);
+    //time_point=booster::locale::period::year(1970) + booster::locale::period::february() + booster::locale::period::day(5);
+//    booster::locale::date_time time_point=booster::locale::date_time(std::time(NULL));
+//    booster::locale::date_time time_point(time(0));
     //format
     std::ostringstream ss;
     ss.imbue(loc);
     ss<<booster::locale::as::time_zone(tz);
-    ss << booster::locale::as::ftime("%Y-%m-%d %H:%M:%S") << time_point;
+    ss<<booster::locale::as::ftime("%Y-%m-%d %H:%M:%S") << time_point;
 
     ///versions
     std::string s,vc,vi,vo;
@@ -220,7 +220,6 @@ public:
     + ss.str()
     + "\n  </pre>\n";
 //    response().out()<<cppcms::filters::datetime(time(0)) << "<br>\n";
-//    response().out()<<cppcms::locale::format("{1,datetime=f}") % time(0) << "<br>\n";
     render("page",c);
   }//system
 
