@@ -32,7 +32,7 @@
 #include "i2c_tools.hpp"
 #include "os_tools.hpp"
 
-#define VERSION "v0.1.0g"
+#define VERSION "v0.1.0h"
 
 //Program option/documentation
 //{argp
@@ -173,8 +173,7 @@ public:
     //time
     booster::locale::date_time time_point;
     //time_point=booster::locale::period::year(1970) + booster::locale::period::february() + booster::locale::period::day(5);
-//    booster::locale::date_time time_point=booster::locale::date_time(std::time(NULL));
-//    booster::locale::date_time time_point(time(0));
+    time_point=booster::locale::date_time(std::time(NULL));
     //format
     std::ostringstream ss;
     ss.imbue(loc);
