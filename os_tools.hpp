@@ -16,9 +16,9 @@
 #include <fstream>  // std::filebuf
 #include <vector>   // std::vector
 
-#define VERSION_OS_TOOLS "v0.0.2d"
+#define VERSION_OS_TOOLS "v0.0.2e"
 
-///list of I2C buses
+//! OS Linux pretty name, e.g. "Raspbian GNU/Linux 10 (buster)"
 int os_pretty_name(std::string &out)
 {
   std::string f="/etc/os-release";
@@ -41,5 +41,23 @@ std::cout<<"|"<<out<<"|"<<std::endl;
 /**/
   return 0;
 }//os_pretty_name
+
+//time
+
+//version
+//! OS library version
+int os_lib_version(std::string &out)
+{
+  out=VERSION_OS_TOOLS;
+  return 0;
+}//os_lib_version
+//! OS library pretty version
+int os_pretty_version(std::string &out)
+{
+  out
+  = "os-tool-lib."
+    VERSION_OS_TOOLS;
+  return 0;
+}//os_pretty_version
 
 #endif //_OS_TOOLS_LIB_HPP_

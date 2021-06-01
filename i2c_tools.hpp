@@ -16,7 +16,7 @@
 #include <fstream>  // std::filebuf
 #include <vector>   // std::vector
 
-#define VERSION_I2C_TOOLS "v0.0.7d"
+#define VERSION_I2C_TOOLS "v0.0.7e"
 
 ///list of I2C buses
 int i2c_bus_list(std::string &out,const bool print=false)
@@ -137,5 +137,21 @@ int i2c_device_list(const int bus_index, std::vector<T> &device_addresses, std::
   fb.close();
   return 0;
 }//i2c_device_list
+
+//version
+//! I2C library version
+int i2c_lib_version(std::string &out)
+{
+  out=VERSION_I2C_TOOLS;
+  return 0;
+}//i2c_lib_version
+//! I2C library pretty version
+int i2c_pretty_version(std::string &out)
+{
+  out
+  = "i2c-tool-lib."
+    VERSION_I2C_TOOLS;
+  return 0;
+}//i2c_pretty_version
 
 #endif //_I2C_TOOLS_LIB_HPP_

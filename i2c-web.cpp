@@ -162,10 +162,28 @@ public:
     content::page c;
     ini(c);
     c.page_title = "system";
-    //Linux
-    std::string s;
-    os_pretty_name(s);
+    std::string s,vi,vo;
+    //program and lib.
+    s=VERSION;
+    i2c_pretty_version(vi);
+    os_pretty_version(vo);
     c.page_content=
+      "  <h1>server</h1>\n"
+      "  <h2>program</h2>\n"
+      "  <pre>\n"
+    + s
+    + "\n  </pre>\n"
+      "  <h2>program</h2>\n"
+      "  <h2>libraries</h2>\n"
+      "  <pre>\n"
+    + vi
+    + "\n  </pre>\n"
+      "  <pre>\n"
+    + vo
+    + "\n  </pre>\n";
+    //Linux
+    os_pretty_name(s);
+    c.page_content+=
       "  <h1>Linux OS</h1>\n"
       "  <h2>distribution</h2>\n"
       "  <pre>\n"
@@ -234,7 +252,7 @@ public:
 
 void http_service::bus()
 {
-  int verbose=1;//[0-2]
+//  int verbose=1;//[0-2]
   content::page c;
   ini(c);
   c.page_title = "I2C bus(es)";
