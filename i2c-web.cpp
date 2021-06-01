@@ -32,7 +32,7 @@
 #include "i2c_tools.hpp"
 #include "os_tools.hpp"
 
-#define VERSION "v0.1.0k"
+#define VERSION "v0.1.0l"
 
 //Program option/documentation
 //{argp
@@ -219,14 +219,17 @@ public:
     + ss.str()
     + "\n  </pre>\n";
 //    response().out()<<cppcms::filters::datetime(time(0)) << "<br>\n";
-
+    ///duration
     booster::locale::date_time_duration duration(time_point,booster::locale::date_time(std::time(NULL)));
-    ss.str("");
-//    ss<<booster::locale::period::minute(duration)<<"min"<<booster::locale::period::second(duration)<<"s";
+    std::ostringstream si;
+    booster::locale::period::period_type t=booster::locale::period::marks::period_mark::second;
+    si<<duration.get(t)<<"s";
+//    si<<duration.get(booster::locale::period::second())<<"s";
+//    ss<<duration.get(booster::locale::period::marks::period_mark::second)<<"s";
     c.page_content+=
       "  system access duration:\n"
       "  <pre>\n"
-    + ss.str()
+    + si.str()
     + "\n  </pre>\n";
 
     render("page",c);
