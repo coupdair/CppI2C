@@ -222,9 +222,7 @@ public:
     ///duration
     booster::locale::date_time_duration duration(time_point,booster::locale::date_time(std::time(NULL)));
     std::ostringstream si;
-    booster::locale::period::period_type t=booster::locale::period::marks::period_mark::second;
-    si<<duration.get(t)<<"s";
-//    si<<duration.get(booster::locale::period::second())<<"s";
+    si<<duration.second()<<"s";
 //    ss<<duration.get(booster::locale::period::marks::period_mark::second)<<"s";
     c.page_content+=
       "  system access duration:\n"
