@@ -90,7 +90,7 @@ namespace content
       return s.str();
     }//value_list
   };//message
-  
+
 }//content
 
 #endif //CONTENT_H

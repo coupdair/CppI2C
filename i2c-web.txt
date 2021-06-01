@@ -6,14 +6,12 @@ device_setup page
  - state=single
  - sex=male
  - age=12
- - have a boarddevice_setup page
-device_setup page
-device_setup page
-device_setup page
+ - have a board
 device_setup page
 
  - name=zou
  - state=single
  - sex=female
  - age=123
- - havn't boarddevice_setup page
+ - havn't board
+device_setup page
