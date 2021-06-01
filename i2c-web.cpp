@@ -166,10 +166,21 @@ public:
     ///date
 //    booster::locale::date_time time_point=booster::locale::date_time(std::time(NULL));
 //    booster::locale::date_time time_point(time(0));
+    ///TZ
+    booster::locale::generator g;
+    std::locale loc=g("en_US.UTF-8");
+    std::locale::global(loc);
+    std::string tz("GMT");
+    booster::locale::time_zone::global(tz);
+    //time
     booster::locale::date_time time_point;
     time_point=booster::locale::period::year(1970) + booster::locale::period::february() + booster::locale::period::day(5);
+    //format
     std::ostringstream ss;
+    ss.imbue(loc);
+    ss<<booster::locale::as::time_zone(tz);
     ss << booster::locale::as::ftime("%Y-%m-%d %H:%M:%S") << time_point;
+
     ///versions
     std::string s,vc,vi,vo;
     ///program and lib.
