@@ -32,7 +32,7 @@
 #include "i2c_tools.hpp"
 #include "os_tools.hpp"
 
-#define VERSION "v0.1.0e"
+#define VERSION "v0.1.0f"
 
 //Program option/documentation
 //{argp
@@ -163,6 +163,11 @@ public:
     content::page c;
     ini(c);
     c.page_title = "system";
+    ///date
+    std::ostringstream ss;
+//    ss<<std::time(NULL);
+    ss<<cppcms::filters::datetime(time(0));
+    ///versions
     std::string s,vc,vi,vo;
     ///program and lib.
     s=VERSION;
@@ -194,7 +199,13 @@ public:
     + s
     + "\n  </pre>\n";
     ///time
-    response().out()<<cppcms::filters::datetime(time(0));
+    os_pretty_name(s);
+    c.page_content+=
+      "  <hr /\n"
+    + ss.str();
+    + "\n  </pre>\n";
+//    response().out()<<cppcms::filters::datetime(time(0)) << "<br>\n";
+//    response().out()<<cppcms::locale::format("{1,datetime=f}") % time(0) << "<br>\n";
     render("page",c);
   }//system
 
