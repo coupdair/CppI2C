@@ -16,7 +16,7 @@
 #include <fstream>  // std::filebuf
 #include <vector>   // std::vector
 
-#define VERSION_OS_TOOLS "v0.0.1"
+#define VERSION_OS_TOOLS "v0.0.2d"
 
 ///list of I2C buses
 int os_pretty_name(std::string &out)
@@ -25,7 +25,12 @@ int os_pretty_name(std::string &out)
   //store
   std::ifstream fb;
   fb.open(f,std::ios::in);
-  if(!fb.is_open()){printf("error: while accessing file: \"%s\"\n",f.c_str());return 1;}
+  if(!fb.is_open())
+  {
+    printf("error: while accessing file: \"%s\"\n",f.c_str());
+    out="error: opening os-release file";
+    return 1;
+  }//error
   out.assign((std::istreambuf_iterator<char>(fb))
             ,(std::istreambuf_iterator<char>(  ))
             );

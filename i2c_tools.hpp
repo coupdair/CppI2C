@@ -16,7 +16,7 @@
 #include <fstream>  // std::filebuf
 #include <vector>   // std::vector
 
-#define VERSION_I2C_TOOLS "v0.0.6"
+#define VERSION_I2C_TOOLS "v0.0.7d"
 
 ///list of I2C buses
 int i2c_bus_list(std::string &out,const bool print=false)
@@ -26,7 +26,12 @@ int i2c_bus_list(std::string &out,const bool print=false)
   std::string ftb="/dev/shm/i2c_bus_list.txt";
   cmd<<"i2cdetect -l > "<<ftb;
   //error
-  if(system(std::string(cmd.str()).c_str())) {printf("error: while accessing I2C buses, see \"%s\"\n",std::string(cmd.str()).c_str());return 1;}
+  if(system(std::string(cmd.str()).c_str()))
+  {
+    printf("error: while accessing I2C buses, see \"%s\"\n",std::string(cmd.str()).c_str());
+    out="error: i2cdetect list";
+    return 1;
+  }//error
   //print
   if(print)
   {
@@ -37,7 +42,12 @@ int i2c_bus_list(std::string &out,const bool print=false)
   //store
   std::ifstream fb;
   fb.open(ftb,std::ios::in);
-  if(!fb.is_open()){printf("error: while accessing file: \"%s\"\n",ftb.c_str());return 1;}
+  if(!fb.is_open())
+  {
+    printf("error: while accessing file: \"%s\"\n",ftb.c_str());
+    out="error: opening bus list file";
+    return 1;
+  }//error
   out.assign((std::istreambuf_iterator<char>(fb))
             ,(std::istreambuf_iterator<char>(  ))
             );
@@ -62,7 +72,12 @@ int i2c_device_list(const int bus_index, std::vector<T> &device_addresses, std::
   std::ostringstream cmd;
   std::string ftd="/dev/shm/i2c_device_list.txt";
   cmd<<"i2cdetect -y "<<bus_index<<" > "<<ftd;
-  if(system(std::string(cmd.str()).c_str())) {printf("error: while accessing I2C bus, see \"%s\"\n",std::string(cmd.str()).c_str());return 1;}
+  if(system(std::string(cmd.str()).c_str()))
+  {
+    printf("error: while accessing I2C bus, see \"%s\"\n",std::string(cmd.str()).c_str());
+    out="error: i2cdetect devices";
+    return 1;
+  }//error
  //print
   if(print)
   {
@@ -81,11 +96,21 @@ int i2c_device_list(const int bus_index, std::vector<T> &device_addresses, std::
   fi.close();
 ///list of I2C devices
   cmd=std::ostringstream();cmd<<"sed -i \"s/--//g;s/..://\" "<<ftd;
-  if(system(std::string(cmd.str()).c_str())) {printf("error: while accessing I2C bus, see \"%s\"\n",std::string(cmd.str()).c_str());return 1;}
+  if(system(std::string(cmd.str()).c_str()))
+  {
+    printf("error: while accessing I2C bus, see \"%s\"\n",std::string(cmd.str()).c_str());
+    out="error: sed filter devices";
+    return 1;
+  }//error
   if(verbose) {printf("\nI2C devices:\n");fflush(stdout);}
   std::filebuf fb;
   fb.open(ftd,std::ios::in);
-  if(!fb.is_open()) {printf("error: while accessing file: \"%s\"\n",ftd.c_str());return 1;}
+  if(!fb.is_open())
+  {
+    printf("error: while accessing file: \"%s\"\n",ftd.c_str());
+    out="error: opening filtered devices file";
+    return 1;
+  }//error
   //get hexa. addresses
   std::istream is(&fb);
   is.setf(std::ios::hex,std::ios::basefield);//set hex as the basefield
