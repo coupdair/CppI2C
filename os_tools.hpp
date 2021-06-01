@@ -16,7 +16,7 @@
 #include <fstream>  // std::filebuf
 #include <vector>   // std::vector
 
-#define VERSION_OS_TOOLS "v0.0.2e"
+#define VERSION_OS_TOOLS "v0.0.2"
 
 //! OS Linux pretty name, e.g. "Raspbian GNU/Linux 10 (buster)"
 int os_pretty_name(std::string &out)
@@ -38,7 +38,7 @@ int os_pretty_name(std::string &out)
 /*/debug
 std::cout<<"I2C bus(es):"<<std::endl;
 std::cout<<"|"<<out<<"|"<<std::endl;
-/**/
+/ **/
   return 0;
 }//os_pretty_name
 

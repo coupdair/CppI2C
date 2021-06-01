@@ -32,7 +32,7 @@
 #include "i2c_tools.hpp"
 #include "os_tools.hpp"
 
-#define VERSION "v0.1.0n"
+#define VERSION "v0.1.0"
 
 //Program option/documentation
 //{argp
@@ -41,9 +41,9 @@ const char *argp_program_version=VERSION;
 //! [argp] author of program
 const char *argp_program_bug_address="sebastien.coudert@ganil.fr";
 //! [argp] documentation of program
-static char doc[]=
+static char doc[] =
    "i2c-web: I2C bus and its devices on HTTP\
-\n  i2c-web."VERSION"\
+\n  i2c-web." VERSION "\
 \n\
 examples:\n\
   i2c-web --help\n\
@@ -313,7 +313,7 @@ void http_service::bus()
 
 void http_service::no_template()
 {
-  int verbose=1;//[0-2]
+//  int verbose=1;//[0-2]
 //HTML head
   response().out()<<
     "<html>\n"

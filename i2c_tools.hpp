@@ -16,7 +16,7 @@
 #include <fstream>  // std::filebuf
 #include <vector>   // std::vector
 
-#define VERSION_I2C_TOOLS "v0.0.7e"
+#define VERSION_I2C_TOOLS "v0.0.7"
 
 ///list of I2C buses
 int i2c_bus_list(std::string &out,const bool print=false)
