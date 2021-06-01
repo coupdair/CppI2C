@@ -32,7 +32,7 @@
 #include "i2c_tools.hpp"
 #include "os_tools.hpp"
 
-#define VERSION "v0.1.0d"
+#define VERSION "v0.1.0e"
 
 //Program option/documentation
 //{argp
@@ -164,7 +164,7 @@ public:
     ini(c);
     c.page_title = "system";
     std::string s,vc,vi,vo;
-    //program and lib.
+    ///program and lib.
     s=VERSION;
     vc="C++CMS.v" CPPCMS_PACKAGE_VERSION;
     i2c_pretty_version(vi);
@@ -185,7 +185,7 @@ public:
       "  <pre>\n"
     + vo
     + "\n  </pre>\n";
-    //Linux
+    ///Linux
     os_pretty_name(s);
     c.page_content+=
       "  <h1>Linux OS</h1>\n"
@@ -193,6 +193,8 @@ public:
       "  <pre>\n"
     + s
     + "\n  </pre>\n";
+    ///time
+    response().out()<<cppcms::filters::datetime(time(0));
     render("page",c);
   }//system
 
