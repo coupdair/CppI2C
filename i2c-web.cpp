@@ -24,6 +24,7 @@
 #include <cppcms/http_response.h>
 #include <cppcms/url_dispatcher.h>
 #include <iostream>
+//./build/cppcms/config.h CPPCMS_PACKAGE_VERSION
 
 #include "content.h"
 
@@ -31,7 +32,7 @@
 #include "i2c_tools.hpp"
 #include "os_tools.hpp"
 
-#define VERSION "v0.0.9"
+#define VERSION "v0.1.0d"
 
 //Program option/documentation
 //{argp
@@ -162,9 +163,10 @@ public:
     content::page c;
     ini(c);
     c.page_title = "system";
-    std::string s,vi,vo;
+    std::string s,vc,vi,vo;
     //program and lib.
     s=VERSION;
+    vc="C++CMS.v" CPPCMS_PACKAGE_VERSION;
     i2c_pretty_version(vi);
     os_pretty_version(vo);
     c.page_content=
@@ -173,8 +175,10 @@ public:
       "  <pre>\n"
     + s
     + "\n  </pre>\n"
-      "  <h2>program</h2>\n"
       "  <h2>libraries</h2>\n"
+      "  <pre>\n"
+    + vc
+    + "\n  </pre>\n"
       "  <pre>\n"
     + vi
     + "\n  </pre>\n"
