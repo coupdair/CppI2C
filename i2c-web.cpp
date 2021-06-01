@@ -32,7 +32,7 @@
 #include "i2c_tools.hpp"
 #include "os_tools.hpp"
 
-#define VERSION "v0.1.0"
+#define VERSION "v0.1.1d"
 
 //Program option/documentation
 //{argp
@@ -131,6 +131,7 @@ public:
   http_service(cppcms::service &srv) :
     cppcms::application(srv) 
   {
+  ///pages
     dispatcher().assign("",&http_service::main,this);
     mapper().assign("");
 
@@ -145,6 +146,9 @@ public:
 
     dispatcher().assign("/system",&http_service::system,this);
     mapper().assign("system","/system");
+  ///forms
+    dispatcher().assign("/setup",&http_service::device_setup,this);
+    mapper().assign("setup","/setup");
 
     mapper().root("/i2c-bus");
   }//constructor
@@ -291,6 +295,23 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
     std::cout<<'.'<<std::endl;
     render("devices",c);
   }//devices
+  
+    void device_setup()
+    {
+        content::message c;
+        if(request().request_method()=="POST") {
+            c.info.load(context());
+            if(c.info.validate()) {
+            	c.name=c.info.name.value();
+            	c.sex=c.info.sex.selected_id();
+            	c.state=c.info.marital.selected_id();
+            	c.age=c.info.age.value();
+            	c.info.clear();
+            }//valid
+        }//POST
+        render("message",c);
+    }//device_setup
+
   virtual void bus();
   virtual void no_template();
 };//http_service
