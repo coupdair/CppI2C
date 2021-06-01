@@ -164,8 +164,12 @@ public:
     ini(c);
     c.page_title = "system";
     ///date
-    std::ostream d;
-    d<<cppcms::filters::datetime(time(0));
+//    booster::locale::date_time time_point=booster::locale::date_time(std::time(NULL));
+//    booster::locale::date_time time_point(time(0));
+    booster::locale::date_time time_point;
+    time_point=booster::locale::period::year(1970) + booster::locale::period::february() + booster::locale::period::day(5);
+    std::ostringstream ss;
+    ss << booster::locale::as::ftime("%Y-%m-%d %H:%M:%S") << time_point;
     ///versions
     std::string s,vc,vi,vo;
     ///program and lib.
@@ -201,9 +205,9 @@ public:
     os_pretty_name(s);
     c.page_content+=
       "  <hr />\n"
-      "  <pre>\n";
-//    + d.str();
-//    + "\n  </pre>\n";
+      "  <pre>\n"
+    + ss.str()
+    + "\n  </pre>\n";
 //    response().out()<<cppcms::filters::datetime(time(0)) << "<br>\n";
 //    response().out()<<cppcms::locale::format("{1,datetime=f}") % time(0) << "<br>\n";
     render("page",c);
