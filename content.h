@@ -38,7 +38,7 @@ namespace content
         sex.message("Sex");
         marital.message("Marital Status");
         age.message("Your Age");
-        submit.value("Send");
+        submit.value("set");
         board.message("You have a board");
         //order widgets
         add(name);
@@ -80,7 +80,8 @@ namespace content
     //value list
     std::string value_list(void)
     {
-      std::ostringstream s("data:");
+      std::ostringstream s;
+      s<<"message data:";
       s<<"\n - name="<<name;
       s<<"\n - state="<<state;
       s<<"\n - sex="<<sex;

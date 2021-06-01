@@ -32,7 +32,7 @@
 #include "i2c_tools.hpp"
 #include "os_tools.hpp"
 
-#define VERSION "v0.1.1h"
+#define VERSION "v0.1.1i"
 
 //Program option/documentation
 //{argp
@@ -315,7 +315,7 @@ std::cout<<__func__<<" page"<<std::endl;
             	c.state=c.info.marital.selected_id();
             	c.age=c.info.age.value();
             	c.board=c.info.board.value();
-            	c.info.clear();
+            	//c.info.clear();
             	if(verbose>0) std::cout<<c.value_list()<<std::flush;
             }//valid
         }//POST
