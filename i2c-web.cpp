@@ -32,7 +32,7 @@
 #include "i2c_tools.hpp"
 #include "os_tools.hpp"
 
-#define VERSION "v0.1.1d"
+#define VERSION "v0.1.1e"
 
 //Program option/documentation
 //{argp
@@ -158,12 +158,14 @@ public:
   }//ini
   void main()
   {
+std::cout<<__func__<<" page"<<std::endl;
     content::master c;
     ini(c);
     render("main",c);
   }//main
   void system()
   {
+//std::cout<<__func__<<" page"<<std::endl;
     content::page c;
     ini(c);
     c.page_title = "system";
@@ -230,7 +232,7 @@ public:
     int i=123;
     //i=booster::locale::period::second(duration);
     i=booster::locale::period::second(time_point)-booster::locale::period::second(time_pt);
-std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
+std::cout<<__func__<<" page: process duration="<<i<<"s"<<std::endl;
     if(i==0)  si<<"<1s"; else si<<i<<"s";
     c.page_content+=
       "  system access duration:\n"
@@ -243,6 +245,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
 
   void devices()
   {
+std::cout<<__func__<<" page"<<std::endl;
     int verbose=1;//[0-2]
     content::devices c;
     ini(c);
@@ -298,6 +301,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
   
     void device_setup()
     {
+std::cout<<__func__<<" page"<<std::endl;
         content::message c;
         if(request().request_method()=="POST") {
             c.info.load(context());
@@ -318,6 +322,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
 
 void http_service::bus()
 {
+std::cout<<__func__<<" page"<<std::endl;
 //  int verbose=1;//[0-2]
   content::page c;
   ini(c);
@@ -334,6 +339,7 @@ void http_service::bus()
 
 void http_service::no_template()
 {
+std::cout<<__func__<<" page"<<std::endl;
 //  int verbose=1;//[0-2]
 //HTML head
   response().out()<<
