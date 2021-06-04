@@ -18,6 +18,9 @@
 
 #define VERSION_I2C_TOOLS "v0.0.7"
 
+//! \todo [medium] setup i2c_bus_list( with ../i2c-tools/tools/i2cbusses.c[gather_i2c_busses(] as ../i2c-tools/tools/i2cdetect.c[print_i2c_busses(] does
+//! \todo [medium] setup i2c_device_list( with ../i2c-tools/tools/i2cdetect.c[scan_i2c_bus(]
+
 ///list of I2C buses
 int i2c_bus_list(std::string &out,const bool print=false)
 {
