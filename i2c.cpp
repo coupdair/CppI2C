@@ -18,7 +18,7 @@
 
 #include "i2c_tools.hpp"
 
-#define VERSION "v0.0.7d"
+#define VERSION "v0.0.7e"
 
 //Program option/documentation
 //{argp
@@ -144,7 +144,9 @@ int main(int argc, char **argv)
 
 ///list of I2C buses
   std::string s;
+  #ifdef USE_I2C_TOOLS_CODE
 i2c_bus_list2(s);
+  #endif //USE_I2C_TOOLS_CODE
   i2c_bus_list(s);
   std::cout<<"I2C bus(es):"<<std::endl;
   std::cout<<s;

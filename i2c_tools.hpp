@@ -16,11 +16,12 @@
 #include <fstream>  // std::filebuf
 #include <vector>   // std::vector
 
-#define VERSION_I2C_TOOLS "v0.0.8e"
+#define VERSION_I2C_TOOLS "v0.0.8f"
 
 //! \todo [medium] . setup i2c_bus_list( with ../i2c-tools/tools/i2cbusses.c[gather_i2c_busses(] as ../i2c-tools/tools/i2cdetect.c[print_i2c_busses(] does
 //! \todo [medium] setup i2c_device_list( with ../i2c-tools/tools/i2cdetect.c[scan_i2c_bus(]
 
+#ifdef USE_I2C_TOOLS_CODE
 //i2c-tools
 extern "C" {
 #include "../i2c-tools/tools/i2cbusses.c"
@@ -47,6 +48,8 @@ int i2c_bus_list2(std::string &out,const bool print=false)
 	free_adapters(adapters);
   return 0;
 }//i2c_bus_list2
+
+#endif //USE_I2C_TOOLS_CODE
 
 ///list of I2C buses
 int i2c_bus_list(std::string &out,const bool print=false)
