@@ -1,25 +1,9 @@
 ./i2c-web is running (Ctrl+C to stop), have look to http://localhost:8080/i2c-bus.
 device_setup page
+device_setup page
 message data:
- - name=hop
+ - name=bof
  - state=married
- - sex=male
- - age=123
- - have a board
-device_setup page
-device_setup page
-device_setup page
-device_setup page
-message data:
- - name=hop
- - state=single
- - sex=male
- - age=12
- - havn't board
-device_setup page
-message data:
- - name=hop
- - state=divorced
- - sex=male
+ - sex=female
  - age=123
  - have a board

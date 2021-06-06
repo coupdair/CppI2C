@@ -31,6 +31,7 @@ namespace content
     cppcms::widgets::numeric<double> age;
     cppcms::widgets::submit submit;
     cppcms::widgets::checkbox board;
+    cppcms::widgets::select_multiple gain;
     info_form()
     {
 		//widget titles
@@ -40,12 +41,14 @@ namespace content
         age.message("Your Age");
         submit.value("set");
         board.message("You have a board");
+        gain.message("Your gain(s)");
         //order widgets
         add(name);
         add(sex);
         add(marital);
         add(age);
         add(board);
+        add(gain);
         add(submit);
         //values and behavious
         sex.add("Male","male");
@@ -53,6 +56,9 @@ namespace content
         marital.add("Single","single");
         marital.add("Married","married");
         marital.add("Divorced","divorced");
+        gain.add("2");
+        gain.add("4");
+        gain.add("6");
         name.non_empty();
         sex.non_empty();
         age.range(0,123);
