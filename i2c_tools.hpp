@@ -28,28 +28,36 @@ extern "C" {
 }//C
 
 //! i2c-tools//print_i2c_busses
-int i2c_bus_list2(std::string &out,const bool print=false)
+int i2c_bus_list(std::string &out,const bool print=false)
 {
-  	struct i2c_adap *adapters;
-	int count;
-
-	adapters = gather_i2c_busses();
-	if (adapters == NULL) {
-		fprintf(stderr, "Error: Out of memory!\n");
-		return 1;
-	}
-
-	for (count = 0; adapters[count].name; count++) {
-		printf("i2c-%d\t%-10s\t%-32s\t%s\n",
-			adapters[count].nr, adapters[count].funcs,
-			adapters[count].name, adapters[count].algo);
-	}
-
-	free_adapters(adapters);
+  std::ostringstream os;
+  struct i2c_adap *adapters;
+  int count;
+  adapters = gather_i2c_busses();
+  if (adapters == NULL)
+  {
+    fprintf(stderr, "Error: Out of memory!\n");
+    return 1;
+  }//error
+  for (count = 0; adapters[count].name; count++)
+  {
+    printf("i2c-%d\t%-10s\t%-32s\t%s\n",
+    adapters[count].nr, adapters[count].funcs,
+    adapters[count].name, adapters[count].algo);
+    
+    os<<"i2c-"<<adapters[count].nr;
+    os<<"\t";os.fill(' ');os.width(10);os<<adapters[count].funcs;
+    os<<"\t";os.fill(' ');os.width(32);os<<adapters[count].name;
+    os<<"\t"<<adapters[count].algo
+      <<"\n";
+    
+  }//adapter loop
+  free_adapters(adapters);
+  out=os.str();
   return 0;
-}//i2c_bus_list2
+}//i2c_bus_list
 
-#endif //USE_I2C_TOOLS_CODE
+#else //USE_I2C_TOOLS_CODE
 
 ///list of I2C buses
 int i2c_bus_list(std::string &out,const bool print=false)
@@ -91,6 +99,8 @@ std::cout<<"|"<<out<<"|"<<std::endl;
 */
   return 0;
 }//i2c_bus_list
+
+#endif //!USE_I2C_TOOLS_CODE
 
 //!list of I2C devices
 /**
