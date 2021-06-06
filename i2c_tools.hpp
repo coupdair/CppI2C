@@ -16,10 +16,36 @@
 #include <fstream>  // std::filebuf
 #include <vector>   // std::vector
 
-#define VERSION_I2C_TOOLS "v0.0.7"
+//i2c-tools
+#include "linux/i2c-dev.h"
+#include "i2cbusses.h"
+
+#define VERSION_I2C_TOOLS "v0.0.8d"
 
 //! \todo [medium] setup i2c_bus_list( with ../i2c-tools/tools/i2cbusses.c[gather_i2c_busses(] as ../i2c-tools/tools/i2cdetect.c[print_i2c_busses(] does
 //! \todo [medium] setup i2c_device_list( with ../i2c-tools/tools/i2cdetect.c[scan_i2c_bus(]
+
+//! i2c-tools//print_i2c_busses
+int i2c_bus_list2(std::string &out,const bool print=false)
+{
+  	struct i2c_adap *adapters;
+	int count;
+
+	adapters = gather_i2c_busses();
+	if (adapters == NULL) {
+		fprintf(stderr, "Error: Out of memory!\n");
+		return 1;
+	}
+
+	for (count = 0; adapters[count].name; count++) {
+		printf("i2c-%d\t%-10s\t%-32s\t%s\n",
+			adapters[count].nr, adapters[count].funcs,
+			adapters[count].name, adapters[count].algo);
+	}
+
+	free_adapters(adapters);
+  return 0;
+}//i2c_bus_list2
 
 ///list of I2C buses
 int i2c_bus_list(std::string &out,const bool print=false)
