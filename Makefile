@@ -8,7 +8,7 @@ code:
 	geany ReadMe.md Makefile i2c_tools.hpp os_tools.hpp i2c.cpp config.js master.tmpl main.tmpl devices.tmpl  page.tmpl i2c-web.cpp web-capture.sh &
 
 i2c: i2c.cpp i2c_tools.hpp
-	g++ -I../i2c-tools/include -I../i2c-tools/tools i2c.cpp ../i2c-tools/tools/i2cbusses.o -o i2c
+	g++ -I../i2c-tools/include -I../i2c-tools/tools -fpermissive i2c.cpp -o i2c
 
 help: i2c
 	./i2c --help | tee i2c.help.output

@@ -16,14 +16,15 @@
 #include <fstream>  // std::filebuf
 #include <vector>   // std::vector
 
-//i2c-tools
-#include "linux/i2c-dev.h"
-#include "i2cbusses.h"
+#define VERSION_I2C_TOOLS "v0.0.8e"
 
-#define VERSION_I2C_TOOLS "v0.0.8d"
-
-//! \todo [medium] setup i2c_bus_list( with ../i2c-tools/tools/i2cbusses.c[gather_i2c_busses(] as ../i2c-tools/tools/i2cdetect.c[print_i2c_busses(] does
+//! \todo [medium] . setup i2c_bus_list( with ../i2c-tools/tools/i2cbusses.c[gather_i2c_busses(] as ../i2c-tools/tools/i2cdetect.c[print_i2c_busses(] does
 //! \todo [medium] setup i2c_device_list( with ../i2c-tools/tools/i2cdetect.c[scan_i2c_bus(]
+
+//i2c-tools
+extern "C" {
+#include "../i2c-tools/tools/i2cbusses.c"
+}//C
 
 //! i2c-tools//print_i2c_busses
 int i2c_bus_list2(std::string &out,const bool print=false)
