@@ -110,8 +110,8 @@ class I2CRegister: public RegisterT<T>
     /* Print read result */
     fprintf(stdout, "Read data:\n");
     print_i2c_data(buf, this->size);
-    if(size==1) {this->value=buf[0];this->value&=0x000000FF;}
-    if(size==2) {this->value=buf[0];this->value*=256;this->value+=buf[1];this->value&=0x0000FFFF;}
+    if(size==1) {this->value=(int)buf[0];}
+    if(size==2) {short val=(short)buf[0]*256;val+=buf[1];this->value=(int)val;}
     return this->value;
    }//read
   virtual int write() {std::cout<<this->name<<"::"<<__func__<<" empty"<<std::endl;return -1;}

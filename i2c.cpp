@@ -20,7 +20,7 @@
 #include "module.hpp"
 #include "i2c_tools.hpp"
 
-#define VERSION "v0.0.9k"
+#define VERSION "v0.0.9l"
 
 //Program option/documentation
 //{argp
@@ -198,11 +198,11 @@ int main(int argc, char **argv)
   std::string name="AmbiantTemperature";
   {//Register
   Register *reg=(temp->find(name))->second;
-  int t=reg->read();
+  short t=reg->read();
   std::cout<<"t°="<<t<<std::endl;
   }//Register
   {//reg.
-  int t=((temp->find(name))->second)->read();
+  short t=((temp->find(name))->second)->read();
   std::cout<<"t°="<<t<<std::endl;
   }//
 
