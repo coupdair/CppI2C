@@ -20,7 +20,7 @@
 #include "module.hpp"
 #include "i2c_tools.hpp"
 
-#define VERSION "v0.0.9f"
+#define VERSION "v0.0.9g"
 
 //Program option/documentation
 //{argp
@@ -117,6 +117,23 @@ static struct argp argp = { options, parse_option, args_doc, doc };
 
 //}argp
 
+void print_i2c_data(const unsigned char *data, size_t len)
+{
+    size_t i = 0;
+
+    for (i = 0; i < len; i++) {
+
+        if (i % 16 == 0) {
+
+            fprintf(stdout, "\n");
+        }
+
+        fprintf(stdout, "%02x ", data[i]);
+    }
+
+    fprintf(stdout, "\n");
+}//print_i2c_data
+
 //! CLI option parse and ...
 int main(int argc, char **argv)
 {
@@ -192,6 +209,70 @@ int main(int argc, char **argv)
   std::cout<<'.'<<std::endl;
   
   //
+    char i2c_dev_desc[128];
+    I2C_READ_HANDLE i2c_read_handle = i2c_read;
+    unsigned int addr=0, iaddr=0, num_bytes=0, iaddr_bytes = 1, page_bytes = 16, bus_num = -1;
+
+    /* Open i2c bus */
+bus_num = 1;
+    int bus;
+    char bus_name[32];
+    memset(bus_name, 0, sizeof(bus_name));
+
+    if (snprintf(bus_name, sizeof(bus_name), "/dev/i2c-%u", bus_num) < 0) {
+
+        fprintf(stderr, "Format i2c bus name error!\n");
+        return -3;
+    }//bus_name
+///open bus, i.e. fd
+    if ((bus = i2c_open(bus_name)) == -1) {
+
+        fprintf(stderr, "Open i2c bus:%s error!\n", bus_name);
+        return -3;
+    }//open
+    
+addr=0x18, iaddr=0x05, num_bytes=2;
+    /* Init i2c device */
+///setup device desc.
+    I2CDevice device;
+    memset(&device, 0, sizeof(device));
+    //default init.
+    i2c_init_device(&device);
+    //specific init., e.g. from CLI
+    device.bus = bus;
+    device.addr = addr & 0x3ff;
+    device.page_bytes = page_bytes;
+    device.iaddr_bytes = iaddr_bytes;
+
+///show device desc.
+    /* Print i2c device description */
+    fprintf(stdout, "%s\n", i2c_get_device_desc(&device, i2c_dev_desc, sizeof(i2c_dev_desc)));
+    fprintf(stdout, "internal register address=0x%02x\n", iaddr);
+    fprintf(stdout, "reading %d bytes\n", num_bytes);
+
+    ssize_t ret = 0;
+    unsigned char buf[16];
+    size_t buf_size = sizeof(buf);
+
+    /* Read */
+    memset(buf, 0, buf_size);
+
+///read data
+    ret = i2c_read_handle(&device, iaddr, buf, num_bytes);
+    if (ret == -1 || (size_t)ret != num_bytes)
+    {
+
+        fprintf(stderr, "Read i2c error!\n");
+        return -5;
+    }
+
+    /* Print read result */
+    fprintf(stdout, "Read data:\n");
+    print_i2c_data(buf, num_bytes);
+
+    i2c_close(bus);
+
+  std::cout<<"Device   list: "<<DeviceFactory::List()  <<std::endl;
   std::cout<<"Register list: "<<RegisterFactory::List()<<std::endl;
 
   return 0;
