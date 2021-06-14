@@ -220,7 +220,7 @@ int main(int argc, char **argv)
   {//Register
   std::cout<<std::endl<<"Device//register"<<name<<std::endl;
   Register *reg=(temp->find(name))->second;
-  int r=reg->write(0x3);//0x[0-3]
+  int r=reg->write(0x0);//0x[0-3]
   std::cout<<"write return "<<r<<std::endl;
   r=reg->read();
   std::cout<<"resolution mode="<<r<<std::endl;
