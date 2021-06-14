@@ -21,10 +21,14 @@ TemperatureDevice/set_name("TemperatureDevice")
 RegisterT/set_name("RegisterT")
 I2CRegister/set_name("I2CRegister")
 I2CRegisterWord/set_name("I2CRegisterWord")
+RegisterT/set_name("RegisterT")
+I2CRegister/set_name("I2CRegister")
+I2CRegisterByte/set_name("I2CRegisterByte")
 AmbiantTemperature => I2CRegisterWord
+TemperatureResolution => I2CRegisterByte
 
 Device::get(AmbiantTemperature)
-TemperatureDevice::get(...)
+TemperatureDevice::get(AmbiantTemperature)
 I2CRegisterWord::read()
 Device address: 0x18, tenbit: False, internal(word) address: 1 bytes, page max 16 bytes, delay: 1ms
 internal register address=0x05
@@ -52,3 +56,13 @@ Read data:
 
 c1 9a 
 t°=0xffffc19a
+
+Device//registerTemperatureResolution
+I2CRegisterByte::write()
+Device address: 0x18, tenbit: False, internal(word) address: 1 bytes, page max 16 bytes, delay: 1ms
+internal register address=0x08
+writing 1 bytes
+Write data:
+
+01 
+t°=0

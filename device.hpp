@@ -133,7 +133,8 @@ class TemperatureDevice: public I2C_Device
   {
     set_name("TemperatureDevice");
     default_register_name="AmbiantTemperature";
-    create_register(default_register_name,"I2CRegisterWord",0x05);//,RO);
+    create_register(default_register_name,  "I2CRegisterWord",0x05);//,RO);
+    create_register("TemperatureResolution","I2CRegisterByte",0x08);//,RW);
   }//constructor
   virtual void read()
   {
@@ -145,9 +146,10 @@ class TemperatureDevice: public I2C_Device
       (it->second)->read();
     }
   }
-  virtual int get(const std::string &register_name) {std::cout<<name<<"::get(...)"<<std::endl;return Device::get(register_name);}
+  virtual int get(const std::string &register_name) {std::cout<<name<<"::get("<<register_name<<")"<<std::endl;return Device::get(register_name);}
+  virtual int get() {std::cout<<name<<"::get() "<<default_register_name<<std::endl;return this->get(default_register_name);}
   virtual int set(const std::string &register_name,const int &value) {std::cout<<name<<"::set(...) empty"<<std::endl;return 0;};
-  virtual int get() {std::cout<<name<<"::get()"<<std::endl;return Device::get(default_register_name);}
+  virtual int set() {std::cout<<name<<"::set() TemperatureResolution"<<std::endl;this->set("TemperatureResolution",0x0);return 0;}
   //! destructor (need at least empty one)
   virtual ~TemperatureDevice() {}
 };//TemperatureDevice

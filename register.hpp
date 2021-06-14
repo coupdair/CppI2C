@@ -17,7 +17,7 @@
 #include "i2c/i2c.h"
 #endif //USE_I2C_LIB
 
-#define REGISTER_VERSION "v0.1.0i"
+#define REGISTER_VERSION "v0.1.0j"
 
 class Register
 {
@@ -116,7 +116,29 @@ class I2CRegister: public RegisterT<T>
    }//read
   virtual int write()
   {std::cout<<this->name<<"::"<<__func__<<"()"<<std::endl;
-    
+    //libI2C write
+    char i2c_dev_desc[128];
+///show device desc.
+    /* Print i2c device description */
+    fprintf(stdout, "%s\n", i2c_get_device_desc(this->pDevice, i2c_dev_desc, sizeof(i2c_dev_desc)));
+    fprintf(stdout, "internal register address=0x%02x\n", this->id);
+    fprintf(stdout, "writing %d bytes\n", this->size);
+    ssize_t ret = 0;
+    unsigned char buf[256];
+    size_t buf_size = sizeof(buf);
+    memset(buf, 0, buf_size);
+///fill data
+    buf[0]=this->value;
+    /* Print before write */
+    fprintf(stdout, "Write data:\n");
+    print_i2c_data(buf, this->size);
+///write data
+    ret = i2c_write(this->pDevice, this->id, buf, this->size);
+    if((size_t)ret != this->size)
+    {
+        fprintf(stderr, "Write i2c error!\n");
+        return -4;
+    }
     return 0;
   }//write
   //! destructor (need at least empty one)

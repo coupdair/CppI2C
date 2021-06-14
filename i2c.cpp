@@ -196,7 +196,7 @@ int main(int argc, char **argv)
   Device *temp=DeviceFactory::NewDevice("TemperatureDevice"); if(temp==NULL) return -9;
   temp->register_list();
   //temp->read();
-
+//Read
   std::string name="AmbiantTemperature";
   std::cout<<std::endl<<"Device::get("<<name<<")"<<std::endl;
   temp->get(name);
@@ -212,6 +212,15 @@ int main(int argc, char **argv)
   int t=((temp->find(name))->second)->read();
   std::cout<<"t°="<<t<<std::endl;
   }//reg.
+
+//Write
+  name="TemperatureResolution";
+  {//Register
+  std::cout<<std::endl<<"Device//register"<<name<<std::endl;
+  Register *reg=(temp->find(name))->second;
+  int t=reg->write();
+  std::cout<<"t°="<<t<<std::endl;
+  }//Register
 
   return 0;
 }//main
