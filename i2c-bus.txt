@@ -45,8 +45,8 @@ internal register address=0x05
 reading 2 bytes
 Read data:
 
-c1 9c 
-t°=0xc19c
+c1 a0 
+t°=0xc1a0
 
 Device//reg.AmbiantTemperature
 I2CRegisterWord::read()
@@ -55,11 +55,11 @@ internal register address=0x05
 reading 2 bytes
 Read data:
 
-c1 9c 
-t°=0xc19c
+c1 a0 
+t°=0xc1a0
 
 Device//registerTemperatureResolution
-I2CRegisterByte::write()
+I2CRegisterByte::write() value=
 Device address: 0x18, tenbit: False, internal(word) address: 1 bytes, page max 16 bytes, delay: 1ms
 internal register address=0x08
 writing 1 bytes

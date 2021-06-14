@@ -19,7 +19,7 @@
 #include "i2c/i2c.h"
 #endif //USE_I2C_LIB
 
-#define DEVICE_VERSION "v0.1.0i"
+#define DEVICE_VERSION "v0.1.0j"
 
 class Device: public std::map<std::string,Register*>
 {
@@ -37,7 +37,7 @@ class Device: public std::map<std::string,Register*>
   //! constructor
   Device() {name="none";}
   virtual int get(const std::string &register_name) {return ((this->find(register_name))->second)->read();};
-  virtual int set(const std::string &register_name,const int &value) = 0;
+  virtual int set(const std::string &register_name,const int &value) {((this->find(register_name))->second)->write(value);};
   //! destructor (need at least empty one)
   virtual ~Device() {}
 };//Device
@@ -148,7 +148,7 @@ class TemperatureDevice: public I2C_Device
   }//read
   virtual int get(const std::string &register_name) {std::cout<<name<<"::get("<<register_name<<")"<<std::endl;return Device::get(register_name);}
   virtual int get() {std::cout<<name<<"::get() "<<default_register_name<<std::endl;return this->get(default_register_name);}
-  virtual int set(const std::string &register_name,const int &value) {std::cout<<name<<"::set(...) empty"<<std::endl;return 0;};
+  virtual int set(const std::string &register_name,const int &value) {std::cout<<name<<"::set(...)"<<std::endl;return Device::set(register_name,value);return 0;};
   virtual int set() {std::cout<<name<<"::set() TemperatureResolution"<<std::endl;this->set("TemperatureResolution",0x0);return 0;}
   //! destructor (need at least empty one)
   virtual ~TemperatureDevice() {}

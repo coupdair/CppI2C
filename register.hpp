@@ -17,7 +17,7 @@
 #include "i2c/i2c.h"
 #endif //USE_I2C_LIB
 
-#define REGISTER_VERSION "v0.1.0j"
+#define REGISTER_VERSION "v0.1.0k"
 
 class Register
 {
@@ -31,6 +31,7 @@ class Register
   virtual int read() = 0;
   virtual int get() = 0;
   virtual int write() = 0;
+  virtual int write(const int &value) = 0;
   virtual int set() = 0;
   //! destructor (need at least empty one)
   virtual ~Register() {}
@@ -45,6 +46,12 @@ class RegisterT: public Register
   virtual int get() {return value;};
   virtual int set() {std::cout<<this->name<<"::"<<__func__<<"() empty"<<std::endl;return -1;};
   virtual int set(T value_) {value=value_;return 0;};
+  virtual int write() = 0;
+  virtual int write(const int &val)
+  {std::cout<<this->name<<"::"<<__func__<<"("<<val<<")"<<std::endl;
+    value=(T)val;
+    return write();
+  }
   //! destructor (need at least empty one)
   virtual ~RegisterT() {}
 };//RegisterT
@@ -53,7 +60,8 @@ class FakeRegister: public RegisterT<char>
  public:
   FakeRegister() {set_name("FakeRegister");}
   virtual int read()  {return this->get();}
-  virtual int write() {value=12;return 0;}
+  virtual int write(const int &val){return RegisterT<char>::write(val);};
+  virtual int write() {return 0;}
   //! destructor (need at least empty one)
   virtual ~FakeRegister() {}
 };//FakeRegister
@@ -115,7 +123,7 @@ class I2CRegister: public RegisterT<T>
     return this->value;
    }//read
   virtual int write()
-  {std::cout<<this->name<<"::"<<__func__<<"()"<<std::endl;
+  {std::cout<<this->name<<"::"<<__func__<<"() value="<<this->value<<std::endl;
     //libI2C write
     char i2c_dev_desc[128];
 ///show device desc.

@@ -20,7 +20,7 @@
 #include "module.hpp"
 #include "i2c_tools.hpp"
 
-#define VERSION "v0.0.9n"
+#define VERSION "v0.0.9o"
 
 //Program option/documentation
 //{argp
