@@ -17,7 +17,7 @@
 #include "i2c/i2c.h"
 #endif //USE_I2C_LIB
 
-#define REGISTER_VERSION "v0.1.0g"
+#define REGISTER_VERSION "v0.1.0h"
 
 class Register
 {
@@ -44,7 +44,7 @@ class RegisterT: public Register
   RegisterT() {set_name("RegisterT");value=(T)1.234;}
   virtual int get() {return value;};
   virtual int set() {std::cout<<this->name<<"::"<<__func__<<"() empty"<<std::endl;return -1;};
-  virtual int set(T value_) {value=value_;};
+  virtual int set(T value_) {value=value_;return 0;};
   //! destructor (need at least empty one)
   virtual ~RegisterT() {}
 };//RegisterT
@@ -110,8 +110,8 @@ class I2CRegister: public RegisterT<T>
     /* Print read result */
     fprintf(stdout, "Read data:\n");
     print_i2c_data(buf, this->size);
-    if(size==1) this->value=buf[0];
-    if(size==2) this->value=buf[0]<<8+buf[1];
+    if(size==1) {this->value=buf[0];this->value&=0x000000FF;}
+    if(size==2) {this->value=buf[0];this->value*=256;this->value+=buf[1];this->value&=0x0000FFFF;}
     return this->value;
    }//read
   virtual int write() {std::cout<<this->name<<"::"<<__func__<<" empty"<<std::endl;return -1;}

@@ -27,20 +27,20 @@ internal register address=0x05
 reading 2 bytes
 Read data:
 
-c1 86 
+c1 87 
 I2CRegisterWord::read()
 Device address: 0x18, tenbit: False, internal(word) address: 1 bytes, page max 16 bytes, delay: 1ms
 internal register address=0x05
 reading 2 bytes
 Read data:
 
-c1 86 
-0x74c2b03d0
+c1 87 
+t°=0xffffc187
 I2CRegisterWord::read()
 Device address: 0x18, tenbit: False, internal(word) address: 1 bytes, page max 16 bytes, delay: 1ms
 internal register address=0x05
 reading 2 bytes
 Read data:
 
-c1 86 
-0x74c2b03d0
+c1 87 
+t°=0xffffc187

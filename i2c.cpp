@@ -196,14 +196,14 @@ int main(int argc, char **argv)
   temp->Run();
 
   std::string name="AmbiantTemperature";
-  {//reg.
+  {//Register
   Register *reg=(temp->find(name))->second;
   int t=reg->read();
-  std::cout<<'t°='<<t<<std::endl;
-  }//reg.
+  std::cout<<"t°="<<t<<std::endl;
+  }//Register
   {//reg.
   int t=((temp->find(name))->second)->read();
-  std::cout<<'t°='<<t<<std::endl;
+  std::cout<<"t°="<<t<<std::endl;
   }//
 
   return 0;
