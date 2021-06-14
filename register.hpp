@@ -12,7 +12,12 @@
 #include <iostream>       // std::cout
 #include <map>            // std::map
 
-#define REGISTER_VERSION "v0.0.9"
+#ifdef USE_I2C_LIB
+#warning "use I2C lib"
+#include "i2c/i2c.h"
+#endif //USE_I2C_LIB
+
+#define REGISTER_VERSION "v0.1.0d"
 
 class Register
 {
@@ -54,10 +59,29 @@ class FakeRegister: public RegisterT<char>
 template <typename T>
 class I2CRegister: public RegisterT<T>
 {
+// protected:
+ public:
   int bus,addr,id;
   int size;
+  I2CDevice *pDevice;
  public:
   I2CRegister() {this->set_name("I2CRegister");size=sizeof(T);}
+virtual void print_i2c_data(const unsigned char *data, size_t len)
+{
+    size_t i = 0;
+
+    for (i = 0; i < len; i++) {
+
+        if (i % 16 == 0) {
+
+            fprintf(stdout, "\n");
+        }
+
+        fprintf(stdout, "%02x ", data[i]);
+    }
+
+    fprintf(stdout, "\n");
+}//print_i2c_data
   virtual void Run()  {std::cout<<this->name<<" run"<<std::endl; this->set_value((T)32.1); mHibernating = false;}
   virtual void Stop() {mHibernating = true;}
   //! destructor (need at least empty one)
@@ -74,6 +98,42 @@ class I2CRegisterByte: public I2CRegister<char>
   //! destructor (need at least empty one)
   virtual ~I2CRegisterByte() {}
 };//I2CRegisterByte
+class I2CRegisterWord: public I2CRegister<short>
+{
+ public:
+  I2CRegisterWord() {set_name("I2CRegisterWord");}
+  virtual void Run()
+  {std::cout<<name<<" run"<<std::endl;
+  //libI2C read
+    char i2c_dev_desc[128];
+///show device desc.
+    /* Print i2c device description */
+    fprintf(stdout, "%s\n", i2c_get_device_desc(this->pDevice, i2c_dev_desc, sizeof(i2c_dev_desc)));
+    fprintf(stdout, "internal register address=0x%02x\n", this->id);
+    fprintf(stdout, "reading %d bytes\n", this->size);
+
+    ssize_t ret = 0;
+    unsigned char buf[16];
+    size_t buf_size = sizeof(buf);
+
+    /* Read */
+    memset(buf, 0, buf_size);
+
+///read data
+    ret = i2c_read(pDevice, id, buf, this->size);
+    if (ret == -1 || (size_t)ret != this->size)
+    {
+        fprintf(stderr, "Read i2c error!\n");
+        exit(-5);
+    }
+    /* Print read result */
+    fprintf(stdout, "Read data:\n");
+    print_i2c_data(buf, this->size);
+   }//read
+  virtual void Stop() {value=123;}
+  //! destructor (need at least empty one)
+  virtual ~I2CRegisterWord() {}
+};//I2CRegisterWord
 //! device factory
 /**
  *  \note instanciation based on name (i.e. string, as done only one time)
@@ -87,6 +147,8 @@ class RegisterFactory
       return new FakeRegister;
     if(name == "I2CRegisterByte")
       return new I2CRegisterByte;
+    if(name == "I2CRegisterWord")
+      return new I2CRegisterWord;
     std::cerr<<"Register name is unknown, i.e. \""<<name<<"\"."<<std::endl;
     return NULL;
   }//NewRegister
@@ -105,10 +167,12 @@ void register_implementation()
   {//basis
   FakeRegister fake;    fake.Run();
   I2CRegisterByte regB; regB.Run();
+  I2CRegisterWord regW; regW.Run();
   }//basis
   {//factory
   Register *fake=RegisterFactory::NewRegister("FakeRegister");   if(fake!=NULL) fake->Run();
   Register *regB=RegisterFactory::NewRegister("I2CRegisterByte");if(regB!=NULL) regB->Run();
+  Register *regW=RegisterFactory::NewRegister("I2CRegisterWord");if(regW!=NULL) regW->Run();
   }//factory
 }//register_implementation
 

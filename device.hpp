@@ -19,7 +19,7 @@
 #include "i2c/i2c.h"
 #endif //USE_I2C_LIB
 
-#define DEVICE_VERSION "v0.0.9"
+#define DEVICE_VERSION "v0.1.0d"
 
 class Device: public std::map<std::string,Register*>
 {
@@ -69,6 +69,10 @@ class I2C_Device: public Device
     bus=-1;open();
     addr=-1;init();
   }//constructor
+  //! open I2C bus
+  /**
+   * \return I2C fd or <0 on error
+  **/
   virtual int open(int bus_num=1)
   {//Open i2c bus
     bus_num = 1;
@@ -85,6 +89,7 @@ class I2C_Device: public Device
        fprintf(stderr, "Open i2c bus:%s error!\n", bus_name);
         return -3;
     }//open
+    return bus;
   }//open
   virtual int init(int addr_=0x18)
   {//Init i2c device
@@ -100,6 +105,18 @@ class I2C_Device: public Device
     device.page_bytes = page_bytes;
     device.iaddr_bytes = iaddr_bytes;
   }//init
+  virtual void create_register(std::string register_name,std::string register_type_name)
+  {
+    //! \todo [low] check "I2C" in register_type_name
+    //Register *i2c_reg=Register::create_register(register_name,register_type_name);
+    Register *reg=RegisterFactory::NewRegister(register_type_name);
+    this->insert(std::pair<std::string,Register*>(register_name,reg));
+    I2CRegisterWord *i2c_reg=(I2CRegisterWord*)reg;
+    i2c_reg->bus=bus;
+    i2c_reg->addr=addr;
+    i2c_reg->id=0x05;
+    i2c_reg->pDevice=&device;
+  }//create_register
   virtual void Run()  {std::cout<<name<<" run"<<std::endl; mHibernating = false;}
   virtual void Stop() {mHibernating = true;}
   //! destructor (need at least empty one)

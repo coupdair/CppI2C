@@ -17,9 +17,13 @@ I2C devices address(es):  0x4, 0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d.
 Device   list: FakeDevice, TemperatureDevice.
 Register list: FakeRegister, I2CRegisterByte.
 I2C_Device/set_name("I2C_Device")
+RegisterT/set_name("RegisterT")
+I2CRegister/set_name("I2CRegister")
+I2CRegisterWord/set_name("I2CRegisterWord")
+I2CRegisterWord run
 Device address: 0x18, tenbit: False, internal(word) address: 1 bytes, page max 16 bytes, delay: 1ms
 internal register address=0x05
 reading 2 bytes
 Read data:
 
-c1 84 
+c1 87 
