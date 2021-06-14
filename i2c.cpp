@@ -20,7 +20,7 @@
 #include "module.hpp"
 #include "i2c_tools.hpp"
 
-#define VERSION "v0.0.9e"
+#define VERSION "v0.0.9f"
 
 //Program option/documentation
 //{argp
@@ -142,6 +142,9 @@ int main(int argc, char **argv)
   {
     std::cout<<VERSION<<std::endl;
     std::cout<<"i2c-tools."<<VERSION_I2C_TOOLS<<std::endl;
+    std::cout<<"register."<<REGISTER_VERSION<<std::endl;
+    std::cout<<"device."<<DEVICE_VERSION<<std::endl;
+    std::cout<<"module."<<MODULE_VERSION<<std::endl;
     return 0;
   }//version
 
