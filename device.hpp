@@ -19,7 +19,7 @@
 #include "i2c/i2c.h"
 #endif //USE_I2C_LIB
 
-#define DEVICE_VERSION "v0.1.0d"
+#define DEVICE_VERSION "v0.1.0e"
 
 class Device: public std::map<std::string,Register*>
 {
@@ -105,7 +105,7 @@ class I2C_Device: public Device
     device.page_bytes = page_bytes;
     device.iaddr_bytes = iaddr_bytes;
   }//init
-  virtual void create_register(std::string register_name,std::string register_type_name)
+  virtual void create_register(std::string register_name,std::string register_type_name, int id_=0x05)
   {
     //! \todo [low] check "I2C" in register_type_name
     //Register *i2c_reg=Register::create_register(register_name,register_type_name);
@@ -114,7 +114,7 @@ class I2C_Device: public Device
     I2CRegisterWord *i2c_reg=(I2CRegisterWord*)reg;
     i2c_reg->bus=bus;
     i2c_reg->addr=addr;
-    i2c_reg->id=0x05;
+    i2c_reg->id=id_;
     i2c_reg->pDevice=&device;
   }//create_register
   virtual void Run()  {std::cout<<name<<" run"<<std::endl; mHibernating = false;}

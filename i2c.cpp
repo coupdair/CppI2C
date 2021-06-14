@@ -20,7 +20,7 @@
 #include "module.hpp"
 #include "i2c_tools.hpp"
 
-#define VERSION "v0.0.9i"
+#define VERSION "v0.0.9j"
 
 //Program option/documentation
 //{argp
@@ -196,7 +196,7 @@ int main(int argc, char **argv)
 
   I2C_Device dev;
   std::string reg_name="temp";
-  dev.create_register(reg_name,"I2CRegisterWord");
+  dev.create_register(reg_name,"I2CRegisterWord",0x05);
   dev[reg_name]->Run();
   
   return 0;
