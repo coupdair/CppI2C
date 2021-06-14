@@ -20,7 +20,7 @@
 #include "module.hpp"
 #include "i2c_tools.hpp"
 
-#define VERSION "v0.0.9"
+#define VERSION "v0.1.0d"
 
 //Program option/documentation
 //{argp
@@ -203,33 +203,8 @@ int main(int argc, char **argv)
   std::cout<<std::endl<<"DeviceFactory:"<<std::endl;
   TemperatureDevice *temp=DeviceFactory::NewDevice("TemperatureDevice"); if(temp==NULL) return -9;
   temp->register_list();
-  //temp->read();
-//Read
-  std::string name="AmbiantTemperature";
-  {//Device
-  std::cout<<std::endl<<"Device::get("<<name<<")"<<std::endl;
-  short t=temp->get(name);
-  std::cout<<"t°="<<t<<std::endl;
-  }//Device
-  {//Celcius
-  std::cout<<std::endl<<"Device::get_Celcius("<<name<<")"<<std::endl;
-  float t=temp->get_Celcius();
-  std::cout<<"t°="<<t<<" °C"<<std::endl;
-  }//Celcius
-  {//Register
-  std::cout<<std::endl<<"Device//register"<<name<<std::endl;
-  Register *reg=(temp->find(name))->second;
-  short t=reg->read();
-  std::cout<<"t°="<<t<<std::endl;
-  }//Register
-  {//reg.
-  std::cout<<std::endl<<"Device//reg."<<name<<std::endl;
-  short t=((temp->find(name))->second)->read();
-  std::cout<<"t°="<<t<<std::endl;
-  }//reg.
-
-//Write
-  name="TemperatureResolution";
+//Write resolution
+  std::string name="TemperatureResolution";
   {//Register
   std::cout<<std::endl<<"Device//register"<<name<<std::endl;
   Register *reg=(temp->find(name))->second;
@@ -238,6 +213,32 @@ int main(int argc, char **argv)
   r=reg->read();
   std::cout<<"resolution mode="<<r<<std::endl;
   }//Register
+
+//Read temperature
+  name="AmbiantTemperature";
+  {//Device
+  std::cout<<std::endl<<"Device::get("<<name<<")"<<std::endl;
+  short t=temp->get(name);
+  std::cout<<"t="<<t<<std::endl;
+  }//Device
+  {//Celcius
+  std::cout<<std::endl<<"Device::get_Celcius("<<name<<")"<<std::endl;
+  float t=temp->get_Celcius();
+  std::cout<<"t="<<t<<" Celcius"<<std::endl;
+  }//Celcius
+/*
+  {//Register
+  std::cout<<std::endl<<"Device//register"<<name<<std::endl;
+  Register *reg=(temp->find(name))->second;
+  short t=reg->read();
+  std::cout<<"t="<<t<<std::endl;
+  }//Register
+  {//reg.
+  std::cout<<std::endl<<"Device//reg."<<name<<std::endl;
+  short t=((temp->find(name))->second)->read();
+  std::cout<<"t="<<t<<std::endl;
+  }//reg.
+*/
 
   return 0;
 }//main

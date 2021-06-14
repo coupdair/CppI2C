@@ -17,17 +17,18 @@
 #include "i2c/i2c.h"
 #endif //USE_I2C_LIB
 
-#define REGISTER_VERSION "v0.1.0"
+#define REGISTER_VERSION "v0.1.1d"
 
 class Register
 {
  protected:
   std::string name;
-  virtual void set_name(std::string device_name) {name=device_name; std::cout<<name<<"/"<<__func__<<"(\""<<name<<"\")"<<std::endl;}
+  bool debug;
+  virtual void set_name(std::string device_name) {name=device_name; if(debug) std::cout<<name<<"::"<<__func__<<"(\""<<name<<"\")"<<std::endl;}
  public:
   virtual std::string get_name() {return name;}
   //! constructor
-  Register() {name="none";}
+  Register() {name="none";debug=false;}
   virtual int read() = 0;
   virtual int get() = 0;
   virtual int write() = 0;
@@ -48,7 +49,7 @@ class RegisterT: public Register
   virtual int set(T value_) {value=value_;return 0;};
   virtual int write() = 0;
   virtual int write(const int &val)
-  {std::cout<<this->name<<"::"<<__func__<<"("<<val<<")"<<std::endl;
+  {if(this->debug) std::cout<<this->name<<"::"<<__func__<<"("<<val<<")"<<std::endl;
     value=(T)val;
     return write();
   }
@@ -92,16 +93,18 @@ class I2CRegister: public RegisterT<T>
     fprintf(stdout, "\n");
   }//print_i2c_data
   virtual int read()
-  {std::cout<<this->name<<"::"<<__func__<<"()"<<std::endl;
+  {if(this->debug) std::cout<<this->name<<"::"<<__func__<<"()"<<std::endl;
   //libI2C read
     char i2c_dev_desc[128];
     this->value=99;//dummy
 ///show device desc.
     /* Print i2c device description */
-    fprintf(stdout, "%s\n", i2c_get_device_desc(this->pDevice, i2c_dev_desc, sizeof(i2c_dev_desc)));
-    fprintf(stdout, "internal register address=0x%02x\n", this->id);
-    fprintf(stdout, "reading %d bytes\n", this->size);
-
+    if(this->debug)
+    {
+      fprintf(stdout, "%s\n", i2c_get_device_desc(this->pDevice, i2c_dev_desc, sizeof(i2c_dev_desc)));
+      fprintf(stdout, "internal register address=0x%02x\n", this->id);
+      fprintf(stdout, "reading %d bytes\n", this->size);
+    }//debug
     ssize_t ret = 0;
     unsigned char buf[16];
     size_t buf_size = sizeof(buf);
@@ -117,14 +120,17 @@ class I2CRegister: public RegisterT<T>
         return -5;
     }
     /* Print read result */
-    fprintf(stdout, "Read data:\n");
-    print_i2c_data(buf, this->size);
+    if(this->debug)
+    {
+	  fprintf(stdout, "Read data:\n");
+      print_i2c_data(buf, this->size);
+    }//debug
     if(size==1) {this->value=(int)buf[0];}
     if(size==2) {short val=(short)buf[0]*256;val+=buf[1];this->value=(int)val;}
     return this->value;
    }//read
   virtual int write()
-  {std::cout<<this->name<<"::"<<__func__<<"() value="<<this->value<<std::endl;
+  {if(this->debug) std::cout<<this->name<<"::"<<__func__<<"() value="<<this->value<<std::endl;
     //libI2C write
     char i2c_dev_desc[128];
 ///show device desc.
