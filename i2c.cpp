@@ -8,6 +8,7 @@
 #include <error.h>
 #include <argp.h>
 #include <stdlib.h>
+#include <unistd.h> //usleep
 
 #include <string.h>
 #include <string>
@@ -20,7 +21,7 @@
 #include "module.hpp"
 #include "i2c_tools.hpp"
 
-#define VERSION "v0.1.0d"
+#define VERSION "v0.1.0e"
 
 //Program option/documentation
 //{argp
@@ -200,19 +201,22 @@ int main(int argc, char **argv)
   std::cout<<'.'<<std::endl;
 
 ///read temperature
-  std::cout<<std::endl<<"DeviceFactory:"<<std::endl;
-  TemperatureDevice *temp=DeviceFactory::NewDevice("TemperatureDevice"); if(temp==NULL) return -9;
-  temp->register_list();
+  std::string type_name="TemperatureDevice";
+  std::cout<<std::endl<<"DeviceFactory:"<<type_name<<std::endl;
+  TemperatureDevice *temp=DeviceFactory::NewDevice(type_name); if(temp==NULL) return -9;
+  temp->register_list("  ");
 //Write resolution
   std::string name="TemperatureResolution";
   {//Register
-  std::cout<<std::endl<<"Device//register"<<name<<std::endl;
+  std::cout<<std::endl<<"Device["<<name<<"]"<<std::endl;
   Register *reg=(temp->find(name))->second;
   int r=reg->write(arguments.resolution);
   std::cout<<"write return "<<r<<std::endl;
   r=reg->read();
   std::cout<<"resolution mode="<<r<<std::endl;
   }//Register
+//sleep a while for resolution command to perform on device
+  usleep(123456);
 
 //Read temperature
   name="AmbiantTemperature";
@@ -222,23 +226,23 @@ int main(int argc, char **argv)
   std::cout<<"t="<<t<<std::endl;
   }//Device
   {//Celcius
-  std::cout<<std::endl<<"Device::get_Celcius("<<name<<")"<<std::endl;
+  std::cout<<std::endl<<"TemperatureDevice::get_Celcius("<<name<<")"<<std::endl;
   float t=temp->get_Celcius();
   std::cout<<"t="<<t<<" Celcius"<<std::endl;
   }//Celcius
-/*
+/** /
   {//Register
-  std::cout<<std::endl<<"Device//register"<<name<<std::endl;
+  std::cout<<std::endl<<"Device["<<name<<"]"<<std::endl;
   Register *reg=(temp->find(name))->second;
   short t=reg->read();
   std::cout<<"t="<<t<<std::endl;
   }//Register
   {//reg.
-  std::cout<<std::endl<<"Device//reg."<<name<<std::endl;
+  std::cout<<std::endl<<"Device["<<name<<"]"<<std::endl;
   short t=((temp->find(name))->second)->read();
   std::cout<<"t="<<t<<std::endl;
   }//reg.
-*/
+/**/
 
   return 0;
 }//main

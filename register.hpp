@@ -135,9 +135,12 @@ class I2CRegister: public RegisterT<T>
     char i2c_dev_desc[128];
 ///show device desc.
     /* Print i2c device description */
-    fprintf(stdout, "%s\n", i2c_get_device_desc(this->pDevice, i2c_dev_desc, sizeof(i2c_dev_desc)));
-    fprintf(stdout, "internal register address=0x%02x\n", this->id);
-    fprintf(stdout, "writing %d bytes\n", this->size);
+    if(this->debug)
+    {
+      fprintf(stdout, "%s\n", i2c_get_device_desc(this->pDevice, i2c_dev_desc, sizeof(i2c_dev_desc)));
+      fprintf(stdout, "internal register address=0x%02x\n", this->id);
+      fprintf(stdout, "writing %d bytes\n", this->size);
+    }//debug
     ssize_t ret = 0;
     unsigned char buf[256];
     size_t buf_size = sizeof(buf);
@@ -145,8 +148,11 @@ class I2CRegister: public RegisterT<T>
 ///fill data
     buf[0]=this->value;
     /* Print before write */
-    fprintf(stdout, "Write data:\n");
-    print_i2c_data(buf, this->size);
+    if(this->debug)
+    {
+      fprintf(stdout, "Write data:\n");
+      print_i2c_data(buf, this->size);
+    }//debug
 ///write data
     ret = i2c_write(this->pDevice, this->id, buf, this->size);
     if((size_t)ret != this->size)

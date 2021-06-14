@@ -19,14 +19,17 @@
 #include "i2c/i2c.h"
 #endif //USE_I2C_LIB
 
-#define DEVICE_VERSION "v0.1.0"
+#define DEVICE_VERSION "v0.1.1e"
 
 class Device: public std::map<std::string,Register*>
 {
  protected:
   std::string name;
-  virtual void set_name(std::string device_name) {name=device_name; std::cout<<name<<"/"<<__func__<<"(\""<<name<<"\")"<<std::endl;}
+  bool debug;
+  virtual void set_name(std::string device_name) {name=device_name; if(debug) std::cout<<name<<"/"<<__func__<<"(\""<<name<<"\")"<<std::endl;}
  public:
+  //! constructor
+  Device() {name="none";debug=false;}
   virtual std::string get_name() {return name;}
   virtual void create_register(std::string register_name,std::string register_type_name)
   {
@@ -34,8 +37,6 @@ class Device: public std::map<std::string,Register*>
     this->insert(std::pair<std::string,Register*>(register_name,reg));
   }//create_register
   virtual /*std::string*/void register_list(const std::string prefix="") {for (std::map<std::string,Register*>::iterator it=this->begin(); it!=this->end(); ++it) std::cout <<prefix<< it->first << " => " << (it->second)->get_name() << '\n';};
-  //! constructor
-  Device() {name="none";}
   virtual int get(const std::string &register_name) {return ((this->find(register_name))->second)->read();};
   virtual int set(const std::string &register_name,const int &value) {((this->find(register_name))->second)->write(value);};
   //! destructor (need at least empty one)
@@ -50,7 +51,7 @@ class FakeDevice: public Device
     create_register("FakeRegister0","FakeRegister");
     create_register("FakeRegister1","FakeRegister");
   }//constructor
-  virtual int get(const std::string &register_name) {std::cout<<name<<"::get(...)"<<std::endl;return Device::get(register_name);}
+  virtual int get(const std::string &register_name) {if(this->debug) std::cout<<name<<"::get(...)"<<std::endl;return Device::get(register_name);}
   virtual int set(const std::string &register_name,const int &value) {std::cout<<name<<"::set(...) empty"<<std::endl;return 0;};
   //! destructor (need at least empty one)
   virtual ~FakeDevice() {}
@@ -116,7 +117,7 @@ class I2C_Device: public Device
     i2c_reg->id=id_;
     i2c_reg->pDevice=&device;
   }//create_register
-  virtual int get(const std::string &register_name) {std::cout<<name<<"::get(...)"<<std::endl;return Device::get(register_name);}
+  virtual int get(const std::string &register_name) {if(this->debug) std::cout<<name<<"::get(...)"<<std::endl;return Device::get(register_name);}
   virtual int set(const std::string &register_name,const int &value) {std::cout<<name<<"::set(...) empty"<<std::endl;return 0;};
   //! destructor (need at least empty one)
   virtual ~I2C_Device() {i2c_close(bus);}
@@ -137,8 +138,7 @@ class TemperatureDevice: public I2C_Device
     create_register("TemperatureResolution","I2CRegisterByte",0x08);//,RW);
   }//constructor
   virtual void read()
-  {
-    std::cout<<name<<"::read()"<<std::endl;
+  {if(this->debug) std::cout<<name<<"::read()"<<std::endl;
     this->register_list("");
     for (std::map<std::string,Register*>::iterator it=this->begin(); it!=this->end(); ++it)
     {
@@ -146,16 +146,16 @@ class TemperatureDevice: public I2C_Device
       (it->second)->read();
     }//register loop
   }//read
-  virtual int get(const std::string &register_name) {std::cout<<name<<"::get("<<register_name<<")"<<std::endl;return Device::get(register_name);}
-  virtual int get() {std::cout<<name<<"::get() "<<default_register_name<<std::endl;return this->get(default_register_name);}
+  virtual int get(const std::string &register_name) {if(this->debug) std::cout<<name<<"::get("<<register_name<<")"<<std::endl;return Device::get(register_name);}
+  virtual int get() {if(this->debug) std::cout<<name<<"::get() "<<default_register_name<<std::endl;return this->get(default_register_name);}
   virtual float get_Celcius()
-  {std::cout<<name<<"::get_Celcius() "<<default_register_name<<std::endl;
+  {if(this->debug) std::cout<<name<<"::get_Celcius() "<<default_register_name<<std::endl;
     short data=this->get();
     char *buf=(char*)(&data);
     int ub=buf[1];
     int lb=buf[0];
     float temperature=-99.99;
-    fprintf(stdout, "Read data: 0x%x 0x%x\n",buf[0],buf[1]);
+    if(this->debug) fprintf(stdout, "Read data: 0x%x 0x%x\n",buf[0],buf[1]);
     ub=ub&0x1F;//Clear flag bits
     if( (ub&0x10) == 0x10)
     {//Ta < 0°C
@@ -169,8 +169,8 @@ class TemperatureDevice: public I2C_Device
     //std::cout<<"temperature="<<temperature<<std::endl;
     return temperature;
   }
-  virtual int set(const std::string &register_name,const int &value) {std::cout<<name<<"::set(...)"<<std::endl;return Device::set(register_name,value);return 0;};
-  virtual int set() {std::cout<<name<<"::set() TemperatureResolution"<<std::endl;this->set("TemperatureResolution",0x0);return 0;}
+  virtual int set(const std::string &register_name,const int &value) {if(this->debug) std::cout<<name<<"::set(...)"<<std::endl;return Device::set(register_name,value);return 0;};
+  virtual int set() {if(this->debug) std::cout<<name<<"::set() TemperatureResolution"<<std::endl;this->set("TemperatureResolution",0x0);return 0;}
   //! destructor (need at least empty one)
   virtual ~TemperatureDevice() {}
 };//TemperatureDevice

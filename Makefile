@@ -25,11 +25,8 @@ version: i2c
 
 run: i2c
 	echo;echo "factory:"
-	LD_LIBRARY_PATH=../libI2C/ ./i2c -i 1 -r 0x0 | tee i2c-bus.txt
-	sleep 1
-	LD_LIBRARY_PATH=../libI2C/ ./i2c -i 1 -r 0x3 | tee i2c-bus.txt
-	sleep 1
-	LD_LIBRARY_PATH=../libI2C/ ./i2c -i 1 -r 0x3 | tee i2c-bus.txt
+	LD_LIBRARY_PATH=../libI2C/ ./i2c -i 1 -r 0 | tee    i2c-bus.txt
+	LD_LIBRARY_PATH=../libI2C/ ./i2c -i 1 -r 3 | tee -a i2c-bus.txt
 
 web: i2c-web.cpp config.js i2c_tools.hpp
 	../CppCMS/cppcms/bin/cppcms_tmpl_cc master.tmpl main.tmpl page.tmpl devices.tmpl -o web_skin.cpp
