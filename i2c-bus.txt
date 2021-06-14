@@ -35,8 +35,8 @@ internal register address=0x05
 reading 2 bytes
 Read data:
 
-c1 a0 
-t°=0xc1a0
+c1 a2 
+t°=0xc1a2
 
 Device//registerAmbiantTemperature
 I2CRegisterWord::read()
@@ -45,8 +45,8 @@ internal register address=0x05
 reading 2 bytes
 Read data:
 
-c1 a0 
-t°=0xc1a0
+c1 a2 
+t°=0xc1a2
 
 Device//reg.AmbiantTemperature
 I2CRegisterWord::read()
@@ -55,17 +55,18 @@ internal register address=0x05
 reading 2 bytes
 Read data:
 
-c1 a0 
-t°=0xc1a0
+c1 a2 
+t°=0xc1a2
 
 Device//registerTemperatureResolution
-I2CRegisterByte::write() value=
+I2CRegisterByte::write(0x3)
+I2CRegisterByte::write() value=
 Device address: 0x18, tenbit: False, internal(word) address: 1 bytes, page max 16 bytes, delay: 1ms
 internal register address=0x08
 writing 1 bytes
 Write data:
 
-01 
+03 
 write return 0
 I2CRegisterByte::read()
 Device address: 0x18, tenbit: False, internal(word) address: 1 bytes, page max 16 bytes, delay: 1ms
@@ -73,5 +74,6 @@ internal register address=0x08
 reading 1 bytes
 Read data:
 
-01 
-resolution mode=0x1
+03 
+resolution mode=0x3
+Read temperature: 26.188 Celcius

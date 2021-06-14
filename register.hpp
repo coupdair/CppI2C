@@ -17,7 +17,7 @@
 #include "i2c/i2c.h"
 #endif //USE_I2C_LIB
 
-#define REGISTER_VERSION "v0.1.0k"
+#define REGISTER_VERSION "v0.1.0l"
 
 class Register
 {
@@ -95,6 +95,7 @@ class I2CRegister: public RegisterT<T>
   {std::cout<<this->name<<"::"<<__func__<<"()"<<std::endl;
   //libI2C read
     char i2c_dev_desc[128];
+    this->value=99;//dummy
 ///show device desc.
     /* Print i2c device description */
     fprintf(stdout, "%s\n", i2c_get_device_desc(this->pDevice, i2c_dev_desc, sizeof(i2c_dev_desc)));

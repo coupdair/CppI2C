@@ -26,6 +26,7 @@ version: i2c
 run: i2c
 	echo;echo "factory:"
 	LD_LIBRARY_PATH=../libI2C/ ./i2c -i 1 | tee i2c-bus.txt
+	sleep 1; cd ../libI2C/example/; LD_LIBRARY_PATH=../ ../objs/i2c_get_temperature 1 0x18 | grep Celcius | tee --append ../../CppI2C/i2c-bus.txt
 
 web: i2c-web.cpp config.js i2c_tools.hpp
 	../CppCMS/cppcms/bin/cppcms_tmpl_cc master.tmpl main.tmpl page.tmpl devices.tmpl -o web_skin.cpp
