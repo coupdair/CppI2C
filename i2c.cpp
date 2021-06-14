@@ -20,7 +20,7 @@
 #include "module.hpp"
 #include "i2c_tools.hpp"
 
-#define VERSION "v0.0.9g"
+#define VERSION "v0.0.9h"
 
 //Program option/documentation
 //{argp
@@ -215,7 +215,6 @@ int main(int argc, char **argv)
 
   //libI2C read
     char i2c_dev_desc[128];
-    I2C_READ_HANDLE i2c_read_handle = i2c_read;
     unsigned int iaddr=0x05, num_bytes=2;
 
     I2CDevice *pDevice=&(dev.device);
@@ -234,7 +233,7 @@ int main(int argc, char **argv)
     memset(buf, 0, buf_size);
 
 ///read data
-    ret = i2c_read_handle(pDevice, iaddr, buf, num_bytes);
+    ret = i2c_read(pDevice, iaddr, buf, num_bytes);
     if (ret == -1 || (size_t)ret != num_bytes)
     {
 

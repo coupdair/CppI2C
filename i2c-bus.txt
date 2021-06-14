@@ -22,4 +22,4 @@ internal register address=0x05
 reading 2 bytes
 Read data:
 
-c1 8c 
+c1 84 
