@@ -1,2 +1,2 @@
 Device   list: FakeDevice, TemperatureDevice.
-Register list: FakeRegister, I2CRegisterByte.
+Register list: FakeRegister, I2CRegisterByte, I2CRegisterWord.

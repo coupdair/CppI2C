@@ -17,7 +17,7 @@
 #include "i2c/i2c.h"
 #endif //USE_I2C_LIB
 
-#define REGISTER_VERSION "v0.1.0f"
+#define REGISTER_VERSION "v0.1.0g"
 
 class Register
 {
@@ -56,8 +56,6 @@ class FakeRegister: public RegisterT<char>
   virtual int write() {value=12;return 0;}
   //! destructor (need at least empty one)
   virtual ~FakeRegister() {}
- private:
-  bool mHibernating;//Whether or not the machine is hibernating
 };//FakeRegister
 template <typename T>
 class I2CRegister: public RegisterT<T>
@@ -69,8 +67,8 @@ class I2CRegister: public RegisterT<T>
   I2CDevice *pDevice;
  public:
   I2CRegister() {this->set_name("I2CRegister");size=sizeof(T);}
-virtual void print_i2c_data(const unsigned char *data, size_t len)
-{
+  virtual void print_i2c_data(const unsigned char *data, size_t len)
+  {
     size_t i = 0;
 
     for (i = 0; i < len; i++) {
@@ -84,9 +82,9 @@ virtual void print_i2c_data(const unsigned char *data, size_t len)
     }
 
     fprintf(stdout, "\n");
-}//print_i2c_data
+  }//print_i2c_data
   virtual int read()
-  {std::cout<<this->name<<" run"<<std::endl;
+  {std::cout<<this->name<<"::"<<__func__<<"()"<<std::endl;
   //libI2C read
     char i2c_dev_desc[128];
 ///show device desc.
@@ -157,6 +155,7 @@ class RegisterFactory
     std::string list;
     list="FakeRegister";
     list+=", I2CRegisterByte";
+    list+=", I2CRegisterWord";
     list+=".";
     return list;
   }
