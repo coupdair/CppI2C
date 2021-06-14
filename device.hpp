@@ -14,6 +14,10 @@
 
 #include "register.hpp"
 
+#ifdef USE_I2C_LIB
+#include "i2c/i2c.h"
+#endif USE_I2C_LIB
+
 #define DEVICE_VERSION "v0.0.9"
 
 class Device: public std::map<std::string,Register*>

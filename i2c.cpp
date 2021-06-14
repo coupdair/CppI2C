@@ -20,7 +20,7 @@
 #include "module.hpp"
 #include "i2c_tools.hpp"
 
-#define VERSION "v0.0.9d"
+#define VERSION "v0.0.9e"
 
 //Program option/documentation
 //{argp
@@ -152,18 +152,18 @@ int main(int argc, char **argv)
     print_args(&arguments);
   }//print default option values
   
-  if(true)//implementation
+  if(false)//implementation
   {
     std::cout<<"## implementation ##"<<std::endl;
     register_implementation();
     device_implementation();
-    module_implementation();
+//    module_implementation();
   }//implementation
 
   ///show factory lists
   if(arguments.list)
   {
-    std::cout<<"Module   list: "<<ModuleFactory::List()  <<std::endl;
+//    std::cout<<"Module   list: "<<ModuleFactory::List()  <<std::endl;
     std::cout<<"Device   list: "<<DeviceFactory::List()  <<std::endl;
     std::cout<<"Register list: "<<RegisterFactory::List()<<std::endl;
     return 0;
@@ -187,6 +187,9 @@ int main(int argc, char **argv)
   std::vector<int>::iterator it=device_addresses.begin();std::cout<<"  "<<*it;
   for(++it;it!=device_addresses.end();++it)              std::cout<<", "<<*it;
   std::cout<<'.'<<std::endl;
+  
+  //
+  std::cout<<"Register list: "<<RegisterFactory::List()<<std::endl;
 
   return 0;
 }//main
