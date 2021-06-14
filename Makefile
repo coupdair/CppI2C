@@ -12,7 +12,7 @@ i2c_get:
 	LD_LIBRARY_PATH=../libI2C/ ./i2c_get --help
 
 i2c: i2c.cpp i2c_tools.hpp os_tools.hpp device.hpp register.hpp module.hpp
-	g++ -I../i2c-tools/include -I../i2c-tools/tools -DUSE_I2C_TOOLS_CODE -DUSE_I2C_LIB -fpermissive i2c.cpp -o i2c
+	g++ -DUSE_I2C_TOOLS_CODE -I../i2c-tools/include -I../i2c-tools/tools -DUSE_I2C_LIB -I../libI2C/include -fpermissive -L../libI2C/ -li2c i2c.cpp -o i2c
 #	g++ i2c.cpp -o i2c
 	./i2c --list | tee factory_lists.txt
 
