@@ -20,7 +20,7 @@
 #include "module.hpp"
 #include "i2c_tools.hpp"
 
-#define VERSION "v0.0.9m"
+#define VERSION "v0.0.9n"
 
 //Program option/documentation
 //{argp
@@ -198,18 +198,20 @@ int main(int argc, char **argv)
   //temp->read();
 //Read
   std::string name="AmbiantTemperature";
+  {//Device
   std::cout<<std::endl<<"Device::get("<<name<<")"<<std::endl;
-  temp->get(name);
-
+  short t=temp->get(name);
+  std::cout<<"t°="<<t<<std::endl;
+  }//Device
   {//Register
   std::cout<<std::endl<<"Device//register"<<name<<std::endl;
   Register *reg=(temp->find(name))->second;
-  int t=reg->read();
+  short t=reg->read();
   std::cout<<"t°="<<t<<std::endl;
   }//Register
   {//reg.
   std::cout<<std::endl<<"Device//reg."<<name<<std::endl;
-  int t=((temp->find(name))->second)->read();
+  short t=((temp->find(name))->second)->read();
   std::cout<<"t°="<<t<<std::endl;
   }//reg.
 
@@ -218,8 +220,10 @@ int main(int argc, char **argv)
   {//Register
   std::cout<<std::endl<<"Device//register"<<name<<std::endl;
   Register *reg=(temp->find(name))->second;
-  int t=reg->write();
-  std::cout<<"t°="<<t<<std::endl;
+  int r=reg->write();
+  std::cout<<"write return "<<r<<std::endl;
+  r=reg->read();
+  std::cout<<"resolution mode="<<r<<std::endl;
   }//Register
 
   return 0;

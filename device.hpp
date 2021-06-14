@@ -138,14 +138,14 @@ class TemperatureDevice: public I2C_Device
   }//constructor
   virtual void read()
   {
-    std::cout<<name<<" run"<<std::endl;
+    std::cout<<name<<"::read()"<<std::endl;
     this->register_list("");
     for (std::map<std::string,Register*>::iterator it=this->begin(); it!=this->end(); ++it)
     {
       std::cout<<"  "<< it->first << " = ";
       (it->second)->read();
-    }
-  }
+    }//register loop
+  }//read
   virtual int get(const std::string &register_name) {std::cout<<name<<"::get("<<register_name<<")"<<std::endl;return Device::get(register_name);}
   virtual int get() {std::cout<<name<<"::get() "<<default_register_name<<std::endl;return this->get(default_register_name);}
   virtual int set(const std::string &register_name,const int &value) {std::cout<<name<<"::set(...) empty"<<std::endl;return 0;};
