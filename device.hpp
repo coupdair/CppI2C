@@ -57,7 +57,57 @@ class FakeDevice: public Device
  private:
   bool mHibernating;//Whether or not the machine is hibernating
 };//FakeDevice
-class TemperatureDevice: public Device
+class I2C_Device: public Device
+{
+ public:
+  int bus,addr;
+  I2CDevice device;
+ public:
+  I2C_Device()
+  {
+    set_name("I2C_Device");
+    bus=-1;open();
+    addr=-1;init();
+  }//constructor
+  virtual int open(int bus_num=1)
+  {//Open i2c bus
+    bus_num = 1;
+    char bus_name[32];
+    memset(bus_name, 0, sizeof(bus_name));
+    if (snprintf(bus_name, sizeof(bus_name), "/dev/i2c-%u", bus_num) < 0)
+    {
+        fprintf(stderr, "Format i2c bus name error!\n");
+        return -3;
+    }//bus_name
+///open bus, i.e. fd
+    if ((bus = i2c_open(bus_name)) == -1)
+    {
+       fprintf(stderr, "Open i2c bus:%s error!\n", bus_name);
+        return -3;
+    }//open
+  }//open
+  virtual int init(int addr_=0x18)
+  {//Init i2c device
+	addr=addr_;
+	int iaddr_bytes = 1, page_bytes = 16;
+///setup device desc.
+    memset(&device, 0, sizeof(device));
+    //default init.
+    i2c_init_device(&device);
+    //specific init., e.g. from CLI
+    device.bus = bus;
+    device.addr = addr & 0x3ff;
+    device.page_bytes = page_bytes;
+    device.iaddr_bytes = iaddr_bytes;
+  }//init
+  virtual void Run()  {std::cout<<name<<" run"<<std::endl; mHibernating = false;}
+  virtual void Stop() {mHibernating = true;}
+  //! destructor (need at least empty one)
+  virtual ~I2C_Device() {i2c_close(bus);}
+ private:
+  bool mHibernating;//Whether or not the machine is hibernating
+};//I2C_Device
+class TemperatureDevice: public I2C_Device
 {
  public:
   TemperatureDevice() {set_name("TemperatureDevice");}
