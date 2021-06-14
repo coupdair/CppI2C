@@ -17,7 +17,7 @@
 #include "i2c/i2c.h"
 #endif //USE_I2C_LIB
 
-#define REGISTER_VERSION "v0.1.0h"
+#define REGISTER_VERSION "v0.1.0i"
 
 class Register
 {
@@ -114,7 +114,11 @@ class I2CRegister: public RegisterT<T>
     if(size==2) {short val=(short)buf[0]*256;val+=buf[1];this->value=(int)val;}
     return this->value;
    }//read
-  virtual int write() {std::cout<<this->name<<"::"<<__func__<<" empty"<<std::endl;return -1;}
+  virtual int write()
+  {std::cout<<this->name<<"::"<<__func__<<"()"<<std::endl;
+    
+    return 0;
+  }//write
   //! destructor (need at least empty one)
   virtual ~I2CRegister() {}
 };//I2CRegister

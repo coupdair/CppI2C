@@ -19,7 +19,7 @@
 #include "i2c/i2c.h"
 #endif //USE_I2C_LIB
 
-#define DEVICE_VERSION "v0.1.0h"
+#define DEVICE_VERSION "v0.1.0i"
 
 class Device: public std::map<std::string,Register*>
 {
@@ -36,8 +36,8 @@ class Device: public std::map<std::string,Register*>
   virtual /*std::string*/void register_list(const std::string prefix="") {for (std::map<std::string,Register*>::iterator it=this->begin(); it!=this->end(); ++it) std::cout <<prefix<< it->first << " => " << (it->second)->get_name() << '\n';};
   //! constructor
   Device() {name="none";}
-  virtual void Run() = 0;
-  virtual void Stop() = 0;
+  virtual int get(const std::string &register_name) {return ((this->find(register_name))->second)->read();};
+  virtual int set(const std::string &register_name,const int &value) = 0;
   //! destructor (need at least empty one)
   virtual ~Device() {}
 };//Device
@@ -50,12 +50,10 @@ class FakeDevice: public Device
     create_register("FakeRegister0","FakeRegister");
     create_register("FakeRegister1","FakeRegister");
   }//constructor
-  virtual void Run()  {std::cout<<name<<" run"<<std::endl; mHibernating = false;}
-  virtual void Stop() {mHibernating = true;}
+  virtual int get(const std::string &register_name) {std::cout<<name<<"::get(...)"<<std::endl;return Device::get(register_name);}
+  virtual int set(const std::string &register_name,const int &value) {std::cout<<name<<"::set(...) empty"<<std::endl;return 0;};
   //! destructor (need at least empty one)
   virtual ~FakeDevice() {}
- private:
-  bool mHibernating;//Whether or not the machine is hibernating
 };//FakeDevice
 class I2C_Device: public Device
 {
@@ -118,8 +116,8 @@ class I2C_Device: public Device
     i2c_reg->id=id_;
     i2c_reg->pDevice=&device;
   }//create_register
-  virtual void Run()  {std::cout<<name<<" run"<<std::endl; mHibernating = false;}
-  virtual void Stop() {mHibernating = true;}
+  virtual int get(const std::string &register_name) {std::cout<<name<<"::get(...)"<<std::endl;return Device::get(register_name);}
+  virtual int set(const std::string &register_name,const int &value) {std::cout<<name<<"::set(...) empty"<<std::endl;return 0;};
   //! destructor (need at least empty one)
   virtual ~I2C_Device() {i2c_close(bus);}
  private:
@@ -137,7 +135,7 @@ class TemperatureDevice: public I2C_Device
     default_register_name="AmbiantTemperature";
     create_register(default_register_name,"I2CRegisterWord",0x05);//,RO);
   }//constructor
-  virtual void Run()
+  virtual void read()
   {
     std::cout<<name<<" run"<<std::endl;
     this->register_list("");
@@ -147,10 +145,9 @@ class TemperatureDevice: public I2C_Device
       (it->second)->read();
     }
   }
-  virtual void Stop()
-  {
-    std::cout<<name<<" stop"<<std::endl;
-  }
+  virtual int get(const std::string &register_name) {std::cout<<name<<"::get(...)"<<std::endl;return Device::get(register_name);}
+  virtual int set(const std::string &register_name,const int &value) {std::cout<<name<<"::set(...) empty"<<std::endl;return 0;};
+  virtual int get() {std::cout<<name<<"::get()"<<std::endl;return Device::get(default_register_name);}
   //! destructor (need at least empty one)
   virtual ~TemperatureDevice() {}
 };//TemperatureDevice
@@ -185,12 +182,12 @@ class DeviceFactory
 void device_implementation()
 {
   {//basis
-  FakeDevice fake;        fake.Run();fake.register_list();
-  TemperatureDevice temp; temp.Run();
+  FakeDevice fake;        fake.register_list();
+  TemperatureDevice temp; temp.register_list();
   }//basis
   {//factory
-  Device *fake=DeviceFactory::NewDevice("FakeDevice");       if(fake!=NULL) fake->Run();
-  Device *temp=DeviceFactory::NewDevice("TemperatureDevice");if(temp!=NULL) temp->Run();
+  Device *fake=DeviceFactory::NewDevice("FakeDevice");       if(fake!=NULL) fake->register_list();
+  Device *temp=DeviceFactory::NewDevice("TemperatureDevice");if(temp!=NULL) temp->register_list();
   }//factory
 }//device_implementation
 

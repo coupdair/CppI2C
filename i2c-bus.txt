@@ -14,33 +14,41 @@ I2C devices address table:
 70: -- -- -- -- -- -- -- --                         
 
 I2C devices address(es):  0x4, 0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d.
+
+DeviceFactory:
 I2C_Device/set_name("I2C_Device")
 TemperatureDevice/set_name("TemperatureDevice")
 RegisterT/set_name("RegisterT")
 I2CRegister/set_name("I2CRegister")
 I2CRegisterWord/set_name("I2CRegisterWord")
-TemperatureDevice run
 AmbiantTemperature => I2CRegisterWord
-  AmbiantTemperature = I2CRegisterWord::read()
-Device address: 0x18, tenbit: False, internal(word) address: 1 bytes, page max 16 bytes, delay: 1ms
-internal register address=0x05
-reading 2 bytes
-Read data:
 
-c1 88 
+Device::get(AmbiantTemperature)
+TemperatureDevice::get(...)
 I2CRegisterWord::read()
 Device address: 0x18, tenbit: False, internal(word) address: 1 bytes, page max 16 bytes, delay: 1ms
 internal register address=0x05
 reading 2 bytes
 Read data:
 
-c1 88 
-t°=0xffffc188
+c1 9a 
+
+Device//registerAmbiantTemperature
 I2CRegisterWord::read()
 Device address: 0x18, tenbit: False, internal(word) address: 1 bytes, page max 16 bytes, delay: 1ms
 internal register address=0x05
 reading 2 bytes
 Read data:
 
-c1 88 
-t°=0xffffc188
+c1 9a 
+t°=0xffffc19a
+
+Device//reg.AmbiantTemperature
+I2CRegisterWord::read()
+Device address: 0x18, tenbit: False, internal(word) address: 1 bytes, page max 16 bytes, delay: 1ms
+internal register address=0x05
+reading 2 bytes
+Read data:
+
+c1 9a 
+t°=0xffffc19a
