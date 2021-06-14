@@ -15,10 +15,12 @@
 #include <iostream> // std::ios, std::istream, std::cout
 #include <fstream>  // std::filebuf
 #include <vector>   // std::vector
+#include <map>      // std::map
 
+#include "module.hpp"
 #include "i2c_tools.hpp"
 
-#define VERSION "v0.0.7e"
+#define VERSION "v0.0.9d"
 
 //Program option/documentation
 //{argp
@@ -46,6 +48,7 @@ static struct argp_option options[]=
 {
   {"version",  'V', 0, 0,           "Produce version output and exit" },
   {"verbose",  'v', 0, 0,           "Produce verbose output" },
+  {"list",     'l', 0, 0,           "Produce factory lists" },
   {"integer",  'i', "VALUE", 0,     "bus index, e.g. 1" },
   {"string",   's', "STRING", 0,    "get string (unsed)" },
 //default options
@@ -59,6 +62,8 @@ struct arguments
   int version;
   //! verbose mode (boolean)
   int verbose;
+  //! factory list
+  int list;
   //! integer value
   int integer;
   //! string value
@@ -79,6 +84,9 @@ parse_option(int key, char *arg, struct argp_state *state)
     case 'v':
       arguments->verbose=1;
       break;
+    case 'l':
+      arguments->list=1;
+      break;
     case 'i':
       arguments->integer=atoi(arg);
       break;
@@ -95,9 +103,10 @@ parse_option(int key, char *arg, struct argp_state *state)
 //! [argp] print argument values
 void print_args(struct arguments *p_arguments)
 {
-  printf (".version=%s\n.verbose=%s\n.integer=%d\n.string=%s\n"
+  printf (".version=%s\n.verbose=%s\n.list=%s\n.integer=%d\n.string=%s\n"
   , p_arguments->version?"yes":"no"
   , p_arguments->verbose?"yes":"no"
+  , p_arguments->list?"yes":"no"
   , p_arguments->integer
   , p_arguments->string
   );
@@ -115,6 +124,7 @@ int main(int argc, char **argv)
   struct arguments arguments;
   arguments.version=0;
   arguments.verbose=0;
+  arguments.list=0;
   arguments.integer=1;
   arguments.string="ABC";
 
@@ -141,6 +151,23 @@ int main(int argc, char **argv)
     printf("command line option values:\n");
     print_args(&arguments);
   }//print default option values
+  
+  if(true)//implementation
+  {
+    std::cout<<"## implementation ##"<<std::endl;
+    register_implementation();
+    device_implementation();
+    module_implementation();
+  }//implementation
+
+  ///show factory lists
+  if(arguments.list)
+  {
+    std::cout<<"Module   list: "<<ModuleFactory::List()  <<std::endl;
+    std::cout<<"Device   list: "<<DeviceFactory::List()  <<std::endl;
+    std::cout<<"Register list: "<<RegisterFactory::List()<<std::endl;
+    return 0;
+  }
 
 ///list of I2C buses
   std::string s;
