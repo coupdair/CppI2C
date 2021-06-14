@@ -10,6 +10,7 @@ code:
 i2c: i2c.cpp i2c_tools.hpp
 	g++ -I../i2c-tools/include -I../i2c-tools/tools -DUSE_I2C_TOOLS_CODE -fpermissive i2c.cpp -o i2c
 #	g++ i2c.cpp -o i2c
+	./i2c --list | tee factory_lists.txt
 
 help: i2c
 	./i2c --help | tee i2c.help.output
@@ -19,7 +20,6 @@ version: i2c
 
 run: i2c
 	echo;echo "factory:"
-	./i2c --list | tee factory_lists.txt
 	./i2c -i 1 | tee i2c-bus.txt
 
 web: i2c-web.cpp config.js i2c_tools.hpp

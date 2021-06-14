@@ -1,6 +1,6 @@
 Usage: i2c [OPTION...] 
 i2c: I2C bus and its devices
-  i2c.v0.0.6
+  i2c.v0.0.9d
 examples:
   i2c --help
   i2c -v
@@ -9,6 +9,7 @@ examples:
   i2c --usage
 
   -i, --integer=VALUE        bus index, e.g. 1
+  -l, --list                 Produce factory lists
   -s, --string=STRING        get string (unsed)
   -v, --verbose              Produce verbose output
   -?, --help                 Give this help list
