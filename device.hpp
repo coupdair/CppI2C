@@ -19,7 +19,7 @@
 #include "i2c/i2c.h"
 #endif //USE_I2C_LIB
 
-#define DEVICE_VERSION "v0.1.0m"
+#define DEVICE_VERSION "v0.1.0"
 
 class Device: public std::map<std::string,Register*>
 {
