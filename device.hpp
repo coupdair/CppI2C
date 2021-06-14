@@ -143,7 +143,7 @@ class TemperatureDevice: public I2C_Device
     for (std::map<std::string,Register*>::iterator it=this->begin(); it!=this->end(); ++it)
     {
       std::cout<<"  "<< it->first << " = ";
-      (it->second)->Run();
+      (it->second)->read();
     }
   }
   virtual void Stop()

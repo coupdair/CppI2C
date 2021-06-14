@@ -17,7 +17,7 @@
 #include "i2c/i2c.h"
 #endif //USE_I2C_LIB
 
-#define REGISTER_VERSION "v0.1.0e"
+#define REGISTER_VERSION "v0.1.0f"
 
 class Register
 {
@@ -28,8 +28,10 @@ class Register
   virtual std::string get_name() {return name;}
   //! constructor
   Register() {name="none";}
-  virtual void Run() = 0;
-  virtual void Stop() = 0;
+  virtual int read() = 0;
+  virtual int get() = 0;
+  virtual int write() = 0;
+  virtual int set() = 0;
   //! destructor (need at least empty one)
   virtual ~Register() {}
 };//Register
@@ -39,9 +41,10 @@ class RegisterT: public Register
  protected:
   T value;
  public:
-  RegisterT() {set_name("RegisterT");value=(T)12.34;}
-  virtual void set_value(T value_) {value=value_;};
-  virtual void Run()  {std::cout<<name<<" run"<<std::endl;}
+  RegisterT() {set_name("RegisterT");value=(T)1.234;}
+  virtual int get() {return value;};
+  virtual int set() {std::cout<<this->name<<"::"<<__func__<<"() empty"<<std::endl;return -1;};
+  virtual int set(T value_) {value=value_;};
   //! destructor (need at least empty one)
   virtual ~RegisterT() {}
 };//RegisterT
@@ -49,8 +52,8 @@ class FakeRegister: public RegisterT<char>
 {
  public:
   FakeRegister() {set_name("FakeRegister");}
-  virtual void Run()  {std::cout<<name<<" run"<<std::endl;set_value(1);}
-  virtual void Stop() {mHibernating = true;}
+  virtual int read()  {return this->get();}
+  virtual int write() {value=12;return 0;}
   //! destructor (need at least empty one)
   virtual ~FakeRegister() {}
  private:
@@ -82,7 +85,7 @@ virtual void print_i2c_data(const unsigned char *data, size_t len)
 
     fprintf(stdout, "\n");
 }//print_i2c_data
-  virtual void Run()
+  virtual int read()
   {std::cout<<this->name<<" run"<<std::endl;
   //libI2C read
     char i2c_dev_desc[128];
@@ -104,14 +107,16 @@ virtual void print_i2c_data(const unsigned char *data, size_t len)
     if (ret == -1 || (size_t)ret != this->size)
     {
         fprintf(stderr, "Read i2c error!\n");
-        exit(-5);
+        return -5;
     }
     /* Print read result */
     fprintf(stdout, "Read data:\n");
     print_i2c_data(buf, this->size);
-    this->value=*buf;
+    if(size==1) this->value=buf[0];
+    if(size==2) this->value=buf[0]<<8+buf[1];
+    return this->value;
    }//read
-  virtual void Stop() {}
+  virtual int write() {std::cout<<this->name<<"::"<<__func__<<" empty"<<std::endl;return -1;}
   //! destructor (need at least empty one)
   virtual ~I2CRegister() {}
 };//I2CRegister
@@ -160,14 +165,14 @@ class RegisterFactory
 void register_implementation()
 {
   {//basis
-  FakeRegister fake;    fake.Run();
-  I2CRegisterByte regB; regB.Run();
-  I2CRegisterWord regW; regW.Run();
+  FakeRegister fake;    fake.read();
+  I2CRegisterByte regB; regB.read();
+  I2CRegisterWord regW; regW.read();
   }//basis
   {//factory
-  Register *fake=RegisterFactory::NewRegister("FakeRegister");   if(fake!=NULL) fake->Run();
-  Register *regB=RegisterFactory::NewRegister("I2CRegisterByte");if(regB!=NULL) regB->Run();
-  Register *regW=RegisterFactory::NewRegister("I2CRegisterWord");if(regW!=NULL) regW->Run();
+  Register *fake=RegisterFactory::NewRegister("FakeRegister");   if(fake!=NULL) fake->read();
+  Register *regB=RegisterFactory::NewRegister("I2CRegisterByte");if(regB!=NULL) regB->read();
+  Register *regW=RegisterFactory::NewRegister("I2CRegisterWord");if(regW!=NULL) regW->read();
   }//factory
 }//register_implementation
 

@@ -194,12 +194,17 @@ int main(int argc, char **argv)
 ///read temperature
   Device *temp=DeviceFactory::NewDevice("TemperatureDevice"); if(temp==NULL) return -9;
   temp->Run();
+
   std::string name="AmbiantTemperature";
-  //reg.
+  {//reg.
   Register *reg=(temp->find(name))->second;
-  reg->Run();
-  //reg.
-  ((temp->find(name))->second)->Run();
+  int t=reg->read();
+  std::cout<<'t°='<<t<<std::endl;
+  }//reg.
+  {//reg.
+  int t=((temp->find(name))->second)->read();
+  std::cout<<'t°='<<t<<std::endl;
+  }//
 
   return 0;
 }//main
