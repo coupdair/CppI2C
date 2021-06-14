@@ -82,28 +82,8 @@ virtual void print_i2c_data(const unsigned char *data, size_t len)
 
     fprintf(stdout, "\n");
 }//print_i2c_data
-  virtual void Run()  {std::cout<<this->name<<" run"<<std::endl; this->set_value((T)32.1); mHibernating = false;}
-  virtual void Stop() {mHibernating = true;}
-  //! destructor (need at least empty one)
-  virtual ~I2CRegister() {}
- private:
-  bool mHibernating;//Whether or not the machine is hibernating
-};//I2CRegister
-class I2CRegisterByte: public I2CRegister<char>
-{
- public:
-  I2CRegisterByte() {set_name("I2CRegisterByte");}
-  virtual void Run()  {std::cout<<name<<" run"<<std::endl;}
-  virtual void Stop() {value=123;}
-  //! destructor (need at least empty one)
-  virtual ~I2CRegisterByte() {}
-};//I2CRegisterByte
-class I2CRegisterWord: public I2CRegister<short>
-{
- public:
-  I2CRegisterWord() {set_name("I2CRegisterWord");}
   virtual void Run()
-  {std::cout<<name<<" run"<<std::endl;
+  {std::cout<<this->name<<" run"<<std::endl;
   //libI2C read
     char i2c_dev_desc[128];
 ///show device desc.
@@ -129,8 +109,23 @@ class I2CRegisterWord: public I2CRegister<short>
     /* Print read result */
     fprintf(stdout, "Read data:\n");
     print_i2c_data(buf, this->size);
+    this->value=*buf;
    }//read
-  virtual void Stop() {value=123;}
+  virtual void Stop() {}
+  //! destructor (need at least empty one)
+  virtual ~I2CRegister() {}
+};//I2CRegister
+class I2CRegisterByte: public I2CRegister<char>
+{
+ public:
+  I2CRegisterByte() {set_name("I2CRegisterByte");}
+  //! destructor (need at least empty one)
+  virtual ~I2CRegisterByte() {}
+};//I2CRegisterByte
+class I2CRegisterWord: public I2CRegister<short>
+{
+ public:
+  I2CRegisterWord() {set_name("I2CRegisterWord");}
   //! destructor (need at least empty one)
   virtual ~I2CRegisterWord() {}
 };//I2CRegisterWord

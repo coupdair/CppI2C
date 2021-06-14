@@ -19,7 +19,7 @@
 #include "i2c/i2c.h"
 #endif //USE_I2C_LIB
 
-#define DEVICE_VERSION "v0.1.0e"
+#define DEVICE_VERSION "v0.1.0f"
 
 class Device: public std::map<std::string,Register*>
 {
@@ -124,16 +124,34 @@ class I2C_Device: public Device
  private:
   bool mHibernating;//Whether or not the machine is hibernating
 };//I2C_Device
+//! MCP9808
 class TemperatureDevice: public I2C_Device
 {
+ private:
+  std::string default_register_name;
  public:
-  TemperatureDevice() {set_name("TemperatureDevice");}
-  virtual void Run()  {std::cout<<name<<" run"<<std::endl; mHibernating = false;}
-  virtual void Stop() {mHibernating = true;}
+  TemperatureDevice()
+  {
+    set_name("TemperatureDevice");
+    default_register_name="AmbiantTemperature";
+    create_register(default_register_name,"I2CRegisterWord",0x05);//,RO);
+  }//constructor
+  virtual void Run()
+  {
+    std::cout<<name<<" run"<<std::endl;
+    this->register_list("");
+    for (std::map<std::string,Register*>::iterator it=this->begin(); it!=this->end(); ++it)
+    {
+      std::cout<<"  "<< it->first << " = ";
+      (it->second)->Run();
+    }
+  }
+  virtual void Stop()
+  {
+    std::cout<<name<<" stop"<<std::endl;
+  }
   //! destructor (need at least empty one)
   virtual ~TemperatureDevice() {}
- private:
-  bool mHibernating;//Whether or not the machine is hibernating
 };//TemperatureDevice
 
 //! device factory
