@@ -20,7 +20,7 @@
 #include "module.hpp"
 #include "i2c_tools.hpp"
 
-#define VERSION "v0.0.9q"
+#define VERSION "v0.0.9r"
 
 //Program option/documentation
 //{argp
@@ -201,7 +201,7 @@ int main(int argc, char **argv)
 
 ///read temperature
   std::cout<<std::endl<<"DeviceFactory:"<<std::endl;
-  Device *temp=DeviceFactory::NewDevice("TemperatureDevice"); if(temp==NULL) return -9;
+  TemperatureDevice *temp=DeviceFactory::NewDevice("TemperatureDevice"); if(temp==NULL) return -9;
   temp->register_list();
   //temp->read();
 //Read
@@ -211,6 +211,11 @@ int main(int argc, char **argv)
   short t=temp->get(name);
   std::cout<<"t°="<<t<<std::endl;
   }//Device
+  {//Celcius
+  std::cout<<std::endl<<"Device::get_Celcius("<<name<<")"<<std::endl;
+  float t=temp->get_Celcius();
+  std::cout<<"t°="<<t<<" °C"<<std::endl;
+  }//Celcius
   {//Register
   std::cout<<std::endl<<"Device//register"<<name<<std::endl;
   Register *reg=(temp->find(name))->second;

@@ -19,7 +19,7 @@
 #include "i2c/i2c.h"
 #endif //USE_I2C_LIB
 
-#define DEVICE_VERSION "v0.1.0l"
+#define DEVICE_VERSION "v0.1.0m"
 
 class Device: public std::map<std::string,Register*>
 {
@@ -148,6 +148,27 @@ class TemperatureDevice: public I2C_Device
   }//read
   virtual int get(const std::string &register_name) {std::cout<<name<<"::get("<<register_name<<")"<<std::endl;return Device::get(register_name);}
   virtual int get() {std::cout<<name<<"::get() "<<default_register_name<<std::endl;return this->get(default_register_name);}
+  virtual float get_Celcius()
+  {std::cout<<name<<"::get_Celcius() "<<default_register_name<<std::endl;
+    short data=this->get();
+    char *buf=(char*)(&data);
+    int ub=buf[1];
+    int lb=buf[0];
+    float temperature=-99.99;
+    fprintf(stdout, "Read data: 0x%x 0x%x\n",buf[0],buf[1]);
+    ub=ub&0x1F;//Clear flag bits
+    if( (ub&0x10) == 0x10)
+    {//Ta < 0°C
+      ub=ub&0x0F;//Clear SIGN
+      temperature=256.0-(ub*16.0+lb/16.0);
+    }
+    else
+    {//Ta ≥ 0°C
+      temperature=(ub*16.0+lb/16.0);//Temperature = Ambient Temperature (°C)
+    }
+    //std::cout<<"temperature="<<temperature<<std::endl;
+    return temperature;
+  }
   virtual int set(const std::string &register_name,const int &value) {std::cout<<name<<"::set(...)"<<std::endl;return Device::set(register_name,value);return 0;};
   virtual int set() {std::cout<<name<<"::set() TemperatureResolution"<<std::endl;this->set("TemperatureResolution",0x0);return 0;}
   //! destructor (need at least empty one)
