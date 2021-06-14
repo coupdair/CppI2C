@@ -12,19 +12,20 @@ i2c_get:
 	LD_LIBRARY_PATH=../libI2C/ ./i2c_get --help
 
 i2c: i2c.cpp i2c_tools.hpp os_tools.hpp device.hpp register.hpp module.hpp
-	g++ -DUSE_I2C_TOOLS_CODE -I../i2c-tools/include -I../i2c-tools/tools -DUSE_I2C_LIB -I../libI2C/include -fpermissive -L../libI2C/ -li2c i2c.cpp -o i2c
+#	g++ -DUSE_I2C_TOOLS_CODE -I../i2c-tools/include -I../i2c-tools/tools -DUSE_I2C_LIB -I../libI2C/include -fpermissive -L../libI2C/ -li2c i2c.cpp -o i2c
+	g++ -DUSE_I2C_LIB -I../libI2C/include -fpermissive -L../libI2C/ -li2c i2c.cpp -o i2c
 #	g++ i2c.cpp -o i2c
-	./i2c --list | tee factory_lists.txt
+	LD_LIBRARY_PATH=../libI2C/ ./i2c --list | tee factory_lists.txt
 
 help: i2c
-	./i2c --help | tee i2c.help.output
+	LD_LIBRARY_PATH=../libI2C/ ./i2c --help | tee i2c.help.output
 
 version: i2c
-	./i2c --version | tee VERSION
+	LD_LIBRARY_PATH=../libI2C/ ./i2c --version | tee VERSION
 
 run: i2c
 	echo;echo "factory:"
-	./i2c -i 1 | tee i2c-bus.txt
+	LD_LIBRARY_PATH=../libI2C/ ./i2c -i 1 | tee i2c-bus.txt
 
 web: i2c-web.cpp config.js i2c_tools.hpp
 	../CppCMS/cppcms/bin/cppcms_tmpl_cc master.tmpl main.tmpl page.tmpl devices.tmpl -o web_skin.cpp

@@ -22,6 +22,7 @@
 //! \todo [medium] setup i2c_device_list( with ../i2c-tools/tools/i2cdetect.c[scan_i2c_bus(]
 
 #ifdef USE_I2C_TOOLS_CODE
+#warning "use I2C tools"
 //i2c-tools
 extern "C" {
 #include "../i2c-tools/tools/i2cbusses.c"

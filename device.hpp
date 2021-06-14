@@ -15,8 +15,9 @@
 #include "register.hpp"
 
 #ifdef USE_I2C_LIB
+#warning "use I2C lib"
 #include "i2c/i2c.h"
-#endif USE_I2C_LIB
+#endif //USE_I2C_LIB
 
 #define DEVICE_VERSION "v0.0.9"
 
