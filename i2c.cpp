@@ -21,7 +21,7 @@
 #include "module.hpp"
 #include "i2c_tools.hpp"
 
-#define VERSION "v0.1.0e"
+#define VERSION "v0.1.0"
 
 //Program option/documentation
 //{argp
@@ -201,9 +201,9 @@ int main(int argc, char **argv)
   std::cout<<'.'<<std::endl;
 
 ///read temperature
-  std::string type_name="TemperatureDevice";
+  const std::string type_name="TemperatureDevice";
   std::cout<<std::endl<<"DeviceFactory:"<<type_name<<std::endl;
-  TemperatureDevice *temp=DeviceFactory::NewDevice(type_name); if(temp==NULL) return -9;
+  TemperatureDevice *temp=(TemperatureDevice *)DeviceFactory::NewDevice(type_name); if(temp==NULL) return -9;
   temp->register_list("  ");
 //Write resolution
   std::string name="TemperatureResolution";
@@ -216,7 +216,7 @@ int main(int argc, char **argv)
   std::cout<<"resolution mode="<<r<<std::endl;
   }//Register
 //sleep a while for resolution command to perform on device
-  usleep(123456);
+  usleep(345678);
 
 //Read temperature
   name="AmbiantTemperature";
