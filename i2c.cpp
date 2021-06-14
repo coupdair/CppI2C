@@ -20,7 +20,7 @@
 #include "module.hpp"
 #include "i2c_tools.hpp"
 
-#define VERSION "v0.0.9p"
+#define VERSION "v0.0.9q"
 
 //Program option/documentation
 //{argp
@@ -50,6 +50,7 @@ static struct argp_option options[]=
   {"verbose",  'v', 0, 0,           "Produce verbose output" },
   {"list",     'l', 0, 0,           "Produce factory lists" },
   {"integer",  'i', "VALUE", 0,     "bus index, e.g. 1" },
+  {"resolution", 'r', "VALUE", 0,   "temperature resolution, e.g. 0x0=0.5°, 0x1=0.25°, 0x2=0.125°, 0x3=0.0625°" },
   {"string",   's', "STRING", 0,    "get string (unsed)" },
 //default options
   { 0 }
@@ -66,6 +67,8 @@ struct arguments
   int list;
   //! integer value
   int integer;
+  //! resolution of temperature mesurment
+  int resolution;
   //! string value
   char* string;
 };//arguments (CLI)
@@ -90,6 +93,9 @@ parse_option(int key, char *arg, struct argp_state *state)
     case 'i':
       arguments->integer=atoi(arg);
       break;
+    case 'r':
+      arguments->resolution=atoi(arg);
+      break;
     case 's':
       arguments->string=arg;
       break;
@@ -103,11 +109,12 @@ parse_option(int key, char *arg, struct argp_state *state)
 //! [argp] print argument values
 void print_args(struct arguments *p_arguments)
 {
-  printf (".version=%s\n.verbose=%s\n.list=%s\n.integer=%d\n.string=%s\n"
+  printf (".version=%s\n.verbose=%s\n.list=%s\n.bus_index=%d\n.temperature_resolution=%d\n.string=%s\n"
   , p_arguments->version?"yes":"no"
   , p_arguments->verbose?"yes":"no"
   , p_arguments->list?"yes":"no"
   , p_arguments->integer
+  , p_arguments->resolution
   , p_arguments->string
   );
 }//print_args
@@ -126,6 +133,7 @@ int main(int argc, char **argv)
   arguments.verbose=0;
   arguments.list=0;
   arguments.integer=1;
+  arguments.resolution=0x1;//0.25°
   arguments.string="ABC";
 
 //! - print default option values (static)
@@ -220,7 +228,7 @@ int main(int argc, char **argv)
   {//Register
   std::cout<<std::endl<<"Device//register"<<name<<std::endl;
   Register *reg=(temp->find(name))->second;
-  int r=reg->write(0x0);//0x[0-3]
+  int r=reg->write(arguments.resolution);
   std::cout<<"write return "<<r<<std::endl;
   r=reg->read();
   std::cout<<"resolution mode="<<r<<std::endl;
