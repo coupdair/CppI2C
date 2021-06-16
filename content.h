@@ -19,6 +19,10 @@ namespace content
     std::string content_head;
     std::list<std::string> device_list;
   };//devices
+  struct setup: public master
+  {
+    std::list<std::string> device_list;
+  };//devices
 }//content
 
 #endif //CONTENT_H

@@ -5,7 +5,7 @@ all: web web-help web-version
 #all: i2c help version
 
 code:
-	geany ReadMe.md Makefile i2c_tools.hpp os_tools.hpp i2c.cpp config.js master.tmpl main.tmpl devices.tmpl  page.tmpl i2c-web.cpp web-capture.sh &
+	geany ReadMe.md Makefile i2c_tools.hpp os_tools.hpp i2c.cpp config.js master.tmpl main.tmpl devices.tmpl setup.tmpl page.tmpl i2c-web.cpp web-capture.sh &
 
 i2c_get:
 	g++ -Wall -g -I../libI2C/include -L../libI2C/ -li2c i2c_get.c -o i2c_get
@@ -28,7 +28,7 @@ run: i2c
 	LD_LIBRARY_PATH=../libI2C/ ./i2c -i 1 -r 3 | tee i2c-bus.txt
 
 web: i2c-web.cpp config.js i2c_tools.hpp
-	../CppCMS/cppcms/bin/cppcms_tmpl_cc master.tmpl main.tmpl page.tmpl devices.tmpl -o web_skin.cpp
+	../CppCMS/cppcms/bin/cppcms_tmpl_cc master.tmpl main.tmpl page.tmpl devices.tmpl setup.tmpl -o web_skin.cpp
 	g++ -I../CppCMS/cppcms/ -I../CppCMS/cppcms/booster -I../CppCMS/cppcms/build -I../CppCMS/cppcms/build/booster  -O2 -Wall -g i2c-web.cpp web_skin.cpp -o i2c-web -L../CppCMS/cppcms/build -L../CppCMS/cppcms/build/booster -lcppcms -lbooster
 
 web-help: web
