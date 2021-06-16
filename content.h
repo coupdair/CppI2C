@@ -32,8 +32,8 @@ namespace content
 		///widget titles
 		//! \todo [medium] add read reg.
         temperature.value(23.45);
-		temperature.message("Temperature");
-        resolution.message("Resolution");
+		temperature.message("Temperature");temperature.help(" °C : ambiant temperature in degree Celcius");
+        resolution.message("Resolution");resolution.help(" °C : temperature resolution in degree Celcius (and speed, e.g. 4Hz at 0.0625°C)");
         submit.value("apply");
 //        gain.message("Your gain(s)");
         ///order widgets
@@ -43,10 +43,10 @@ namespace content
 //        add(gain);
         ///values and behavious
         temperature.readonly(true);temperature.disabled(true);	
-        resolution.add("0.5 °C","0.5");//"label", "value"
-        resolution.add("0.25 °C","0.25");
-        resolution.add("0.125 °C","0.125");
-        resolution.add("0.0625 °C","0.0625");
+        resolution.add("0.5","0.5");//"label", "value"
+        resolution.add("0.25","0.25");
+        resolution.add("0.125","0.125");
+        resolution.add("0.0625","0.0625");
 /** /
         gain.add("2");
         gain.add("4");
