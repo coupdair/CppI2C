@@ -30,7 +30,8 @@ namespace content
     info_form()
     {
 		///widget titles
-		temperature.value(23.45);
+		//! \todo [medium] add read reg.
+        temperature.value(23.45);
 		temperature.message("Temperature");
         resolution.message("Resolution");
         submit.value("apply");
@@ -41,6 +42,7 @@ namespace content
         add(submit);
 //        add(gain);
         ///values and behavious
+        temperature.readonly(true);temperature.disabled(true);	
         resolution.add("0.5 °C","0.5");//"label", "value"
         resolution.add("0.25 °C","0.25");
         resolution.add("0.125 °C","0.125");

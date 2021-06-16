@@ -32,7 +32,7 @@
 #include "i2c_tools.hpp"
 #include "os_tools.hpp"
 
-#define VERSION "v0.1.1l"
+#define VERSION "v0.1.1m"
 
 //Program option/documentation
 //{argp
@@ -318,7 +318,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
         }//POST
         render("message",c);
   }//device_setup
-  
+
   virtual void bus();
   virtual void no_template();
 };//http_service
