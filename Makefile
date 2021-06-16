@@ -1,4 +1,4 @@
-LD_LIBRARY_PATH=LD_LIBRARY_PATH="../CppCMS/cppcms/build;../CppCMS/cppcms/build/booster"
+LD_LIBRARY_PATH=LD_LIBRARY_PATH="../CppCMS/cppcms/build;../CppCMS/cppcms/build/booster;../libI2C/"
 
 #all: i2c help version  web web-help web-version
 all: web web-help web-version
@@ -29,7 +29,7 @@ run: i2c
 
 web: i2c-web.cpp config.js i2c_tools.hpp
 	../CppCMS/cppcms/bin/cppcms_tmpl_cc master.tmpl main.tmpl page.tmpl devices.tmpl setup.tmpl -o web_skin.cpp
-	g++ -I../CppCMS/cppcms/ -I../CppCMS/cppcms/booster -I../CppCMS/cppcms/build -I../CppCMS/cppcms/build/booster  -O2 -Wall -g i2c-web.cpp web_skin.cpp -o i2c-web -L../CppCMS/cppcms/build -L../CppCMS/cppcms/build/booster -lcppcms -lbooster
+	g++ -DUSE_I2C_LIB -I../libI2C/include -fpermissive -L../libI2C/ -li2c  -I../CppCMS/cppcms/ -I../CppCMS/cppcms/booster -I../CppCMS/cppcms/build -I../CppCMS/cppcms/build/booster  -O2 -Wall -g i2c-web.cpp web_skin.cpp -o i2c-web -L../CppCMS/cppcms/build -L../CppCMS/cppcms/build/booster -lcppcms -lbooster
 
 web-help: web
 	$(LD_LIBRARY_PATH) ./i2c-web --help | tee i2c-web.help.output

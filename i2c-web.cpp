@@ -28,11 +28,13 @@
 
 #include "content.h"
 
+#include <unistd.h> //usleep
+#include "module.hpp"
 //I2C lib.
 #include "i2c_tools.hpp"
 #include "os_tools.hpp"
 
-#define VERSION "v0.1.1"
+#define VERSION "v0.1.2d"
 
 //Program option/documentation
 //{argp
@@ -184,12 +186,15 @@ public:
     ss<<booster::locale::as::ftime("%Y-%m-%d %H:%M:%S") << time_point;
 
     ///versions
-    std::string s,vc,vi,vo;
+    std::string s, vc,vi,vo, vm,vd,vr;
     ///program and lib.
     s=VERSION;
     vc="C++CMS.v" CPPCMS_PACKAGE_VERSION;
     i2c_pretty_version(vi);
     os_pretty_version(vo);
+    register_pretty_version(vr);
+    device_pretty_version(vd);
+    module_pretty_version(vm);
     c.page_content=
       "  <h1>server</h1>\n"
       "  <h2>program</h2>\n"
@@ -205,6 +210,15 @@ public:
     + "\n  </pre>\n"
       "  <pre>\n"
     + vo
+    + "\n  </pre>\n"
+      "  <pre>\n"
+    + vr
+    + "\n  </pre>\n"
+      "  <pre>\n"
+    + vd
+    + "\n  </pre>\n"
+      "  <pre>\n"
+    + vm
     + "\n  </pre>\n";
     ///Linux
     os_pretty_name(s);
@@ -385,8 +399,11 @@ int main(int argc,char ** argv)
   if(arguments.version)
   {
     std::cout<<VERSION<<std::endl;
-    std::cout<<"i2c-tools."<<VERSION_I2C_TOOLS<<std::endl;
     std::cout<<"os-tools." <<VERSION_OS_TOOLS <<std::endl;
+    std::cout<<"i2c-tools."<<VERSION_I2C_TOOLS<<std::endl;
+    std::cout<<"register."<<REGISTER_VERSION<<std::endl;
+    std::cout<<"device."<<DEVICE_VERSION<<std::endl;
+    std::cout<<"module."<<MODULE_VERSION<<std::endl;
     return 0;
   }//version
 

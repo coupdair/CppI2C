@@ -17,14 +17,30 @@
 #include "i2c/i2c.h"
 #endif //USE_I2C_LIB
 
-#define REGISTER_VERSION "v0.1.1"
+#define REGISTER_VERSION "v0.1.2d"
+
+//version
+//! register library version
+int register_lib_version(std::string &out)
+{
+  out=REGISTER_VERSION;
+  return 0;
+}//register_lib_version
+//! register library pretty version
+int register_pretty_version(std::string &out)
+{
+  out
+  = "register."
+    REGISTER_VERSION;
+  return 0;
+}//register_pretty_version
 
 class Register
 {
  protected:
   std::string name;
   bool debug;
-  virtual void set_name(std::string device_name) {name=device_name; if(debug) std::cout<<name<<"::"<<__func__<<"(\""<<name<<"\")"<<std::endl;}
+  virtual void set_name(std::string register_name) {name=register_name; if(debug) std::cout<<name<<"::"<<__func__<<"(\""<<name<<"\")"<<std::endl;}
  public:
   virtual std::string get_name() {return name;}
   //! constructor

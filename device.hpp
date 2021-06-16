@@ -21,6 +21,22 @@
 
 #define DEVICE_VERSION "v0.1.2d"
 
+//version
+//! device library version
+int device_lib_version(std::string &out)
+{
+  out=DEVICE_VERSION;
+  return 0;
+}//device_lib_version
+//! device library pretty version
+int device_pretty_version(std::string &out)
+{
+  out
+  = "device."
+    DEVICE_VERSION;
+  return 0;
+}//device_pretty_version
+
 class Device: public std::map<std::string,Register*>
 {
  protected:

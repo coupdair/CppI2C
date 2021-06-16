@@ -14,7 +14,23 @@
 
 #include "device.hpp"
 
-#define MODULE_VERSION "v0.0.9"
+#define MODULE_VERSION "v0.1.2d"
+
+//version
+//! module library version
+int module_lib_version(std::string &out)
+{
+  out=MODULE_VERSION;
+  return 0;
+}//device_lib_version
+//! module library pretty version
+int module_pretty_version(std::string &out)
+{
+  out
+  = "module."
+    MODULE_VERSION;
+  return 0;
+}//module_pretty_version
 
 class Module: public std::map<std::string,Device*>
 {
