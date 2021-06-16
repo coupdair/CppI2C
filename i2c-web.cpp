@@ -32,7 +32,7 @@
 #include "i2c_tools.hpp"
 #include "os_tools.hpp"
 
-#define VERSION "v0.1.1f"
+#define VERSION "v0.1.1g"
 
 //Program option/documentation
 //{argp
