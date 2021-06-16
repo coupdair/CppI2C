@@ -1,7 +1,7 @@
 LD_LIBRARY_PATH=LD_LIBRARY_PATH="../CppCMS/cppcms/build;../CppCMS/cppcms/build/booster;../libI2C/"
 
 #all: i2c help version  web web-help web-version
-all: web web-help web-version
+all: web web-help web-version run-web-capture
 #all: i2c help version
 
 code:
@@ -27,7 +27,7 @@ run: i2c
 	echo;echo "factory:"
 	LD_LIBRARY_PATH=../libI2C/ ./i2c -i 1 -r 3 | tee i2c-bus.txt
 
-web: i2c-web.cpp config.js i2c_tools.hpp
+web: i2c-web.cpp config.js i2c_tools.hpp os_tools.hpp device.hpp register.hpp module.hpp
 	../CppCMS/cppcms/bin/cppcms_tmpl_cc master.tmpl main.tmpl page.tmpl devices.tmpl setup.tmpl -o web_skin.cpp
 	g++ -DUSE_I2C_LIB -I../libI2C/include -fpermissive -L../libI2C/ -li2c  -I../CppCMS/cppcms/ -I../CppCMS/cppcms/booster -I../CppCMS/cppcms/build -I../CppCMS/cppcms/build/booster  -O2 -Wall -g i2c-web.cpp web_skin.cpp -o i2c-web -L../CppCMS/cppcms/build -L../CppCMS/cppcms/build/booster -lcppcms -lbooster
 
@@ -38,6 +38,10 @@ web-version: web
 	$(LD_LIBRARY_PATH) ./i2c-web --version | tee VERSION
 
 run-web: web
+	#run i2c-web
+	$(LD_LIBRARY_PATH) ./i2c-web -c config.js -i 1 | tee i2c-web-live.txt
+
+run-web-capture: web
 	#sleep a while then get HTML and stop service
 	./web-capture.sh &
 	#run i2c-web

@@ -1,0 +1,102 @@
+./i2c-web is running (Ctrl+C to stop), have look to http://localhost:8080/i2c-bus.
+device_setup page
+device_setup page
+message data:
+ - temperature=24.4375
+ - resolution=0x0
+resolution mode=0
+device_setup page
+message data:
+ - temperature=24.5
+ - resolution=0x0
+resolution mode=0
+device_setup page
+message data:
+ - temperature=24.5
+ - resolution=0x0
+resolution mode=0
+device_setup page
+message data:
+ - temperature=24.5
+ - resolution=0x0
+resolution mode=0
+device_setup page
+message data:
+ - temperature=24.5
+ - resolution=0x1
+resolution mode=1
+device_setup page
+message data:
+ - temperature=24.25
+ - resolution=0x1
+resolution mode=1
+device_setup page
+message data:
+ - temperature=24.25
+ - resolution=0x1
+resolution mode=1
+device_setup page
+message data:
+ - temperature=24.5
+ - resolution=0x1
+resolution mode=1
+device_setup page
+message data:
+ - temperature=24.25
+ - resolution=0x2
+resolution mode=2
+device_setup page
+message data:
+ - temperature=24.375
+ - resolution=0x2
+resolution mode=2
+device_setup page
+message data:
+ - temperature=24.375
+ - resolution=0x2
+resolution mode=2
+device_setup page
+message data:
+ - temperature=24.5
+ - resolution=0x2
+resolution mode=2
+device_setup page
+message data:
+ - temperature=24.375
+ - resolution=0x2
+resolution mode=2
+device_setup page
+message data:
+ - temperature=24.375
+ - resolution=0x3
+resolution mode=3
+device_setup page
+message data:
+ - temperature=24.4375
+ - resolution=0x3
+resolution mode=3
+device_setup page
+message data:
+ - temperature=24.4375
+ - resolution=0x3
+resolution mode=3
+device_setup page
+message data:
+ - temperature=24.4375
+ - resolution=0x3
+resolution mode=3
+device_setup page
+message data:
+ - temperature=24.4375
+ - resolution=0x3
+resolution mode=3
+device_setup page
+message data:
+ - temperature=24.375
+ - resolution=0x3
+resolution mode=3
+device_setup page
+message data:
+ - temperature=24.4375
+ - resolution=0x3
+resolution mode=3
