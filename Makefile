@@ -1,8 +1,8 @@
 LD_LIBRARY_PATH=LD_LIBRARY_PATH="../CppCMS/cppcms/build;../CppCMS/cppcms/build/booster"
 
 #all: i2c help version  web web-help web-version
-#all: web web-help web-version
-all: i2c help version
+all: web web-help web-version
+#all: i2c help version
 
 code:
 	geany ReadMe.md Makefile i2c_tools.hpp os_tools.hpp i2c.cpp config.js master.tmpl main.tmpl devices.tmpl  page.tmpl i2c-web.cpp web-capture.sh &
