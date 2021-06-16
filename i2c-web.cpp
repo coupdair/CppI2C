@@ -36,7 +36,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.1.2f"
+#define VERSION "v0.1.2g"
 
 //Program option/documentation
 //{argp
@@ -333,15 +333,15 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
             	if(verbose>0) std::cout<<c.value_list()<<std::flush;
             	//setup reg.
             	//! \todo [medium] . add write reg.
-            float t=temperatureDev->get_Celcius();
+        float t=temperatureDev->get_Celcius();
         std::cout<<"temperature="<<t<<std::endl;
             	/*
             	temperatureDev->set_Celcius(c.resolution);
-            	/*
+            	*/
                 Register *reg=(temperatureDev->find("TemperatureResolution"))->second;
                 int r=reg->read();
                 std::cout<<"resolution mode="<<r<<std::endl;
-                */
+                /**/
             }//valid
         }//POST
         render("message",c);
