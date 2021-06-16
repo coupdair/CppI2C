@@ -23,23 +23,22 @@ namespace content
   //form
   struct info_form : public cppcms::form
   {
-    cppcms::widgets::select marital;
+    cppcms::widgets::select resolution;
     cppcms::widgets::submit submit;
 //    cppcms::widgets::select_multiple gain;
     info_form()
     {
-		//widget titles
-        marital.message("Marital Status");
+		///widget titles
+        resolution.message("Resolution");
         submit.value("apply");
 //        gain.message("Your gain(s)");
-        //order widgets
-        add(marital);
+        ///order widgets
+        add(resolution);
         add(submit);
 //        add(gain);
-        //values and behavious
-        marital.add("Single","single");
-        marital.add("Married","married");
-        marital.add("Divorced","divorced");
+        ///values and behavious
+        resolution.add("0.5","0.5");
+        resolution.add("0.25","0.25");
 /** /
         gain.add("2");
         gain.add("4");
@@ -52,18 +51,20 @@ namespace content
     {
         if(!form::validate()) 
             return false;
-        if(marital.selected_id()!="single")
+/*
+        if(resolution.selected_id()!="single")
         {
             marital.valid(false);
             return false;
         }
+*/
         return true;
     }//validate
   };//info_form
   struct message : public master
   {
     //data
-    std::string state;
+    std::string resolution;
     //GUI (HMTL)
     info_form info;
     //value list
@@ -71,7 +72,7 @@ namespace content
     {
       std::ostringstream s;
       s<<"message data:";
-      s<<"\n - state="<<state;
+      s<<"\n - resolution="<<resolution;
       s<<std::endl;
       return s.str();
     }//value_list

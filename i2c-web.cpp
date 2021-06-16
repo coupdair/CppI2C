@@ -32,7 +32,7 @@
 #include "i2c_tools.hpp"
 #include "os_tools.hpp"
 
-#define VERSION "v0.1.1e"
+#define VERSION "v0.1.1f"
 
 //Program option/documentation
 //{argp
@@ -305,7 +305,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
             //content transfer GUI to core
             if(c.info.validate())
             {
-            	c.state=c.info.marital.selected_id();
+            	c.resolution=c.info.resolution.selected_id();
             	//c.info.clear();
             	if(verbose>0) std::cout<<c.value_list()<<std::flush;
             }//valid
