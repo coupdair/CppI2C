@@ -19,7 +19,7 @@
 #include "i2c/i2c.h"
 #endif //USE_I2C_LIB
 
-#define DEVICE_VERSION "v0.1.2d"
+#define DEVICE_VERSION "v0.1.2e"
 
 //version
 //! device library version
@@ -190,7 +190,7 @@ class TemperatureDevice: public I2C_Device
     return Device::set(register_name,value);
   }//set
   virtual int set(const int &value)
-  {if(this->debug) std::cout<<name<<"::set("<<value<<") TemperatureResolution"<<std::endl;
+  {if(this->debug) std::cout<<name<<"::set("<<value<<") TemperatureResolution, e.g. 0x2"<<std::endl;
     int r=this->set("TemperatureResolution",value);
     //sleep a while for resolution command to perform on device
     usleep(345678);
@@ -200,6 +200,16 @@ class TemperatureDevice: public I2C_Device
   {if(this->debug) std::cout<<name<<"::set() TemperatureResolution 0.5Celcius"<<std::endl;
     return this->set(0x0);
   }//set default2
+  virtual int set_Celcius(const float &value)
+  {if(this->debug) std::cout<<name<<"::set("<<value<<") TemperatureResolution, e.g. 0.25"<<std::endl;
+    int val=-1; 
+    if(value==0.5) val=0x0;
+    if(value==0.25) val=0x1;
+    if(value==0.125) val=0x2;
+    if(value==0.0625) val=0x3;
+    if(val<0) return -3;
+    return this->set(val);
+  }//set default Celcius
   //! destructor (need at least empty one)
   virtual ~TemperatureDevice() {}
 };//TemperatureDevice
