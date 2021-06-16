@@ -32,7 +32,8 @@ namespace content
 		///widget titles
 		//! \todo [medium] add read reg.
         temperature.value(23.45);
-		temperature.message("Temperature");temperature.help(" °C : ambiant temperature in degree Celcius");
+		//! \todo [low] set help messsage as ToolTip (note: <i>italic</i> not working as translated)
+		temperature.message("Temperature");temperature.help(" °C : ambiant temperature in degree Celcius");//temperature.error_message("*");
         resolution.message("Resolution");resolution.help(" °C : temperature resolution in degree Celcius (and speed, e.g. 4Hz at 0.0625°C)");
         submit.value("apply");
 //        gain.message("Your gain(s)");
