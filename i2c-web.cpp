@@ -32,7 +32,7 @@
 #include "i2c_tools.hpp"
 #include "os_tools.hpp"
 
-#define VERSION "v0.1.1h"
+#define VERSION "v0.1.1i"
 
 //Program option/documentation
 //{argp
@@ -305,7 +305,9 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
             //content transfer GUI to core
             if(c.info.validate())
             {
-            	c.resolution=c.info.resolution.selected_id();
+				std::istringstream conv;
+				conv.str(c.info.resolution.selected_id());
+            	conv>>c.resolution;
             	//c.info.clear();
             	if(verbose>0) std::cout<<c.value_list()<<std::flush;
             	//setup reg.

@@ -37,10 +37,10 @@ namespace content
         add(submit);
 //        add(gain);
         ///values and behavious
-        resolution.add("0.5 °C",0.5);//"label", value
-        resolution.add("0.25 °C",0.25);
-        resolution.add("0.125 °C",0.125);
-        resolution.add("0.0625 °C",0.0625);
+        resolution.add("0.5 °C","0.5");//"label", "value"
+        resolution.add("0.25 °C","0.25");
+        resolution.add("0.125 °C","0.125");
+        resolution.add("0.0625 °C","0.0625");
 /** /
         gain.add("2");
         gain.add("4");
