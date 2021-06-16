@@ -32,7 +32,7 @@
 #include "i2c_tools.hpp"
 #include "os_tools.hpp"
 
-#define VERSION "v0.1.1d"
+#define VERSION "v0.1.1e"
 
 //Program option/documentation
 //{argp
@@ -143,7 +143,7 @@ public:
     dispatcher().assign("/devices",&http_service::devices,this);
     mapper().assign("devices","/devices");
 
-    dispatcher().assign("/setup",&http_service::setup,this);
+    dispatcher().assign("/setup",&http_service::device_setup,this);
     mapper().assign("setup","/setup");
 
     dispatcher().assign("/system",&http_service::system,this);
@@ -294,46 +294,24 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
     std::cout<<'.'<<std::endl;
     render("devices",c);
   }//devices
- 
-   void setup()
-  {
-    int verbose=1;//[0-2]
-    content::setup c;
-    ini(c);
-    std::string s;
 
-    //I2C devices
-    ///list of I2C devices
-    std::vector<int> device_addresses;
-    i2c_device_list(1,device_addresses,s,(verbose>1));
-
-    ///vector of I2C devices
-    std::vector<int>::iterator it=device_addresses.begin();
-    //output
-    if(verbose>0) std::cout<<"\nI2C devices address(es):";
-    //format hex
-    std::ostringstream hex;
-    hex<<"0x";
-    hex.setf(std::ios::hex,std::ios::basefield);//set hex as the basefield
-    hex.width(2);hex.fill('0');
-    hex<<*it;
-    //output
-    if(verbose>0) std::cout<<hex.str();
-    for(++it;it!=device_addresses.end();++it)
-    {
-      //format hex
-      hex=std::ostringstream();
-      hex<<"0x";
-      hex.setf(std::ios::hex,std::ios::basefield);//set hex as the basefield
-      hex.width(2);hex.fill('0');
-      hex<<*it;
-      //output
-      c.device_list.push_back(hex.str());
-      if(verbose>0) std::cout<<", "<<hex.str();
-    }//device loop
-    std::cout<<'.'<<std::endl;
-    render("setup",c);
-  }//setup
+  void device_setup()
+  {std::cout<<__func__<<" page"<<std::endl;
+    int verbose=1;//[0-1]
+        content::message c;
+        if(request().request_method()=="POST")
+        {
+            c.info.load(context());
+            //content transfer GUI to core
+            if(c.info.validate())
+            {
+            	c.state=c.info.marital.selected_id();
+            	//c.info.clear();
+            	if(verbose>0) std::cout<<c.value_list()<<std::flush;
+            }//valid
+        }//POST
+        render("message",c);
+  }//device_setup
   
   virtual void bus();
   virtual void no_template();
