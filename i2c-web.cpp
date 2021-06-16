@@ -36,7 +36,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.1.2g"
+#define VERSION "v0.1.2h"
 
 //Program option/documentation
 //{argp
@@ -328,7 +328,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
             if(c.info.validate())
             {
 				c.temperature=c.info.temperature.value();
-				std::istringstream(c.info.resolution.selected_id())>>c.resolution;//string>>float
+				std::istringstream(c.info.resolution.selected_id())>>c.resolution;//string>>int
             	//c.info.clear();
             	if(verbose>0) std::cout<<c.value_list()<<std::flush;
             	//setup reg.
@@ -341,7 +341,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
             	*/
             	/**/
                 Register *reg=(temperatureDev->find("TemperatureResolution"))->second;
-                int r=reg->write(0x3);
+                int r=reg->write(c.resolution);
                 usleep(345678);
                 r=reg->read();
                 std::cout<<"resolution mode="<<r<<std::endl;
