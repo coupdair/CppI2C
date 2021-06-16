@@ -45,7 +45,7 @@ class Device: public std::map<std::string,Register*>
   virtual void set_name(std::string device_name) {name=device_name; if(debug) std::cout<<name<<"/"<<__func__<<"(\""<<name<<"\")"<<std::endl;}
  public:
   //! constructor
-  Device() {name="none";debug=true;}
+  Device() {name="none";debug=false;}
   virtual std::string get_name() {return name;}
   virtual void create_register(std::string register_name,std::string register_type_name)
   {

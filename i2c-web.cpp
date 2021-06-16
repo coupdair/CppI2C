@@ -36,7 +36,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.1.2h"
+#define VERSION "v0.1.2"
 
 //Program option/documentation
 //{argp
@@ -322,7 +322,6 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
             //! \todo [medium] .. add read reg.
             TemperatureDevice *temperatureDev=(TemperatureDevice *)DeviceFactory::NewDevice("TemperatureDevice"); if(temperatureDev==NULL) exit(-9);
             float t=temperatureDev->get_Celcius();
-        std::cout<<"temperature="<<t<<std::endl;
             c.info.temperature.value(t);//temperatureDev->get_Celcius());
             //content transfer GUI to core
             if(c.info.validate())
@@ -333,21 +332,13 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
             	if(verbose>0) std::cout<<c.value_list()<<std::flush;
             	//setup reg.
             	//! \todo [medium] . add write reg.
-        float t=temperatureDev->get_Celcius();
-        std::cout<<"temperature="<<t<<std::endl;
             	//temperatureDev->set(0x0);//seg.  fault
-            	/*seg.  fault
-            	temperatureDev->set_Celcius(c.resolution);
-            	*/
-            	/**/
+            	//temperatureDev->set_Celcius(c.resolution);//seg.  fault
                 Register *reg=(temperatureDev->find("TemperatureResolution"))->second;
                 int r=reg->write(c.resolution);
                 usleep(345678);
                 r=reg->read();
                 std::cout<<"resolution mode="<<r<<std::endl;
-                /**/
-        t=temperatureDev->get_Celcius();
-        std::cout<<"temperature="<<t<<std::endl;
                 /**/
             }//valid
         }//POST
