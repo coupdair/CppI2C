@@ -27,9 +27,9 @@ run: i2c
 	echo;echo "factory:"
 	LD_LIBRARY_PATH=../libI2C/ ./i2c -i 1 -r 0 | tee    i2c-bus.txt
 	sleep 1
-	LD_LIBRARY_PATH=../libI2C/ ./i2c -i 1 -r 0 | tee    i2c-bus.txt
+	LD_LIBRARY_PATH=../libI2C/ ./i2c -i 1 -r 0 | tee -a i2c-bus.txt
 	sleep 1
-	LD_LIBRARY_PATH=../libI2C/ ./i2c -i 1 -r 0 | tee    i2c-bus.txt
+	LD_LIBRARY_PATH=../libI2C/ ./i2c -i 1 -r 0 | tee -a i2c-bus.txt
 	sleep 1
 	LD_LIBRARY_PATH=../libI2C/ ./i2c -i 1 -r 3 | tee -a i2c-bus.txt
 	sleep 1
