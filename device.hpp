@@ -19,7 +19,7 @@
 #include "i2c/i2c.h"
 #endif //USE_I2C_LIB
 
-#define DEVICE_VERSION "v0.1.1"
+#define DEVICE_VERSION "v0.1.2d"
 
 class Device: public std::map<std::string,Register*>
 {
@@ -169,8 +169,21 @@ class TemperatureDevice: public I2C_Device
     //std::cout<<"temperature="<<temperature<<std::endl;
     return temperature;
   }
-  virtual int set(const std::string &register_name,const int &value) {if(this->debug) std::cout<<name<<"::set(...)"<<std::endl;return Device::set(register_name,value);return 0;};
-  virtual int set() {if(this->debug) std::cout<<name<<"::set() TemperatureResolution"<<std::endl;this->set("TemperatureResolution",0x0);return 0;}
+  virtual int set(const std::string &register_name,const int &value)
+  {if(this->debug) std::cout<<name<<"::set("<<register_name<<", "<<value<<")"<<std::endl;
+    return Device::set(register_name,value);
+  }//set
+  virtual int set(const int &value)
+  {if(this->debug) std::cout<<name<<"::set("<<value<<") TemperatureResolution"<<std::endl;
+    int r=this->set("TemperatureResolution",value);
+    //sleep a while for resolution command to perform on device
+    usleep(345678);
+    return r;
+  }//set default
+  virtual int set()
+  {if(this->debug) std::cout<<name<<"::set() TemperatureResolution 0.5Celcius"<<std::endl;
+    return this->set(0x0);
+  }//set default2
   //! destructor (need at least empty one)
   virtual ~TemperatureDevice() {}
 };//TemperatureDevice

@@ -8,7 +8,6 @@
 #include <error.h>
 #include <argp.h>
 #include <stdlib.h>
-#include <unistd.h> //usleep
 
 #include <string.h>
 #include <string>
@@ -18,10 +17,11 @@
 #include <vector>   // std::vector
 #include <map>      // std::map
 
+#include <unistd.h> //usleep
 #include "module.hpp"
 #include "i2c_tools.hpp"
 
-#define VERSION "v0.1.0"
+#define VERSION "v0.1.1d"
 
 //Program option/documentation
 //{argp
@@ -207,6 +207,14 @@ int main(int argc, char **argv)
   temp->register_list("  ");
 //Write resolution
   std::string name="TemperatureResolution";
+  {//Device
+  std::cout<<std::endl<<"TemperatureDevice::set("<<arguments.resolution<<")"<<std::endl;
+  temp->set(arguments.resolution);
+  Register *reg=(temp->find(name))->second;
+  int r=reg->read();
+  std::cout<<"resolution mode="<<r<<std::endl;
+  }//Device
+/** /
   {//Register
   std::cout<<std::endl<<"Device["<<name<<"]"<<std::endl;
   Register *reg=(temp->find(name))->second;
@@ -215,8 +223,7 @@ int main(int argc, char **argv)
   r=reg->read();
   std::cout<<"resolution mode="<<r<<std::endl;
   }//Register
-//sleep a while for resolution command to perform on device
-  usleep(345678);
+/**/
 
 //Read temperature
   name="AmbiantTemperature";
