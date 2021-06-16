@@ -32,7 +32,7 @@
 #include "i2c_tools.hpp"
 #include "os_tools.hpp"
 
-#define VERSION "v0.1.1g"
+#define VERSION "v0.1.1h"
 
 //Program option/documentation
 //{argp
@@ -308,6 +308,8 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
             	c.resolution=c.info.resolution.selected_id();
             	//c.info.clear();
             	if(verbose>0) std::cout<<c.value_list()<<std::flush;
+            	//setup reg.
+            	//! \todo [medium] add write reg.
             }//valid
         }//POST
         render("message",c);
