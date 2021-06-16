@@ -23,16 +23,20 @@ namespace content
   //form
   struct info_form : public cppcms::form
   {
+    cppcms::widgets::numeric<float> temperature;
     cppcms::widgets::select resolution;
     cppcms::widgets::submit submit;
 //    cppcms::widgets::select_multiple gain;
     info_form()
     {
 		///widget titles
+		temperature.value(23.45);
+		temperature.message("Temperature");
         resolution.message("Resolution");
         submit.value("apply");
 //        gain.message("Your gain(s)");
         ///order widgets
+        add(temperature);
         add(resolution);
         add(submit);
 //        add(gain);
@@ -66,6 +70,7 @@ namespace content
   struct message : public master
   {
     //data
+    float temperature;
     float resolution;
     //GUI (HMTL)
     info_form info;
@@ -74,7 +79,8 @@ namespace content
     {
       std::ostringstream s;
       s<<"message data:";
-      s<<"\n - resolution="<<resolution;
+      s<<"\n - temperature="<<temperature;
+      s<<"\n - resolution=" <<resolution;
       s<<std::endl;
       return s.str();
     }//value_list

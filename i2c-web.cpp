@@ -32,7 +32,7 @@
 #include "i2c_tools.hpp"
 #include "os_tools.hpp"
 
-#define VERSION "v0.1.1k"
+#define VERSION "v0.1.1l"
 
 //Program option/documentation
 //{argp
@@ -302,9 +302,13 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
         if(request().request_method()=="POST")
         {
             c.info.load(context());
+            //setup reg.
+            //! \todo [medium] add read reg.
+            c.info.temperature.value(12.34);
             //content transfer GUI to core
             if(c.info.validate())
             {
+				c.temperature=c.info.temperature.value();
 				std::istringstream(c.info.resolution.selected_id())>>c.resolution;//string>>float
             	//c.info.clear();
             	if(verbose>0) std::cout<<c.value_list()<<std::flush;
