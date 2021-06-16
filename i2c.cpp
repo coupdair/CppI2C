@@ -21,7 +21,7 @@
 #include "module.hpp"
 #include "i2c_tools.hpp"
 
-#define VERSION "v0.1.1d"
+#define VERSION "v0.1.2e"
 
 //Program option/documentation
 //{argp
@@ -52,6 +52,7 @@ static struct argp_option options[]=
   {"list",     'l', 0, 0,           "Produce factory lists" },
   {"integer",  'i', "VALUE", 0,     "bus index, e.g. 1" },
   {"resolution", 'r', "VALUE", 0,   "temperature resolution, e.g. 0x0=0.5°, 0x1=0.25°, 0x2=0.125°, 0x3=0.0625°" },
+  {"resolutionCelcius", 'c', "VALUE", 0,   "temperature resolution, e.g. 0x0=0.5°, 0x1=0.25°, 0x2=0.125°, 0x3=0.0625°" },
   {"string",   's', "STRING", 0,    "get string (unsed)" },
 //default options
   { 0 }
@@ -70,6 +71,8 @@ struct arguments
   int integer;
   //! resolution of temperature mesurment
   int resolution;
+  //! resolution of temperature mesurment in Celcius
+  int resolutionCelcius;
   //! string value
   char* string;
 };//arguments (CLI)
@@ -97,6 +100,9 @@ parse_option(int key, char *arg, struct argp_state *state)
     case 'r':
       arguments->resolution=atoi(arg);
       break;
+    case 'c':
+      arguments->resolutionCelcius=atof(arg);
+      break;
     case 's':
       arguments->string=arg;
       break;
@@ -110,12 +116,13 @@ parse_option(int key, char *arg, struct argp_state *state)
 //! [argp] print argument values
 void print_args(struct arguments *p_arguments)
 {
-  printf (".version=%s\n.verbose=%s\n.list=%s\n.bus_index=%d\n.temperature_resolution=%d\n.string=%s\n"
+  printf (".version=%s\n.verbose=%s\n.list=%s\n.bus_index=%d\n.temperature_resolution=%d\n.temperature_resolutionCelcius=%f\n.string=%s\n"
   , p_arguments->version?"yes":"no"
   , p_arguments->verbose?"yes":"no"
   , p_arguments->list?"yes":"no"
   , p_arguments->integer
   , p_arguments->resolution
+  , p_arguments->resolutionCelcius
   , p_arguments->string
   );
 }//print_args
@@ -135,6 +142,7 @@ int main(int argc, char **argv)
   arguments.list=0;
   arguments.integer=1;
   arguments.resolution=0x1;//0.25°
+  arguments.resolutionCelcius=0.125;//0x2
   arguments.string="ABC";
 
 //! - print default option values (static)
@@ -209,7 +217,8 @@ int main(int argc, char **argv)
   std::string name="TemperatureResolution";
   {//Device
   std::cout<<std::endl<<"TemperatureDevice::set("<<arguments.resolution<<")"<<std::endl;
-  temp->set(arguments.resolution);
+//  temp->set(arguments.resolution);
+  temp->set_Celcius(arguments.resolutionCelcius);
   Register *reg=(temp->find(name))->second;
   int r=reg->read();
   std::cout<<"resolution mode="<<r<<std::endl;

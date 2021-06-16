@@ -19,7 +19,7 @@
 #include "i2c/i2c.h"
 #endif //USE_I2C_LIB
 
-#define DEVICE_VERSION "v0.1.2e"
+#define DEVICE_VERSION "v0.1.2f"
 
 //version
 //! device library version
@@ -45,7 +45,7 @@ class Device: public std::map<std::string,Register*>
   virtual void set_name(std::string device_name) {name=device_name; if(debug) std::cout<<name<<"/"<<__func__<<"(\""<<name<<"\")"<<std::endl;}
  public:
   //! constructor
-  Device() {name="none";debug=false;}
+  Device() {name="none";debug=true;}
   virtual std::string get_name() {return name;}
   virtual void create_register(std::string register_name,std::string register_type_name)
   {

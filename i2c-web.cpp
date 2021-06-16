@@ -335,12 +335,15 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
             	//! \todo [medium] . add write reg.
         float t=temperatureDev->get_Celcius();
         std::cout<<"temperature="<<t<<std::endl;
+            	//temperatureDev->set(0x3);
             	/*
             	temperatureDev->set_Celcius(c.resolution);
             	*/
                 Register *reg=(temperatureDev->find("TemperatureResolution"))->second;
                 int r=reg->read();
                 std::cout<<"resolution mode="<<r<<std::endl;
+        t=temperatureDev->get_Celcius();
+        std::cout<<"temperature="<<t<<std::endl;
                 /**/
             }//valid
         }//POST
