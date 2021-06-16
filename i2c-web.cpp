@@ -26,15 +26,17 @@
 #include <iostream>
 //./build/cppcms/config.h CPPCMS_PACKAGE_VERSION
 
-#include "content.h"
-
+//Devices (and related)
 #include <unistd.h> //usleep
 #include "module.hpp"
-//I2C lib.
+///I2C lib.
 #include "i2c_tools.hpp"
 #include "os_tools.hpp"
 
-#define VERSION "v0.1.2d"
+//CppCMS data
+#include "content.h"
+
+#define VERSION "v0.1.2e"
 
 //Program option/documentation
 //{argp
@@ -317,8 +319,10 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
         {
             c.info.load(context());
             //setup reg.
-            //! \todo [medium] add read reg.
-            c.info.temperature.value(12.34);
+            //! \todo [medium] . add read reg.
+            TemperatureDevice *temperatureDev=(TemperatureDevice *)DeviceFactory::NewDevice("TemperatureDevice"); if(temperatureDev==NULL) exit(-9);
+            short t=temperatureDev->get_Celcius();
+            c.info.temperature.value(t);
             //content transfer GUI to core
             if(c.info.validate())
             {
