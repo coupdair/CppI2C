@@ -1,0 +1,19 @@
+<% c++ #include "content.h" %>
+<% skin web_skin %>
+<% view message uses content::message extends master %>
+<% template title() %>setup on <% include master::title() %><% end %>
+<% template render() %>
+<html>
+  <body>
+    <h1>device setup</h1>
+    <fieldset>
+      <legend>ambiant temperature</legend>
+      <form method="post" action="" >
+        <% form as_p info %>
+      </form>
+    </fieldset>
+  </body>
+<html>
+<% end template %>
+<% end view %>
+<% end skin %>
