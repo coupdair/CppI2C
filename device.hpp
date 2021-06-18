@@ -241,10 +241,17 @@ class MC2SADevice: public FakeDevice
     this->register_list("");
     for (std::map<std::string,Register*>::iterator it=this->begin(); it!=this->end(); ++it)
     {
-      std::cout<<"  "<< it->first << " = ";
-      (it->second)->read();
+      std::cout<<"  "<< it->first << " = "<<(it->second)->read()<<std::endl;
     }//register loop
   }//read
+  virtual void init()
+  {
+    int i=0;
+    for (std::map<std::string,Register*>::iterator it=this->begin(); it!=this->end(); ++it)
+    {
+      (it->second)->write(++i);
+    }//register loop
+  }//init
   //! destructor (need at least empty one)
   virtual ~MC2SADevice() {}
 };//MC2SADevice

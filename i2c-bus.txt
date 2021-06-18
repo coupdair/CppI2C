@@ -20,6 +20,22 @@ DeviceFactory:MC2SADevice
   FakeReg1 => FakeRegister
   FakeRegister0 => FakeRegister
   FakeRegister1 => FakeRegister
+FakeReg0 => FakeRegister
+FakeReg1 => FakeRegister
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+  FakeReg0 = 0x1
+  FakeReg1 = 0x1
+  FakeRegister0 = 0x1
+  FakeRegister1 = 0x1
+FakeReg0 => FakeRegister
+FakeReg1 => FakeRegister
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+  FakeReg0 = 0x1
+  FakeReg1 = 0x2
+  FakeRegister0 = 0x3
+  FakeRegister1 = 0x4
 I2C bus(es):
 i2c-3	i2c       	3.i2c                           	I2C adapter
 i2c-1	i2c       	bcm2835 (i2c@7e804000)          	I2C adapter
@@ -42,6 +58,22 @@ DeviceFactory:MC2SADevice
   FakeReg1 => FakeRegister
   FakeRegister0 => FakeRegister
   FakeRegister1 => FakeRegister
+FakeReg0 => FakeRegister
+FakeReg1 => FakeRegister
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+  FakeReg0 = 0x1
+  FakeReg1 = 0x1
+  FakeRegister0 = 0x1
+  FakeRegister1 = 0x1
+FakeReg0 => FakeRegister
+FakeReg1 => FakeRegister
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+  FakeReg0 = 0x1
+  FakeReg1 = 0x2
+  FakeRegister0 = 0x3
+  FakeRegister1 = 0x4
 I2C bus(es):
 i2c-3	i2c       	3.i2c                           	I2C adapter
 i2c-1	i2c       	bcm2835 (i2c@7e804000)          	I2C adapter
@@ -64,3 +96,19 @@ DeviceFactory:MC2SADevice
   FakeReg1 => FakeRegister
   FakeRegister0 => FakeRegister
   FakeRegister1 => FakeRegister
+FakeReg0 => FakeRegister
+FakeReg1 => FakeRegister
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+  FakeReg0 = 0x1
+  FakeReg1 = 0x1
+  FakeRegister0 = 0x1
+  FakeRegister1 = 0x1
+FakeReg0 => FakeRegister
+FakeReg1 => FakeRegister
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+  FakeReg0 = 0x1
+  FakeReg1 = 0x2
+  FakeRegister0 = 0x3
+  FakeRegister1 = 0x4
