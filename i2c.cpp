@@ -21,7 +21,7 @@
 #include "module.hpp"
 #include "i2c_tools.hpp"
 
-#define VERSION "v0.1.4d"
+#define VERSION "v0.1.4e"
 
 //Program option/documentation
 //{argp
@@ -264,9 +264,7 @@ int main(int argc, char **argv)
   const std::string type_name="MC2SADevice";
   std::cout<<std::endl<<"DeviceFactory:"<<type_name<<std::endl;
   MC2SADevice *mc2sa=(MC2SADevice *)DeviceFactory::NewDevice(type_name); if(mc2sa==NULL) return -9;
-  mc2sa->register_list("  ");
-  mc2sa->read();
-  mc2sa->init();
+  //mc2sa->register_list("  ");
   mc2sa->read();
   return 0;
 }//main

@@ -348,6 +348,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
           //get values
           {//get reg. MC2SA -> c.infoMC2SA.*
           MC2SADevice *MC2SADev=(MC2SADevice *)DeviceFactory::NewDevice("MC2SADevice"); if(MC2SADev==NULL) exit(-9);
+MC2SADev->register_list("  ");
 //          Register *reg=(MC2SADev->find("FakeReg0"))->second;
 //          int r=reg->read();
 //          std::cout<<"FakeReg0="<<r<<std::endl;

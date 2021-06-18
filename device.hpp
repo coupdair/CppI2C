@@ -20,7 +20,7 @@
 #include "i2c/i2c.h"
 #endif //USE_I2C_LIB
 
-#define DEVICE_VERSION "v0.1.4d"
+#define DEVICE_VERSION "v0.1.4e"
 
 //version
 //! device library version
@@ -235,6 +235,7 @@ class MC2SADevice: public FakeDevice
     create_register("FakeReg0","FakeRegister");//,RW);
     create_register("FakeReg1","FakeRegister");//,RW);
 //    create_register("TODO","I2CRegisterByte",0x12);//,RW);
+    init();
   }//constructor
   virtual void read()
   {if(this->debug) std::cout<<name<<"::read()"<<std::endl;
