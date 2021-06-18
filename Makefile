@@ -40,6 +40,9 @@ run-web: web
 	#run i2c-web
 	$(LD_LIBRARY_PATH) ./i2c-web -c config.js -i 1 2>&1 | tee i2c-web-live.txt
 
+browse-web:
+	firefox http://localhost:8080/i2c-bus http://localhost:8080/i2c-bus/bus http://localhost:8080/i2c-bus/devices http://localhost:8080/i2c-bus/setup http://localhost:8080/i2c-bus/system &
+
 run-web-capture: web
 	#sleep a while then get HTML and stop service
 	./web-capture.sh &
