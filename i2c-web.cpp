@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.1.5d"
+#define VERSION "v0.1.5e"
 
 //Program option/documentation
 //{argp
@@ -332,7 +332,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
             if(c.infoMC2SA.validate())
             {	///MC2SA
 //				std::istringstream(c.infoMC2SA.resolution.selected_id())>>c.resolution_todo;//string>>float
-//! \todo [high] get c.gain from c.infoMC2SA.gain
+//! \todo [high] get c.gain from c.infoMC2SA.gain[1,2,4,8,11,16]
             	if(verbose>0) std::cout<<"MC2SA apply "<<c.value_list()<<std::flush;
             	//setup reg.
                 //! \todo [high] . set reg.
@@ -362,7 +362,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
           Register *reg=(MC2SADev->find("FakeReg0"))->second;
           int r=reg->read();
           std::cout<<"FakeReg0="<<r<<std::endl;
-//! \todo [high] set c.gain to c.infoMC2SA.gain
+//! \todo [high] set c.gain to c.infoMC2SA.gain[1,2,4,8,11,16]
 /** /
           std::ostringstream tmp;tmp<<r;//int>>string
           std::cout<<"FakeReg0="<<tmp.str()<<std::endl;
