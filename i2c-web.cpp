@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.1.4f"
+#define VERSION "v0.1.4g"
 
 //Program option/documentation
 //{argp
@@ -318,6 +318,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
         {
             c.infoMC2SA.load(context());
             c.infoTemperature.load(context());
+            c.infoApply.load(context());
             //setup reg.
             TemperatureDevice *temperatureDev=(TemperatureDevice *)DeviceFactory::NewDevice("TemperatureDevice"); if(temperatureDev==NULL) exit(-9);
             c.infoTemperature.temperature.value(temperatureDev->get_Celcius());
@@ -325,8 +326,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
             if(c.infoMC2SA.validate())
             {	///MC2SA
 				std::istringstream(c.infoMC2SA.resolution.selected_id())>>c.resolution_todo;//string>>float
-            	//c.info.clear();
-            	if(verbose>0) std::cout<<"MC2SA call "<<c.value_list()<<std::flush;
+            	if(verbose>0) std::cout<<"MC2SA apply "<<c.value_list()<<std::flush;
             	//setup reg.
                 //! \todo set reg.
             }//valid
@@ -335,8 +335,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
             {	///temperature
 				c.temperature=c.infoTemperature.temperature.value();
 				std::istringstream(c.infoTemperature.resolution.selected_id())>>c.resolution;//string>>float
-            	//c.info.clear();
-            	if(verbose>0) std::cout<<"Temperature call "<<c.value_list()<<std::flush;
+             	if(verbose>0) std::cout<<"Temperature apply "<<c.value_list()<<std::flush;
             	//setup reg.
             	temperatureDev->set_Celcius(c.resolution);
                 Register *reg=(temperatureDev->find("TemperatureResolution"))->second;
@@ -344,6 +343,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
                 std::cout<<"resolution mode="<<r<<std::endl;
                 /**/
             }//valid
+            //c.infoApply.validate();
         }//POST
         render("message",c);
   }//device_setup

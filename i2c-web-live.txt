@@ -5,29 +5,9 @@ device_setup page
 MC2SA call message data:
  - temperature=0
  - resolution=0
- - resolution_todo=5
+ - resolution_todo=0
 Temperature call message data:
  - temperature=23.5
  - resolution=0.25
- - resolution_todo=5
-resolution mode=1
-device_setup page
-MC2SA call message data:
- - temperature=0
- - resolution=0
- - resolution_todo=125
-Temperature call message data:
- - temperature=23.25
- - resolution=0.125
- - resolution_todo=125
-resolution mode=2
-device_setup page
-MC2SA call message data:
- - temperature=0
- - resolution=0
- - resolution_todo=125
-Temperature call message data:
- - temperature=23.5
- - resolution=0.25
- - resolution_todo=125
+ - resolution_todo=0
 resolution mode=1
