@@ -20,7 +20,7 @@
 #include "i2c/i2c.h"
 #endif //USE_I2C_LIB
 
-#define DEVICE_VERSION "v0.1.4f"
+#define DEVICE_VERSION "v0.1.4"
 
 //version
 //! device library version

@@ -10,64 +10,106 @@ FakeRegister1 => FakeRegister
   FakeRegister1 = 20
 FakeReg0=5
 FakeReg0=5
-  AmbiantTemperature => I2CRegisterWord
-  TemperatureResolution => I2CRegisterByte
-resolution mode=0x1 i.e. 0.25
+AmbiantTemperature => I2CRegisterWord
+TemperatureResolution => I2CRegisterByte
+  AmbiantTemperature =   TemperatureResolution = resolution mode=0x2 i.e. 0.125
 device_setup page
 MC2SA apply message data:
  - temperature=0
  - resolution=0
- - resolution_todo=15
+ - resolution_todo=20
 FakeReg0 => FakeRegister
 FakeReg1 => FakeRegister
 FakeRegister0 => FakeRegister
 FakeRegister1 => FakeRegister
-  FakeReg0 = 15
+  FakeReg0 = 20
   FakeReg1 = 10
   FakeRegister0 = 15
   FakeRegister1 = 20
 Temperature apply message data:
- - temperature=23.5
- - resolution=0.125
- - resolution_todo=15
-resolution mode=2
+ - temperature=23.75
+ - resolution=0.25
+ - resolution_todo=20
+resolution mode=1
+device_setup page
+FakeReg0 => FakeRegister
+FakeReg1 => FakeRegister
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+  FakeReg0 = 20
+  FakeReg1 = 10
+  FakeRegister0 = 15
+  FakeRegister1 = 20
+FakeReg0=20
+FakeReg0=20
+AmbiantTemperature => I2CRegisterWord
+TemperatureResolution => I2CRegisterByte
+  AmbiantTemperature =   TemperatureResolution = resolution mode=0x1 i.e. 0.25
 device_setup page
 MC2SA apply message data:
  - temperature=0
  - resolution=0
- - resolution_todo=15
+ - resolution_todo=10
 FakeReg0 => FakeRegister
 FakeReg1 => FakeRegister
 FakeRegister0 => FakeRegister
 FakeRegister1 => FakeRegister
-  FakeReg0 = 15
+  FakeReg0 = 10
   FakeReg1 = 10
   FakeRegister0 = 15
   FakeRegister1 = 20
 Temperature apply message data:
- - temperature=23.625
+ - temperature=23.75
  - resolution=0.125
- - resolution_todo=15
+ - resolution_todo=10
 resolution mode=2
+device_setup page
+FakeReg0 => FakeRegister
+FakeReg1 => FakeRegister
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+  FakeReg0 = 10
+  FakeReg1 = 10
+  FakeRegister0 = 15
+  FakeRegister1 = 20
+FakeReg0=10
+FakeReg0=10
+AmbiantTemperature => I2CRegisterWord
+TemperatureResolution => I2CRegisterByte
+  AmbiantTemperature =   TemperatureResolution = resolution mode=0x2 i.e. 0.125
+device_setup page
+FakeReg0 => FakeRegister
+FakeReg1 => FakeRegister
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+  FakeReg0 = 10
+  FakeReg1 = 10
+  FakeRegister0 = 15
+  FakeRegister1 = 20
+FakeReg0=10
+FakeReg0=10
+AmbiantTemperature => I2CRegisterWord
+TemperatureResolution => I2CRegisterByte
+  AmbiantTemperature =   TemperatureResolution = resolution mode=0x2 i.e. 0.125
+device_setup page
+FakeReg0 => FakeRegister
+FakeReg1 => FakeRegister
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+  FakeReg0 = 10
+  FakeReg1 = 10
+  FakeRegister0 = 15
+  FakeRegister1 = 20
+FakeReg0=10
+FakeReg0=10
+AmbiantTemperature => I2CRegisterWord
+TemperatureResolution => I2CRegisterByte
+  AmbiantTemperature =   TemperatureResolution = resolution mode=0x2 i.e. 0.125
 device_setup page
 MC2SA apply message data:
  - temperature=0
  - resolution=0
- - resolution_todo=15
-FakeReg0 => FakeRegister
-FakeReg1 => FakeRegister
-FakeRegister0 => FakeRegister
-FakeRegister1 => FakeRegister
-  FakeReg0 = 15
-  FakeReg1 = 10
-  FakeRegister0 = 15
-  FakeRegister1 = 20
-Temperature apply message data:
- - temperature=23.625
- - resolution=0.125
- - resolution_todo=15
-resolution mode=2
-device_setup page
+ - resolution_todo=5
 FakeReg0 => FakeRegister
 FakeReg1 => FakeRegister
 FakeRegister0 => FakeRegister
@@ -76,26 +118,8 @@ FakeRegister1 => FakeRegister
   FakeReg1 = 10
   FakeRegister0 = 15
   FakeRegister1 = 20
-FakeReg0=5
-FakeReg0=5
-  AmbiantTemperature => I2CRegisterWord
-  TemperatureResolution => I2CRegisterByte
-resolution mode=0x2 i.e. 0.125
-device_setup page
-MC2SA apply message data:
- - temperature=0
- - resolution=0
- - resolution_todo=15
-FakeReg0 => FakeRegister
-FakeReg1 => FakeRegister
-FakeRegister0 => FakeRegister
-FakeRegister1 => FakeRegister
-  FakeReg0 = 15
-  FakeReg1 = 10
-  FakeRegister0 = 15
-  FakeRegister1 = 20
 Temperature apply message data:
- - temperature=23.75
- - resolution=0.125
- - resolution_todo=15
-resolution mode=2
+ - temperature=23.625
+ - resolution=0.5
+ - resolution_todo=5
+resolution mode=0

@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.1.4m"
+#define VERSION "v0.1.4"
 
 //Program option/documentation
 //{argp
@@ -131,6 +131,9 @@ static struct argp argp = { options, parse_option, args_doc, doc };
 //HTTP service using C++CMS
 class http_service: public cppcms::application {
 public:
+  TemperatureDevice *temperatureDev;
+  MC2SADevice *MC2SADev;
+public:
   http_service(cppcms::service &srv) :
     cppcms::application(srv) 
   {
@@ -153,6 +156,10 @@ public:
     mapper().assign("system","/system");
 
     mapper().root("/i2c-bus");
+
+    //module
+    temperatureDev=(TemperatureDevice *)DeviceFactory::NewDevice("TemperatureDevice"); if(temperatureDev==NULL) exit(-9);
+    MC2SADev=(MC2SADevice *)DeviceFactory::NewDevice("MC2SADevice"); if(MC2SADev==NULL) exit(-9);
   }//constructor
   void ini(content::master &c)
   {
@@ -319,7 +326,6 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
             c.infoMC2SA.load(context());
             c.infoTemperature.load(context());
             //get reg.
-            TemperatureDevice *temperatureDev=(TemperatureDevice *)DeviceFactory::NewDevice("TemperatureDevice"); if(temperatureDev==NULL) exit(-9);
             c.infoTemperature.temperature.value(temperatureDev->get_Celcius());
             //content transfer GUI to core
             if(c.infoMC2SA.validate())
@@ -328,7 +334,6 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
             	if(verbose>0) std::cout<<"MC2SA apply "<<c.value_list()<<std::flush;
             	//setup reg.
                 //! \todo [high] . set reg.
-                MC2SADevice *MC2SADev=(MC2SADevice *)DeviceFactory::NewDevice("MC2SADevice"); if(MC2SADev==NULL) exit(-9);
                 Register *reg=(MC2SADev->find("FakeReg0"))->second;
                 reg->write(c.resolution_todo);
                MC2SADev->read();
@@ -351,7 +356,6 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
           //! \todo [high] . get reg.
           //get values
           {//get reg. MC2SA -> c.infoMC2SA.*
-          MC2SADevice *MC2SADev=(MC2SADevice *)DeviceFactory::NewDevice("MC2SADevice"); if(MC2SADev==NULL) exit(-9);
          MC2SADev->read();
           Register *reg=(MC2SADev->find("FakeReg0"))->second;
           int r=reg->read();
@@ -361,8 +365,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
           c.infoMC2SA.resolution.selected_id(tmp.str());
 	      }//MC2SA
           {//get reg. Temperature -> c.infoTemperature.*
-          TemperatureDevice *temperatureDev=(TemperatureDevice *)DeviceFactory::NewDevice("TemperatureDevice"); if(temperatureDev==NULL) exit(-9);
-         temperatureDev->register_list("  ");
+         temperatureDev->read();
           c.infoTemperature.temperature.value(temperatureDev->get_Celcius());
           Register *reg=(temperatureDev->find("TemperatureResolution"))->second;
           int r=reg->read();
