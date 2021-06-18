@@ -38,12 +38,12 @@ namespace content
 //        resolution.message("select todo");resolution.help(" units : help todo");
 //        submit.value("apply");
 //        gain.message("capacitors for gain");
-        gain1.message("");gain1.help("1 pF");
-        gain2.message("");gain2.help("2 pF");
-        gain4.message("");gain4.help("4 pF");
-        gain8.message("");gain8.help("8 pF");
-        gain11.message("");gain11.help("11 pF");
-        gain16.message("");gain16.help("16 pF");
+        gain1.message(""); gain1.name("gain1");  gain1.help("1 pF");
+        gain2.message(""); gain2.name("gain2");  gain2.help("2 pF");
+        gain4.message(""); gain4.name("gain4");  gain4.help("4 pF");
+        gain8.message(""); gain8.name("gain8");  gain8.help("8 pF");
+        gain11.message("");gain11.name("gain11");gain11.help("11 pF");
+        gain16.message("");gain16.name("gain16");gain16.help("16 pF");
         ///order widgets
 //        add(resolution);
 //        add(submit);
@@ -88,8 +88,8 @@ namespace content
     {
 		///widget titles
  		//! \todo [low] set help messsage as ToolTip (note: <i>italic</i> not working as translated)
-		temperature.message("Temperature");temperature.help(" °C : ambiant temperature in degree Celcius");//temperature.error_message("*");
-        resolution.message("Resolution");resolution.help(" °C : temperature resolution in degree Celcius (and speed, e.g. 4Hz at 0.0625°C)");
+		temperature.message("Temperature");temperature.name("temperature");temperature.help(" °C : ambiant temperature in degree Celcius");//temperature.error_message("*");
+        resolution.message("Resolution");resolution.name("temperature_resolution");resolution.help(" °C : temperature resolution in degree Celcius (and speed, e.g. 4Hz at 0.0625°C)");
         submit.value("apply");
         ///order widgets
         add(temperature);
