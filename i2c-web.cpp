@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.1.6e"
+#define VERSION "v0.1.6"
 
 //Program option/documentation
 //{argp
@@ -325,6 +325,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
         if(request().request_method()=="POST")
         {
             c.infoMC2SAgain.load(context());
+            c.infoMC2SAresistor.load(context());
             c.infoTemperature.load(context());
             //get reg.
             c.infoTemperature.temperature.value(temperatureDev->get_Celcius());
@@ -350,8 +351,6 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
             }//valid
             if(c.infoMC2SAresistor.validate())
             {///MC2SA resistor
-//				std::istringstream(c.infoMC2SAgain.resolution.selected_id())>>c.resolution_todo;//string>>float
-              //get c.resistor from c.infoMC2SAresistor.resistor[2,3,5]
               std::bitset<6> resistor;//3 higher bits
               resistor[3]=c.infoMC2SAresistor.resistor2.value();
               resistor[4]=c.infoMC2SAresistor.resistor3.value();
