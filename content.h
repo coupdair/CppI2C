@@ -24,30 +24,33 @@ namespace content
   //forms
   struct info_form_MC2SA : public cppcms::form
   {
-    cppcms::widgets::select resolution;
+//    cppcms::widgets::select resolution;
 //    cppcms::widgets::submit submit;
-//    cppcms::widgets::select_multiple gain;
+    cppcms::widgets::select_multiple gain;
     info_form_MC2SA()
     {
 		///widget titles
-        resolution.message("select todo");resolution.help(" units : help todo");
+//        resolution.message("select todo");resolution.help(" units : help todo");
 //        submit.value("apply");
-//        gain.message("Your gain(s)");
+        gain.message("capacitors for gain");gain.help(" pF : press Ctrl key to select several capacitor");
         ///order widgets
-        add(resolution);
+//        add(resolution);
 //        add(submit);
-//        add(gain);
+        add(gain);
         ///values and behavious
+/** /
         resolution.add("5","5");//"label", "value"
         resolution.add("10","10");
         resolution.add("15","15");
         resolution.add("20","20");
         resolution.selected_id("5");
-/** /
+/**/
+        gain.add("1");
         gain.add("2");
         gain.add("4");
-        gain.add("6");
-/**/
+        gain.add("8");
+        gain.add("11");
+        gain.add("16");
 //        name.non_empty();
 //        age.range(0,123);
     }//constructor
@@ -105,7 +108,7 @@ namespace content
     float temperature;
     float resolution;
     ///MC2SA
-    float resolution_todo;
+    char gain;
     //GUI (HMTL)
     info_form_MC2SA infoMC2SA;
     info_form_temperature infoTemperature;
@@ -116,7 +119,7 @@ namespace content
       s<<"message data:";
       s<<"\n - temperature="<<temperature;
       s<<"\n - resolution=" <<resolution;
-      s<<"\n - resolution_todo=" <<resolution_todo;
+      s<<"\n - gain=" <<gain;
       s<<std::endl;
       return s.str();
     }//value_list
