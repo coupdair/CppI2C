@@ -19,7 +19,7 @@
 #include "i2c/i2c.h"
 #endif //USE_I2C_LIB
 
-#define DEVICE_VERSION "v0.1.2f"
+#define DEVICE_VERSION "v0.1.2g"
 
 //version
 //! device library version
@@ -54,7 +54,7 @@ class Device: public std::map<std::string,Register*>
   }//create_register
   virtual /*std::string*/void register_list(const std::string prefix="") {for (std::map<std::string,Register*>::iterator it=this->begin(); it!=this->end(); ++it) std::cout <<prefix<< it->first << " => " << (it->second)->get_name() << '\n';};
   virtual int get(const std::string &register_name) {return ((this->find(register_name))->second)->read();};
-  virtual int set(const std::string &register_name,const int &value) {((this->find(register_name))->second)->write(value);};
+  virtual int set(const std::string &register_name,const int &value) {return ((this->find(register_name))->second)->write(value);};
   //! destructor (need at least empty one)
   virtual ~Device() {}
 };//Device
@@ -201,13 +201,15 @@ class TemperatureDevice: public I2C_Device
     return this->set(0x0);
   }//set default2
   virtual int set_Celcius(const float &value)
-  {if(this->debug) std::cout<<name<<"::set("<<value<<") TemperatureResolution, e.g. 0.25"<<std::endl;
+  {
+    const std::string register_name("TemperatureResolution");
+    if(this->debug) std::cout<<name<<"::set("<<value<<") "<<register_name<<", e.g. 0.25"<<std::endl;
     int val=-1; 
     if(value==0.5) val=0x0;
     if(value==0.25) val=0x1;
     if(value==0.125) val=0x2;
     if(value==0.0625) val=0x3;
-    if(val<0) return -3;
+    if(val<0) {std::cerr<<name<<"::set("<<register_name<<", "<<value<<") bad value, should be either 0.5, 0.25, 0.125 or 0.0625 !"<<std::endl;return -3;}
     return this->set(val);
   }//set default Celcius
   //! destructor (need at least empty one)

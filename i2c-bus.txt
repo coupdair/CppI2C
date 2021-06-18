@@ -19,11 +19,69 @@ DeviceFactory:TemperatureDevice
   AmbiantTemperature => I2CRegisterWord
   TemperatureResolution => I2CRegisterByte
 
-TemperatureDevice::set(0x3)
+TemperatureDevice::set_Celcius(1.23)
 resolution mode=0x3
 
 Device::get(AmbiantTemperature)
-t=0xc174
+t=0xc173
 
 TemperatureDevice::get_Celcius(AmbiantTemperature)
-t=23.25 Celcius
+t=23.1875 Celcius
+I2C bus(es):
+i2c-3	i2c       	3.i2c                           	I2C adapter
+i2c-1	i2c       	bcm2835 (i2c@7e804000)          	I2C adapter
+
+I2C devices address table:
+     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+00:          -- 04 -- -- -- -- -- -- -- -- -- -- -- 
+10: -- -- -- -- -- -- -- -- 18 19 1a 1b 1c 1d -- -- 
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+70: -- -- -- -- -- -- -- --                         
+
+I2C devices address(es):  0x4, 0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d.
+
+DeviceFactory:TemperatureDevice
+  AmbiantTemperature => I2CRegisterWord
+  TemperatureResolution => I2CRegisterByte
+
+TemperatureDevice::set_Celcius(0.5)
+resolution mode=0
+
+Device::get(AmbiantTemperature)
+t=0xc168
+
+TemperatureDevice::get_Celcius(AmbiantTemperature)
+t=22.5 Celcius
+I2C bus(es):
+i2c-3	i2c       	3.i2c                           	I2C adapter
+i2c-1	i2c       	bcm2835 (i2c@7e804000)          	I2C adapter
+
+I2C devices address table:
+     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+00:          -- 04 -- -- -- -- -- -- -- -- -- -- -- 
+10: -- -- -- -- -- -- -- -- 18 19 1a 1b 1c 1d -- -- 
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+70: -- -- -- -- -- -- -- --                         
+
+I2C devices address(es):  0x4, 0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d.
+
+DeviceFactory:TemperatureDevice
+  AmbiantTemperature => I2CRegisterWord
+  TemperatureResolution => I2CRegisterByte
+
+TemperatureDevice::set_Celcius(0.0625)
+resolution mode=0x3
+
+Device::get(AmbiantTemperature)
+t=0xc173
+
+TemperatureDevice::get_Celcius(AmbiantTemperature)
+t=23.1875 Celcius

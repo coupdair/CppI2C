@@ -21,7 +21,7 @@
 #include "module.hpp"
 #include "i2c_tools.hpp"
 
-#define VERSION "v0.1.2e"
+#define VERSION "v0.1.2f"
 
 //Program option/documentation
 //{argp
@@ -72,7 +72,7 @@ struct arguments
   //! resolution of temperature mesurment
   int resolution;
   //! resolution of temperature mesurment in Celcius
-  int resolutionCelcius;
+  float resolutionCelcius;
   //! string value
   char* string;
 };//arguments (CLI)
@@ -216,8 +216,9 @@ int main(int argc, char **argv)
 //Write resolution
   std::string name="TemperatureResolution";
   {//Device
-  std::cout<<std::endl<<"TemperatureDevice::set("<<arguments.resolution<<")"<<std::endl;
+//  std::cout<<std::endl<<"TemperatureDevice::set("<<arguments.resolution<<")"<<std::endl;
 //  temp->set(arguments.resolution);
+  std::cout<<std::endl<<"TemperatureDevice::set_Celcius("<<arguments.resolutionCelcius<<")"<<std::endl;
   temp->set_Celcius(arguments.resolutionCelcius);
   Register *reg=(temp->find(name))->second;
   int r=reg->read();

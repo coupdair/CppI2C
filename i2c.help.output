@@ -1,6 +1,6 @@
 Usage: i2c [OPTION...] 
 i2c: I2C bus and its devices
-  i2c.v0.1.1d
+  i2c.v0.1.2f
 examples:
   i2c --help
   i2c -v
@@ -8,6 +8,8 @@ examples:
   i2c -V
   i2c --usage
 
+  -c, --resolutionCelcius=VALUE   temperature resolution, e.g. 0x0=0.5°,
+                             0x1=0.25°, 0x2=0.125°, 0x3=0.0625°
   -i, --integer=VALUE        bus index, e.g. 1
   -l, --list                 Produce factory lists
   -r, --resolution=VALUE     temperature resolution, e.g. 0x0=0.5°,
