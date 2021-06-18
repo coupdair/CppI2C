@@ -25,17 +25,17 @@ namespace content
   struct info_form_MC2SA : public cppcms::form
   {
     cppcms::widgets::select resolution;
-    cppcms::widgets::submit submit;
+//    cppcms::widgets::submit submit;
 //    cppcms::widgets::select_multiple gain;
     info_form_MC2SA()
     {
 		///widget titles
         resolution.message("select todo");resolution.help(" units : help todo");
-        submit.value("apply");
+//        submit.value("apply");
 //        gain.message("Your gain(s)");
         ///order widgets
         add(resolution);
-        add(submit);
+//        add(submit);
 //        add(gain);
         ///values and behavious
         resolution.add("5","5");//"label", "value"
