@@ -49,10 +49,10 @@ namespace content
 //        add(gain);
         ///values and behavious
         temperature.readonly(true);temperature.disabled(true);	
-        resolution.add("0.5","0");//"label", 0x"value"
-        resolution.add("0.25","1");
-        resolution.add("0.125","2");
-        resolution.add("0.0625","3");
+        resolution.add("0.5","0.5");//"label", "value"
+        resolution.add("0.25","0.25");
+        resolution.add("0.125","0.125");
+        resolution.add("0.0625","0.0625");
 /** /
         gain.add("2");
         gain.add("4");
@@ -79,7 +79,7 @@ namespace content
   {
     //data
     float temperature;
-    int resolution;
+    float resolution;
     //GUI (HMTL)
     info_form info;
     //value list
@@ -88,7 +88,7 @@ namespace content
       std::ostringstream s;
       s<<"message data:";
       s<<"\n - temperature="<<temperature;
-      s<<"\n - resolution=0x" <<resolution;
+      s<<"\n - resolution=" <<resolution;
       s<<std::endl;
       return s.str();
     }//value_list

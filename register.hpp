@@ -17,7 +17,7 @@
 #include "i2c/i2c.h"
 #endif //USE_I2C_LIB
 
-#define REGISTER_VERSION "v0.1.2d"
+#define REGISTER_VERSION "v0.1.3d"
 
 //version
 //! register library version
@@ -130,7 +130,7 @@ class I2CRegister: public RegisterT<T>
 
 ///read data
     ret = i2c_read(pDevice, id, buf, this->size);
-    if (ret == -1 || (size_t)ret != this->size)
+    if (ret == -1 || ret != this->size)
     {
         fprintf(stderr, "Read i2c error!\n");
         return -5;
@@ -171,7 +171,7 @@ class I2CRegister: public RegisterT<T>
     }//debug
 ///write data
     ret = i2c_write(this->pDevice, this->id, buf, this->size);
-    if((size_t)ret != this->size)
+    if(ret != this->size)
     {
         fprintf(stderr, "Write i2c error!\n");
         return -4;

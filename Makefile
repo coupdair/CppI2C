@@ -5,11 +5,7 @@ LD_LIBRARY_PATH=LD_LIBRARY_PATH="../CppCMS/cppcms/build;../CppCMS/cppcms/build/b
 all: i2c help version
 
 code:
-	geany ReadMe.md Makefile i2c_tools.hpp os_tools.hpp i2c.cpp config.js master.tmpl main.tmpl devices.tmpl setup.tmpl page.tmpl i2c-web.cpp web-capture.sh &
-
-i2c_get:
-	g++ -Wall -g -I../libI2C/include -L../libI2C/ -li2c i2c_get.c -o i2c_get
-	LD_LIBRARY_PATH=../libI2C/ ./i2c_get --help
+	geany ReadMe.md Makefile  i2c_tools.hpp os_tools.hpp register.hpp device.hpp module.hpp  i2c.cpp  config.js master.tmpl main.tmpl devices.tmpl setup.tmpl page.tmpl content.h i2c-web.cpp web-capture.sh &
 
 i2c: i2c.cpp i2c_tools.hpp os_tools.hpp device.hpp register.hpp module.hpp
 #	g++ -DUSE_I2C_TOOLS_CODE -I../i2c-tools/include -I../i2c-tools/tools -DUSE_I2C_LIB -I../libI2C/include -fpermissive -L../libI2C/ -li2c i2c.cpp -o i2c

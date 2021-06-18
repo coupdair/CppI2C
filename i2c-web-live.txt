@@ -1,32 +1,37 @@
 ./i2c-web is running (Ctrl+C to stop), have look to http://localhost:8080/i2c-bus.
-
-I2C devices address(es):0x04, 0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d.
 device_setup page
 device_setup page
 message data:
- - temperature=23.0625
- - resolution=0x0
+ - temperature=23.125
+ - resolution=0.5
 resolution mode=0
 device_setup page
 message data:
  - temperature=23
- - resolution=0x1
-resolution mode=1
-device_setup page
-message data:
- - temperature=23
- - resolution=0x2
+ - resolution=0.125
 resolution mode=2
 device_setup page
 message data:
  - temperature=23.125
- - resolution=0x3
+ - resolution=0.125
+resolution mode=2
+device_setup page
+message data:
+ - temperature=23.125
+ - resolution=0.0625
 resolution mode=3
 device_setup page
 message data:
  - temperature=23.125
- - resolution=0x3
+ - resolution=0.0625
 resolution mode=3
-
-dur=0
-
+device_setup page
+message data:
+ - temperature=23.1875
+ - resolution=0.0625
+resolution mode=3
+device_setup page
+message data:
+ - temperature=23.1875
+ - resolution=0.0625
+resolution mode=3

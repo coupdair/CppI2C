@@ -36,7 +36,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.1.2"
+#define VERSION "v0.1.3d"
 
 //Program option/documentation
 //{argp
@@ -319,7 +319,6 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
         {
             c.info.load(context());
             //setup reg.
-            //! \todo [medium] .. add read reg.
             TemperatureDevice *temperatureDev=(TemperatureDevice *)DeviceFactory::NewDevice("TemperatureDevice"); if(temperatureDev==NULL) exit(-9);
             float t=temperatureDev->get_Celcius();
             c.info.temperature.value(t);//temperatureDev->get_Celcius());
@@ -333,10 +332,10 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
             	//setup reg.
             	//! \todo [medium] . add write reg.
             	//temperatureDev->set(0x0);//seg.  fault
-            	//temperatureDev->set_Celcius(c.resolution);//seg.  fault
+            	temperatureDev->set_Celcius(c.resolution);
                 Register *reg=(temperatureDev->find("TemperatureResolution"))->second;
-                int r=reg->write(c.resolution);
-                usleep(345678);
+                int r;//=reg->write(c.resolution);
+                //usleep(345678);
                 r=reg->read();
                 std::cout<<"resolution mode="<<r<<std::endl;
                 /**/
