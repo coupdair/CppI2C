@@ -39,9 +39,9 @@ namespace content
 //        add(gain);
         ///values and behavious
         resolution.add("5","5");//"label", "value"
-        resolution.add("25","25");
-        resolution.add("125","125");
-        resolution.add("625","625");
+        resolution.add("10","10");
+        resolution.add("15","15");
+        resolution.add("20","20");
         resolution.selected_id("5");
 /** /
         gain.add("2");

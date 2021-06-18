@@ -4,24 +4,38 @@ device_setup page
   FakeReg1 => FakeRegister
   FakeRegister0 => FakeRegister
   FakeRegister1 => FakeRegister
-resolution mode=0x3 i.e. 0.0625
+FakeReg0=5
+FakeReg0=5
+  AmbiantTemperature => I2CRegisterWord
+  TemperatureResolution => I2CRegisterByte
+resolution mode=0x2 i.e. 0.125
 device_setup page
 MC2SA apply message data:
  - temperature=0
  - resolution=0
- - resolution_todo=25
+ - resolution_todo=20
+Temperature apply message data:
+ - temperature=23.625
+ - resolution=0.25
+ - resolution_todo=20
+resolution mode=1
+device_setup page
+  FakeReg0 => FakeRegister
+  FakeReg1 => FakeRegister
+  FakeRegister0 => FakeRegister
+  FakeRegister1 => FakeRegister
+FakeReg0=5
+FakeReg0=5
+  AmbiantTemperature => I2CRegisterWord
+  TemperatureResolution => I2CRegisterByte
+resolution mode=0x1 i.e. 0.25
+device_setup page
+MC2SA apply message data:
+ - temperature=0
+ - resolution=0
+ - resolution_todo=20
 Temperature apply message data:
  - temperature=23.5
  - resolution=0.25
- - resolution_todo=25
-resolution mode=1
-device_setup page
-MC2SA apply message data:
- - temperature=0
- - resolution=0
- - resolution_todo=25
-Temperature apply message data:
- - temperature=23.25
- - resolution=0.25
- - resolution_todo=25
+ - resolution_todo=20
 resolution mode=1
