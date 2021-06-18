@@ -1,32 +1,48 @@
 ./i2c-web is running (Ctrl+C to stop), have look to http://localhost:8080/i2c-bus.
 device_setup page
-FakeReg1 => FakeRegister
 FakeRegister0 => FakeRegister
 FakeRegister1 => FakeRegister
 gain => FakeRegister
-  FakeReg1 = 5
-  FakeRegister0 = 10
-  FakeRegister1 = 15
-  gain = 20
-gain=20, i.e. 010100
+resistor => FakeRegister
+  FakeRegister0 = 5
+  FakeRegister1 = 10
+  gain = 15
+  resistor = 20
+gain=15, i.e. 001111
+resistor=20, i.e. 010100 3 higher bits
 AmbiantTemperature => I2CRegisterWord
 TemperatureResolution => I2CRegisterByte
-  AmbiantTemperature =   TemperatureResolution = resolution mode=0x1 i.e. 0.25
+  AmbiantTemperature =   TemperatureResolution = resolution mode=0x3 i.e. 0.0625
 device_setup page
-MC2SA apply message data:
+MC2SA gain apply message data:
  - temperature=0
  - resolution=0
  - gain=39, i.e. 100111
-FakeReg1 => FakeRegister
+ - resistor=0, i.e. 000000
 FakeRegister0 => FakeRegister
 FakeRegister1 => FakeRegister
 gain => FakeRegister
-  FakeReg1 = 5
-  FakeRegister0 = 10
-  FakeRegister1 = 15
+resistor => FakeRegister
+  FakeRegister0 = 5
+  FakeRegister1 = 10
   gain = 39
-Temperature apply message data:
- - temperature=23.5
- - resolution=0.5
+  resistor = 20
+MC2SA resistor apply message data:
+ - temperature=0
+ - resolution=0
  - gain=39, i.e. 100111
-resolution mode=0
+ - resistor=0, i.e. 000000
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+gain => FakeRegister
+resistor => FakeRegister
+  FakeRegister0 = 5
+  FakeRegister1 = 10
+  gain = 39
+  resistor = 0
+Temperature apply message data:
+ - temperature=23.6875
+ - resolution=0.0625
+ - gain=39, i.e. 100111
+ - resistor=0, i.e. 000000
+resolution mode=3

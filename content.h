@@ -79,6 +79,30 @@ namespace content
         return true;
     }//validate
   };//info_form_MC2SA_gain
+  struct info_form_MC2SA_resistor : public cppcms::form
+  {
+    cppcms::widgets::checkbox resistor2;
+    cppcms::widgets::checkbox resistor3;
+    cppcms::widgets::checkbox resistor5;
+    info_form_MC2SA_resistor()
+    {
+		///widget titles
+        resistor2.message("");resistor2.name("resistor2");resistor2.help("200k Ohm");
+        resistor3.message("");resistor3.name("resistor3");resistor3.help("300k Ohm");
+        resistor5.message("");resistor5.name("resistor5");resistor5.help("500k Ohm");
+        ///order widgets
+        add(resistor2);
+        add(resistor3);
+        add(resistor5);
+        ///values and behavious
+    }//constructor
+    virtual bool validate()
+    {
+        if(!form::validate()) 
+            return false;
+        return true;
+    }//validate
+  };//info_form_MC2SA_resistor
   struct info_form_temperature : public cppcms::form
   {
     cppcms::widgets::numeric<float> temperature;
@@ -134,8 +158,10 @@ namespace content
     float resolution;
     ///MC2SA
     char gain;
+    char resistor;
     //GUI (HMTL)
     info_form_MC2SA_gain infoMC2SAgain;
+    info_form_MC2SA_resistor infoMC2SAresistor;
     info_form_temperature infoTemperature;
     info_form_apply infoApply;
     //value list
@@ -147,6 +173,8 @@ namespace content
       s<<"\n - resolution=" <<resolution;
       std::bitset<6> bs(gain);
       s<<"\n - gain="<<bs.to_ulong()<<", i.e. "<<bs.to_string();
+      bs=resistor;
+      s<<"\n - resistor="<<bs.to_ulong()<<", i.e. "<<bs.to_string();
       s<<std::endl;
       return s.str();
     }//value_list

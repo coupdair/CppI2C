@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.1.6d"
+#define VERSION "v0.1.6e"
 
 //Program option/documentation
 //{argp
@@ -330,7 +330,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
             c.infoTemperature.temperature.value(temperatureDev->get_Celcius());
             //content transfer GUI to core
             if(c.infoMC2SAgain.validate())
-            {	///MC2SA
+            {///MC2SA gain
 //				std::istringstream(c.infoMC2SAgain.resolution.selected_id())>>c.resolution_todo;//string>>float
               //get c.gain from c.infoMC2SAgain.gain[1,2,4,8,11,16]
               std::bitset<6> gain;
@@ -341,11 +341,27 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
               gain[4]=c.infoMC2SAgain.gain11.value();
               gain[5]=c.infoMC2SAgain.gain16.value();
               c.gain=gain.to_ulong();
-              if(verbose>0) std::cout<<"MC2SA apply "<<c.value_list()<<std::flush;
+              //print
+              if(verbose>0) std::cout<<"MC2SA gain apply "<<c.value_list()<<std::flush;
               //setup reg.
-              //! \todo [high] . set reg.
               Register *reg=(MC2SADev->find("gain"))->second;
               reg->write(c.gain);
+              MC2SADev->read();
+            }//valid
+            if(c.infoMC2SAresistor.validate())
+            {///MC2SA resistor
+//				std::istringstream(c.infoMC2SAgain.resolution.selected_id())>>c.resolution_todo;//string>>float
+              //get c.resistor from c.infoMC2SAresistor.resistor[2,3,5]
+              std::bitset<6> resistor;//3 higher bits
+              resistor[3]=c.infoMC2SAresistor.resistor2.value();
+              resistor[4]=c.infoMC2SAresistor.resistor3.value();
+              resistor[5]=c.infoMC2SAresistor.resistor5.value();
+              c.resistor=resistor.to_ulong();
+              //print
+              if(verbose>0) std::cout<<"MC2SA resistor apply "<<c.value_list()<<std::flush;
+              //setup reg.
+              Register *reg=(MC2SADev->find("resistor"))->second;
+              reg->write(c.resistor);
               MC2SADev->read();
             }//valid
             //content transfer GUI to core
@@ -367,6 +383,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
           //get values
           {//get reg. MC2SA -> c.infoMC2SAgain.*
           MC2SADev->read();
+          ///gain
           Register *reg=(MC2SADev->find("gain"))->second;
           int r=reg->read();
           //set gain to c.infoMC2SAgain.gain[1,2,4,8,11,16]
@@ -378,6 +395,15 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
           c.infoMC2SAgain.gain8.value(gain[3]);
           c.infoMC2SAgain.gain11.value(gain[4]);
           c.infoMC2SAgain.gain16.value(gain[5]);
+          ///resistor
+          reg=(MC2SADev->find("resistor"))->second;
+          r=reg->read();
+          //set resistor to c.infoMC2SAresistor.resistor[2,3,5]
+          std::bitset<6> resistor(r);//3 higher bits
+          std::cout<<"resistor="<<resistor.to_ulong()<<", i.e. "<<resistor.to_string()<<" 3 higher bits"<<std::endl;
+          c.infoMC2SAresistor.resistor2.value(resistor[3]);
+          c.infoMC2SAresistor.resistor3.value(resistor[4]);
+          c.infoMC2SAresistor.resistor5.value(resistor[5]);
 /** /
           std::ostringstream tmp;tmp<<r;//int>>string
           std::cout<<"FakeReg0="<<tmp.str()<<std::endl;
