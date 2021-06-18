@@ -13,7 +13,7 @@ gain => FakeRegister
 gain=20, i.e. 010100
 AmbiantTemperature => I2CRegisterWord
 TemperatureResolution => I2CRegisterByte
-  AmbiantTemperature =   TemperatureResolution = resolution mode=0x1 i.e. 0.25
+  AmbiantTemperature =   TemperatureResolution = resolution mode=0x0 i.e. 0.5
 
 dur=0
 

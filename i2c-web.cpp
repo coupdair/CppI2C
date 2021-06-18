@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.1.5"
+#define VERSION "v0.1.6d"
 
 //Program option/documentation
 //{argp
@@ -324,22 +324,22 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
         content::message c;
         if(request().request_method()=="POST")
         {
-            c.infoMC2SA.load(context());
+            c.infoMC2SAgain.load(context());
             c.infoTemperature.load(context());
             //get reg.
             c.infoTemperature.temperature.value(temperatureDev->get_Celcius());
             //content transfer GUI to core
-            if(c.infoMC2SA.validate())
+            if(c.infoMC2SAgain.validate())
             {	///MC2SA
-//				std::istringstream(c.infoMC2SA.resolution.selected_id())>>c.resolution_todo;//string>>float
-              //get c.gain from c.infoMC2SA.gain[1,2,4,8,11,16]
+//				std::istringstream(c.infoMC2SAgain.resolution.selected_id())>>c.resolution_todo;//string>>float
+              //get c.gain from c.infoMC2SAgain.gain[1,2,4,8,11,16]
               std::bitset<6> gain;
-              gain[0]=c.infoMC2SA.gain1.value();
-              gain[1]=c.infoMC2SA.gain2.value();
-              gain[2]=c.infoMC2SA.gain4.value();
-              gain[3]=c.infoMC2SA.gain8.value();
-              gain[4]=c.infoMC2SA.gain11.value();
-              gain[5]=c.infoMC2SA.gain16.value();
+              gain[0]=c.infoMC2SAgain.gain1.value();
+              gain[1]=c.infoMC2SAgain.gain2.value();
+              gain[2]=c.infoMC2SAgain.gain4.value();
+              gain[3]=c.infoMC2SAgain.gain8.value();
+              gain[4]=c.infoMC2SAgain.gain11.value();
+              gain[5]=c.infoMC2SAgain.gain16.value();
               c.gain=gain.to_ulong();
               if(verbose>0) std::cout<<"MC2SA apply "<<c.value_list()<<std::flush;
               //setup reg.
@@ -365,23 +365,23 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
         {//KEEP values
           //! \todo [high] . get reg.
           //get values
-          {//get reg. MC2SA -> c.infoMC2SA.*
+          {//get reg. MC2SA -> c.infoMC2SAgain.*
           MC2SADev->read();
           Register *reg=(MC2SADev->find("gain"))->second;
           int r=reg->read();
-          //set gain to c.infoMC2SA.gain[1,2,4,8,11,16]
+          //set gain to c.infoMC2SAgain.gain[1,2,4,8,11,16]
           std::bitset<6> gain(r);
           std::cout<<"gain="<<gain.to_ulong()<<", i.e. "<<gain.to_string()<<std::endl;
-          c.infoMC2SA.gain1.value(gain[0]);
-          c.infoMC2SA.gain2.value(gain[1]);
-          c.infoMC2SA.gain4.value(gain[2]);
-          c.infoMC2SA.gain8.value(gain[3]);
-          c.infoMC2SA.gain11.value(gain[4]);
-          c.infoMC2SA.gain16.value(gain[5]);
+          c.infoMC2SAgain.gain1.value(gain[0]);
+          c.infoMC2SAgain.gain2.value(gain[1]);
+          c.infoMC2SAgain.gain4.value(gain[2]);
+          c.infoMC2SAgain.gain8.value(gain[3]);
+          c.infoMC2SAgain.gain11.value(gain[4]);
+          c.infoMC2SAgain.gain16.value(gain[5]);
 /** /
           std::ostringstream tmp;tmp<<r;//int>>string
           std::cout<<"FakeReg0="<<tmp.str()<<std::endl;
-          c.infoMC2SA.resolution.selected_id(tmp.str());
+          c.infoMC2SAgain.resolution.selected_id(tmp.str());
 /**/
 	      }//MC2SA
           {//get reg. Temperature -> c.infoTemperature.*

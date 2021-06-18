@@ -22,7 +22,7 @@ namespace content
   };//devices
 
   //forms
-  struct info_form_MC2SA : public cppcms::form
+  struct info_form_MC2SA_gain : public cppcms::form
   {
 //    cppcms::widgets::select resolution;
 //    cppcms::widgets::submit submit;
@@ -32,7 +32,7 @@ namespace content
     cppcms::widgets::checkbox gain8;
     cppcms::widgets::checkbox gain11;
     cppcms::widgets::checkbox gain16;
-    info_form_MC2SA()
+    info_form_MC2SA_gain()
     {
 		///widget titles
 //        resolution.message("select todo");resolution.help(" units : help todo");
@@ -78,7 +78,7 @@ namespace content
 */
         return true;
     }//validate
-  };//info_form_MC2SA
+  };//info_form_MC2SA_gain
   struct info_form_temperature : public cppcms::form
   {
     cppcms::widgets::numeric<float> temperature;
@@ -135,7 +135,7 @@ namespace content
     ///MC2SA
     char gain;
     //GUI (HMTL)
-    info_form_MC2SA infoMC2SA;
+    info_form_MC2SA_gain infoMC2SAgain;
     info_form_temperature infoTemperature;
     info_form_apply infoApply;
     //value list
