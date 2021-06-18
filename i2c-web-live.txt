@@ -11,7 +11,7 @@ gain => FakeRegister
 gain=20, i.e. 010100
 AmbiantTemperature => I2CRegisterWord
 TemperatureResolution => I2CRegisterByte
-  AmbiantTemperature =   TemperatureResolution = resolution mode=0x1 i.e. 0.25
+  AmbiantTemperature =   TemperatureResolution = resolution mode=0x0 i.e. 0.5
 device_setup page
 MC2SA apply message data:
  - temperature=0
@@ -34,7 +34,7 @@ device_setup page
 MC2SA apply message data:
  - temperature=0
  - resolution=0
- - gain=39, i.e. 100111
+ - gain=33, i.e. 100001
 FakeReg1 => FakeRegister
 FakeRegister0 => FakeRegister
 FakeRegister1 => FakeRegister
@@ -42,9 +42,9 @@ gain => FakeRegister
   FakeReg1 = 5
   FakeRegister0 = 10
   FakeRegister1 = 15
-  gain = 39
+  gain = 33
 Temperature apply message data:
- - temperature=23.1875
- - resolution=0.5
- - gain=39, i.e. 100111
-resolution mode=0
+ - temperature=23.3125
+ - resolution=0.25
+ - gain=33, i.e. 100001
+resolution mode=1

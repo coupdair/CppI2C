@@ -83,18 +83,15 @@ namespace content
   {
     cppcms::widgets::numeric<float> temperature;
     cppcms::widgets::select resolution;
-    cppcms::widgets::submit submit;
     info_form_temperature()
     {
 		///widget titles
  		//! \todo [low] set help messsage as ToolTip (note: <i>italic</i> not working as translated)
 		temperature.message("Temperature");temperature.name("temperature");temperature.help(" °C : ambiant temperature in degree Celcius");//temperature.error_message("*");
         resolution.message("Resolution");resolution.name("temperature_resolution");resolution.help(" °C : temperature resolution in degree Celcius (and speed, e.g. 4Hz at 0.0625°C)");
-        submit.value("apply");
         ///order widgets
         add(temperature);
         add(resolution);
-        add(submit);
         ///values and behavious
         TemperatureDevice *temperatureDev=(TemperatureDevice *)DeviceFactory::NewDevice("TemperatureDevice"); if(temperatureDev==NULL) exit(-9);
         temperature.value(temperatureDev->get_Celcius());
@@ -112,6 +109,23 @@ namespace content
         return true;
     }//validate
   };//info_form_temperature
+  struct info_form_apply : public cppcms::form
+  {
+    cppcms::widgets::submit submit;
+    info_form_apply()
+    {
+		///widget titles
+        submit.value("apply");submit.name("apply_all");
+        ///order widgets
+        add(submit);
+    }//constructor
+    virtual bool validate()
+    {
+        if(!form::validate()) 
+            return false;
+        return true;
+    }//validate
+  };//info_form_apply
   struct message : public master
   {
     //data
@@ -123,6 +137,7 @@ namespace content
     //GUI (HMTL)
     info_form_MC2SA infoMC2SA;
     info_form_temperature infoTemperature;
+    info_form_apply infoApply;
     //value list
     std::string value_list(void)
     {
