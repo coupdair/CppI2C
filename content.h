@@ -130,7 +130,8 @@ namespace content
       s<<"message data:";
       s<<"\n - temperature="<<temperature;
       s<<"\n - resolution=" <<resolution;
-      s<<"\n - gain=" <<gain;
+      std::bitset<6> bs(gain);
+      s<<"\n - gain="<<bs.to_ulong()<<", i.e. "<<bs.to_string();
       s<<std::endl;
       return s.str();
     }//value_list

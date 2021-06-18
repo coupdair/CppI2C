@@ -1,14 +1,14 @@
 ./i2c-web is running (Ctrl+C to stop), have look to http://localhost:8080/i2c-bus.
 device_setup page
-FakeReg0 => FakeRegister
 FakeReg1 => FakeRegister
 FakeRegister0 => FakeRegister
 FakeRegister1 => FakeRegister
-  FakeReg0 = 5
-  FakeReg1 = 10
-  FakeRegister0 = 15
-  FakeRegister1 = 20
-FakeReg0=5
+gain => FakeRegister
+  FakeReg1 = 5
+  FakeRegister0 = 10
+  FakeRegister1 = 15
+  gain = 20
+gain=20, i.e. 010100
 AmbiantTemperature => I2CRegisterWord
 TemperatureResolution => I2CRegisterByte
   AmbiantTemperature =   TemperatureResolution = resolution mode=0x3 i.e. 0.0625
@@ -16,25 +16,25 @@ device_setup page
 MC2SA apply message data:
  - temperature=0
  - resolution=0
- - gain=
-FakeReg0 => FakeRegister
+ - gain=39, i.e. 100111
 FakeReg1 => FakeRegister
 FakeRegister0 => FakeRegister
 FakeRegister1 => FakeRegister
-  FakeReg0 = 21
-  FakeReg1 = 10
-  FakeRegister0 = 15
-  FakeRegister1 = 20
+gain => FakeRegister
+  FakeReg1 = 5
+  FakeRegister0 = 10
+  FakeRegister1 = 15
+  gain = 39
 device_setup page
 MC2SA apply message data:
  - temperature=0
  - resolution=0
- - gain=?
-FakeReg0 => FakeRegister
+ - gain=39, i.e. 100111
 FakeReg1 => FakeRegister
 FakeRegister0 => FakeRegister
 FakeRegister1 => FakeRegister
-  FakeReg0 = 63
-  FakeReg1 = 10
-  FakeRegister0 = 15
-  FakeRegister1 = 20
+gain => FakeRegister
+  FakeReg1 = 5
+  FakeRegister0 = 10
+  FakeRegister1 = 15
+  gain = 39

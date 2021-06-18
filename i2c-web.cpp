@@ -16,7 +16,6 @@
 #include <iostream> // std::ios, std::istream, std::cout
 #include <fstream>  // std::filebuf
 #include <vector>   // std::vector
-#include <bitset>   // std::bitset
 
 //CppCMS
 #include <cppcms/application.h>
@@ -36,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.1.5f"
+#define VERSION "v0.1.5g"
 
 //Program option/documentation
 //{argp
@@ -345,7 +344,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
               if(verbose>0) std::cout<<"MC2SA apply "<<c.value_list()<<std::flush;
               //setup reg.
               //! \todo [high] . set reg.
-              Register *reg=(MC2SADev->find("FakeReg0"))->second;
+              Register *reg=(MC2SADev->find("gain"))->second;
               reg->write(c.gain);
               MC2SADev->read();
             }//valid
@@ -367,12 +366,12 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
           //! \todo [high] . get reg.
           //get values
           {//get reg. MC2SA -> c.infoMC2SA.*
-         MC2SADev->read();
-          Register *reg=(MC2SADev->find("FakeReg0"))->second;
+          MC2SADev->read();
+          Register *reg=(MC2SADev->find("gain"))->second;
           int r=reg->read();
-          std::cout<<"FakeReg0="<<r<<std::endl;
           //set gain to c.infoMC2SA.gain[1,2,4,8,11,16]
           std::bitset<6> gain(r);
+          std::cout<<"gain="<<gain.to_ulong()<<", i.e. "<<gain.to_string()<<std::endl;
           c.infoMC2SA.gain1.value(gain[0]);
           c.infoMC2SA.gain2.value(gain[1]);
           c.infoMC2SA.gain4.value(gain[2]);

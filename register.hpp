@@ -8,16 +8,17 @@
 #ifndef __REGISTER_FACTORY__
 #define __REGISTER_FACTORY__
 
-#include <string>         // std::string
-#include <iostream>       // std::cout
-#include <map>            // std::map
+#include <string>   // std::string
+#include <iostream> // std::cout
+#include <map>      // std::map
+#include <bitset>   // std::bitset
 
 #ifdef USE_I2C_LIB
 #warning "use I2C lib"
 #include "i2c/i2c.h"
 #endif //USE_I2C_LIB
 
-#define REGISTER_VERSION "v0.1.4"
+#define REGISTER_VERSION "v0.1.5d"
 
 //version
 //! register library version

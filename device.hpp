@@ -20,7 +20,7 @@
 #include "i2c/i2c.h"
 #endif //USE_I2C_LIB
 
-#define DEVICE_VERSION "v0.1.4"
+#define DEVICE_VERSION "v0.1.5d"
 
 //version
 //! device library version
@@ -232,7 +232,7 @@ class MC2SADevice: public FakeDevice
   MC2SADevice()
   {
     set_name("MC2SADevice");
-    create_register("FakeReg0","FakeRegister");//,RW);
+    create_register("gain","FakeRegister");//,RW);
     create_register("FakeReg1","FakeRegister");//,RW);
 //    create_register("TODO","I2CRegisterByte",0x12);//,RW);
     init();
