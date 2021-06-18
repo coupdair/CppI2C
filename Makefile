@@ -22,9 +22,9 @@ version: i2c
 run: i2c
 	echo;echo "factory:"
 #	LD_LIBRARY_PATH=../libI2C/ ./i2c -i 1 -r 3 | tee i2c-bus.txt
-	LD_LIBRARY_PATH=../libI2C/ ./i2c -i 1 -c 1.23    | tee    i2c-bus.txt #BAD
-	LD_LIBRARY_PATH=../libI2C/ ./i2c -i 1 -c 0.5     | tee -a i2c-bus.txt
-	LD_LIBRARY_PATH=../libI2C/ ./i2c -i 1 -c 0.0625  | tee -a i2c-bus.txt
+	LD_LIBRARY_PATH=../libI2C/ ./i2c -i 1 -c 1.23    2>&1 | tee    i2c-bus.txt #BAD
+	LD_LIBRARY_PATH=../libI2C/ ./i2c -i 1 -c 0.5     2>&1 | tee -a i2c-bus.txt
+	LD_LIBRARY_PATH=../libI2C/ ./i2c -i 1 -c 0.0625  2>&1 | tee -a i2c-bus.txt
 
 web: i2c-web.cpp config.js i2c_tools.hpp os_tools.hpp device.hpp register.hpp module.hpp
 	../CppCMS/cppcms/bin/cppcms_tmpl_cc master.tmpl main.tmpl page.tmpl devices.tmpl setup.tmpl -o web_skin.cpp
@@ -38,10 +38,10 @@ web-version: web
 
 run-web: web
 	#run i2c-web
-	$(LD_LIBRARY_PATH) ./i2c-web -c config.js -i 1 | tee i2c-web-live.txt
+	$(LD_LIBRARY_PATH) ./i2c-web -c config.js -i 1 2>&1 | tee i2c-web-live.txt
 
 run-web-capture: web
 	#sleep a while then get HTML and stop service
 	./web-capture.sh &
 	#run i2c-web
-	$(LD_LIBRARY_PATH) ./i2c-web -c config.js -i 1 | tee i2c-web.txt
+	$(LD_LIBRARY_PATH) ./i2c-web -c config.js -i 1 2>&1 | tee i2c-web.txt
