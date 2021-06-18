@@ -1,6 +1,6 @@
 Usage: i2c-web [OPTION...] 
 i2c-web: I2C bus and its devices on HTTP
-  i2c-web.v0.1.3e
+  i2c-web.v0.1.3
 examples:
   i2c-web --help
   i2c-web -v

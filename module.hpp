@@ -14,7 +14,7 @@
 
 #include "device.hpp"
 
-#define MODULE_VERSION "v0.1.2d"
+#define MODULE_VERSION "v0.1.3"
 
 //version
 //! module library version

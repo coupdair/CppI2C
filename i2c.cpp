@@ -21,7 +21,7 @@
 #include "module.hpp"
 #include "i2c_tools.hpp"
 
-#define VERSION "v0.1.2f"
+#define VERSION "v0.1.3"
 
 //Program option/documentation
 //{argp
@@ -175,8 +175,8 @@ int main(int argc, char **argv)
   if(false)//implementation
   {
     std::cout<<"## implementation ##"<<std::endl;
-    register_implementation();
-    device_implementation();
+    register_implementation<char>();
+    device_implementation<char>();
 //    module_implementation();
   }//implementation
 

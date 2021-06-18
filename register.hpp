@@ -17,17 +17,25 @@
 #include "i2c/i2c.h"
 #endif //USE_I2C_LIB
 
-#define REGISTER_VERSION "v0.1.3d"
+#define REGISTER_VERSION "v0.1.3"
 
 //version
 //! register library version
-int register_lib_version(std::string &out)
+/**
+ * \note template has no code design interest, it is used only for compilation (e.g. no double). 
+ **/
+template <typename T>
+int register_lib_version(std::string &out, T dummy=0)
 {
   out=REGISTER_VERSION;
   return 0;
 }//register_lib_version
 //! register library pretty version
-int register_pretty_version(std::string &out)
+/**
+ * \note template has no code design interest, it is used only for compilation (e.g. no double). 
+ **/
+template <typename T>
+int register_pretty_version(std::string &out, T dummy=0)
 {
   out
   = "register."
@@ -224,7 +232,12 @@ class RegisterFactory
   }
 };//RegisterFactory
 
-void register_implementation()
+//! implementation of registers, i.e. tests
+/**
+ * \note template has no code design interest, it is used only for compilation (e.g. no double). 
+ **/
+template <typename T>
+void register_implementation(T dummy=0)
 {
   {//basis
   FakeRegister fake;    fake.read();

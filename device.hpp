@@ -8,9 +8,10 @@
 #ifndef __DEVICE_FACTORY__
 #define __DEVICE_FACTORY__
 
-#include <string>         // std::string
-#include <iostream>       // std::cout
-#include <map>            // std::map
+#include <string>   // std::string
+#include <iostream> // std::cout
+#include <map>      // std::map
+#include <unistd.h> // usleep
 
 #include "register.hpp"
 
@@ -19,17 +20,25 @@
 #include "i2c/i2c.h"
 #endif //USE_I2C_LIB
 
-#define DEVICE_VERSION "v0.1.3e"
+#define DEVICE_VERSION "v0.1.3"
 
 //version
 //! device library version
-int device_lib_version(std::string &out)
+/**
+ * \note template has no code design interest, it is used only for compilation (e.g. no double). 
+ **/
+template <typename T>
+int device_lib_version(std::string &out, T dummy=0)
 {
   out=DEVICE_VERSION;
   return 0;
 }//device_lib_version
 //! device library pretty version
-int device_pretty_version(std::string &out)
+/**
+ * \note template has no code design interest, it is used only for compilation (e.g. no double). 
+ **/
+template <typename T>
+int device_pretty_version(std::string &out, T dummy=0)
 {
   out
   = "device."
@@ -243,7 +252,12 @@ class DeviceFactory
 
 };//DeviceFactory
 
-void device_implementation()
+//! implementation of devices, i.e. tests
+/**
+ * \note template has no code design interest, it is used only for compilation (e.g. no double). 
+ **/
+template <typename T>
+void device_implementation(T dummy=0)
 {
   {//basis
   FakeDevice fake;        fake.register_list();

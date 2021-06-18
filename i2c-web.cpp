@@ -27,7 +27,6 @@
 //./build/cppcms/config.h CPPCMS_PACKAGE_VERSION
 
 //Devices (and related)
-#include <unistd.h> //usleep
 #include "module.hpp"
 ///I2C lib.
 #include "i2c_tools.hpp"
@@ -36,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.1.3e"
+#define VERSION "v0.1.3"
 
 //Program option/documentation
 //{argp
@@ -194,8 +193,8 @@ public:
     vc="C++CMS.v" CPPCMS_PACKAGE_VERSION;
     i2c_pretty_version(vi);
     os_pretty_version(vo);
-    register_pretty_version(vr);
-    device_pretty_version(vd);
+    register_pretty_version<char>(vr);
+    device_pretty_version<char>(vd);
     module_pretty_version(vm);
     c.page_content=
       "  <h1>server</h1>\n"

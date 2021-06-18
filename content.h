@@ -3,6 +3,7 @@
 
 #include <cppcms/view.h>
 #include <string>
+#include "device.hpp"
 
 namespace content
 {
@@ -30,13 +31,9 @@ namespace content
     info_form()
     {
 		///widget titles
-		//! \todo [medium] _ add read reg.
-/*
+        //setup reg.
         TemperatureDevice *temperatureDev=(TemperatureDevice *)DeviceFactory::NewDevice("TemperatureDevice"); if(temperatureDev==NULL) exit(-9);
-        short t=temperatureDev->get_Celcius();
-        temperature.value(t);
-*/
-        temperature.value(23.45);
+        temperature.value(temperatureDev->get_Celcius());
  		//! \todo [low] set help messsage as ToolTip (note: <i>italic</i> not working as translated)
 		temperature.message("Temperature");temperature.help(" °C : ambiant temperature in degree Celcius");//temperature.error_message("*");
         resolution.message("Resolution");resolution.help(" °C : temperature resolution in degree Celcius (and speed, e.g. 4Hz at 0.0625°C)");

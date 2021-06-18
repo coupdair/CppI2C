@@ -3,7 +3,12 @@ device_setup page
 device_setup page
 device_setup page
 message data:
- - temperature=23.25
+ - temperature=23.3125
+ - resolution=0.5
+resolution mode=0
+device_setup page
+message data:
+ - temperature=23.5
  - resolution=0.5
 resolution mode=0
 device_setup page
@@ -13,7 +18,7 @@ message data:
 resolution mode=1
 device_setup page
 message data:
- - temperature=23
+ - temperature=23.25
  - resolution=0.125
 resolution mode=2
 device_setup page
@@ -23,11 +28,6 @@ message data:
 resolution mode=3
 device_setup page
 message data:
- - temperature=23.25
- - resolution=0.0625
-resolution mode=3
-device_setup page
-message data:
- - temperature=23.1875
+ - temperature=23.3125
  - resolution=0.0625
 resolution mode=3
