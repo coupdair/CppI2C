@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.1.4h"
+#define VERSION "v0.1.4i"
 
 //Program option/documentation
 //{argp
@@ -344,13 +344,16 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
         }//POST
         else
         {//KEEP values
+          //! \todo [high] get reg.
           //get values
+        std::cout<<"c.resolution_todo="<<c.resolution_todo<<std::endl;
           //std::ostringstream tmpr;tmpr<<c.resolution_todo;//float>>string
           //c.infoMC2SA.resolution.selected_id(tmpr.str());
         c.infoMC2SA.resolution.selected_id("25");
           //get reg.
           TemperatureDevice *temperatureDev=(TemperatureDevice *)DeviceFactory::NewDevice("TemperatureDevice"); if(temperatureDev==NULL) exit(-9);
           c.infoTemperature.temperature.value(temperatureDev->get_Celcius());
+        std::cout<<"c.resolution="<<c.resolution<<std::endl;
 		  //std::ostringstream tmp;tmp<<c.resolution;//float>>string
 		  //c.infoTemperature.resolution.selected_id(tmp.str());
 		c.infoTemperature.resolution.selected_id("0.25");
