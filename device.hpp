@@ -20,7 +20,7 @@
 #include "i2c/i2c.h"
 #endif //USE_I2C_LIB
 
-#define DEVICE_VERSION "v0.1.3"
+#define DEVICE_VERSION "v0.1.4d"
 
 //version
 //! device library version
@@ -225,6 +225,30 @@ class TemperatureDevice: public I2C_Device
   virtual ~TemperatureDevice() {}
 };//TemperatureDevice
 
+//! MC2SA
+class MC2SADevice: public FakeDevice
+{
+ public:
+  MC2SADevice()
+  {
+    set_name("MC2SADevice");
+    create_register("FakeReg0","FakeRegister");//,RW);
+    create_register("FakeReg1","FakeRegister");//,RW);
+//    create_register("TODO","I2CRegisterByte",0x12);//,RW);
+  }//constructor
+  virtual void read()
+  {if(this->debug) std::cout<<name<<"::read()"<<std::endl;
+    this->register_list("");
+    for (std::map<std::string,Register*>::iterator it=this->begin(); it!=this->end(); ++it)
+    {
+      std::cout<<"  "<< it->first << " = ";
+      (it->second)->read();
+    }//register loop
+  }//read
+  //! destructor (need at least empty one)
+  virtual ~MC2SADevice() {}
+};//MC2SADevice
+
 //! device factory
 /**
  *  \note instanciation based on name (i.e. string, as done only one time)
@@ -238,6 +262,8 @@ class DeviceFactory
       return new FakeDevice;
     if(name == "TemperatureDevice")
       return new TemperatureDevice;
+    if(name == "MC2SADevice")
+      return new MC2SADevice;
     std::cerr<<"Device name is unknown, i.e. \""<<name<<"\"."<<std::endl;
     return NULL;
   }//NewDevice
@@ -246,6 +272,7 @@ class DeviceFactory
     std::string list;
     list="FakeDevice";
     list+=", TemperatureDevice";
+    list+=", MC2SADevice";
     list+=".";
     return list;
   }
@@ -262,10 +289,12 @@ void device_implementation(T dummy=0)
   {//basis
   FakeDevice fake;        fake.register_list();
   TemperatureDevice temp; temp.register_list();
+  MC2SADevice mc2s;       mc2s.register_list();
   }//basis
   {//factory
   Device *fake=DeviceFactory::NewDevice("FakeDevice");       if(fake!=NULL) fake->register_list();
   Device *temp=DeviceFactory::NewDevice("TemperatureDevice");if(temp!=NULL) temp->register_list();
+  Device *mc2s=DeviceFactory::NewDevice("MC2SADevice");      if(temp!=NULL) mc2s->register_list();
   }//factory
 }//device_implementation
 

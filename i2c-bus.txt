@@ -15,18 +15,11 @@ I2C devices address table:
 
 I2C devices address(es):  0x4, 0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d.
 
-DeviceFactory:TemperatureDevice
-  AmbiantTemperature => I2CRegisterWord
-  TemperatureResolution => I2CRegisterByte
-
-TemperatureDevice::set_Celcius(1.23)
-resolution mode=0x3
-
-Device::get(AmbiantTemperature)
-t=0xc173
-
-TemperatureDevice::get_Celcius(AmbiantTemperature)
-t=23.1875 Celcius
+DeviceFactory:MC2SADevice
+  FakeReg0 => FakeRegister
+  FakeReg1 => FakeRegister
+  FakeRegister0 => FakeRegister
+  FakeRegister1 => FakeRegister
 I2C bus(es):
 i2c-3	i2c       	3.i2c                           	I2C adapter
 i2c-1	i2c       	bcm2835 (i2c@7e804000)          	I2C adapter
@@ -44,18 +37,11 @@ I2C devices address table:
 
 I2C devices address(es):  0x4, 0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d.
 
-DeviceFactory:TemperatureDevice
-  AmbiantTemperature => I2CRegisterWord
-  TemperatureResolution => I2CRegisterByte
-
-TemperatureDevice::set_Celcius(0.5)
-resolution mode=0
-
-Device::get(AmbiantTemperature)
-t=0xc168
-
-TemperatureDevice::get_Celcius(AmbiantTemperature)
-t=22.5 Celcius
+DeviceFactory:MC2SADevice
+  FakeReg0 => FakeRegister
+  FakeReg1 => FakeRegister
+  FakeRegister0 => FakeRegister
+  FakeRegister1 => FakeRegister
 I2C bus(es):
 i2c-3	i2c       	3.i2c                           	I2C adapter
 i2c-1	i2c       	bcm2835 (i2c@7e804000)          	I2C adapter
@@ -73,15 +59,8 @@ I2C devices address table:
 
 I2C devices address(es):  0x4, 0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d.
 
-DeviceFactory:TemperatureDevice
-  AmbiantTemperature => I2CRegisterWord
-  TemperatureResolution => I2CRegisterByte
-
-TemperatureDevice::set_Celcius(0.0625)
-resolution mode=0x3
-
-Device::get(AmbiantTemperature)
-t=0xc173
-
-TemperatureDevice::get_Celcius(AmbiantTemperature)
-t=23.1875 Celcius
+DeviceFactory:MC2SADevice
+  FakeReg0 => FakeRegister
+  FakeReg1 => FakeRegister
+  FakeRegister0 => FakeRegister
+  FakeRegister1 => FakeRegister

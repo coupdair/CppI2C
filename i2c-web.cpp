@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.1.4j"
+#define VERSION "v0.1.4k"
 
 //Program option/documentation
 //{argp
@@ -346,12 +346,15 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
         {//KEEP values
           //! \todo [high] get reg.
           //get values
-        std::cout<<"c.resolution_todo="<<c.resolution_todo<<std::endl;
-          //std::ostringstream tmpr;tmpr<<c.resolution_todo;//float>>string
-          //c.infoMC2SA.resolution.selected_id(tmpr.str());
-        std::cout<<"static set to 25 !"<<std::endl;
-        c.infoMC2SA.resolution.selected_id("25");
-          //get reg.
+          {//get reg. MC2SA -> c.infoMC2SA.*
+          MC2SADevice *MC2SADev=(MC2SADevice *)DeviceFactory::NewDevice("MC2SADevice"); if(MC2SADev==NULL) exit(-9);
+//          Register *reg=(MC2SADev->find("FakeReg0"))->second;
+//          int r=reg->read();
+//          std::cout<<"FakeReg0="<<r<<std::endl;
+//          std::ostringstream tmp;tmp<<r;//int>>string
+//          c.infoMC2SA.resolution.selected_id(tmp.str());
+	      }//MC2SA
+          {//get reg. Temperature -> c.infoTemperature.*
           TemperatureDevice *temperatureDev=(TemperatureDevice *)DeviceFactory::NewDevice("TemperatureDevice"); if(temperatureDev==NULL) exit(-9);
           c.infoTemperature.temperature.value(temperatureDev->get_Celcius());
           Register *reg=(temperatureDev->find("TemperatureResolution"))->second;
@@ -364,6 +367,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
           if(r==0x3) val="0.0625";
           std::cout<<" i.e. "<<val<<std::endl;
           c.infoTemperature.resolution.selected_id(val);
+	      }//Temperature
 		}//KEEP
         render("message",c);
   }//device_setup

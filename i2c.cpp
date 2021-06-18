@@ -207,7 +207,7 @@ int main(int argc, char **argv)
   std::vector<int>::iterator it=device_addresses.begin();std::cout<<"  "<<*it;
   for(++it;it!=device_addresses.end();++it)              std::cout<<", "<<*it;
   std::cout<<'.'<<std::endl;
-
+/*
 ///read temperature
   const std::string type_name="TemperatureDevice";
   std::cout<<std::endl<<"DeviceFactory:"<<type_name<<std::endl;
@@ -234,7 +234,7 @@ int main(int argc, char **argv)
   std::cout<<"resolution mode="<<r<<std::endl;
   }//Register
 /**/
-
+/*
 //Read temperature
   name="AmbiantTemperature";
   {//Device
@@ -260,6 +260,11 @@ int main(int argc, char **argv)
   std::cout<<"t="<<t<<std::endl;
   }//reg.
 /**/
+
+  const std::string type_name="MC2SADevice";
+  std::cout<<std::endl<<"DeviceFactory:"<<type_name<<std::endl;
+  MC2SADevice *mc2sa=(MC2SADevice *)DeviceFactory::NewDevice(type_name); if(mc2sa==NULL) return -9;
+  mc2sa->register_list("  ");
 
   return 0;
 }//main
