@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.1.4l"
+#define VERSION "v0.1.4m"
 
 //Program option/documentation
 //{argp
@@ -327,7 +327,11 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
 				std::istringstream(c.infoMC2SA.resolution.selected_id())>>c.resolution_todo;//string>>float
             	if(verbose>0) std::cout<<"MC2SA apply "<<c.value_list()<<std::flush;
             	//setup reg.
-                //! \todo [high] set reg.
+                //! \todo [high] . set reg.
+                MC2SADevice *MC2SADev=(MC2SADevice *)DeviceFactory::NewDevice("MC2SADevice"); if(MC2SADev==NULL) exit(-9);
+                Register *reg=(MC2SADev->find("FakeReg0"))->second;
+                reg->write(c.resolution_todo);
+               MC2SADev->read();
             }//valid
             //content transfer GUI to core
             if(c.infoTemperature.validate())
@@ -344,11 +348,11 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
         }//POST
         else
         {//KEEP values
-          //! \todo [high] get reg.
+          //! \todo [high] . get reg.
           //get values
           {//get reg. MC2SA -> c.infoMC2SA.*
           MC2SADevice *MC2SADev=(MC2SADevice *)DeviceFactory::NewDevice("MC2SADevice"); if(MC2SADev==NULL) exit(-9);
-         MC2SADev->register_list("  ");
+         MC2SADev->read();
           Register *reg=(MC2SADev->find("FakeReg0"))->second;
           int r=reg->read();
           std::cout<<"FakeReg0="<<r<<std::endl;
