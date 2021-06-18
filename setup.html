@@ -3,14 +3,27 @@
   <body>
     <h1>device setup</h1>
     <fieldset>
+      <legend>MC2SA</legend>
+      <form method="post" action="" >
+        <p>select todo&nbsp;<span class="cppcms_form_input"><select name="_1"  >
+<option value="5" selected >5</option>
+<option value="25" >25</option>
+<option value="125" >125</option>
+<option value="625" >625</option>
+</select></span><span class="cppcms_form_help"> units : help todo</span></p>
+<p><span class="cppcms_form_input"><input type="submit" name="_2" value="apply"  ></span></p>
+
+      </form>
+    </fieldset>
+    <fieldset>
       <legend>ambiant temperature</legend>
       <form method="post" action="" >
-        <p>Temperature&nbsp;<span class="cppcms_form_input"><input type="text" name="_1" disabled value="23.25"  ></span><span class="cppcms_form_help"> °C : ambiant temperature in degree Celcius</span></p>
+        <p>Temperature&nbsp;<span class="cppcms_form_input"><input type="text" name="_1" disabled value="23.5"  ></span><span class="cppcms_form_help"> °C : ambiant temperature in degree Celcius</span></p>
 <p>Resolution&nbsp;<span class="cppcms_form_input"><select name="_2"  >
 <option value="0.5" >0.5</option>
 <option value="0.25" >0.25</option>
 <option value="0.125" >0.125</option>
-<option value="0.0625" >0.0625</option>
+<option value="0.0625" selected >0.0625</option>
 </select></span><span class="cppcms_form_help"> °C : temperature resolution in degree Celcius (and speed, e.g. 4Hz at 0.0625°C)</span></p>
 <p><span class="cppcms_form_input"><input type="submit" name="_3" value="apply"  ></span></p>
 

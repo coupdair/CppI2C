@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.1.3"
+#define VERSION "v0.1.4d"
 
 //Program option/documentation
 //{argp
@@ -316,17 +316,27 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
         content::message c;
         if(request().request_method()=="POST")
         {
-            c.info.load(context());
+            c.infoMC2SA.load(context());
+            c.infoTemperature.load(context());
             //setup reg.
             TemperatureDevice *temperatureDev=(TemperatureDevice *)DeviceFactory::NewDevice("TemperatureDevice"); if(temperatureDev==NULL) exit(-9);
-            c.info.temperature.value(temperatureDev->get_Celcius());
+            c.infoTemperature.temperature.value(temperatureDev->get_Celcius());
             //content transfer GUI to core
-            if(c.info.validate())
-            {
-				c.temperature=c.info.temperature.value();
-				std::istringstream(c.info.resolution.selected_id())>>c.resolution;//string>>float
+            if(c.infoMC2SA.validate())
+            {	///MC2SA
+				std::istringstream(c.infoMC2SA.resolution.selected_id())>>c.resolution_todo;//string>>float
             	//c.info.clear();
-            	if(verbose>0) std::cout<<c.value_list()<<std::flush;
+            	if(verbose>0) std::cout<<"MC2SA call "<<c.value_list()<<std::flush;
+            	//setup reg.
+                //! \todo set reg.
+            }//valid
+            //content transfer GUI to core
+            if(c.infoTemperature.validate())
+            {	///temperature
+				c.temperature=c.infoTemperature.temperature.value();
+				std::istringstream(c.infoTemperature.resolution.selected_id())>>c.resolution;//string>>float
+            	//c.info.clear();
+            	if(verbose>0) std::cout<<"Temperature call "<<c.value_list()<<std::flush;
             	//setup reg.
             	temperatureDev->set_Celcius(c.resolution);
                 Register *reg=(temperatureDev->find("TemperatureResolution"))->second;

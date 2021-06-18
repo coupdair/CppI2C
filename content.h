@@ -21,35 +21,28 @@ namespace content
     std::list<std::string> device_list;
   };//devices
 
-  //form
-  struct info_form : public cppcms::form
+  //forms
+  struct info_form_MC2SA : public cppcms::form
   {
-    cppcms::widgets::numeric<float> temperature;
     cppcms::widgets::select resolution;
     cppcms::widgets::submit submit;
 //    cppcms::widgets::select_multiple gain;
-    info_form()
+    info_form_MC2SA()
     {
 		///widget titles
-        //setup reg.
-        TemperatureDevice *temperatureDev=(TemperatureDevice *)DeviceFactory::NewDevice("TemperatureDevice"); if(temperatureDev==NULL) exit(-9);
-        temperature.value(temperatureDev->get_Celcius());
- 		//! \todo [low] set help messsage as ToolTip (note: <i>italic</i> not working as translated)
-		temperature.message("Temperature");temperature.help(" °C : ambiant temperature in degree Celcius");//temperature.error_message("*");
-        resolution.message("Resolution");resolution.help(" °C : temperature resolution in degree Celcius (and speed, e.g. 4Hz at 0.0625°C)");
+        resolution.message("select todo");resolution.help(" units : help todo");
         submit.value("apply");
 //        gain.message("Your gain(s)");
         ///order widgets
-        add(temperature);
         add(resolution);
         add(submit);
 //        add(gain);
         ///values and behavious
-        temperature.readonly(true);temperature.disabled(true);	
-        resolution.add("0.5","0.5");//"label", "value"
-        resolution.add("0.25","0.25");
-        resolution.add("0.125","0.125");
-        resolution.add("0.0625","0.0625");
+        resolution.add("5","5");//"label", "value"
+        resolution.add("25","25");
+        resolution.add("125","125");
+        resolution.add("625","625");
+        resolution.selected_id("5");
 /** /
         gain.add("2");
         gain.add("4");
@@ -71,14 +64,51 @@ namespace content
 */
         return true;
     }//validate
-  };//info_form
+  };//info_form_MC2SA
+  struct info_form_temperature : public cppcms::form
+  {
+    cppcms::widgets::numeric<float> temperature;
+    cppcms::widgets::select resolution;
+    cppcms::widgets::submit submit;
+    info_form_temperature()
+    {
+		///widget titles
+ 		//! \todo [low] set help messsage as ToolTip (note: <i>italic</i> not working as translated)
+		temperature.message("Temperature");temperature.help(" °C : ambiant temperature in degree Celcius");//temperature.error_message("*");
+        resolution.message("Resolution");resolution.help(" °C : temperature resolution in degree Celcius (and speed, e.g. 4Hz at 0.0625°C)");
+        submit.value("apply");
+        ///order widgets
+        add(temperature);
+        add(resolution);
+        add(submit);
+        ///values and behavious
+        TemperatureDevice *temperatureDev=(TemperatureDevice *)DeviceFactory::NewDevice("TemperatureDevice"); if(temperatureDev==NULL) exit(-9);
+        temperature.value(temperatureDev->get_Celcius());
+        temperature.readonly(true);temperature.disabled(true);	
+        resolution.add("0.5","0.5");//"label", "value"
+        resolution.add("0.25","0.25");
+        resolution.add("0.125","0.125");
+        resolution.add("0.0625","0.0625");
+        resolution.selected_id("0.0625");
+    }//constructor
+    virtual bool validate()
+    {
+        if(!form::validate()) 
+            return false;
+        return true;
+    }//validate
+  };//info_form_temperature
   struct message : public master
   {
     //data
+    ///temperature
     float temperature;
     float resolution;
+    ///MC2SA
+    float resolution_todo;
     //GUI (HMTL)
-    info_form info;
+    info_form_MC2SA infoMC2SA;
+    info_form_temperature infoTemperature;
     //value list
     std::string value_list(void)
     {
@@ -86,6 +116,7 @@ namespace content
       s<<"message data:";
       s<<"\n - temperature="<<temperature;
       s<<"\n - resolution=" <<resolution;
+      s<<"\n - resolution_todo=" <<resolution_todo;
       s<<std::endl;
       return s.str();
     }//value_list
