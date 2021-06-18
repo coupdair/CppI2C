@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.1.4i"
+#define VERSION "v0.1.4j"
 
 //Program option/documentation
 //{argp
@@ -349,14 +349,21 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
         std::cout<<"c.resolution_todo="<<c.resolution_todo<<std::endl;
           //std::ostringstream tmpr;tmpr<<c.resolution_todo;//float>>string
           //c.infoMC2SA.resolution.selected_id(tmpr.str());
+        std::cout<<"static set to 25 !"<<std::endl;
         c.infoMC2SA.resolution.selected_id("25");
           //get reg.
           TemperatureDevice *temperatureDev=(TemperatureDevice *)DeviceFactory::NewDevice("TemperatureDevice"); if(temperatureDev==NULL) exit(-9);
           c.infoTemperature.temperature.value(temperatureDev->get_Celcius());
-        std::cout<<"c.resolution="<<c.resolution<<std::endl;
-		  //std::ostringstream tmp;tmp<<c.resolution;//float>>string
-		  //c.infoTemperature.resolution.selected_id(tmp.str());
-		c.infoTemperature.resolution.selected_id("0.25");
+          Register *reg=(temperatureDev->find("TemperatureResolution"))->second;
+          int r=reg->read();
+          std::cout<<"resolution mode=0x"<<r;
+          std::string val;
+          if(r==0x0) val="0.5";
+          if(r==0x1) val="0.25";
+          if(r==0x2) val="0.125";
+          if(r==0x3) val="0.0625";
+          std::cout<<" i.e. "<<val<<std::endl;
+          c.infoTemperature.resolution.selected_id(val);
 		}//KEEP
         render("message",c);
   }//device_setup
