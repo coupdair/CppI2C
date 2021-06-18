@@ -1,13 +1,67 @@
 ./i2c-web is running (Ctrl+C to stop), have look to http://localhost:8080/i2c-bus.
 device_setup page
 device_setup page
-device_setup page
-MC2SA call message data:
+MC2SA apply message data:
  - temperature=0
  - resolution=0
- - resolution_todo=0
-Temperature call message data:
+ - resolution_todo=25
+Temperature apply message data:
  - temperature=23.5
  - resolution=0.25
- - resolution_todo=0
+ - resolution_todo=25
 resolution mode=1
+device_setup page
+MC2SA apply message data:
+ - temperature=0
+ - resolution=0
+ - resolution_todo=5
+Temperature apply message data:
+ - temperature=23.25
+ - resolution=0.5
+ - resolution_todo=5
+resolution mode=0
+device_setup page
+MC2SA apply message data:
+ - temperature=0
+ - resolution=0
+ - resolution_todo=5
+Temperature apply message data:
+ - temperature=23.5
+ - resolution=0.0625
+ - resolution_todo=5
+resolution mode=3
+device_setup page
+MC2SA apply message data:
+ - temperature=0
+ - resolution=0
+ - resolution_todo=625
+Temperature apply message data:
+ - temperature=23.5625
+ - resolution=0.0625
+ - resolution_todo=625
+resolution mode=3
+device_setup page
+MC2SA apply message data:
+ - temperature=0
+ - resolution=0
+ - resolution_todo=125
+Temperature apply message data:
+ - temperature=23.5625
+ - resolution=0.0625
+ - resolution_todo=125
+resolution mode=3
+device_setup page
+device_setup page
+device_setup page
+MC2SA apply message data:
+ - temperature=0
+ - resolution=0
+ - resolution_todo=125
+Temperature apply message data:
+ - temperature=23.5625
+ - resolution=0.125
+ - resolution_todo=125
+resolution mode=2
+device_setup page
+device_setup page
+device_setup page

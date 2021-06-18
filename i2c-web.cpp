@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.1.4g"
+#define VERSION "v0.1.4h"
 
 //Program option/documentation
 //{argp
@@ -318,7 +318,6 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
         {
             c.infoMC2SA.load(context());
             c.infoTemperature.load(context());
-            c.infoApply.load(context());
             //setup reg.
             TemperatureDevice *temperatureDev=(TemperatureDevice *)DeviceFactory::NewDevice("TemperatureDevice"); if(temperatureDev==NULL) exit(-9);
             c.infoTemperature.temperature.value(temperatureDev->get_Celcius());
@@ -328,7 +327,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
 				std::istringstream(c.infoMC2SA.resolution.selected_id())>>c.resolution_todo;//string>>float
             	if(verbose>0) std::cout<<"MC2SA apply "<<c.value_list()<<std::flush;
             	//setup reg.
-                //! \todo set reg.
+                //! \todo [high] set reg.
             }//valid
             //content transfer GUI to core
             if(c.infoTemperature.validate())
@@ -341,9 +340,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
                 Register *reg=(temperatureDev->find("TemperatureResolution"))->second;
                 int r=reg->read();
                 std::cout<<"resolution mode="<<r<<std::endl;
-                /**/
             }//valid
-            //c.infoApply.validate();
         }//POST
         render("message",c);
   }//device_setup
