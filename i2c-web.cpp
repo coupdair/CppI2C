@@ -318,7 +318,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
         {
             c.infoMC2SA.load(context());
             c.infoTemperature.load(context());
-            //setup reg.
+            //get reg.
             TemperatureDevice *temperatureDev=(TemperatureDevice *)DeviceFactory::NewDevice("TemperatureDevice"); if(temperatureDev==NULL) exit(-9);
             c.infoTemperature.temperature.value(temperatureDev->get_Celcius());
             //content transfer GUI to core
@@ -342,6 +342,19 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
                 std::cout<<"resolution mode="<<r<<std::endl;
             }//valid
         }//POST
+        else
+        {//KEEP values
+          //get values
+          //std::ostringstream tmpr;tmpr<<c.resolution_todo;//float>>string
+          //c.infoMC2SA.resolution.selected_id(tmpr.str());
+        c.infoMC2SA.resolution.selected_id("25");
+          //get reg.
+          TemperatureDevice *temperatureDev=(TemperatureDevice *)DeviceFactory::NewDevice("TemperatureDevice"); if(temperatureDev==NULL) exit(-9);
+          c.infoTemperature.temperature.value(temperatureDev->get_Celcius());
+		  //std::ostringstream tmp;tmp<<c.resolution;//float>>string
+		  //c.infoTemperature.resolution.selected_id(tmp.str());
+		c.infoTemperature.resolution.selected_id("0.25");
+		}//KEEP
         render("message",c);
   }//device_setup
 
