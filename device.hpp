@@ -20,7 +20,7 @@
 #include "i2c/i2c.h"
 #endif //USE_I2C_LIB
 
-#define DEVICE_VERSION "v0.1.6d"
+#define DEVICE_VERSION "v0.1.6"
 
 //version
 //! device library version
@@ -247,12 +247,20 @@ class MC2SADevice: public FakeDevice
   }//read
   virtual void init()
   {
+//! \bug do not init. "true" register by default, see remove below
+/**/ //to remove !
+    //default dummy init.
     int i=5;
     for (std::map<std::string,Register*>::iterator it=this->begin(); it!=this->end(); ++it)
     {
       (it->second)->write(i);
       i+=5;
     }//register loop
+/**/ //to remove !
+
+    //register initialisation
+    (*this)["gain"]->write(0x21);
+    (*this)["resistor"]->write(0x28);
   }//init
   //! destructor (need at least empty one)
   virtual ~MC2SADevice() {}
