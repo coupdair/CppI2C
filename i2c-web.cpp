@@ -446,6 +446,11 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
           r=reg->read();
           //set offset
           c.infoMC2SAoffset.set_level(r);//byte to Volt
+          ///amplitude
+          reg=(MC2SADev->find("amplitude"))->second;
+          r=reg->read();
+          //set amplitude
+          c.infoMC2SAamplitude.set_level(r);//byte to Volt
 /** /
           std::ostringstream tmp;tmp<<r;//int>>string
           std::cout<<"FakeReg0="<<tmp.str()<<std::endl;

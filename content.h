@@ -136,7 +136,7 @@ namespace content
   };//info_form_MC2SA_level
   struct info_form_MC2SA_discri : public info_form_MC2SA_level
   {
-    info_form_MC2SA_offset()
+    info_form_MC2SA_discri()
     {
 		///widget titles
         level.message("discri level");level.name("level_discri");
