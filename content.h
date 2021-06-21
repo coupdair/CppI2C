@@ -150,6 +150,14 @@ namespace content
         level.message("offset level");level.name("level_offset");
     }//constructor
   };//info_form_MC2SA_offset
+  struct info_form_MC2SA_amplitude : public info_form_MC2SA_level
+  {
+    info_form_MC2SA_amplitude()
+    {
+		///widget titles
+        level.message("amplitude level");level.name("level_amplitude");
+    }//constructor
+  };//info_form_MC2SA_amplitude
   struct info_form_temperature : public cppcms::form
   {
     cppcms::widgets::numeric<float> temperature;
@@ -208,11 +216,13 @@ namespace content
     char resistor;
     int  discri;
     int  offset;
+    int  amplitude;
     //GUI (HMTL)
     info_form_MC2SA_gain infoMC2SAgain;
     info_form_MC2SA_resistor infoMC2SAresistor;
     info_form_MC2SA_discri infoMC2SAdiscri;
     info_form_MC2SA_offset infoMC2SAoffset;
+    info_form_MC2SA_amplitude infoMC2SAamplitude;
     info_form_temperature infoTemperature;
     info_form_apply infoApply;
     //value list

@@ -1,33 +1,17 @@
 ./i2c-web is running (Ctrl+C to stop), have look to http://localhost:8080/i2c-bus.
-device_setup page
-FakeRegister0 => FakeRegister
-FakeRegister1 => FakeRegister
-discri => FakeRegister
-gain => FakeRegister
-offset => FakeRegister
-resistor => FakeRegister
-  FakeRegister0 = 5
-  FakeRegister1 = 10
-  discri = 128
-  gain = 0
-  offset = 0
-  resistor = 0
-gain=0, i.e. 000000
-resistor=0, i.e. 000000 3 higher bits
-AmbiantTemperature => I2CRegisterWord
-TemperatureResolution => I2CRegisterByte
-  AmbiantTemperature =   TemperatureResolution = resolution mode=0x0 i.e. 0.5
 
 I2C devices address(es):0x04, 0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d.
 device_setup page
 FakeRegister0 => FakeRegister
 FakeRegister1 => FakeRegister
+amplitude => FakeRegister
 discri => FakeRegister
 gain => FakeRegister
 offset => FakeRegister
 resistor => FakeRegister
   FakeRegister0 = 5
   FakeRegister1 = 10
+  amplitude = 0
   discri = 128
   gain = 0
   offset = 0
@@ -36,7 +20,7 @@ gain=0, i.e. 000000
 resistor=0, i.e. 000000 3 higher bits
 AmbiantTemperature => I2CRegisterWord
 TemperatureResolution => I2CRegisterByte
-  AmbiantTemperature =   TemperatureResolution = resolution mode=0x0 i.e. 0.5
+  AmbiantTemperature =   TemperatureResolution = resolution mode=0x3 i.e. 0.0625
 
 dur=0
 

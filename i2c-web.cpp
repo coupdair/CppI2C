@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.1.7i"
+#define VERSION "v0.1.7"
 
 //Program option/documentation
 //{argp
@@ -328,6 +328,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
             c.infoMC2SAresistor.load(context());
             c.infoMC2SAdiscri.load(context());
             c.infoMC2SAoffset.load(context());
+            c.infoMC2SAamplitude.load(context());
             c.infoTemperature.load(context());
             //get reg.
             c.infoTemperature.temperature.value(temperatureDev->get_Celcius());
@@ -383,6 +384,16 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
               //setup reg.
               Register *reg=(MC2SADev->find("offset"))->second;
               reg->write(c.offset);
+              MC2SADev->read();
+            }//valid
+            if(c.infoMC2SAamplitude.validate())
+            {///MC2SA discri
+              c.offset=c.infoMC2SAamplitude.get_level();//Volt to byte
+              //print
+              if(verbose>0) std::cout<<"MC2SA amplitude apply "<<c.value_list()<<std::flush;
+              //setup reg.
+              Register *reg=(MC2SADev->find("amplitude"))->second;
+              reg->write(c.amplitude);
               MC2SADev->read();
             }//valid
             //content transfer GUI to core
