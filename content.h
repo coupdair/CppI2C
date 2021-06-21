@@ -124,6 +124,14 @@ namespace content
         return true;
     }//validate
   };//info_form_MC2SA_level
+  struct info_form_MC2SA_offset : public info_form_MC2SA_level
+  {
+    info_form_MC2SA_offset()
+    {
+		///widget titles
+        level.message("offset level");level.name("level_offset");//level.help(" V : range [0 .. 3.3]V");
+    }//constructor
+  };//info_form_MC2SA_offset
   struct info_form_temperature : public cppcms::form
   {
     cppcms::widgets::numeric<float> temperature;
@@ -181,10 +189,12 @@ namespace content
     char gain;
     char resistor;
     int  discri;
+    int  offset;
     //GUI (HMTL)
     info_form_MC2SA_gain infoMC2SAgain;
     info_form_MC2SA_resistor infoMC2SAresistor;
     info_form_MC2SA_level infoMC2SAdiscri;
+    info_form_MC2SA_offset infoMC2SAoffset;
     info_form_temperature infoTemperature;
     info_form_apply infoApply;
     //value list
@@ -199,6 +209,7 @@ namespace content
       bs=resistor;
       s<<"\n - resistor="<<bs.to_ulong()<<", i.e. "<<bs.to_string();
       s<<"\n - discri="<<discri;
+      s<<"\n - offset="<<offset;
       s<<std::endl;
       return s.str();
     }//value_list

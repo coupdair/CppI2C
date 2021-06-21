@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.1.7g"
+#define VERSION "v0.1.7h"
 
 //Program option/documentation
 //{argp
@@ -327,6 +327,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
             c.infoMC2SAgain.load(context());
             c.infoMC2SAresistor.load(context());
             c.infoMC2SAdiscri.load(context());
+            c.infoMC2SAoffset.load(context());
             c.infoTemperature.load(context());
             //get reg.
             c.infoTemperature.temperature.value(temperatureDev->get_Celcius());
@@ -375,6 +376,17 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
               reg->write(c.discri);
               MC2SADev->read();
             }//valid
+            if(c.infoMC2SAoffset.validate())
+            {///MC2SA discri
+              float df=c.infoMC2SAoffset.level.value();
+              c.offset=(df*256.0)/3.3;//Volt to byte
+              //print
+              if(verbose>0) std::cout<<"MC2SA offset apply "<<c.value_list()<<std::flush;
+              //setup reg.
+              Register *reg=(MC2SADev->find("offset"))->second;
+              reg->write(c.offset);
+              MC2SADev->read();
+            }//valid
             //content transfer GUI to core
             if(c.infoTemperature.validate())
             {	///temperature
@@ -421,6 +433,12 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
           //set discri
           float df=r*3.3/256.0;//byte to Volt
           c.infoMC2SAdiscri.level.value(df);
+          ///offset
+          reg=(MC2SADev->find("offset"))->second;
+          r=reg->read();
+          //set offset
+          df=r*3.3/256.0;//byte to Volt
+          c.infoMC2SAoffset.level.value(df);
 /** /
           std::ostringstream tmp;tmp<<r;//int>>string
           std::cout<<"FakeReg0="<<tmp.str()<<std::endl;
