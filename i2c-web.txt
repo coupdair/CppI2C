@@ -4,14 +4,16 @@ I2C devices address(es):0x04, 0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d.
 device_setup page
 FakeRegister0 => FakeRegister
 FakeRegister1 => FakeRegister
+discri => FakeRegister
 gain => FakeRegister
 resistor => FakeRegister
   FakeRegister0 = 5
   FakeRegister1 = 10
-  gain = 33
-  resistor = 40
-gain=33, i.e. 100001
-resistor=40, i.e. 101000 3 higher bits
+  discri = 128
+  gain = 0
+  resistor = 0
+gain=0, i.e. 000000
+resistor=0, i.e. 000000 3 higher bits
 AmbiantTemperature => I2CRegisterWord
 TemperatureResolution => I2CRegisterByte
   AmbiantTemperature =   TemperatureResolution = resolution mode=0x3 i.e. 0.0625

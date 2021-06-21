@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.1.7f"
+#define VERSION "v0.1.7g"
 
 //Program option/documentation
 //{argp
@@ -326,6 +326,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
         {
             c.infoMC2SAgain.load(context());
             c.infoMC2SAresistor.load(context());
+            c.infoMC2SAdiscri.load(context());
             c.infoTemperature.load(context());
             //get reg.
             c.infoTemperature.temperature.value(temperatureDev->get_Celcius());
@@ -361,6 +362,17 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
               //setup reg.
               Register *reg=(MC2SADev->find("resistor"))->second;
               reg->write(c.resistor);
+              MC2SADev->read();
+            }//valid
+            if(c.infoMC2SAdiscri.validate())
+            {///MC2SA discri
+              float df=c.infoMC2SAdiscri.level.value();
+              c.discri=(df*256.0)/3.3;//Volt to byte
+              //print
+              if(verbose>0) std::cout<<"MC2SA discri apply "<<c.value_list()<<std::flush;
+              //setup reg.
+              Register *reg=(MC2SADev->find("discri"))->second;
+              reg->write(c.discri);
               MC2SADev->read();
             }//valid
             //content transfer GUI to core
@@ -403,6 +415,12 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
           c.infoMC2SAresistor.resistor2.value(resistor[3]);
           c.infoMC2SAresistor.resistor3.value(resistor[4]);
           c.infoMC2SAresistor.resistor5.value(resistor[5]);
+          ///discri
+          reg=(MC2SADev->find("discri"))->second;
+          r=reg->read();
+          //set discri
+          float df=r*3.3/256.0;//byte to Volt
+          c.infoMC2SAdiscri.level.value(df);
 /** /
           std::ostringstream tmp;tmp<<r;//int>>string
           std::cout<<"FakeReg0="<<tmp.str()<<std::endl;

@@ -103,6 +103,27 @@ namespace content
         return true;
     }//validate
   };//info_form_MC2SA_resistor
+  struct info_form_MC2SA_level : public cppcms::form
+  {
+    cppcms::widgets::numeric<float> level;
+//    cppcms::widgets::range level;
+    info_form_MC2SA_level()
+    {
+		///widget titles
+        level.message("discri level");level.name("level_amplitude");level.help(" V : range [0 .. 3.3]V");
+        ///order widgets
+        add(level);
+        ///values and behavious
+        level.non_empty();
+        level.range(0.0,3.3);
+    }//constructor
+    virtual bool validate()
+    {
+        if(!form::validate()) 
+            return false;
+        return true;
+    }//validate
+  };//info_form_MC2SA_level
   struct info_form_temperature : public cppcms::form
   {
     cppcms::widgets::numeric<float> temperature;
@@ -159,9 +180,11 @@ namespace content
     ///MC2SA
     char gain;
     char resistor;
+    int  discri;
     //GUI (HMTL)
     info_form_MC2SA_gain infoMC2SAgain;
     info_form_MC2SA_resistor infoMC2SAresistor;
+    info_form_MC2SA_level infoMC2SAdiscri;
     info_form_temperature infoTemperature;
     info_form_apply infoApply;
     //value list
@@ -175,6 +198,7 @@ namespace content
       s<<"\n - gain="<<bs.to_ulong()<<", i.e. "<<bs.to_string();
       bs=resistor;
       s<<"\n - resistor="<<bs.to_ulong()<<", i.e. "<<bs.to_string();
+      s<<"\n - discri="<<discri;
       s<<std::endl;
       return s.str();
     }//value_list
