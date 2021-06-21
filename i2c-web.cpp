@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.1.7h"
+#define VERSION "v0.1.7i"
 
 //Program option/documentation
 //{argp
@@ -367,8 +367,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
             }//valid
             if(c.infoMC2SAdiscri.validate())
             {///MC2SA discri
-              float df=c.infoMC2SAdiscri.level.value();
-              c.discri=(df*256.0)/3.3;//Volt to byte
+              c.discri=c.infoMC2SAdiscri.get_level();
               //print
               if(verbose>0) std::cout<<"MC2SA discri apply "<<c.value_list()<<std::flush;
               //setup reg.
@@ -378,8 +377,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
             }//valid
             if(c.infoMC2SAoffset.validate())
             {///MC2SA discri
-              float df=c.infoMC2SAoffset.level.value();
-              c.offset=(df*256.0)/3.3;//Volt to byte
+              c.offset=c.infoMC2SAoffset.get_level();//Volt to byte
               //print
               if(verbose>0) std::cout<<"MC2SA offset apply "<<c.value_list()<<std::flush;
               //setup reg.
@@ -431,14 +429,12 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
           reg=(MC2SADev->find("discri"))->second;
           r=reg->read();
           //set discri
-          float df=r*3.3/256.0;//byte to Volt
-          c.infoMC2SAdiscri.level.value(df);
+          c.infoMC2SAdiscri.set_level(r);//byte to Volt
           ///offset
           reg=(MC2SADev->find("offset"))->second;
           r=reg->read();
           //set offset
-          df=r*3.3/256.0;//byte to Volt
-          c.infoMC2SAoffset.level.value(df);
+          c.infoMC2SAoffset.set_level(r);//byte to Volt
 /** /
           std::ostringstream tmp;tmp<<r;//int>>string
           std::cout<<"FakeReg0="<<tmp.str()<<std::endl;

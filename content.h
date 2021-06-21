@@ -110,7 +110,7 @@ namespace content
     info_form_MC2SA_level()
     {
 		///widget titles
-        level.message("discri level");level.name("level_amplitude");level.help(" V : range [0 .. 3.3]V");
+        level.message("level");level.name("level");level.help(" V : range [0 .. 3.3]V");
         ///order widgets
         add(level);
         ///values and behavious
@@ -123,13 +123,31 @@ namespace content
             return false;
         return true;
     }//validate
+    //! Volt to byte
+    virtual int get_level()
+    {
+        return (int)((level.value()*256.0)/3.3);
+    }//get_level
+    //! byte to Volt
+    virtual void set_level(int val)
+    {
+        level.value((float)val*3.3/256.0);
+    }//set_level
   };//info_form_MC2SA_level
+  struct info_form_MC2SA_discri : public info_form_MC2SA_level
+  {
+    info_form_MC2SA_offset()
+    {
+		///widget titles
+        level.message("discri level");level.name("level_discri");
+    }//constructor
+  };//info_form_MC2SA_discri
   struct info_form_MC2SA_offset : public info_form_MC2SA_level
   {
     info_form_MC2SA_offset()
     {
 		///widget titles
-        level.message("offset level");level.name("level_offset");//level.help(" V : range [0 .. 3.3]V");
+        level.message("offset level");level.name("level_offset");
     }//constructor
   };//info_form_MC2SA_offset
   struct info_form_temperature : public cppcms::form
@@ -193,7 +211,7 @@ namespace content
     //GUI (HMTL)
     info_form_MC2SA_gain infoMC2SAgain;
     info_form_MC2SA_resistor infoMC2SAresistor;
-    info_form_MC2SA_level infoMC2SAdiscri;
+    info_form_MC2SA_discri infoMC2SAdiscri;
     info_form_MC2SA_offset infoMC2SAoffset;
     info_form_temperature infoTemperature;
     info_form_apply infoApply;
