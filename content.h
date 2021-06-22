@@ -253,6 +253,22 @@ namespace content
       s<<std::endl;
       return s.str();
     }//value_list
+    //navigation bar
+    void nav_tabs_create(int id_)
+    {
+        content::nav_tab tab;
+        for(int i=0;i<2;++i)
+        {
+		  //format
+		  std::ostringstream name_;name_<<"name#"<<(id_+1);//int>>string
+		  std::ostringstream link_;link_<<"link#"<<i;//int>>string
+		  //fill tab
+          tab.name=name_.str();
+          tab.link=link_.str();
+          //store tab
+          nav_tabs.push_back(tab);
+        }//tab loop
+    }//nav_tabs_create
   };//message
 }//content
 
