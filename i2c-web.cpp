@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.2.0f"
+#define VERSION "v0.2.0g"
 
 //Program option/documentation
 //{argp
@@ -160,13 +160,16 @@ public:
     page_func.push_back(&http_service::device_setup2);
     page_func.push_back(&http_service::device_setup3);
 /**/
-    cppcms::url_dispatcher::handler fun(http_service::device_setup0);
+//    cppcms::url_dispatcher::handler fun(http_service::device_setup0);
     for(int i=0;i<count;++i)
     {
 	  std::ostringstream link;link<<"/setup/"<<i;//int>>string, e.g. /setup/0
 //      dispatcher().assign(link.str(),page_func[i],this);
-      dispatcher().assign(link.str(),&fun,this);
-//      dispatcher().assign(link.str(),&http_service::device_setup0,this);
+//      dispatcher().assign(link.str(),&fun,this);
+      if(i==0) dispatcher().assign(link.str(),&http_service::device_setup0,this);
+      if(i==1) dispatcher().assign(link.str(),&http_service::device_setup1,this);
+      if(i==2) dispatcher().assign(link.str(),&http_service::device_setup2,this);
+      if(i==3) dispatcher().assign(link.str(),&http_service::device_setup3,this);
       mapper().assign("setup",link.str());
     }//setup page loop
 
