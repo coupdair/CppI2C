@@ -12,7 +12,7 @@
     <% foreach tab in nav_tabs %>
       <% item %>
         <th>
-        <% if not empty tab.link %>
+        <% if not empty tab.link %><!-- no link on empty link, as this is current page -->
         <a href="<%= tab.link %>">
         <% end %>
         <%= tab.name %>
@@ -20,7 +20,7 @@
         </a>
         <% end %>
         </th>
-      <% end %>
+      <% end item %>
     <% end foreach %>
     </tr>
     </table>

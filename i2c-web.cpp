@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.1.9e"
+#define VERSION "v0.1.9"
 
 //Program option/documentation
 //{argp
@@ -496,6 +496,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
           c.infoTemperature.resolution.selected_id(val);
 	      }//Temperature
 	      c.infoApply.update_time.value("KEEP");
+	      c.infoApply.update_time.value(MC2SADev->get_update_time_str());
 		}//KEEP
         render("message",c);
   }//device_setup
