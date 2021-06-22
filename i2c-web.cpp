@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.1.9d"
+#define VERSION "v0.1.9e"
 
 //Program option/documentation
 //{argp
@@ -430,6 +430,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
                 int r=reg->read();
                 std::cout<<"resolution mode="<<r<<std::endl;
                 c.infoApply.update_time.value("Temperature");
+                c.infoApply.update_time.value(MC2SADev->get_update_time_str());
             }//valid
         }//POST
         else

@@ -200,6 +200,8 @@ namespace content
         ///order widgets
         add(update_time);
         add(submit);
+        ///values and behavious
+        update_time.readonly(true);update_time.disabled(true);
     }//constructor
     virtual bool validate()
     {

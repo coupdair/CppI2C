@@ -20,7 +20,7 @@
 #include "i2c/i2c.h"
 #endif //USE_I2C_LIB
 
-#define DEVICE_VERSION "v0.1.7"
+#define DEVICE_VERSION "v0.1.8d"
 
 //version
 //! device library version
@@ -50,11 +50,12 @@ class Device: public std::map<std::string,Register*>
 {
  protected:
   std::string name;
+  int update_time;
   bool debug;
   virtual void set_name(std::string device_name) {name=device_name; if(debug) std::cout<<name<<"/"<<__func__<<"(\""<<name<<"\")"<<std::endl;}
  public:
   //! constructor
-  Device() {name="none";debug=false;}
+  Device() {name="none";update_time=0;debug=false;}
   virtual std::string get_name() {return name;}
   virtual void create_register(std::string register_name,std::string register_type_name)
   {
@@ -62,9 +63,11 @@ class Device: public std::map<std::string,Register*>
     this->insert(std::pair<std::string,Register*>(register_name,reg));
   }//create_register
   virtual /*std::string*/void register_list(const std::string prefix="") {for (std::map<std::string,Register*>::iterator it=this->begin(); it!=this->end(); ++it) std::cout <<prefix<< it->first << " => " << (it->second)->get_name() << '\n';};
-  virtual int get(const std::string &register_name) {return ((this->find(register_name))->second)->read();};
-  virtual int set(const std::string &register_name,const int &value) {return ((this->find(register_name))->second)->write(value);};
+  virtual int get(const std::string &register_name) {if(this->debug) std::cout<<name<<"::get(...)"<<std::endl;update_time++;return ((this->find(register_name))->second)->read();};
+  virtual int set(const std::string &register_name,const int &value) {if(this->debug) std::cout<<name<<"::set(...)"<<std::endl;update_time++;return ((this->find(register_name))->second)->write(value);};
   //! destructor (need at least empty one)
+  virtual int get_update_time() {return update_time;}
+  virtual std::string get_update_time_str() {std::ostringstream str;str<<update_time;return str.str();}
   virtual ~Device() {}
 };//Device
 class FakeDevice: public Device
@@ -75,6 +78,7 @@ class FakeDevice: public Device
     set_name("FakeDevice");
     create_register("FakeRegister0","FakeRegister");
     create_register("FakeRegister1","FakeRegister");
+    debug=true;
   }//constructor
   virtual int get(const std::string &register_name) {if(this->debug) std::cout<<name<<"::get(...)"<<std::endl;return Device::get(register_name);}
   virtual int set(const std::string &register_name,const int &value) {std::cout<<name<<"::set(...) empty"<<std::endl;return 0;};
@@ -247,6 +251,7 @@ class MC2SADevice: public FakeDevice
     {
       std::cout<<"  "<< it->first << " = "<<(it->second)->read()<<std::endl;
     }//register loop
+    this->update_time++;
   }//read
   virtual void init()
   {
