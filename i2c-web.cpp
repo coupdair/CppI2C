@@ -153,17 +153,19 @@ public:
     mapper().assign("devices","/devices");
 
 //setup pages
+/** /
+    std::vector<cppcms::url_dispatcher::handler> page_func;
+    page_func.push_back(&http_service::device_setup0);
+    page_func.push_back(&http_service::device_setup1);
+    page_func.push_back(&http_service::device_setup2);
+    page_func.push_back(&http_service::device_setup3);
 /**/
-    std::vector<void*> page_func;
-    page_func.push_back((void*)&http_service::device_setup0);
-    page_func.push_back((void*)&http_service::device_setup1);
-    page_func.push_back((void*)&http_service::device_setup2);
-    page_func.push_back((void*)&http_service::device_setup3);
-/**/
+    cppcms::url_dispatcher::handler fun(http_service::device_setup0);
     for(int i=0;i<count;++i)
     {
 	  std::ostringstream link;link<<"/setup/"<<i;//int>>string, e.g. /setup/0
-      dispatcher().assign(link.str(),page_func[i],this);
+//      dispatcher().assign(link.str(),page_func[i],this);
+      dispatcher().assign(link.str(),&fun,this);
 //      dispatcher().assign(link.str(),&http_service::device_setup0,this);
       mapper().assign("setup",link.str());
     }//setup page loop
