@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.2.0h"
+#define VERSION "v0.2.0"
 
 //Program option/documentation
 //{argp
@@ -348,7 +348,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
     ///GUI static
     std::ostringstream tmp;tmp<<id;//int>>string
     c.id=tmp.str();
-    c.nav_tabs_create(id);
+    c.nav_tabs_create(id,vMC2SADev.size());
     ///GUI action
         if(request().request_method()=="POST")
         {

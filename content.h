@@ -261,10 +261,10 @@ namespace content
       return s.str();
     }//value_list
     //navigation bar
-    void nav_tabs_create(int id_)
+    void nav_tabs_create(const int id_,const int count)
     {
         content::nav_tab tab;
-        for(int i=0;i<2;++i)
+        for(int i=0;i<count;++i)
         {
 		  //format
 		  std::ostringstream name_;name_<<"MC2SA#"<<i;//int>>string
