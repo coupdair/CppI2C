@@ -153,28 +153,10 @@ public:
     mapper().assign("devices","/devices");
 
 //setup pages
-/** /
-    std::vector<cppcms::url_dispatcher::handler> page_func;
-    page_func.push_back(&http_service::device_setup0);
-    page_func.push_back(&http_service::device_setup1);
-    page_func.push_back(&http_service::device_setup2);
-    page_func.push_back(&http_service::device_setup3);
-/**/
-//    cppcms::url_dispatcher::handler fun(http_service::device_setup0);
     for(int i=0;i<count;++i)
     {
 	  std::ostringstream link;link<<"/setup/"<<i;//int>>string, e.g. /setup/0
-//      dispatcher().assign(link.str(),page_func[i],this);
-//      dispatcher().assign(link.str(),&fun,this);
-/*
-      if(i==0) dispatcher().assign(link.str(),&http_service::device_setup0,this);
-      if(i==1) dispatcher().assign(link.str(),&http_service::device_setup1,this);
-      if(i==2) dispatcher().assign(link.str(),&http_service::device_setup2,this);
-      if(i==3) dispatcher().assign(link.str(),&http_service::device_setup3,this);
-*/
-//      dispatcher().assign(link.str(),&http_service::device_setup,this,1);
-      dispatcher().assign(link.str(),&http_service::device_setup,this,i);
-//      dispatcher().assign(link.str(),&http_service::device_setup0,this);
+      dispatcher().assign("^/setup/(\\d+)$",&http_service::device_setup,this,1);
       mapper().assign("setup",link.str());
     }//setup page loop
 
@@ -356,6 +338,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
   {std::cout<<__func__<<" page"<<std::endl;
     int verbose=1;//[0-1]
     int id;std::istringstream(id_)>>id;//string>>int
+    if(id>vMC2SADev.size()) return;
     ///get device to setup
     MC2SADevice *MC2SADev=vMC2SADev[id];
     //GUI
@@ -528,24 +511,6 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
 		}//KEEP
         render("message",c);
   }//device_setup
-/*
-  void device_setup0()
-  {std::cout<<__func__<<" page"<<std::endl;
-    device_setup(0);
-  }//device_setup0
-  void device_setup1()
-  {std::cout<<__func__<<" page"<<std::endl;
-    device_setup(1);
-  }//device_setup1
-  void device_setup2()
-  {std::cout<<__func__<<" page"<<std::endl;
-    device_setup(2);
-  }//device_setup2
-  void device_setup3()
-  {std::cout<<__func__<<" page"<<std::endl;
-    device_setup(3);
-  }//device_setup3
-*/
   virtual void bus();
   virtual void no_template();
 };//http_service
