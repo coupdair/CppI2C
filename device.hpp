@@ -269,7 +269,7 @@ class MC2SADevice: public FakeDevice
 
     //register initialisation
     (*this)["gain"]->write(0x0);//0x21);//16 and 1 pF
-    (*this)["resistor"]->write(0x0);//0x28);//200 and 500 kOhm
+    (*this)["resistor"]->write(0x2);//0x28);//200 and 500 kOhm
     (*this)["discri"]->write(128);//1.65V as byte
     (*this)["offset"]->write(0);//0V
     (*this)["amplitude"]->write(0);//0V

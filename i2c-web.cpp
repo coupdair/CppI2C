@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.2.1f"
+#define VERSION "v0.2.1g"
 
 //Program option/documentation
 //{argp
@@ -392,6 +392,21 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
               MC2SADev->read();
               c.infoApply.update_time.value("MC2SAresistor");
             }//valid
+            if(c.infoMC2SAoption.validate())
+            {///MC2SA option
+              std::bitset<6> resistor;//3 lower bits
+              resistor[0]=c.infoMC2SAoption.diff.value();
+              resistor[1]=c.infoMC2SAoption.discri.value();
+              resistor[2]=c.infoMC2SAoption.vicm.value();
+              c.resistor=resistor.to_ulong();
+              //print
+              if(verbose>0) std::cout<<"MC2SA option apply "<<c.value_list()<<std::flush;
+              //setup reg.
+              Register *reg=(MC2SADev->find("resistor"))->second;
+              reg->write(c.resistor);
+              MC2SADev->read();
+              c.infoApply.update_time.value("MC2SAoption");
+            }//valid
             if(c.infoMC2SAdiscri.validate())
             {///MC2SA discri
               c.discri=c.infoMC2SAdiscri.get_level();
@@ -480,8 +495,11 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
           reg=(MC2SADev->find("resistor"))->second;
           r=reg->read();
           //set resistor to c.infoMC2SAresistor.resistor[2,3,5]
-          std::bitset<6> resistor(r);//3 higher bits
-          std::cout<<"resistor="<<resistor.to_ulong()<<", i.e. "<<resistor.to_string()<<" 3 higher bits"<<std::endl;
+          std::bitset<6> resistor(r);//resistor 3 higher bits, option 3 lower ones
+          std::cout<<"resistor="<<resistor.to_ulong()<<", i.e. "<<resistor.to_string()<<" resistor 3 higher bits, option 3 lower ones"<<std::endl;
+          c.infoMC2SAoption.diff.value(resistor[0]);
+          c.infoMC2SAoption.discri.value(resistor[1]);
+          c.infoMC2SAoption.vicm.value(resistor[2]);
           c.infoMC2SAresistor.resistor2.value(resistor[3]);
           c.infoMC2SAresistor.resistor3.value(resistor[4]);
           c.infoMC2SAresistor.resistor5.value(resistor[5]);

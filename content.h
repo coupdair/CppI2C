@@ -103,6 +103,30 @@ namespace content
         return true;
     }//validate
   };//info_form_MC2SA_resistor
+  struct info_form_MC2SA_option : public cppcms::form
+  {
+    cppcms::widgets::checkbox vicm;
+    cppcms::widgets::checkbox discri;
+    cppcms::widgets::checkbox diff;
+    info_form_MC2SA_option()
+    {
+		///widget titles
+        vicm.message("");vicm.name("vicm");vicm.help(" DAC throuhg VICM");
+        discri.message("");discri.name("discri");discri.help(" enable discri.");
+        diff.message("");diff.name("diff");diff.help(" select lout analog diff.");
+        ///order widgets
+        add(vicm);
+        add(discri);
+        add(diff);
+        ///values and behavious
+    }//constructor
+    virtual bool validate()
+    {
+        if(!form::validate()) 
+            return false;
+        return true;
+    }//validate
+  };//info_form_MC2SA_option
   struct info_form_MC2SA_level : public cppcms::form
   {
     cppcms::widgets::numeric<float> level;
@@ -274,6 +298,7 @@ namespace content
     //GUI (HMTL)
     info_form_MC2SA_gain infoMC2SAgain;
     info_form_MC2SA_resistor infoMC2SAresistor;
+    info_form_MC2SA_option infoMC2SAoption;
     info_form_MC2SA_discri infoMC2SAdiscri;
     info_form_MC2SA_offset infoMC2SAoffset;
     info_form_MC2SA_amplitude infoMC2SAamplitude;
@@ -291,7 +316,7 @@ namespace content
       std::bitset<6> bs(gain);
       s<<"\n - gain="<<bs.to_ulong()<<", i.e. "<<bs.to_string();
       bs=resistor;
-      s<<"\n - resistor="<<bs.to_ulong()<<", i.e. "<<bs.to_string();
+      s<<"\n - resistorNoption="<<bs.to_ulong()<<", i.e. "<<bs.to_string();
       bs=test;
       s<<"\n - test="<<bs.to_ulong()<<", i.e. "<<bs.to_string();
       s<<"\n - discri="<<discri;
