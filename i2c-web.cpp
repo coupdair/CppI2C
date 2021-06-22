@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.2.1e"
+#define VERSION "v0.2.1f"
 
 //Program option/documentation
 //{argp
@@ -427,7 +427,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
             }//valid
             if(c.infoMC2SAtestNdiscri.validate())
             {///MC2SA testNdiscri
-              std::bitset<6> test;//3 higher bits
+              std::bitset<6> test;//5+1 lower bits
               test[5]=c.infoMC2SAtestNdiscri.test_in.value();
               test[4]=c.infoMC2SAtestNdiscri.test_gen.value();
               test[3]=c.infoMC2SAtestNdiscri.pulse_out.value();
@@ -485,7 +485,18 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
           c.infoMC2SAresistor.resistor2.value(resistor[3]);
           c.infoMC2SAresistor.resistor3.value(resistor[4]);
           c.infoMC2SAresistor.resistor5.value(resistor[5]);
-//"testNdiscri"
+          ///testNdiscri
+          reg=(MC2SADev->find("testNdiscri"))->second;
+          r=reg->read();
+          //set testNdiscri to c.infoMC2SAtestNdiscri.*
+          std::bitset<6> test(r);//3 higher bits
+          std::cout<<"test="<<test.to_ulong()<<", i.e. "<<test.to_string()<<" 5+1 lower bits"<<std::endl;
+          c.infoMC2SAtestNdiscri.test_in.value(test[5]);
+          c.infoMC2SAtestNdiscri.test_gen.value(test[4]);
+          c.infoMC2SAtestNdiscri.pulse_out.value(test[3]);
+          c.infoMC2SAtestNdiscri.power_down.value(test[2]);
+          c.infoMC2SAtestNdiscri.gen_clock.value(test[1]);
+          c.infoMC2SAtestNdiscri.inv_discri.value(test[0]);
           ///discri
           reg=(MC2SADev->find("discri"))->second;
           r=reg->read();
