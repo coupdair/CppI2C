@@ -8,11 +8,13 @@
     <tr>
     
       
+        <th>
         
         MC2SA#0
         
         </th>
       
+        <th>
         
         <a href="/setup/1">
         
@@ -28,6 +30,7 @@
     <hr/>
 <!--} navigation tab -->
     <form method="post" action="" >
+<!--{ MC2SA# fields -->
       <fieldset>
       <legend><b>MC2SA#0</b></legend>
         <p>capacitors for <a href="https://en.wikipedia.org/wiki/Gain_(electronics)">gain</a>:
@@ -53,9 +56,11 @@
         <p>amplitude level&nbsp;<span class="cppcms_form_input"><input type="text" name="level_amplitude" value="0"  ></span><span class="cppcms_form_help"> V : range [0 .. 3.3]V</span></p>
 
       </fieldset>
+<!--} MC2SA# fields -->
+<!--{ temperature fields -->
       <fieldset>
       <legend><b>ambiant temperature</b></legend>
-        <p>Temperature&nbsp;<span class="cppcms_form_input"><input type="text" name="temperature" disabled value="23"  ></span><span class="cppcms_form_help"> °C : ambiant temperature in degree Celcius</span></p>
+        <p>Temperature&nbsp;<span class="cppcms_form_input"><input type="text" name="temperature" disabled value="22.5"  ></span><span class="cppcms_form_help"> °C : ambiant temperature in degree Celcius</span></p>
 <p>Resolution&nbsp;<span class="cppcms_form_input"><select name="temperature_resolution"  >
 <option value="0.5" selected >0.5</option>
 <option value="0.25" >0.25</option>
@@ -64,7 +69,9 @@
 </select></span><span class="cppcms_form_help"> °C : temperature resolution in degree Celcius (and speed, e.g. 4Hz at 0.0625°C)</span></p>
 
       </fieldset>
-      <p><span class="cppcms_form_input"><input type="submit" name="apply_all" value="apply"  ></span></p>
+<!--} temperature fields -->
+      <p>last update time&nbsp;<span class="cppcms_form_input"><input type="text" name="last_update"  value="KEEP" ></span><span class="cppcms_form_help"> : initial values at this date/time</span></p>
+<p><span class="cppcms_form_input"><input type="submit" name="apply_all" value="apply"  ></span></p>
 
     </form>
   </body>

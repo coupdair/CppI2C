@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.1.8"
+#define VERSION "v0.1.9d"
 
 //Program option/documentation
 //{argp
@@ -368,6 +368,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
               Register *reg=(MC2SADev->find("gain"))->second;
               reg->write(c.gain);
               MC2SADev->read();
+              c.infoApply.update_time.value("MC2SAgain");
             }//valid
             if(c.infoMC2SAresistor.validate())
             {///MC2SA resistor
@@ -382,6 +383,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
               Register *reg=(MC2SADev->find("resistor"))->second;
               reg->write(c.resistor);
               MC2SADev->read();
+              c.infoApply.update_time.value("MC2SAresistor");
             }//valid
             if(c.infoMC2SAdiscri.validate())
             {///MC2SA discri
@@ -392,6 +394,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
               Register *reg=(MC2SADev->find("discri"))->second;
               reg->write(c.discri);
               MC2SADev->read();
+              c.infoApply.update_time.value("MC2SAdiscri");
             }//valid
             if(c.infoMC2SAoffset.validate())
             {///MC2SA discri
@@ -402,6 +405,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
               Register *reg=(MC2SADev->find("offset"))->second;
               reg->write(c.offset);
               MC2SADev->read();
+              c.infoApply.update_time.value("MC2SAoffset");
             }//valid
             if(c.infoMC2SAamplitude.validate())
             {///MC2SA discri
@@ -412,6 +416,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
               Register *reg=(MC2SADev->find("amplitude"))->second;
               reg->write(c.amplitude);
               MC2SADev->read();
+              c.infoApply.update_time.value("MC2SAamplitude");
             }//valid
             //content transfer GUI to core
             if(c.infoTemperature.validate())
@@ -424,6 +429,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
                 Register *reg=(temperatureDev->find("TemperatureResolution"))->second;
                 int r=reg->read();
                 std::cout<<"resolution mode="<<r<<std::endl;
+                c.infoApply.update_time.value("Temperature");
             }//valid
         }//POST
         else
@@ -488,6 +494,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
           std::cout<<" i.e. "<<val<<std::endl;
           c.infoTemperature.resolution.selected_id(val);
 	      }//Temperature
+	      c.infoApply.update_time.value("KEEP");
 		}//KEEP
         render("message",c);
   }//device_setup

@@ -191,11 +191,14 @@ namespace content
   struct info_form_apply : public cppcms::form
   {
     cppcms::widgets::submit submit;
+    cppcms::widgets::text   update_time;
     info_form_apply()
     {
 		///widget titles
         submit.value("apply");submit.name("apply_all");
+        update_time.message("last update time");update_time.value("");update_time.name("last_update");update_time.help(" : initial values at this date/time");
         ///order widgets
+        add(update_time);
         add(submit);
     }//constructor
     virtual bool validate()
@@ -216,6 +219,8 @@ namespace content
   struct message : public master
   {
     //data
+    ///update
+    std::string update_time;
     ///MC2SA tabs
     std::string id;
     std::vector<nav_tab> nav_tabs;

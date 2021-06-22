@@ -11,6 +11,7 @@
     <tr>
     <% foreach tab in nav_tabs %>
       <% item %>
+        <th>
         <% if not empty tab.link %>
         <a href="<%= tab.link %>">
         <% end %>
@@ -26,6 +27,7 @@
     <hr/>
 <!--} navigation tab -->
     <form method="post" action="" >
+<!--{ MC2SA# fields -->
       <fieldset>
       <legend><b>MC2SA#<%= id %></b></legend>
         <p>capacitors for <a href="https://en.wikipedia.org/wiki/Gain_(electronics)">gain</a>:
@@ -39,10 +41,13 @@
         <% form as_p infoMC2SAoffset %>
         <% form as_p infoMC2SAamplitude %>
       </fieldset>
+<!--} MC2SA# fields -->
+<!--{ temperature fields -->
       <fieldset>
       <legend><b>ambiant temperature</b></legend>
         <% form as_p infoTemperature %>
       </fieldset>
+<!--} temperature fields -->
       <% form as_p infoApply %>
     </form>
   </body>
