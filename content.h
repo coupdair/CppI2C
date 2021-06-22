@@ -260,11 +260,11 @@ namespace content
         for(int i=0;i<2;++i)
         {
 		  //format
-		  std::ostringstream name_;name_<<"name#"<<(id_+1);//int>>string
-		  std::ostringstream link_;link_<<"link#"<<i;//int>>string
+		  std::ostringstream name_;name_<<"MC2SA#"<<i;//int>>string
+		  std::ostringstream link_;link_<<"/setup/"<<i;//int>>string
 		  //fill tab
-          if(i==id_) tab.name=""; else tab.name=name_.str();
-          tab.link=link_.str();
+          tab.name=name_.str();
+          if(i==id_) tab.link=""; else tab.link=link_.str();
           //store tab
           nav_tabs.push_back(tab);
         }//tab loop
