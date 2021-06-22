@@ -3,6 +3,26 @@ MC2SADevice/set_name("MC2SADevice")
 MC2SADevice/set_name("MC2SADevice")
 MC2SADevice/set_name("MC2SADevice")
 MC2SADevice/set_name("MC2SADevice")
+2021-06-22 15:00:28; cppcms, error: url_mapper: key `setup' not found for url `/setup'
+0x1a3b4: booster::runtime_error::runtime_error(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x50 in ./i2c-web
+0x76e74228: cppcms::url_mapper::data::get_entry(cppcms::string_key const&, unsigned int, cppcms::string_key const&) const + 0x28c in ../CppCMS/cppcms/build/libcppcms.so.1
+0x76e702bc: cppcms::url_mapper::real_map(char const*, cppcms::filters::streamable const* const*, unsigned int, std::ostream&) + 0x1488 in ../CppCMS/cppcms/build/libcppcms.so.1
+0x76e71ab8: cppcms::url_mapper::map(std::ostream&, char const*) + 0x20 in ../CppCMS/cppcms/build/libcppcms.so.1
+0x24528: ??? + 0x24528 in ./i2c-web
+0x24414: ??? + 0x24414 in ./i2c-web
+0x76e807e4: cppcms::views::pool::render(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::ostream&, cppcms::base_content&) + 0x50 in ../CppCMS/cppcms/build/libcppcms.so.1
+0x76e81464: cppcms::views::manager::render(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::ostream&, cppcms::base_content&) + 0x2a0 in ../CppCMS/cppcms/build/libcppcms.so.1
+0x76e64f04: cppcms::application::render(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, cppcms::base_content&) + 0x74 in ../CppCMS/cppcms/build/libcppcms.so.1
+0x1674c: ??? + 0x1674c in ./i2c-web
+0x17898: ??? + 0x17898 in ./i2c-web
+0x76e6d0f8: ??? + 0x76e6d0f8 in ../CppCMS/cppcms/build/libcppcms.so.1
+0x76e68e80: cppcms::url_dispatcher::dispatch(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x9c in ../CppCMS/cppcms/build/libcppcms.so.1
+0x76e34800: cppcms::application::main(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x80 in ../CppCMS/cppcms/build/libcppcms.so.1
+0x76e5e350: cppcms::http::context::dispatch(booster::intrusive_ptr<cppcms::application> const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, bool) + 0xbc in ../CppCMS/cppcms/build/libcppcms.so.1
+0x76e5e644: cppcms::http::context::dispatch(booster::shared_ptr<cppcms::application_specific_pool> const&, booster::shared_ptr<cppcms::http::context> const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x84 in ../CppCMS/cppcms/build/libcppcms.so.1
+0x76e6101c: cppcms::impl::thread_pool::worker() + 0xe0 in ../CppCMS/cppcms/build/libcppcms.so.1
+0x76dab3bc: booster_thread_func + 0x28 in ../CppCMS/cppcms/build/booster/libbooster.so.0
+ (url_mapper.cpp:432)
 
 I2C devices address(es):0x04, 0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d.
 device_setup page

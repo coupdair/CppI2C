@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.2.0"
+#define VERSION "v0.2.1d"
 
 //Program option/documentation
 //{argp
@@ -153,12 +153,7 @@ public:
     mapper().assign("devices","/devices");
 
 //setup pages
-    for(int i=0;i<count;++i)
-    {
-	  std::ostringstream link;link<<"/setup/"<<i;//int>>string, e.g. /setup/0
-      dispatcher().assign("^/setup/(\\d+)$",&http_service::device_setup,this,1);
-      mapper().assign("setup",link.str());
-    }//setup page loop
+    dispatcher().assign("^/setup/(\\d+)$",&http_service::device_setup,this,1);
 
     dispatcher().assign("/system",&http_service::system,this);
     mapper().assign("system","/system");
@@ -338,7 +333,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
   {std::cout<<__func__<<" page"<<std::endl;
     int verbose=1;//[0-1]
     int id;std::istringstream(id_)>>id;//string>>int
-    if(id>vMC2SADev.size()) return;
+    if(id>=vMC2SADev.size()) return;
     ///get device to setup
     MC2SADevice *MC2SADev=vMC2SADev[id];
     //GUI

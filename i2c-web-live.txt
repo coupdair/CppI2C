@@ -25,14 +25,6 @@ AmbiantTemperature => I2CRegisterWord
 TemperatureResolution => I2CRegisterByte
   AmbiantTemperature =   TemperatureResolution = resolution mode=0x3 i.e. 0.0625
 device_setup page
-MC2SA gain apply message data:
- - temperature=0
- - resolution=0
- - MC2SA#0
- - gain=1, i.e. 000001
- - resistor=0, i.e. 000000
- - discri=0
- - offset=0
 MC2SADevice::read()
 FakeRegister0 => FakeRegister
 FakeRegister1 => FakeRegister
@@ -45,17 +37,15 @@ resistor => FakeRegister
   FakeRegister1 = 10
   amplitude = 0
   discri = 128
-  gain = 1
+  gain = 0
   offset = 0
   resistor = 0
-MC2SA resistor apply message data:
- - temperature=0
- - resolution=0
- - MC2SA#0
- - gain=1, i.e. 000001
- - resistor=0, i.e. 000000
- - discri=0
- - offset=0
+gain=0, i.e. 000000
+resistor=0, i.e. 000000 3 higher bits
+AmbiantTemperature => I2CRegisterWord
+TemperatureResolution => I2CRegisterByte
+  AmbiantTemperature =   TemperatureResolution = resolution mode=0x3 i.e. 0.0625
+device_setup page
 MC2SADevice::read()
 FakeRegister0 => FakeRegister
 FakeRegister1 => FakeRegister
@@ -68,87 +58,14 @@ resistor => FakeRegister
   FakeRegister1 = 10
   amplitude = 0
   discri = 128
-  gain = 1
+  gain = 0
   offset = 0
   resistor = 0
-MC2SA discri apply message data:
- - temperature=0
- - resolution=0
- - MC2SA#0
- - gain=1, i.e. 000001
- - resistor=0, i.e. 000000
- - discri=127
- - offset=0
-MC2SADevice::read()
-FakeRegister0 => FakeRegister
-FakeRegister1 => FakeRegister
-amplitude => FakeRegister
-discri => FakeRegister
-gain => FakeRegister
-offset => FakeRegister
-resistor => FakeRegister
-  FakeRegister0 = 5
-  FakeRegister1 = 10
-  amplitude = 0
-  discri = 127
-  gain = 1
-  offset = 0
-  resistor = 0
-MC2SA offset apply message data:
- - temperature=0
- - resolution=0
- - MC2SA#0
- - gain=1, i.e. 000001
- - resistor=0, i.e. 000000
- - discri=127
- - offset=0
-MC2SADevice::read()
-FakeRegister0 => FakeRegister
-FakeRegister1 => FakeRegister
-amplitude => FakeRegister
-discri => FakeRegister
-gain => FakeRegister
-offset => FakeRegister
-resistor => FakeRegister
-  FakeRegister0 = 5
-  FakeRegister1 = 10
-  amplitude = 0
-  discri = 127
-  gain = 1
-  offset = 0
-  resistor = 0
-MC2SA amplitude apply message data:
- - temperature=0
- - resolution=0
- - MC2SA#0
- - gain=1, i.e. 000001
- - resistor=0, i.e. 000000
- - discri=127
- - offset=0
-MC2SADevice::read()
-FakeRegister0 => FakeRegister
-FakeRegister1 => FakeRegister
-amplitude => FakeRegister
-discri => FakeRegister
-gain => FakeRegister
-offset => FakeRegister
-resistor => FakeRegister
-  FakeRegister0 = 5
-  FakeRegister1 = 10
-  amplitude = 0
-  discri = 127
-  gain = 1
-  offset = 0
-  resistor = 0
-Temperature apply message data:
- - temperature=23.25
- - resolution=0.0625
- - MC2SA#0
- - gain=1, i.e. 000001
- - resistor=0, i.e. 000000
- - discri=127
- - offset=0
-resolution mode=3
+gain=0, i.e. 000000
+resistor=0, i.e. 000000 3 higher bits
+AmbiantTemperature => I2CRegisterWord
+TemperatureResolution => I2CRegisterByte
+  AmbiantTemperature =   TemperatureResolution = resolution mode=0x3 i.e. 0.0625
 device_setup page
 MC2SADevice::read()
 FakeRegister0 => FakeRegister
@@ -320,6 +237,152 @@ device_setup page
 MC2SA gain apply message data:
  - temperature=0
  - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistor=0, i.e. 000000
+ - discri=0
+ - offset=0
+MC2SADevice::read()
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+amplitude => FakeRegister
+discri => FakeRegister
+gain => FakeRegister
+offset => FakeRegister
+resistor => FakeRegister
+  FakeRegister0 = 5
+  FakeRegister1 = 10
+  amplitude = 0
+  discri = 128
+  gain = 1
+  offset = 0
+  resistor = 0
+MC2SA resistor apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistor=0, i.e. 000000
+ - discri=0
+ - offset=0
+MC2SADevice::read()
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+amplitude => FakeRegister
+discri => FakeRegister
+gain => FakeRegister
+offset => FakeRegister
+resistor => FakeRegister
+  FakeRegister0 = 5
+  FakeRegister1 = 10
+  amplitude = 0
+  discri = 128
+  gain = 1
+  offset = 0
+  resistor = 0
+MC2SA discri apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistor=0, i.e. 000000
+ - discri=127
+ - offset=0
+MC2SADevice::read()
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+amplitude => FakeRegister
+discri => FakeRegister
+gain => FakeRegister
+offset => FakeRegister
+resistor => FakeRegister
+  FakeRegister0 = 5
+  FakeRegister1 = 10
+  amplitude = 0
+  discri = 127
+  gain = 1
+  offset = 0
+  resistor = 0
+MC2SA offset apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistor=0, i.e. 000000
+ - discri=127
+ - offset=0
+MC2SADevice::read()
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+amplitude => FakeRegister
+discri => FakeRegister
+gain => FakeRegister
+offset => FakeRegister
+resistor => FakeRegister
+  FakeRegister0 = 5
+  FakeRegister1 = 10
+  amplitude = 0
+  discri = 127
+  gain = 1
+  offset = 0
+  resistor = 0
+MC2SA amplitude apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistor=0, i.e. 000000
+ - discri=127
+ - offset=0
+MC2SADevice::read()
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+amplitude => FakeRegister
+discri => FakeRegister
+gain => FakeRegister
+offset => FakeRegister
+resistor => FakeRegister
+  FakeRegister0 = 5
+  FakeRegister1 = 10
+  amplitude = 0
+  discri = 127
+  gain = 1
+  offset = 0
+  resistor = 0
+Temperature apply message data:
+ - temperature=23.25
+ - resolution=0.0625
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistor=0, i.e. 000000
+ - discri=127
+ - offset=0
+resolution mode=3
+device_setup page
+MC2SADevice::read()
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+amplitude => FakeRegister
+discri => FakeRegister
+gain => FakeRegister
+offset => FakeRegister
+resistor => FakeRegister
+  FakeRegister0 = 5
+  FakeRegister1 = 10
+  amplitude = 0
+  discri = 128
+  gain = 0
+  offset = 0
+  resistor = 0
+gain=0, i.e. 000000
+resistor=0, i.e. 000000 3 higher bits
+AmbiantTemperature => I2CRegisterWord
+TemperatureResolution => I2CRegisterByte
+  AmbiantTemperature =   TemperatureResolution = resolution mode=0x3 i.e. 0.0625
+device_setup page
+MC2SA gain apply message data:
+ - temperature=0
+ - resolution=0
  - MC2SA#2
  - gain=4, i.e. 000100
  - resistor=0, i.e. 000000
@@ -433,7 +496,7 @@ resistor => FakeRegister
   offset = 0
   resistor = 0
 Temperature apply message data:
- - temperature=23.25
+ - temperature=23.3125
  - resolution=0.0625
  - MC2SA#2
  - gain=4, i.e. 000100
@@ -693,6 +756,14 @@ AmbiantTemperature => I2CRegisterWord
 TemperatureResolution => I2CRegisterByte
   AmbiantTemperature =   TemperatureResolution = resolution mode=0x3 i.e. 0.0625
 device_setup page
+MC2SA gain apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistor=0, i.e. 000000
+ - discri=0
+ - offset=0
 MC2SADevice::read()
 FakeRegister0 => FakeRegister
 FakeRegister1 => FakeRegister
@@ -708,23 +779,14 @@ resistor => FakeRegister
   gain = 1
   offset = 0
   resistor = 0
-gain=1, i.e. 000001
-resistor=0, i.e. 000000 3 higher bits
-AmbiantTemperature => I2CRegisterWord
-TemperatureResolution => I2CRegisterByte
-  AmbiantTemperature =   TemperatureResolution = resolution mode=0x3 i.e. 0.0625
-
-I2C devices address(es):0x04, 0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d.
-
-dur=0
-
-
-dur=0
-
-
-dur=0
-
-device_setup page
+MC2SA resistor apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistor=0, i.e. 000000
+ - discri=0
+ - offset=0
 MC2SADevice::read()
 FakeRegister0 => FakeRegister
 FakeRegister1 => FakeRegister
@@ -740,12 +802,14 @@ resistor => FakeRegister
   gain = 1
   offset = 0
   resistor = 0
-gain=1, i.e. 000001
-resistor=0, i.e. 000000 3 higher bits
-AmbiantTemperature => I2CRegisterWord
-TemperatureResolution => I2CRegisterByte
-  AmbiantTemperature =   TemperatureResolution = resolution mode=0x3 i.e. 0.0625
-device_setup page
+MC2SA discri apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistor=0, i.e. 000000
+ - discri=127
+ - offset=0
 MC2SADevice::read()
 FakeRegister0 => FakeRegister
 FakeRegister1 => FakeRegister
@@ -758,15 +822,17 @@ resistor => FakeRegister
   FakeRegister1 = 10
   amplitude = 0
   discri = 127
-  gain = 8
+  gain = 1
   offset = 0
   resistor = 0
-gain=8, i.e. 001000
-resistor=0, i.e. 000000 3 higher bits
-AmbiantTemperature => I2CRegisterWord
-TemperatureResolution => I2CRegisterByte
-  AmbiantTemperature =   TemperatureResolution = resolution mode=0x3 i.e. 0.0625
-device_setup page
+MC2SA offset apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistor=0, i.e. 000000
+ - discri=127
+ - offset=0
 MC2SADevice::read()
 FakeRegister0 => FakeRegister
 FakeRegister1 => FakeRegister
@@ -779,14 +845,41 @@ resistor => FakeRegister
   FakeRegister1 = 10
   amplitude = 0
   discri = 127
-  gain = 4
+  gain = 1
   offset = 0
   resistor = 0
-gain=4, i.e. 000100
-resistor=0, i.e. 000000 3 higher bits
-AmbiantTemperature => I2CRegisterWord
-TemperatureResolution => I2CRegisterByte
-  AmbiantTemperature =   TemperatureResolution = resolution mode=0x3 i.e. 0.0625
+MC2SA amplitude apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistor=0, i.e. 000000
+ - discri=127
+ - offset=0
+MC2SADevice::read()
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+amplitude => FakeRegister
+discri => FakeRegister
+gain => FakeRegister
+offset => FakeRegister
+resistor => FakeRegister
+  FakeRegister0 = 5
+  FakeRegister1 = 10
+  amplitude = 0
+  discri = 127
+  gain = 1
+  offset = 0
+  resistor = 0
+Temperature apply message data:
+ - temperature=23.3125
+ - resolution=0.0625
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistor=0, i.e. 000000
+ - discri=127
+ - offset=0
+resolution mode=3
 device_setup page
 MC2SADevice::read()
 FakeRegister0 => FakeRegister
@@ -809,6 +902,131 @@ AmbiantTemperature => I2CRegisterWord
 TemperatureResolution => I2CRegisterByte
   AmbiantTemperature =   TemperatureResolution = resolution mode=0x3 i.e. 0.0625
 device_setup page
+MC2SA gain apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#1
+ - gain=2, i.e. 000010
+ - resistor=0, i.e. 000000
+ - discri=0
+ - offset=0
+MC2SADevice::read()
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+amplitude => FakeRegister
+discri => FakeRegister
+gain => FakeRegister
+offset => FakeRegister
+resistor => FakeRegister
+  FakeRegister0 = 5
+  FakeRegister1 = 10
+  amplitude = 0
+  discri = 127
+  gain = 2
+  offset = 0
+  resistor = 0
+MC2SA resistor apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#1
+ - gain=2, i.e. 000010
+ - resistor=0, i.e. 000000
+ - discri=0
+ - offset=0
+MC2SADevice::read()
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+amplitude => FakeRegister
+discri => FakeRegister
+gain => FakeRegister
+offset => FakeRegister
+resistor => FakeRegister
+  FakeRegister0 = 5
+  FakeRegister1 = 10
+  amplitude = 0
+  discri = 127
+  gain = 2
+  offset = 0
+  resistor = 0
+MC2SA discri apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#1
+ - gain=2, i.e. 000010
+ - resistor=0, i.e. 000000
+ - discri=127
+ - offset=0
+MC2SADevice::read()
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+amplitude => FakeRegister
+discri => FakeRegister
+gain => FakeRegister
+offset => FakeRegister
+resistor => FakeRegister
+  FakeRegister0 = 5
+  FakeRegister1 = 10
+  amplitude = 0
+  discri = 127
+  gain = 2
+  offset = 0
+  resistor = 0
+MC2SA offset apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#1
+ - gain=2, i.e. 000010
+ - resistor=0, i.e. 000000
+ - discri=127
+ - offset=0
+MC2SADevice::read()
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+amplitude => FakeRegister
+discri => FakeRegister
+gain => FakeRegister
+offset => FakeRegister
+resistor => FakeRegister
+  FakeRegister0 = 5
+  FakeRegister1 = 10
+  amplitude = 0
+  discri = 127
+  gain = 2
+  offset = 0
+  resistor = 0
+MC2SA amplitude apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#1
+ - gain=2, i.e. 000010
+ - resistor=0, i.e. 000000
+ - discri=127
+ - offset=0
+MC2SADevice::read()
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+amplitude => FakeRegister
+discri => FakeRegister
+gain => FakeRegister
+offset => FakeRegister
+resistor => FakeRegister
+  FakeRegister0 = 5
+  FakeRegister1 = 10
+  amplitude = 0
+  discri = 127
+  gain = 2
+  offset = 0
+  resistor = 0
+Temperature apply message data:
+ - temperature=23.3125
+ - resolution=0.5
+ - MC2SA#1
+ - gain=2, i.e. 000010
+ - resistor=0, i.e. 000000
+ - discri=127
+ - offset=0
+resolution mode=0
+device_setup page
 MC2SADevice::read()
 FakeRegister0 => FakeRegister
 FakeRegister1 => FakeRegister
@@ -828,4 +1046,192 @@ gain=1, i.e. 000001
 resistor=0, i.e. 000000 3 higher bits
 AmbiantTemperature => I2CRegisterWord
 TemperatureResolution => I2CRegisterByte
-  AmbiantTemperature =   TemperatureResolution = resolution mode=0x3 i.e. 0.0625
+  AmbiantTemperature =   TemperatureResolution = resolution mode=0x0 i.e. 0.5
+device_setup page
+MC2SADevice::read()
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+amplitude => FakeRegister
+discri => FakeRegister
+gain => FakeRegister
+offset => FakeRegister
+resistor => FakeRegister
+  FakeRegister0 = 5
+  FakeRegister1 = 10
+  amplitude = 0
+  discri = 127
+  gain = 2
+  offset = 0
+  resistor = 0
+gain=2, i.e. 000010
+resistor=0, i.e. 000000 3 higher bits
+AmbiantTemperature => I2CRegisterWord
+TemperatureResolution => I2CRegisterByte
+  AmbiantTemperature =   TemperatureResolution = resolution mode=0x0 i.e. 0.5
+device_setup page
+MC2SADevice::read()
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+amplitude => FakeRegister
+discri => FakeRegister
+gain => FakeRegister
+offset => FakeRegister
+resistor => FakeRegister
+  FakeRegister0 = 5
+  FakeRegister1 = 10
+  amplitude = 0
+  discri = 127
+  gain = 4
+  offset = 0
+  resistor = 0
+gain=4, i.e. 000100
+resistor=0, i.e. 000000 3 higher bits
+AmbiantTemperature => I2CRegisterWord
+TemperatureResolution => I2CRegisterByte
+  AmbiantTemperature =   TemperatureResolution = resolution mode=0x0 i.e. 0.5
+device_setup page
+MC2SADevice::read()
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+amplitude => FakeRegister
+discri => FakeRegister
+gain => FakeRegister
+offset => FakeRegister
+resistor => FakeRegister
+  FakeRegister0 = 5
+  FakeRegister1 = 10
+  amplitude = 0
+  discri = 127
+  gain = 8
+  offset = 0
+  resistor = 0
+gain=8, i.e. 001000
+resistor=0, i.e. 000000 3 higher bits
+AmbiantTemperature => I2CRegisterWord
+TemperatureResolution => I2CRegisterByte
+  AmbiantTemperature =   TemperatureResolution = resolution mode=0x0 i.e. 0.5
+device_setup page
+MC2SA gain apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#3
+ - gain=8, i.e. 001000
+ - resistor=0, i.e. 000000
+ - discri=0
+ - offset=0
+MC2SADevice::read()
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+amplitude => FakeRegister
+discri => FakeRegister
+gain => FakeRegister
+offset => FakeRegister
+resistor => FakeRegister
+  FakeRegister0 = 5
+  FakeRegister1 = 10
+  amplitude = 0
+  discri = 127
+  gain = 8
+  offset = 0
+  resistor = 0
+MC2SA resistor apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#3
+ - gain=8, i.e. 001000
+ - resistor=0, i.e. 000000
+ - discri=0
+ - offset=0
+MC2SADevice::read()
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+amplitude => FakeRegister
+discri => FakeRegister
+gain => FakeRegister
+offset => FakeRegister
+resistor => FakeRegister
+  FakeRegister0 = 5
+  FakeRegister1 = 10
+  amplitude = 0
+  discri = 127
+  gain = 8
+  offset = 0
+  resistor = 0
+MC2SA discri apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#3
+ - gain=8, i.e. 001000
+ - resistor=0, i.e. 000000
+ - discri=127
+ - offset=0
+MC2SADevice::read()
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+amplitude => FakeRegister
+discri => FakeRegister
+gain => FakeRegister
+offset => FakeRegister
+resistor => FakeRegister
+  FakeRegister0 = 5
+  FakeRegister1 = 10
+  amplitude = 0
+  discri = 127
+  gain = 8
+  offset = 0
+  resistor = 0
+MC2SA offset apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#3
+ - gain=8, i.e. 001000
+ - resistor=0, i.e. 000000
+ - discri=127
+ - offset=0
+MC2SADevice::read()
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+amplitude => FakeRegister
+discri => FakeRegister
+gain => FakeRegister
+offset => FakeRegister
+resistor => FakeRegister
+  FakeRegister0 = 5
+  FakeRegister1 = 10
+  amplitude = 0
+  discri = 127
+  gain = 8
+  offset = 0
+  resistor = 0
+MC2SA amplitude apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#3
+ - gain=8, i.e. 001000
+ - resistor=0, i.e. 000000
+ - discri=127
+ - offset=0
+MC2SADevice::read()
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+amplitude => FakeRegister
+discri => FakeRegister
+gain => FakeRegister
+offset => FakeRegister
+resistor => FakeRegister
+  FakeRegister0 = 5
+  FakeRegister1 = 10
+  amplitude = 0
+  discri = 127
+  gain = 8
+  offset = 0
+  resistor = 0
+Temperature apply message data:
+ - temperature=23.5
+ - resolution=0.0625
+ - MC2SA#3
+ - gain=8, i.e. 001000
+ - resistor=0, i.e. 000000
+ - discri=127
+ - offset=0
+resolution mode=3
