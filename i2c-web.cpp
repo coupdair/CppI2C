@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.1.8f"
+#define VERSION "v0.1.8g"
 
 //Program option/documentation
 //{argp
@@ -336,6 +336,8 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
     MC2SADevice *MC2SADev=vMC2SADev[id];
     ///GUI
         content::message c;
+        std::ostringstream tmp;tmp<<id;//int>>string
+        c.id=tmp.str();
         if(request().request_method()=="POST")
         {
             c.infoMC2SAgain.load(context());

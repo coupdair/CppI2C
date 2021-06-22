@@ -212,6 +212,7 @@ namespace content
     float temperature;
     float resolution;
     ///MC2SA
+    std::string id;
     char gain;
     char resistor;
     int  discri;
@@ -232,6 +233,7 @@ namespace content
       s<<"message data:";
       s<<"\n - temperature="<<temperature;
       s<<"\n - resolution=" <<resolution;
+      s<<"\n - MC2SA#"<<id;
       std::bitset<6> bs(gain);
       s<<"\n - gain="<<bs.to_ulong()<<", i.e. "<<bs.to_string();
       bs=resistor;

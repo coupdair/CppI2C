@@ -3,12 +3,16 @@
   <body>
     <h1>device setup</h1>
     <hr/>
-    <a href="../0">MC2SA#0 </a>
-    <a href="../1">MC2SA#1 </a>
+<table>
+  <tr>
+    <th><a href="/setup/0">MC2SA#0 </a></th>
+    <th><a href="/setup/1">MC2SA#1 </a></th>
+  </tr>
+</table> 
     <hr/>
     <form method="post" action="" >
       <fieldset>
-      <legend><b>MC2SA</b></legend>
+      <legend><b>MC2SA#0</b></legend>
         <p>capacitors for <a href="https://en.wikipedia.org/wiki/Gain_(electronics)">gain</a>:
         &nbsp;<span class="cppcms_form_input"><input type="checkbox" name="gain1" value="y"  ></span><span class="cppcms_form_help">1 pF</span>
 &nbsp;<span class="cppcms_form_input"><input type="checkbox" name="gain2" value="y"  ></span><span class="cppcms_form_help">2 pF</span>
@@ -34,7 +38,7 @@
       </fieldset>
       <fieldset>
       <legend><b>ambiant temperature</b></legend>
-        <p>Temperature&nbsp;<span class="cppcms_form_input"><input type="text" name="temperature" disabled value="22.5"  ></span><span class="cppcms_form_help"> °C : ambiant temperature in degree Celcius</span></p>
+        <p>Temperature&nbsp;<span class="cppcms_form_input"><input type="text" name="temperature" disabled value="23"  ></span><span class="cppcms_form_help"> °C : ambiant temperature in degree Celcius</span></p>
 <p>Resolution&nbsp;<span class="cppcms_form_input"><select name="temperature_resolution"  >
 <option value="0.5" selected >0.5</option>
 <option value="0.25" >0.25</option>
