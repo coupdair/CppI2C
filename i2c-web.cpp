@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.1.7"
+#define VERSION "v0.1.8d"
 
 //Program option/documentation
 //{argp
@@ -132,6 +132,7 @@ static struct argp argp = { options, parse_option, args_doc, doc };
 class http_service: public cppcms::application {
 public:
   TemperatureDevice *temperatureDev;
+//  std::vector<MC2SADevice *>MC2SADev;
   MC2SADevice *MC2SADev;
 public:
   http_service(cppcms::service &srv) :
@@ -149,8 +150,11 @@ public:
     dispatcher().assign("/devices",&http_service::devices,this);
     mapper().assign("devices","/devices");
 
-    dispatcher().assign("/setup",&http_service::device_setup,this);
-    mapper().assign("setup","/setup");
+//setup pages
+    dispatcher().assign("/setup/0",&http_service::device_setup,this);
+    mapper().assign("setup","/setup/0");
+//    dispatcher().assign("/setup/1",&http_service::device_setup1,this);
+//    mapper().assign("setup","/setup/1");
 
     dispatcher().assign("/system",&http_service::system,this);
     mapper().assign("system","/system");
