@@ -158,6 +158,41 @@ namespace content
         level.message("amplitude level");level.name("level_amplitude");
     }//constructor
   };//info_form_MC2SA_amplitude
+
+  struct info_form_MC2SA_testNdiscri : public cppcms::form
+  {
+    cppcms::widgets::checkbox test_in;
+    cppcms::widgets::checkbox test_gen;
+    cppcms::widgets::checkbox pulse_out;
+    cppcms::widgets::checkbox power_down;
+    cppcms::widgets::checkbox gen_clock;
+    cppcms::widgets::checkbox inv_discri;
+    info_form_MC2SA_testNdiscri()
+    {
+		///widget titles
+        test_in.message("");test_in.name("test_in");test_in.help(" test in");
+        test_gen.message("");test_gen.name("test_gen");test_gen.help(" test gen.");
+        pulse_out.message("");pulse_out.name("pulse_out");pulse_out.help(" pulse out");
+        power_down.message("");power_down.name("power_down");power_down.help(" power down");
+        gen_clock.message("");gen_clock.name("gen_clock");gen_clock.help(" gen. clock");
+        inv_discri.message("");inv_discri.name("inv_discri");inv_discri.help(" invert discri");
+        ///order widgets
+        add(test_in);
+        add(test_gen);
+        add(pulse_out);
+        add(power_down);
+        add(gen_clock);
+        add(inv_discri);
+        ///values and behavious
+    }//constructor
+    virtual bool validate()
+    {
+        if(!form::validate()) 
+            return false;
+        return true;
+    }//validate
+  };//info_form_MC2SA_testNdiscri
+
   struct info_form_temperature : public cppcms::form
   {
     cppcms::widgets::numeric<float> temperature;
@@ -230,17 +265,19 @@ namespace content
     float temperature;
     float resolution;
     ///MC2SA
-    char gain;
-    char resistor;
-    int  discri;
-    int  offset;
-    int  amplitude;
+    char gain;//R1-
+    char resistor;//R5-
+    char test;//R3-
+    int  discri;//R4+
+    int  offset;//R2+
+    int  amplitude;//R0+
     //GUI (HMTL)
     info_form_MC2SA_gain infoMC2SAgain;
     info_form_MC2SA_resistor infoMC2SAresistor;
     info_form_MC2SA_discri infoMC2SAdiscri;
     info_form_MC2SA_offset infoMC2SAoffset;
     info_form_MC2SA_amplitude infoMC2SAamplitude;
+    info_form_MC2SA_testNdiscri infoMC2SAtestNdiscri;
     info_form_temperature infoTemperature;
     info_form_apply infoApply;
     //value list
@@ -255,8 +292,11 @@ namespace content
       s<<"\n - gain="<<bs.to_ulong()<<", i.e. "<<bs.to_string();
       bs=resistor;
       s<<"\n - resistor="<<bs.to_ulong()<<", i.e. "<<bs.to_string();
+      bs=test;
+      s<<"\n - test="<<bs.to_ulong()<<", i.e. "<<bs.to_string();
       s<<"\n - discri="<<discri;
       s<<"\n - offset="<<offset;
+      s<<"\n - amplitude="<<amplitude;
       s<<std::endl;
       return s.str();
     }//value_list

@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.2.1d"
+#define VERSION "v0.2.1e"
 
 //Program option/documentation
 //{argp
@@ -349,6 +349,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
         {
             c.infoMC2SAgain.load(context());
             c.infoMC2SAresistor.load(context());
+            c.infoMC2SAtestNdiscri.load(context());
             c.infoMC2SAdiscri.load(context());
             c.infoMC2SAoffset.load(context());
             c.infoMC2SAamplitude.load(context());
@@ -414,7 +415,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
               c.infoApply.update_time.value("MC2SAoffset");
             }//valid
             if(c.infoMC2SAamplitude.validate())
-            {///MC2SA discri
+            {///MC2SA amplitude
               c.offset=c.infoMC2SAamplitude.get_level();//Volt to byte
               //print
               if(verbose>0) std::cout<<"MC2SA amplitude apply "<<c.value_list()<<std::flush;
@@ -423,6 +424,24 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
               reg->write(c.amplitude);
               MC2SADev->read();
               c.infoApply.update_time.value("MC2SAamplitude");
+            }//valid
+            if(c.infoMC2SAtestNdiscri.validate())
+            {///MC2SA testNdiscri
+              std::bitset<6> test;//3 higher bits
+              test[5]=c.infoMC2SAtestNdiscri.test_in.value();
+              test[4]=c.infoMC2SAtestNdiscri.test_gen.value();
+              test[3]=c.infoMC2SAtestNdiscri.pulse_out.value();
+              test[2]=c.infoMC2SAtestNdiscri.power_down.value();
+              test[1]=c.infoMC2SAtestNdiscri.gen_clock.value();
+              test[0]=c.infoMC2SAtestNdiscri.inv_discri.value();
+              c.test=test.to_ulong();
+              //print
+              if(verbose>0) std::cout<<"MC2SA test apply "<<c.value_list()<<std::flush;
+              //setup reg.
+              Register *reg=(MC2SADev->find("testNdiscri"))->second;
+              reg->write(c.test);
+              MC2SADev->read();
+              c.infoApply.update_time.value("MC2SAtestNdiscri");
             }//valid
             //content transfer GUI to core
             if(c.infoTemperature.validate())
@@ -466,6 +485,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
           c.infoMC2SAresistor.resistor2.value(resistor[3]);
           c.infoMC2SAresistor.resistor3.value(resistor[4]);
           c.infoMC2SAresistor.resistor5.value(resistor[5]);
+//"testNdiscri"
           ///discri
           reg=(MC2SADev->find("discri"))->second;
           r=reg->read();
