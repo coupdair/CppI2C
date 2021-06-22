@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.1.8e"
+#define VERSION "v0.1.8f"
 
 //Program option/documentation
 //{argp
@@ -332,7 +332,9 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
   void device_setup(int id)
   {std::cout<<__func__<<" page"<<std::endl;
     int verbose=1;//[0-1]
+    ///get device to setup
     MC2SADevice *MC2SADev=vMC2SADev[id];
+    ///GUI
         content::message c;
         if(request().request_method()=="POST")
         {
