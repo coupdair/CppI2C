@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.1.8d"
+#define VERSION "v0.1.8e"
 
 //Program option/documentation
 //{argp
@@ -132,8 +132,7 @@ static struct argp argp = { options, parse_option, args_doc, doc };
 class http_service: public cppcms::application {
 public:
   TemperatureDevice *temperatureDev;
-//  std::vector<MC2SADevice *>MC2SADev;
-  MC2SADevice *MC2SADev;
+  std::vector<MC2SADevice *>vMC2SADev;
 public:
   http_service(cppcms::service &srv) :
     cppcms::application(srv) 
@@ -151,10 +150,10 @@ public:
     mapper().assign("devices","/devices");
 
 //setup pages
-    dispatcher().assign("/setup/0",&http_service::device_setup,this);
+    dispatcher().assign("/setup/0",&http_service::device_setup0,this);
     mapper().assign("setup","/setup/0");
-//    dispatcher().assign("/setup/1",&http_service::device_setup1,this);
-//    mapper().assign("setup","/setup/1");
+    dispatcher().assign("/setup/1",&http_service::device_setup1,this);
+    mapper().assign("setup","/setup/1");
 
     dispatcher().assign("/system",&http_service::system,this);
     mapper().assign("system","/system");
@@ -163,7 +162,15 @@ public:
 
     //module
     temperatureDev=(TemperatureDevice *)DeviceFactory::NewDevice("TemperatureDevice"); if(temperatureDev==NULL) exit(-9);
-    MC2SADev=(MC2SADevice *)DeviceFactory::NewDevice("MC2SADevice"); if(MC2SADev==NULL) exit(-9);
+    for(int i=0;i<2;++i)
+    {
+      vMC2SADev.push_back((MC2SADevice *)DeviceFactory::NewDevice("MC2SADevice"));
+      if(vMC2SADev[i]==NULL)
+      {
+        std::cerr<<"error: MC2SA device do not exists."<<std::endl;
+        exit(-9);
+      }
+    }//vector loop
   }//constructor
   void ini(content::master &c)
   {
@@ -322,9 +329,10 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
   }//devices
 
   //! setup devices: MC2SA and temperature
-  void device_setup()
+  void device_setup(int id)
   {std::cout<<__func__<<" page"<<std::endl;
     int verbose=1;//[0-1]
+    MC2SADevice *MC2SADev=vMC2SADev[id];
         content::message c;
         if(request().request_method()=="POST")
         {
@@ -478,6 +486,14 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
 		}//KEEP
         render("message",c);
   }//device_setup
+  void device_setup0()
+  {std::cout<<__func__<<" page"<<std::endl;
+    device_setup(0);
+  }//device_setup0
+  void device_setup1()
+  {std::cout<<__func__<<" page"<<std::endl;
+    device_setup(1);
+  }//device_setup1
 
   virtual void bus();
   virtual void no_template();

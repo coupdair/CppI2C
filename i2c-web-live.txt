@@ -1,4 +1,5 @@
 ./i2c-web is running (Ctrl+C to stop), have look to http://localhost:8080/i2c-bus.
+device_setup1 page
 device_setup page
 FakeRegister0 => FakeRegister
 FakeRegister1 => FakeRegister
@@ -19,3 +20,401 @@ resistor=0, i.e. 000000 3 higher bits
 AmbiantTemperature => I2CRegisterWord
 TemperatureResolution => I2CRegisterByte
   AmbiantTemperature =   TemperatureResolution = resolution mode=0x1 i.e. 0.25
+device_setup0 page
+device_setup page
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+amplitude => FakeRegister
+discri => FakeRegister
+gain => FakeRegister
+offset => FakeRegister
+resistor => FakeRegister
+  FakeRegister0 = 5
+  FakeRegister1 = 10
+  amplitude = 0
+  discri = 128
+  gain = 0
+  offset = 0
+  resistor = 0
+gain=0, i.e. 000000
+resistor=0, i.e. 000000 3 higher bits
+AmbiantTemperature => I2CRegisterWord
+TemperatureResolution => I2CRegisterByte
+  AmbiantTemperature =   TemperatureResolution = resolution mode=0x1 i.e. 0.25
+device_setup0 page
+device_setup page
+MC2SA gain apply message data:
+ - temperature=0
+ - resolution=0
+ - gain=33, i.e. 100001
+ - resistor=0, i.e. 000000
+ - discri=0
+ - offset=0
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+amplitude => FakeRegister
+discri => FakeRegister
+gain => FakeRegister
+offset => FakeRegister
+resistor => FakeRegister
+  FakeRegister0 = 5
+  FakeRegister1 = 10
+  amplitude = 0
+  discri = 128
+  gain = 33
+  offset = 0
+  resistor = 0
+MC2SA resistor apply message data:
+ - temperature=0
+ - resolution=0
+ - gain=33, i.e. 100001
+ - resistor=40, i.e. 101000
+ - discri=0
+ - offset=0
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+amplitude => FakeRegister
+discri => FakeRegister
+gain => FakeRegister
+offset => FakeRegister
+resistor => FakeRegister
+  FakeRegister0 = 5
+  FakeRegister1 = 10
+  amplitude = 0
+  discri = 128
+  gain = 33
+  offset = 0
+  resistor = 40
+MC2SA discri apply message data:
+ - temperature=0
+ - resolution=0
+ - gain=33, i.e. 100001
+ - resistor=40, i.e. 101000
+ - discri=9
+ - offset=0
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+amplitude => FakeRegister
+discri => FakeRegister
+gain => FakeRegister
+offset => FakeRegister
+resistor => FakeRegister
+  FakeRegister0 = 5
+  FakeRegister1 = 10
+  amplitude = 0
+  discri = 9
+  gain = 33
+  offset = 0
+  resistor = 40
+MC2SA offset apply message data:
+ - temperature=0
+ - resolution=0
+ - gain=33, i.e. 100001
+ - resistor=40, i.e. 101000
+ - discri=9
+ - offset=95
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+amplitude => FakeRegister
+discri => FakeRegister
+gain => FakeRegister
+offset => FakeRegister
+resistor => FakeRegister
+  FakeRegister0 = 5
+  FakeRegister1 = 10
+  amplitude = 0
+  discri = 9
+  gain = 33
+  offset = 95
+  resistor = 40
+Temperature apply message data:
+ - temperature=22.25
+ - resolution=0.0625
+ - gain=33, i.e. 100001
+ - resistor=40, i.e. 101000
+ - discri=9
+ - offset=95
+resolution mode=3
+device_setup1 page
+device_setup page
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+amplitude => FakeRegister
+discri => FakeRegister
+gain => FakeRegister
+offset => FakeRegister
+resistor => FakeRegister
+  FakeRegister0 = 5
+  FakeRegister1 = 10
+  amplitude = 0
+  discri = 128
+  gain = 0
+  offset = 0
+  resistor = 0
+gain=0, i.e. 000000
+resistor=0, i.e. 000000 3 higher bits
+AmbiantTemperature => I2CRegisterWord
+TemperatureResolution => I2CRegisterByte
+  AmbiantTemperature =   TemperatureResolution = resolution mode=0x3 i.e. 0.0625
+device_setup1 page
+device_setup page
+MC2SA gain apply message data:
+ - temperature=0
+ - resolution=0
+ - gain=30, i.e. 011110
+ - resistor=0, i.e. 000000
+ - discri=0
+ - offset=0
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+amplitude => FakeRegister
+discri => FakeRegister
+gain => FakeRegister
+offset => FakeRegister
+resistor => FakeRegister
+  FakeRegister0 = 5
+  FakeRegister1 = 10
+  amplitude = 0
+  discri = 128
+  gain = 30
+  offset = 0
+  resistor = 0
+MC2SA resistor apply message data:
+ - temperature=0
+ - resolution=0
+ - gain=30, i.e. 011110
+ - resistor=0, i.e. 000000
+ - discri=0
+ - offset=0
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+amplitude => FakeRegister
+discri => FakeRegister
+gain => FakeRegister
+offset => FakeRegister
+resistor => FakeRegister
+  FakeRegister0 = 5
+  FakeRegister1 = 10
+  amplitude = 0
+  discri = 128
+  gain = 30
+  offset = 0
+  resistor = 0
+MC2SA discri apply message data:
+ - temperature=0
+ - resolution=0
+ - gain=30, i.e. 011110
+ - resistor=0, i.e. 000000
+ - discri=249
+ - offset=0
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+amplitude => FakeRegister
+discri => FakeRegister
+gain => FakeRegister
+offset => FakeRegister
+resistor => FakeRegister
+  FakeRegister0 = 5
+  FakeRegister1 = 10
+  amplitude = 0
+  discri = 249
+  gain = 30
+  offset = 0
+  resistor = 0
+MC2SA offset apply message data:
+ - temperature=0
+ - resolution=0
+ - gain=30, i.e. 011110
+ - resistor=0, i.e. 000000
+ - discri=249
+ - offset=24
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+amplitude => FakeRegister
+discri => FakeRegister
+gain => FakeRegister
+offset => FakeRegister
+resistor => FakeRegister
+  FakeRegister0 = 5
+  FakeRegister1 = 10
+  amplitude = 0
+  discri = 249
+  gain = 30
+  offset = 24
+  resistor = 0
+MC2SA amplitude apply message data:
+ - temperature=0
+ - resolution=0
+ - gain=30, i.e. 011110
+ - resistor=0, i.e. 000000
+ - discri=249
+ - offset=2
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+amplitude => FakeRegister
+discri => FakeRegister
+gain => FakeRegister
+offset => FakeRegister
+resistor => FakeRegister
+  FakeRegister0 = 5
+  FakeRegister1 = 10
+  amplitude = 0
+  discri = 249
+  gain = 30
+  offset = 24
+  resistor = 0
+Temperature apply message data:
+ - temperature=22.5625
+ - resolution=0.5
+ - gain=30, i.e. 011110
+ - resistor=0, i.e. 000000
+ - discri=249
+ - offset=2
+resolution mode=0
+device_setup0 page
+device_setup page
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+amplitude => FakeRegister
+discri => FakeRegister
+gain => FakeRegister
+offset => FakeRegister
+resistor => FakeRegister
+  FakeRegister0 = 5
+  FakeRegister1 = 10
+  amplitude = 0
+  discri = 9
+  gain = 33
+  offset = 95
+  resistor = 40
+gain=33, i.e. 100001
+resistor=40, i.e. 101000 3 higher bits
+AmbiantTemperature => I2CRegisterWord
+TemperatureResolution => I2CRegisterByte
+  AmbiantTemperature =   TemperatureResolution = resolution mode=0x0 i.e. 0.5
+device_setup1 page
+device_setup page
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+amplitude => FakeRegister
+discri => FakeRegister
+gain => FakeRegister
+offset => FakeRegister
+resistor => FakeRegister
+  FakeRegister0 = 5
+  FakeRegister1 = 10
+  amplitude = 0
+  discri = 249
+  gain = 30
+  offset = 24
+  resistor = 0
+gain=30, i.e. 011110
+resistor=0, i.e. 000000 3 higher bits
+AmbiantTemperature => I2CRegisterWord
+TemperatureResolution => I2CRegisterByte
+  AmbiantTemperature =   TemperatureResolution = resolution mode=0x0 i.e. 0.5
+device_setup0 page
+device_setup page
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+amplitude => FakeRegister
+discri => FakeRegister
+gain => FakeRegister
+offset => FakeRegister
+resistor => FakeRegister
+  FakeRegister0 = 5
+  FakeRegister1 = 10
+  amplitude = 0
+  discri = 9
+  gain = 33
+  offset = 95
+  resistor = 40
+gain=33, i.e. 100001
+resistor=40, i.e. 101000 3 higher bits
+AmbiantTemperature => I2CRegisterWord
+TemperatureResolution => I2CRegisterByte
+  AmbiantTemperature =   TemperatureResolution = resolution mode=0x0 i.e. 0.5
+device_setup1 page
+device_setup page
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+amplitude => FakeRegister
+discri => FakeRegister
+gain => FakeRegister
+offset => FakeRegister
+resistor => FakeRegister
+  FakeRegister0 = 5
+  FakeRegister1 = 10
+  amplitude = 0
+  discri = 249
+  gain = 30
+  offset = 24
+  resistor = 0
+gain=30, i.e. 011110
+resistor=0, i.e. 000000 3 higher bits
+AmbiantTemperature => I2CRegisterWord
+TemperatureResolution => I2CRegisterByte
+  AmbiantTemperature =   TemperatureResolution = resolution mode=0x0 i.e. 0.5
+device_setup0 page
+device_setup page
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+amplitude => FakeRegister
+discri => FakeRegister
+gain => FakeRegister
+offset => FakeRegister
+resistor => FakeRegister
+  FakeRegister0 = 5
+  FakeRegister1 = 10
+  amplitude = 0
+  discri = 9
+  gain = 33
+  offset = 95
+  resistor = 40
+gain=33, i.e. 100001
+resistor=40, i.e. 101000 3 higher bits
+AmbiantTemperature => I2CRegisterWord
+TemperatureResolution => I2CRegisterByte
+  AmbiantTemperature =   TemperatureResolution = resolution mode=0x0 i.e. 0.5
+device_setup1 page
+device_setup page
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+amplitude => FakeRegister
+discri => FakeRegister
+gain => FakeRegister
+offset => FakeRegister
+resistor => FakeRegister
+  FakeRegister0 = 5
+  FakeRegister1 = 10
+  amplitude = 0
+  discri = 249
+  gain = 30
+  offset = 24
+  resistor = 0
+gain=30, i.e. 011110
+resistor=0, i.e. 000000 3 higher bits
+AmbiantTemperature => I2CRegisterWord
+TemperatureResolution => I2CRegisterByte
+  AmbiantTemperature =   TemperatureResolution = resolution mode=0x0 i.e. 0.5
+device_setup0 page
+device_setup page
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+amplitude => FakeRegister
+discri => FakeRegister
+gain => FakeRegister
+offset => FakeRegister
+resistor => FakeRegister
+  FakeRegister0 = 5
+  FakeRegister1 = 10
+  amplitude = 0
+  discri = 9
+  gain = 33
+  offset = 95
+  resistor = 40
+gain=33, i.e. 100001
+resistor=40, i.e. 101000 3 higher bits
+AmbiantTemperature => I2CRegisterWord
+TemperatureResolution => I2CRegisterByte
+  AmbiantTemperature =   TemperatureResolution = resolution mode=0x0 i.e. 0.5

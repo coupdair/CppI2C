@@ -6,16 +6,17 @@ sleep 6
 #get HTML content
 wb=i2c-bus
 list=
-for d in $wb $wb/bus $wb/devices $wb/setup $wb/system
+for d in $wb $wb/bus $wb/devices $wb/setup/0 $wb/system
 do
   f=`basename $d`
+  if [ "$f" == "0" ] ; then fo="setup"; else fo=$f; fi
   echo 'get '$f
   #clean
-  rm $f $f.? $f.?? $f.html
+  rm $f $f.? $f.?? $fo.html
   #get web page
   wget http://localhost:8080/$d
-  mv $f $f.html
-  list=$list' '$f.html
+  mv $f $fo.html
+  list=$list' '$fo.html
 done
 
 sleep 1
