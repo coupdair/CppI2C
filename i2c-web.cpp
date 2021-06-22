@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.2.0d"
+#define VERSION "v0.2.0e"
 
 //Program option/documentation
 //{argp
@@ -132,11 +132,14 @@ static struct argp argp = { options, parse_option, args_doc, doc };
 class http_service: public cppcms::application {
 public:
   TemperatureDevice *temperatureDev;
-  std::vector<MC2SADevice *>vMC2SADev;//int count;
+  std::vector<MC2SADevice *>vMC2SADev;
 public:
   http_service(cppcms::service &srv) :
     cppcms::application(srv) 
   {
+    //! static number of MC2SA device
+    const int count=4;
+    
     dispatcher().assign("",&http_service::main,this);
     mapper().assign("");
 
@@ -150,10 +153,20 @@ public:
     mapper().assign("devices","/devices");
 
 //setup pages
-    dispatcher().assign("/setup/0",&http_service::device_setup0,this);
-    mapper().assign("setup","/setup/0");
-    dispatcher().assign("/setup/1",&http_service::device_setup1,this);
-    mapper().assign("setup","/setup/1");
+/*
+    std::vector<void*> page_func;
+    page_func.push_back(&http_service::device_setup0);
+    page_func.push_back(&http_service::device_setup1);
+    page_func.push_back(&http_service::device_setup2);
+    page_func.push_back(&http_service::device_setup3);
+*/
+    for(int i=0;i<count;++i)
+    {
+	  std::ostringstream link;link<<"/setup/"<<i;//int>>string, e.g. /setup/0
+//      dispatcher().assign(link.str(),page_func[i],this);
+      dispatcher().assign(link.str(),&http_service::device_setup0,this);
+      mapper().assign("setup",link.str());
+    }//setup page loop
 
     dispatcher().assign("/system",&http_service::system,this);
     mapper().assign("system","/system");
@@ -162,7 +175,7 @@ public:
 
     //module
     temperatureDev=(TemperatureDevice *)DeviceFactory::NewDevice("TemperatureDevice"); if(temperatureDev==NULL) exit(-9);
-    for(int i=0;i<2;++i)
+    for(int i=0;i<count;++i)
     {
       vMC2SADev.push_back((MC2SADevice *)DeviceFactory::NewDevice("MC2SADevice"));
       if(vMC2SADev[i]==NULL)
@@ -170,7 +183,7 @@ public:
         std::cerr<<"error: MC2SA device do not exists."<<std::endl;
         exit(-9);
       }
-    }//vector loop
+    }//device vector loop
   }//constructor
   void ini(content::master &c)
   {
@@ -512,6 +525,14 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
   {std::cout<<__func__<<" page"<<std::endl;
     device_setup(1);
   }//device_setup1
+  void device_setup2()
+  {std::cout<<__func__<<" page"<<std::endl;
+    device_setup(2);
+  }//device_setup2
+  void device_setup3()
+  {std::cout<<__func__<<" page"<<std::endl;
+    device_setup(3);
+  }//device_setup3
 
   virtual void bus();
   virtual void no_template();
