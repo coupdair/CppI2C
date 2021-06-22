@@ -263,7 +263,7 @@ namespace content
 		  std::ostringstream name_;name_<<"name#"<<(id_+1);//int>>string
 		  std::ostringstream link_;link_<<"link#"<<i;//int>>string
 		  //fill tab
-          tab.name=name_.str();
+          if(i==id_) tab.name=""; else tab.name=name_.str();
           tab.link=link_.str();
           //store tab
           nav_tabs.push_back(tab);

@@ -10,7 +10,12 @@
      <ul>
       <% item %>
        <li>
-        <% tab.name %>: 
+        <% if not empty tab.name %>
+        <% tab.name %>
+        <% else %>
+        this
+        <% end %>
+        :
         <% tab.link %>
        </li>
       <% end %>
