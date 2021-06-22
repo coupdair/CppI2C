@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.1.8g"
+#define VERSION "v0.1.8h"
 
 //Program option/documentation
 //{argp
@@ -338,6 +338,10 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
         content::message c;
         std::ostringstream tmp;tmp<<id;//int>>string
         c.id=tmp.str();
+        content::nav_tab tab;
+        tab.name="A";
+        tab.link="L";
+        c.nav_tabs.push_back(tab);
         if(request().request_method()=="POST")
         {
             c.infoMC2SAgain.load(context());

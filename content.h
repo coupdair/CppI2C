@@ -205,14 +205,24 @@ namespace content
         return true;
     }//validate
   };//info_form_apply
+  
+  struct nav_tab
+  {
+//	nav_tab() : id(0) {}
+	std::string name;
+	std::string link;
+  };
+
   struct message : public master
   {
     //data
+    ///MC2SA tabs
+    std::string id;
+    std::vector<nav_tab> nav_tabs;
     ///temperature
     float temperature;
     float resolution;
     ///MC2SA
-    std::string id;
     char gain;
     char resistor;
     int  discri;

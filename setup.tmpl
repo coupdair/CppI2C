@@ -6,12 +6,24 @@
   <body>
     <h1>device setup</h1>
     <hr/>
+    <% foreach tab in nav_tabs %>
+     <ul>
+      <% item %>
+       <li>
+        <% tab.name %>: 
+        <% tab.link %>
+       </li>
+      <% end %>
+     </ul>
+    <% end foreach %>
+<!--
 <table>
   <tr>
     <th><a href="/setup/0">MC2SA#0 </a></th>
     <th><a href="/setup/1">MC2SA#1 </a></th>
   </tr>
 </table> 
+-->
     <hr/>
     <form method="post" action="" >
       <fieldset>
