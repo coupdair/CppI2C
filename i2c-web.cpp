@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.1.9"
+#define VERSION "v0.2.0d"
 
 //Program option/documentation
 //{argp
@@ -132,7 +132,7 @@ static struct argp argp = { options, parse_option, args_doc, doc };
 class http_service: public cppcms::application {
 public:
   TemperatureDevice *temperatureDev;
-  std::vector<MC2SADevice *>vMC2SADev;
+  std::vector<MC2SADevice *>vMC2SADev;//int count;
 public:
   http_service(cppcms::service &srv) :
     cppcms::application(srv) 
@@ -334,11 +334,15 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
     int verbose=1;//[0-1]
     ///get device to setup
     MC2SADevice *MC2SADev=vMC2SADev[id];
-    ///GUI
-        content::message c;
-        std::ostringstream tmp;tmp<<id;//int>>string
-        c.id=tmp.str();
-        c.nav_tabs_create(id);
+    //GUI
+    content::message c;
+    ///GUI template
+    ini(c);
+    ///GUI static
+    std::ostringstream tmp;tmp<<id;//int>>string
+    c.id=tmp.str();
+    c.nav_tabs_create(id);
+    ///GUI action
         if(request().request_method()=="POST")
         {
             c.infoMC2SAgain.load(context());
