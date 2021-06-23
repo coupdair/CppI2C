@@ -3,8 +3,8 @@ LD_LIBRARY_PATH=LD_LIBRARY_PATH="../CppCMS/cppcms/build;../CppCMS/cppcms/build/b
 #all: i2c help version  web web-help web-version
 #all: web web-help web-version run-web-capture
 #all: i2c help version
-#all: fake-web run-fake-web-capture
-all: web
+all: fake-web run-fake-web-capture
+#all: web
 
 code:
 	geany ReadMe.md Makefile  i2c_tools.hpp os_tools.hpp register.hpp device.hpp module.hpp  i2c.cpp  config.js master.tmpl main.tmpl devices.tmpl setup.tmpl page.tmpl content.h i2c-web.cpp web-capture.sh &
@@ -34,7 +34,7 @@ web: i2c-web.cpp config.js i2c_tools.hpp os_tools.hpp device.hpp register.hpp mo
 
 fake-web: i2c-web.cpp config.js i2c_tools.hpp os_tools.hpp device.hpp register.hpp module.hpp
 	../CppCMS/cppcms/bin/cppcms_tmpl_cc master.tmpl main.tmpl page.tmpl devices.tmpl setup.tmpl -o web_skin.cpp
-	g++ -DFAKE_MC2SA -I../CppCMS/cppcms/booster -I../CppCMS/cppcms/build -I../CppCMS/cppcms/build/booster  -O2 -Wall -g i2c-web.cpp web_skin.cpp -o fake-web -L../CppCMS/cppcms/build -L../CppCMS/cppcms/build/booster -lcppcms -lbooster
+	g++ -DFAKE_MC2SA -I../CppCMS/cppcms -I../CppCMS/cppcms/booster -I../CppCMS/cppcms/build -I../CppCMS/cppcms/build/booster  -O2 -Wall -g i2c-web.cpp web_skin.cpp -o fake-web -L../CppCMS/cppcms/build -L../CppCMS/cppcms/build/booster -lcppcms -lbooster
 
 web-help: web
 	$(LD_LIBRARY_PATH) ./i2c-web --help | tee i2c-web.help.output
