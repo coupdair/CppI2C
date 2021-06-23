@@ -18,7 +18,7 @@
 #include "i2c/i2c.h"
 #endif //USE_I2C_LIB
 
-#define REGISTER_VERSION "v0.1.6g"
+#define REGISTER_VERSION "v0.1.6h"
 
 //version
 //! register library version
@@ -294,6 +294,8 @@ class RegisterFactory
       return new I2CRegisterByte;
     if(name == "I2CRegisterWord")
       return new I2CRegisterWord;
+    if(name == "I2CRegisterWord_RO")
+      return new I2CRegisterWord("I2CRegisterWord",REG_READ_ONLY);
     std::cerr<<"Register name is unknown, i.e. \""<<name<<"\"."<<std::endl;
     return NULL;
   }//NewRegister
@@ -303,6 +305,7 @@ class RegisterFactory
     list="FakeRegister";
     list+=", I2CRegisterByte";
     list+=", I2CRegisterWord";
+    list+=", I2CRegisterWord_RO";
     list+=".";
     return list;
   }

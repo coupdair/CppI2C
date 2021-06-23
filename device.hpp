@@ -20,7 +20,7 @@
 #include "i2c/i2c.h"
 #endif //USE_I2C_LIB
 
-#define DEVICE_VERSION "v0.2.0d"
+#define DEVICE_VERSION "v0.2.0e"
 
 //version
 //! device library version
@@ -162,8 +162,8 @@ class TemperatureDevice: public I2C_Device
   {
     set_name("TemperatureDevice");
     default_register_name="AmbiantTemperature";
-    create_register(default_register_name,  "I2CRegisterWord",0x05);//,RO);
-    create_register("TemperatureResolution","I2CRegisterByte",0x08);//,RW);
+    create_register(default_register_name,  "I2CRegisterWord_RO",0x05);//RO
+    create_register("TemperatureResolution","I2CRegisterByte",0x08);//RW
   }//constructor
   virtual void read()
   {if(this->debug) std::cout<<name<<"::read()"<<std::endl;
@@ -235,13 +235,13 @@ class MC2SADevice: public FakeDevice
   MC2SADevice()
   {
     set_name("MC2SADevice");
-    create_register("gain","FakeRegister");//,RW);
-    create_register("resistor","FakeRegister");//,RW);
-    create_register("discri","FakeRegister");//,RW);
-    create_register("offset","FakeRegister");//,RW);
-    create_register("amplitude","FakeRegister");//,RW);
-    create_register("testNdiscri","FakeRegister");//,RW);
-//    create_register("TODO","I2CRegisterByte",0x12);//,RW);
+    create_register("gain","FakeRegister");//RW
+    create_register("resistor","FakeRegister");//RW
+    create_register("discri","FakeRegister");//RW
+    create_register("offset","FakeRegister");//RW
+    create_register("amplitude","FakeRegister");//RW
+    create_register("testNdiscri","FakeRegister");//RW
+//    create_register("TODO","I2CRegisterByte",0x12);//RW
     init();
   }//constructor
   virtual void read()
