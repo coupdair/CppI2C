@@ -3,7 +3,8 @@ LD_LIBRARY_PATH=LD_LIBRARY_PATH="../CppCMS/cppcms/build;../CppCMS/cppcms/build/b
 #all: i2c help version  web web-help web-version
 #all: web web-help web-version run-web-capture
 #all: i2c help version
-all: fake-web run-fake-web-capture
+#all: fake-web run-fake-web-capture
+all: web
 
 code:
 	geany ReadMe.md Makefile  i2c_tools.hpp os_tools.hpp register.hpp device.hpp module.hpp  i2c.cpp  config.js master.tmpl main.tmpl devices.tmpl setup.tmpl page.tmpl content.h i2c-web.cpp web-capture.sh &

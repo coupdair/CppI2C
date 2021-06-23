@@ -18,7 +18,7 @@
 #include "i2c/i2c.h"
 #endif //USE_I2C_LIB
 
-#define REGISTER_VERSION "v0.1.6h"
+#define REGISTER_VERSION "v0.1.6"
 
 //version
 //! register library version

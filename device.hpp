@@ -20,7 +20,7 @@
 #include "i2c/i2c.h"
 #endif //USE_I2C_LIB
 
-#define DEVICE_VERSION "v0.2.0f"
+#define DEVICE_VERSION "v0.2.0g"
 
 //version
 //! device library version
@@ -229,7 +229,15 @@ class TemperatureDevice: public I2C_Device
 };//TemperatureDevice
 
 //! MC2SA
-class MC2SADevice: public FakeDevice
+/**
+ * I2C or fake mode using -DFAKE_MC2SA
+**/
+class MC2SADevice:
+#ifdef FAKE_MC2SA
+public FakeDevice
+#else
+public I2C_Device
+#endif
 {
  public:
   MC2SADevice()
