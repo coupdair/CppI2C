@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.2.1g"
+#define VERSION "v0.2.1"
 
 //Program option/documentation
 //{argp
@@ -331,7 +331,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
   //! setup devices: MC2SA and temperature
   void device_setup(std::string id_)
   {std::cout<<__func__<<" page"<<std::endl;
-    int verbose=1;//[0-1]
+    int verbose=0;//[0-1]
     int id;std::istringstream(id_)>>id;//string>>int
     if(id>=vMC2SADev.size()) return;
     ///get device to setup
@@ -347,8 +347,10 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
     ///GUI action
         if(request().request_method()=="POST")
         {
+			///context
             c.infoMC2SAgain.load(context());
             c.infoMC2SAresistor.load(context());
+            c.infoMC2SAoption.load(context());
             c.infoMC2SAtestNdiscri.load(context());
             c.infoMC2SAdiscri.load(context());
             c.infoMC2SAoffset.load(context());
@@ -359,7 +361,6 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
             //content transfer GUI to core
             if(c.infoMC2SAgain.validate())
             {///MC2SA gain
-//				std::istringstream(c.infoMC2SAgain.resolution.selected_id())>>c.resolution_todo;//string>>float
               //get c.gain from c.infoMC2SAgain.gain[1,2,4,8,11,16]
               std::bitset<6> gain;
               gain[0]=c.infoMC2SAgain.gain1.value();
@@ -374,37 +375,47 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
               //setup reg.
               Register *reg=(MC2SADev->find("gain"))->second;
               reg->write(c.gain);
-              MC2SADev->read();
+              if(verbose>2) MC2SADev->read();
               c.infoApply.update_time.value("MC2SAgain");
             }//valid
             if(c.infoMC2SAresistor.validate())
             {///MC2SA resistor
-              std::bitset<6> resistor;//3 higher bits
+              //R5
+              Register *reg=(MC2SADev->find("resistor"))->second;
+              int r=reg->read();
+              //set theses bits in R5 value
+              std::bitset<6> resistor(r);//3 higher bits
+              if(verbose>1) std::cout<<"resistor//R5="<<resistor.to_string()<<std::endl;
               resistor[3]=c.infoMC2SAresistor.resistor2.value();
               resistor[4]=c.infoMC2SAresistor.resistor3.value();
               resistor[5]=c.infoMC2SAresistor.resistor5.value();
+              if(verbose>1) std::cout<<"resistor//R5="<<resistor.to_string()<<std::endl;
               c.resistor=resistor.to_ulong();
               //print
               if(verbose>0) std::cout<<"MC2SA resistor apply "<<c.value_list()<<std::flush;
               //setup reg.
-              Register *reg=(MC2SADev->find("resistor"))->second;
               reg->write(c.resistor);
-              MC2SADev->read();
+              if(verbose>2) MC2SADev->read();
               c.infoApply.update_time.value("MC2SAresistor");
             }//valid
             if(c.infoMC2SAoption.validate())
             {///MC2SA option
-              std::bitset<6> resistor;//3 lower bits
+              //R5
+              Register *reg=(MC2SADev->find("resistor"))->second;
+              int r=reg->read();
+              //set theses bits in R5 value
+              std::bitset<6> resistor(r);//3 lower bits
+std::cout<<"option//R5="<<resistor.to_string()<<std::endl;
               resistor[0]=c.infoMC2SAoption.diff.value();
               resistor[1]=c.infoMC2SAoption.discri.value();
               resistor[2]=c.infoMC2SAoption.vicm.value();
+std::cout<<"option//R5="<<resistor.to_string()<<std::endl;
               c.resistor=resistor.to_ulong();
               //print
               if(verbose>0) std::cout<<"MC2SA option apply "<<c.value_list()<<std::flush;
               //setup reg.
-              Register *reg=(MC2SADev->find("resistor"))->second;
               reg->write(c.resistor);
-              MC2SADev->read();
+              if(verbose>2) MC2SADev->read();
               c.infoApply.update_time.value("MC2SAoption");
             }//valid
             if(c.infoMC2SAdiscri.validate())
@@ -415,18 +426,18 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
               //setup reg.
               Register *reg=(MC2SADev->find("discri"))->second;
               reg->write(c.discri);
-              MC2SADev->read();
+              if(verbose>2) MC2SADev->read();
               c.infoApply.update_time.value("MC2SAdiscri");
             }//valid
             if(c.infoMC2SAoffset.validate())
-            {///MC2SA discri
+            {///MC2SA offset
               c.offset=c.infoMC2SAoffset.get_level();//Volt to byte
               //print
               if(verbose>0) std::cout<<"MC2SA offset apply "<<c.value_list()<<std::flush;
               //setup reg.
               Register *reg=(MC2SADev->find("offset"))->second;
               reg->write(c.offset);
-              MC2SADev->read();
+              if(verbose>2) MC2SADev->read();
               c.infoApply.update_time.value("MC2SAoffset");
             }//valid
             if(c.infoMC2SAamplitude.validate())
@@ -437,7 +448,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
               //setup reg.
               Register *reg=(MC2SADev->find("amplitude"))->second;
               reg->write(c.amplitude);
-              MC2SADev->read();
+              if(verbose>2) MC2SADev->read();
               c.infoApply.update_time.value("MC2SAamplitude");
             }//valid
             if(c.infoMC2SAtestNdiscri.validate())
@@ -455,7 +466,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
               //setup reg.
               Register *reg=(MC2SADev->find("testNdiscri"))->second;
               reg->write(c.test);
-              MC2SADev->read();
+              if(verbose>2) MC2SADev->read();
               c.infoApply.update_time.value("MC2SAtestNdiscri");
             }//valid
             //content transfer GUI to core
@@ -475,10 +486,9 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
         }//POST
         else
         {//KEEP values
-          //! \todo [high] . get reg.
           //get values
           {//get reg. MC2SA -> c.infoMC2SAgain.*
-          MC2SADev->read();
+          if(verbose>2) MC2SADev->read();
           ///gain
           Register *reg=(MC2SADev->find("gain"))->second;
           int r=reg->read();
@@ -494,7 +504,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
           ///resistor
           reg=(MC2SADev->find("resistor"))->second;
           r=reg->read();
-          //set resistor to c.infoMC2SAresistor.resistor[2,3,5]
+          //set resistor to c.infoMC2SAresistor.resistor[2,3,5] and infoMC2SAoption.*
           std::bitset<6> resistor(r);//resistor 3 higher bits, option 3 lower ones
           std::cout<<"resistor="<<resistor.to_ulong()<<", i.e. "<<resistor.to_string()<<" resistor 3 higher bits, option 3 lower ones"<<std::endl;
           c.infoMC2SAoption.diff.value(resistor[0]);
@@ -537,7 +547,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
 /**/
 	      }//MC2SA
           {//get reg. Temperature -> c.infoTemperature.*
-         temperatureDev->read();
+          if(verbose>2) temperatureDev->read();
           c.infoTemperature.temperature.value(temperatureDev->get_Celcius());
           Register *reg=(temperatureDev->find("TemperatureResolution"))->second;
           int r=reg->read();

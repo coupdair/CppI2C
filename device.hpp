@@ -20,7 +20,7 @@
 #include "i2c/i2c.h"
 #endif //USE_I2C_LIB
 
-#define DEVICE_VERSION "v0.1.9d"
+#define DEVICE_VERSION "v0.1.9"
 
 //version
 //! device library version
@@ -78,7 +78,6 @@ class FakeDevice: public Device
     set_name("FakeDevice");
     create_register("FakeRegister0","FakeRegister");
     create_register("FakeRegister1","FakeRegister");
-    debug=true;
   }//constructor
   virtual int get(const std::string &register_name) {if(this->debug) std::cout<<name<<"::get(...)"<<std::endl;return Device::get(register_name);}
   virtual int set(const std::string &register_name,const int &value) {std::cout<<name<<"::set(...) empty"<<std::endl;return 0;};

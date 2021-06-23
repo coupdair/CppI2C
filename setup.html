@@ -69,6 +69,17 @@
 
         with R<sub>f</sub>=4.33MOhm, e.g. R<sub>f</sub> & 300k = 1MOhm
         </p>
+        <p>&nbsp;<span class="cppcms_form_input"><input type="checkbox" name="vicm" value="y"  ></span><span class="cppcms_form_help"> DAC through VICM</span></p>
+<p>&nbsp;<span class="cppcms_form_input"><input type="checkbox" name="discri"  checked value="y"  ></span><span class="cppcms_form_help"> enable discri.</span></p>
+<p>&nbsp;<span class="cppcms_form_input"><input type="checkbox" name="diff" value="y"  ></span><span class="cppcms_form_help"> select lout analog diff.</span></p>
+
+        <p>&nbsp;<span class="cppcms_form_input"><input type="checkbox" name="test_in" value="y"  ></span><span class="cppcms_form_help"> test in</span></p>
+<p>&nbsp;<span class="cppcms_form_input"><input type="checkbox" name="test_gen" value="y"  ></span><span class="cppcms_form_help"> test gen.</span></p>
+<p>&nbsp;<span class="cppcms_form_input"><input type="checkbox" name="pulse_out" value="y"  ></span><span class="cppcms_form_help"> pulse out</span></p>
+<p>&nbsp;<span class="cppcms_form_input"><input type="checkbox" name="power_down"  checked value="y"  ></span><span class="cppcms_form_help"> power down</span></p>
+<p>&nbsp;<span class="cppcms_form_input"><input type="checkbox" name="gen_clock" value="y"  ></span><span class="cppcms_form_help"> gen. clock</span></p>
+<p>&nbsp;<span class="cppcms_form_input"><input type="checkbox" name="inv_discri" value="y"  ></span><span class="cppcms_form_help"> invert discri</span></p>
+
         <p>discri level&nbsp;<span class="cppcms_form_input"><input type="text" name="level_discri" value="1.65"  ></span><span class="cppcms_form_help"> V : range [0 .. 3.3]V</span></p>
 
         <p>offset level&nbsp;<span class="cppcms_form_input"><input type="text" name="level_offset" value="0"  ></span><span class="cppcms_form_help"> V : range [0 .. 3.3]V</span></p>
@@ -77,10 +88,13 @@
 
       </fieldset>
 <!--} MC2SA# fields -->
+      <p>last update time&nbsp;<span class="cppcms_form_input"><input type="text" name="last_update" disabled readonly="readonly"  value="0" ></span><span class="cppcms_form_help"> : initial values at this date/time</span></p>
+<p><span class="cppcms_form_input"><input type="submit" name="apply_all" value="apply"  ></span></p>
+
 <!--{ temperature fields -->
       <fieldset>
       <legend><b>ambiant temperature</b></legend>
-        <p>Temperature&nbsp;<span class="cppcms_form_input"><input type="text" name="temperature" disabled value="23.3125"  ></span><span class="cppcms_form_help"> °C : ambiant temperature in degree Celcius</span></p>
+        <p>Temperature&nbsp;<span class="cppcms_form_input"><input type="text" name="temperature" disabled value="21.875"  ></span><span class="cppcms_form_help"> °C : ambiant temperature in degree Celcius</span></p>
 <p>Resolution&nbsp;<span class="cppcms_form_input"><select name="temperature_resolution"  >
 <option value="0.5" >0.5</option>
 <option value="0.25" >0.25</option>
@@ -90,9 +104,6 @@
 
       </fieldset>
 <!--} temperature fields -->
-      <p>last update time&nbsp;<span class="cppcms_form_input"><input type="text" name="last_update" disabled readonly="readonly"  value="1" ></span><span class="cppcms_form_help"> : initial values at this date/time</span></p>
-<p><span class="cppcms_form_input"><input type="submit" name="apply_all" value="apply"  ></span></p>
-
     </form>
   </body>
 <html>

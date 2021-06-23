@@ -111,7 +111,7 @@ namespace content
     info_form_MC2SA_option()
     {
 		///widget titles
-        vicm.message("");vicm.name("vicm");vicm.help(" DAC throuhg VICM");
+        vicm.message("");vicm.name("vicm");vicm.help(" DAC through VICM");
         discri.message("");discri.name("discri");discri.help(" enable discri.");
         diff.message("");diff.name("diff");diff.help(" select lout analog diff.");
         ///order widgets
