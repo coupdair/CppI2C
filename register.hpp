@@ -18,7 +18,7 @@
 #include "i2c/i2c.h"
 #endif //USE_I2C_LIB
 
-#define REGISTER_VERSION "v0.1.6f"
+#define REGISTER_VERSION "v0.1.6g"
 
 //version
 //! register library version
@@ -67,7 +67,7 @@ class Register
   virtual void set_name(std::string register_name) {name=register_name; if(debug) std::cout<<name<<"::"<<__func__<<"(\""<<name<<"\")"<<std::endl;}
  public:
   //! constructor
-  Register(std::string register_name="none",RegAccess access_=REG_READ_WRITE)
+  Register(std::string register_name="virtualRegister",RegAccess access_=REG_READ_WRITE)
   {
     name=register_name;
     access=access_;
@@ -108,9 +108,9 @@ class RegisterT: public Register
   //! softregister to store current reg. value
   T value;
  public:
-  RegisterT(std::string register_name="FakeRegister",RegAccess access_=REG_READ_WRITE)
+  RegisterT(std::string register_name="virtualRegisterT",RegAccess access_=REG_READ_WRITE)
   {
-    set_name("RegisterT");
+    set_name(register_name);
     set_access(access_);
     value=(T)1.234;
   }//constructor
@@ -162,7 +162,12 @@ class I2CRegister: public RegisterT<T>
   int size;
   I2CDevice *pDevice;
  public:
-  I2CRegister() {this->set_name("I2CRegister");size=sizeof(T);}
+  I2CRegister(std::string register_name="virtualI2CRegister",RegAccess access_=REG_READ_WRITE)
+  {
+    this->set_name(register_name);
+    this->set_access(access_);
+    size=sizeof(T);
+  }//constructor
   virtual void print_i2c_data(const unsigned char *data, size_t len)
   {
     size_t i = 0;
@@ -255,14 +260,22 @@ class I2CRegister: public RegisterT<T>
 class I2CRegisterByte: public I2CRegister<char>
 {
  public:
-  I2CRegisterByte() {set_name("I2CRegisterByte");}
+  I2CRegisterByte(std::string register_name="I2CRegisterByte",RegAccess access_=REG_READ_WRITE)
+  {
+    this->set_name(register_name);
+    this->set_access(access_);
+  }//constructor
   //! destructor (need at least empty one)
   virtual ~I2CRegisterByte() {}
 };//I2CRegisterByte
 class I2CRegisterWord: public I2CRegister<short>
 {
  public:
-  I2CRegisterWord() {set_name("I2CRegisterWord");}
+  I2CRegisterWord(std::string register_name="I2CRegisterWord",RegAccess access_=REG_READ_WRITE)
+  {
+    this->set_name(register_name);
+    this->set_access(access_);
+  }//constructor
   //! destructor (need at least empty one)
   virtual ~I2CRegisterWord() {}
 };//I2CRegisterWord

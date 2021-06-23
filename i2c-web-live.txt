@@ -69,37 +69,3 @@ FakeRegister::write() empty
 FakeRegister::write() empty
 FakeRegister::write() empty
 resolution mode=3
-device_setup page
-gain=0, i.e. 000000
-resistor=2, i.e. 000010 resistor 3 higher bits, option 3 lower ones
-test=4, i.e. 000100 5+1 lower bits
-resolution mode=0x3 i.e. 0.0625
-device_setup page
-FakeRegister::write() empty
-FakeRegister::write() empty
-FakeRegister::write() empty
-FakeRegister::write() empty
-FakeRegister::write() empty
-FakeRegister::write() empty
-FakeRegister::write() empty
-resolution mode=3
-device_setup page
-gain=1, i.e. 000001
-resistor=12, i.e. 001100 resistor 3 higher bits, option 3 lower ones
-test=32, i.e. 100000 5+1 lower bits
-resolution mode=0x3 i.e. 0.0625
-device_setup page
-gain=2, i.e. 000010
-resistor=18, i.e. 010010 resistor 3 higher bits, option 3 lower ones
-test=16, i.e. 010000 5+1 lower bits
-resolution mode=0x3 i.e. 0.0625
-device_setup page
-gain=1, i.e. 000001
-resistor=12, i.e. 001100 resistor 3 higher bits, option 3 lower ones
-test=32, i.e. 100000 5+1 lower bits
-resolution mode=0x3 i.e. 0.0625
-device_setup page
-gain=2, i.e. 000010
-resistor=18, i.e. 010010 resistor 3 higher bits, option 3 lower ones
-test=16, i.e. 010000 5+1 lower bits
-resolution mode=0x3 i.e. 0.0625
