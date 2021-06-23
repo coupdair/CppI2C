@@ -20,7 +20,7 @@
 #include "i2c/i2c.h"
 #endif //USE_I2C_LIB
 
-#define DEVICE_VERSION "v0.2.0e"
+#define DEVICE_VERSION "v0.2.0f"
 
 //version
 //! device library version
@@ -234,14 +234,23 @@ class MC2SADevice: public FakeDevice
  public:
   MC2SADevice()
   {
-    set_name("MC2SADevice");
+#ifdef FAKE_MC2SA
+    set_name("fakeMC2SADevice");
     create_register("gain","FakeRegister");//RW
     create_register("resistor","FakeRegister");//RW
     create_register("discri","FakeRegister");//RW
     create_register("offset","FakeRegister");//RW
     create_register("amplitude","FakeRegister");//RW
     create_register("testNdiscri","FakeRegister");//RW
-//    create_register("TODO","I2CRegisterByte",0x12);//RW
+#else
+    set_name("MC2SADevice");
+    create_register("gain",       "I2CRegisterByte",0x1);//RW
+    create_register("resistor",   "I2CRegisterByte",0x5);//RW
+    create_register("discri",     "I2CRegisterByte",0x4);//RW
+    create_register("offset",     "I2CRegisterByte",0x2);//RW
+    create_register("amplitude",  "I2CRegisterByte",0x0);//RW
+    create_register("testNdiscri","I2CRegisterByte",0x3);//RW
+#endif
     init();
   }//constructor
   virtual void read()
