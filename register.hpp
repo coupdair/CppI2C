@@ -44,16 +44,43 @@ int register_pretty_version(std::string &out, T dummy=0)
   return 0;
 }//register_pretty_version
 
+enum RegAccess {
+  REG_READ_ONLY = 1,
+  REG_WRITE_ONLY,
+  REG_READ_WRITE
+};
+/*
+static reg_access_def reg_acces_list[] = {
+  "READ_ONLY", REG_READ_ONLY,
+  "WRITE_ONLY", REG_WRITE_ONLY,
+  "READ_WRITE", REG_READ_WRITE,
+  "", (RegAccess)-1
+};
+*/
 class Register
 {
  protected:
   std::string name;
   bool debug;
+  RegAccess access;
   virtual void set_name(std::string register_name) {name=register_name; if(debug) std::cout<<name<<"::"<<__func__<<"(\""<<name<<"\")"<<std::endl;}
  public:
   virtual std::string get_name() {return name;}
+  //! get access
+  virtual std::string get_access() {return name;}//get access
+  //! set access
+  virtual void set_access(RegAccess access_) {access=access_;}//set access
+  //! set access by string "RW", "RO", "WO"
+  virtual void set_access(std::string access_)
+  {
+    if(access_==std::string("RW")) {access=REG_READ_WRITE;return;}
+    if(access_==std::string("RO")) {access=REG_READ_ONLY;return;}
+    if(access_==std::string("WO")) {access=REG_WRITE_ONLY;return;}
+    std::cerr<<__FILE__<<"//"<<name<<"::"<<__func__<<"code error: bad access string, shoud be either \"RW\", \"RO\" or \"WO\"."<<std::endl;
+    exit(-9);
+  }//set access
   //! constructor
-  Register() {name="none";debug=false;}
+  Register() {name="none";access=REG_READ_WRITE;debug=false;}
   virtual int read() = 0;
   virtual int get() = 0;
   virtual int write() = 0;

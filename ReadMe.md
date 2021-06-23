@@ -23,7 +23,7 @@ priotity
 
 ## high
 
-- register: RW, RO, WO
+- . register: RW, RO, WO
 - module: fake to I2C devices
 
 ## medium
