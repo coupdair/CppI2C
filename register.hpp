@@ -18,7 +18,7 @@
 #include "i2c/i2c.h"
 #endif //USE_I2C_LIB
 
-#define REGISTER_VERSION "v0.1.6d"
+#define REGISTER_VERSION "v0.1.6f"
 
 //version
 //! register library version
@@ -62,9 +62,17 @@ class Register
  protected:
   std::string name;
   bool debug;
+  //! register access: RW (default), RO, WO
   RegAccess access;
   virtual void set_name(std::string register_name) {name=register_name; if(debug) std::cout<<name<<"::"<<__func__<<"(\""<<name<<"\")"<<std::endl;}
  public:
+  //! constructor
+  Register(std::string register_name="none",RegAccess access_=REG_READ_WRITE)
+  {
+    name=register_name;
+    access=access_;
+    debug=false;
+  }//constructor
   virtual std::string get_name() {return name;}
   //! get access
   virtual std::string get_access() {return name;}//get access
@@ -79,8 +87,12 @@ class Register
     std::cerr<<__FILE__<<"//"<<name<<"::"<<__func__<<"code error: bad access string, shoud be either \"RW\", \"RO\" or \"WO\"."<<std::endl;
     exit(-9);
   }//set access
-  //! constructor
-  Register() {name="none";access=REG_READ_WRITE;debug=false;}
+  //! set ReadOnly  access
+  virtual void set_RO() {set_access(REG_READ_ONLY);}
+  //! set ReadWrite access
+  virtual void set_RW() {set_access(REG_READ_WRITE);}
+  //! set WriteOnly access
+  virtual void set_WO() {set_access(REG_WRITE_ONLY);}
   virtual int read() = 0;
   virtual int get() = 0;
   virtual int write() = 0;
@@ -93,28 +105,51 @@ template <typename T>
 class RegisterT: public Register
 {
  protected:
+  //! softregister to store current reg. value
   T value;
  public:
-  RegisterT() {set_name("RegisterT");value=(T)1.234;}
+  RegisterT(std::string register_name="FakeRegister",RegAccess access_=REG_READ_WRITE)
+  {
+    set_name("RegisterT");
+    set_access(access_);
+    value=(T)1.234;
+  }//constructor
   virtual int get() {return value;};
   virtual int set() {std::cout<<this->name<<"::"<<__func__<<"() empty"<<std::endl;return -1;};
+  //! set value to softregister, i.e. \c .value
   virtual int set(T value_) {value=value_;return 0;};
-  virtual int write() = 0;
+  //! write \c .value to register
+  virtual int write()
+  {
+    int r=0;
+    if(this->access==REG_READ_ONLY)
+    {
+      std::cerr<<this->name<<"::"<<__func__<<"() empty, but might be code error as ReadOnly register."<<std::endl;
+      return 0;
+    }//RO
+    std::cout<<this->name<<"::"<<__func__<<"() empty"<<std::endl;
+    return r;
+  }//write
+  //! write current \c .value to register
   virtual int write(const int &val)
   {if(this->debug) std::cout<<this->name<<"::"<<__func__<<"("<<val<<")"<<std::endl;
-    value=(T)val;
+    this->set((T)val);
     return write();
-  }
+  }//write
   //! destructor (need at least empty one)
   virtual ~RegisterT() {}
 };//RegisterT
 class FakeRegister: public RegisterT<char>
 {
  public:
-  FakeRegister() {set_name("FakeRegister");}
+  FakeRegister(std::string register_name="FakeRegister",RegAccess access_=REG_READ_WRITE)
+  {
+    set_name(register_name);
+    set_access(access_);
+  }//constructor
   virtual int read()  {return this->get();}
   virtual int write(const int &val){return RegisterT<char>::write(val);};
-  virtual int write() {return 0;}
+  virtual int write() {return RegisterT<char>::write();}
   //! destructor (need at least empty one)
   virtual ~FakeRegister() {}
 };//FakeRegister
