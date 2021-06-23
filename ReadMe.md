@@ -17,3 +17,19 @@ I2C
 - `wget http://193.48.111.15:8080/hello` fail
 - `wget http://localhost:8080/hello` done
 
+# TODO
+
+priotity
+
+## high
+
+- register: RW, RO, WO
+- module: fake to I2C devices
+
+## medium
+
+- `fake`and `fake-web`: fake module MC2SA by compiling -DFAKE_MODULE
+
+## low
+
+- dynamic module: discover I2C devices before GUI
