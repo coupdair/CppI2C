@@ -5,8 +5,14 @@ I2C
 
 # compile
 
+## on board
+
 `make`
 `make && make run-web`
+
+## off board
+
+`make fake-web run-fake-web`
 
 # use
 
