@@ -3,6 +3,10 @@
 echo 'web capture will start in a while ...'
 sleep 6
 
+p=i2c-web
+p=fake-web
+p=$1
+
 #get HTML content
 wb=i2c-bus
 list=
@@ -21,7 +25,7 @@ done
 
 sleep 1
 #stop web service
-killall i2c-web
+killall $p
 
 for f in $list
 do

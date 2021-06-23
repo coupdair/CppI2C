@@ -5,12 +5,12 @@ I2C
 
 # compile
 
-## on board
+## MC2SA board on I2C
 
 `make`
 `make && make run-web`
 
-## off board
+## no MC2SA board connected
 
 `make fake-web run-fake-web`
 
