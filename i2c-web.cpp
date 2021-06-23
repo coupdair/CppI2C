@@ -64,7 +64,7 @@ static struct argp_option options[]=
   {"version",  'V', 0, 0,           "Produce version output and exit" },
   {"verbose",  'v', 0, 0,           "Produce verbose output" },
   {"integer",  'i', "VALUE", 0,     "bus index, e.g. 1" },
-  {"string",   's', "STRING", 0,    "get string (unsed)" },
+  {"string",   's', "STRING", 0,    "get string (unused)" },
   {"config",   'c', "STRING", 0,    "configuration file in JSON for C++CMS web server, e.g. config.js" },
 //default options
   { 0 }
@@ -331,7 +331,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
   //! setup devices: MC2SA and temperature
   void device_setup(std::string id_)
   {std::cout<<__func__<<" page"<<std::endl;
-    int verbose=0;//[0-1]
+    int verbose=0;//[0,1,2,3]
     int id;std::istringstream(id_)>>id;//string>>int
     if(id>=vMC2SADev.size()) return;
     ///get device to setup
@@ -405,11 +405,11 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
               int r=reg->read();
               //set theses bits in R5 value
               std::bitset<6> resistor(r);//3 lower bits
-std::cout<<"option//R5="<<resistor.to_string()<<std::endl;
+              if(verbose>1) std::cout<<"option//R5="<<resistor.to_string()<<std::endl;
               resistor[0]=c.infoMC2SAoption.diff.value();
               resistor[1]=c.infoMC2SAoption.discri.value();
               resistor[2]=c.infoMC2SAoption.vicm.value();
-std::cout<<"option//R5="<<resistor.to_string()<<std::endl;
+              if(verbose>1) std::cout<<"option//R5="<<resistor.to_string()<<std::endl;
               c.resistor=resistor.to_ulong();
               //print
               if(verbose>0) std::cout<<"MC2SA option apply "<<c.value_list()<<std::flush;
