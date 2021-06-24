@@ -20,7 +20,7 @@
 #define WARNING_NO_I2C_LIB std::cerr<<"warning: "<<this->name<<"::"<<__func__<<" empty as no I2C lib. compiled, need to define USE_I2C_LIB or use FakeRegister."<<std::endl;
 #endif // !USE_I2C_LIB
 
-#define REGISTER_VERSION "v0.1.7d"
+#define REGISTER_VERSION "v0.1.7"
 
 //version
 //! register library version
