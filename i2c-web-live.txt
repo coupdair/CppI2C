@@ -1,54 +1,444 @@
 ./i2c-web is running (Ctrl+C to stop), have look to http://localhost:8080/i2c-bus.
-I2C write error:: Remote I/O error
-Write i2c error!
-I2C write error:: Remote I/O error
-Write i2c error!
-I2C write error:: Remote I/O error
-Write i2c error!
-I2C write error:: Remote I/O error
-Write i2c error!
-I2C write error:: Remote I/O error
-Write i2c error!
-I2C write error:: Remote I/O error
-Write i2c error!
-I2C write error:: Remote I/O error
-Write i2c error!
-I2C write error:: Remote I/O error
-Write i2c error!
-I2C write error:: Remote I/O error
-Write i2c error!
-I2C write error:: Remote I/O error
-Write i2c error!
-I2C write error:: Remote I/O error
-Write i2c error!
-I2C write error:: Remote I/O error
-Write i2c error!
-I2C write error:: Remote I/O error
-Write i2c error!
-I2C write error:: Remote I/O error
-Write i2c error!
-I2C write error:: Remote I/O error
-Write i2c error!
-I2C write error:: Remote I/O error
-Write i2c error!
-I2C write error:: Remote I/O error
-Write i2c error!
-I2C write error:: Remote I/O error
-Write i2c error!
-I2C write error:: Remote I/O error
-Write i2c error!
-I2C write error:: Remote I/O error
-Write i2c error!
-I2C write error:: Remote I/O error
-Write i2c error!
-I2C write error:: Remote I/O error
-Write i2c error!
-I2C write error:: Remote I/O error
-Write i2c error!
-I2C write error:: Remote I/O error
-Write i2c error!
-
-I2C devices address(es):0x04, 0x19, 0x1a, 0x1b, 0x1c, 0x1d.
+device_setup page
+gain=1, i.e. 000001
+resistor=2, i.e. 000010 resistor 3 higher bits, option 3 lower ones
+test=4, i.e. 000100 5+1 lower bits
+resolution mode=0x3 i.e. 0.0625
+device_setup page
+gain=1, i.e. 000001
+resistor=2, i.e. 000010 resistor 3 higher bits, option 3 lower ones
+test=4, i.e. 000100 5+1 lower bits
+resolution mode=0x3 i.e. 0.0625
+device_setup page
+MC2SA gain apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=2, i.e. 000010
+ - resistorNoption=0, i.e. 000000
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude=0
+resistor//R5=000010
+resistor//R5=000010
+MC2SA resistor apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=2, i.e. 000010
+ - resistorNoption=2, i.e. 000010
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude=0
+option//R5=000010
+option//R5=000010
+MC2SA option apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=2, i.e. 000010
+ - resistorNoption=2, i.e. 000010
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude=0
+MC2SA discri apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=2, i.e. 000010
+ - resistorNoption=2, i.e. 000010
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+MC2SA offset apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=2, i.e. 000010
+ - resistorNoption=2, i.e. 000010
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+MC2SA amplitude apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=2, i.e. 000010
+ - resistorNoption=2, i.e. 000010
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+MC2SA test apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=2, i.e. 000010
+ - resistorNoption=2, i.e. 000010
+ - test=4, i.e. 000100
+ - discri=127
+ - offset=0
+ - amplitude=0
+Temperature apply message data:
+ - temperature=24
+ - resolution=0.0625
+ - MC2SA#2
+ - gain=2, i.e. 000010
+ - resistorNoption=2, i.e. 000010
+ - test=4, i.e. 000100
+ - discri=127
+ - offset=0
+ - amplitude=0
+resolution mode=3
+device_setup page
+MC2SA gain apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=2, i.e. 000010
+ - resistorNoption=0, i.e. 000000
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude=0
+resistor//R5=000010
+resistor//R5=000010
+MC2SA resistor apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=2, i.e. 000010
+ - resistorNoption=2, i.e. 000010
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude=0
+option//R5=000010
+option//R5=000010
+MC2SA option apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=2, i.e. 000010
+ - resistorNoption=2, i.e. 000010
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude=0
+MC2SA discri apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=2, i.e. 000010
+ - resistorNoption=2, i.e. 000010
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+MC2SA offset apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=2, i.e. 000010
+ - resistorNoption=2, i.e. 000010
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+MC2SA amplitude apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=2, i.e. 000010
+ - resistorNoption=2, i.e. 000010
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+MC2SA test apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=2, i.e. 000010
+ - resistorNoption=2, i.e. 000010
+ - test=38, i.e. 100110
+ - discri=127
+ - offset=0
+ - amplitude=0
+Temperature apply message data:
+ - temperature=24
+ - resolution=0.0625
+ - MC2SA#2
+ - gain=2, i.e. 000010
+ - resistorNoption=2, i.e. 000010
+ - test=38, i.e. 100110
+ - discri=127
+ - offset=0
+ - amplitude=0
+resolution mode=3
+device_setup page
+MC2SA gain apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=2, i.e. 000010
+ - resistorNoption=0, i.e. 000000
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude=0
+resistor//R5=000010
+resistor//R5=000010
+MC2SA resistor apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=2, i.e. 000010
+ - resistorNoption=2, i.e. 000010
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude=0
+option//R5=000010
+option//R5=000010
+MC2SA option apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=2, i.e. 000010
+ - resistorNoption=2, i.e. 000010
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude=0
+MC2SA discri apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=2, i.e. 000010
+ - resistorNoption=2, i.e. 000010
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+MC2SA offset apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=2, i.e. 000010
+ - resistorNoption=2, i.e. 000010
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+MC2SA amplitude apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=2, i.e. 000010
+ - resistorNoption=2, i.e. 000010
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+MC2SA test apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=2, i.e. 000010
+ - resistorNoption=2, i.e. 000010
+ - test=34, i.e. 100010
+ - discri=127
+ - offset=0
+ - amplitude=0
+Temperature apply message data:
+ - temperature=24.0625
+ - resolution=0.0625
+ - MC2SA#2
+ - gain=2, i.e. 000010
+ - resistorNoption=2, i.e. 000010
+ - test=34, i.e. 100010
+ - discri=127
+ - offset=0
+ - amplitude=0
+resolution mode=3
+device_setup page
+MC2SA gain apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=2, i.e. 000010
+ - resistorNoption=0, i.e. 000000
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude=0
+resistor//R5=000010
+resistor//R5=000010
+MC2SA resistor apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=2, i.e. 000010
+ - resistorNoption=2, i.e. 000010
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude=0
+option//R5=000010
+option//R5=000011
+MC2SA option apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=2, i.e. 000010
+ - resistorNoption=3, i.e. 000011
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude=0
+MC2SA discri apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=2, i.e. 000010
+ - resistorNoption=3, i.e. 000011
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+MC2SA offset apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=2, i.e. 000010
+ - resistorNoption=3, i.e. 000011
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+MC2SA amplitude apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=2, i.e. 000010
+ - resistorNoption=3, i.e. 000011
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+MC2SA test apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=2, i.e. 000010
+ - resistorNoption=3, i.e. 000011
+ - test=34, i.e. 100010
+ - discri=127
+ - offset=0
+ - amplitude=0
+Temperature apply message data:
+ - temperature=24.0625
+ - resolution=0.0625
+ - MC2SA#2
+ - gain=2, i.e. 000010
+ - resistorNoption=3, i.e. 000011
+ - test=34, i.e. 100010
+ - discri=127
+ - offset=0
+ - amplitude=0
+resolution mode=3
+device_setup page
+MC2SA gain apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=2, i.e. 000010
+ - resistorNoption=0, i.e. 000000
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude=0
+resistor//R5=000011
+resistor//R5=000011
+MC2SA resistor apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=2, i.e. 000010
+ - resistorNoption=3, i.e. 000011
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude=0
+option//R5=000011
+option//R5=000010
+MC2SA option apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=2, i.e. 000010
+ - resistorNoption=2, i.e. 000010
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude=0
+MC2SA discri apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=2, i.e. 000010
+ - resistorNoption=2, i.e. 000010
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+MC2SA offset apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=2, i.e. 000010
+ - resistorNoption=2, i.e. 000010
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+MC2SA amplitude apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=2, i.e. 000010
+ - resistorNoption=2, i.e. 000010
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+MC2SA test apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=2, i.e. 000010
+ - resistorNoption=2, i.e. 000010
+ - test=34, i.e. 100010
+ - discri=127
+ - offset=0
+ - amplitude=0
+Temperature apply message data:
+ - temperature=24.0625
+ - resolution=0.0625
+ - MC2SA#2
+ - gain=2, i.e. 000010
+ - resistorNoption=2, i.e. 000010
+ - test=34, i.e. 100010
+ - discri=127
+ - offset=0
+ - amplitude=0
+resolution mode=3
 device_setup page
 gain=1, i.e. 000001
 resistor=2, i.e. 000010 resistor 3 higher bits, option 3 lower ones
@@ -65,92 +455,520 @@ MC2SA gain apply message data:
  - discri=0
  - offset=0
  - amplitude=0
-I2C write error:: Remote I/O error
-Write i2c error!
 resistor//R5=000010
-resistor//R5=001010
+resistor//R5=000010
 MC2SA resistor apply message data:
  - temperature=0
  - resolution=0
  - MC2SA#0
  - gain=1, i.e. 000001
- - resistorNoption=10, i.e. 001010
+ - resistorNoption=2, i.e. 000010
  - test=0, i.e. 000000
  - discri=0
  - offset=0
  - amplitude=0
-I2C write error:: Remote I/O error
-Write i2c error!
-option//R5=001010
-option//R5=001000
+option//R5=000010
+option//R5=000010
 MC2SA option apply message data:
  - temperature=0
  - resolution=0
  - MC2SA#0
  - gain=1, i.e. 000001
- - resistorNoption=8, i.e. 001000
+ - resistorNoption=2, i.e. 000010
  - test=0, i.e. 000000
  - discri=0
  - offset=0
  - amplitude=0
-I2C write error:: Remote I/O error
-Write i2c error!
 MC2SA discri apply message data:
  - temperature=0
  - resolution=0
  - MC2SA#0
  - gain=1, i.e. 000001
- - resistorNoption=8, i.e. 001000
+ - resistorNoption=2, i.e. 000010
  - test=0, i.e. 000000
  - discri=127
  - offset=0
  - amplitude=0
-I2C write error:: Remote I/O error
-Write i2c error!
 MC2SA offset apply message data:
  - temperature=0
  - resolution=0
  - MC2SA#0
  - gain=1, i.e. 000001
- - resistorNoption=8, i.e. 001000
+ - resistorNoption=2, i.e. 000010
  - test=0, i.e. 000000
  - discri=127
  - offset=0
  - amplitude=0
-I2C write error:: Remote I/O error
-Write i2c error!
 MC2SA amplitude apply message data:
  - temperature=0
  - resolution=0
  - MC2SA#0
  - gain=1, i.e. 000001
- - resistorNoption=8, i.e. 001000
+ - resistorNoption=2, i.e. 000010
  - test=0, i.e. 000000
  - discri=127
  - offset=0
  - amplitude=0
-I2C write error:: Remote I/O error
-Write i2c error!
 MC2SA test apply message data:
  - temperature=0
  - resolution=0
  - MC2SA#0
  - gain=1, i.e. 000001
- - resistorNoption=8, i.e. 001000
- - test=0, i.e. 000000
+ - resistorNoption=2, i.e. 000010
+ - test=38, i.e. 100110
  - discri=127
  - offset=0
  - amplitude=0
-I2C write error:: Remote I/O error
-Write i2c error!
 Temperature apply message data:
- - temperature=23.5
+ - temperature=24.375
  - resolution=0.0625
  - MC2SA#0
  - gain=1, i.e. 000001
- - resistorNoption=8, i.e. 001000
- - test=0, i.e. 000000
+ - resistorNoption=2, i.e. 000010
+ - test=38, i.e. 100110
  - discri=127
  - offset=0
  - amplitude=0
 resolution mode=3
+device_setup page
+MC2SA gain apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistorNoption=0, i.e. 000000
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude=0
+resistor//R5=000010
+resistor//R5=000010
+MC2SA resistor apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistorNoption=2, i.e. 000010
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude=0
+option//R5=000010
+option//R5=000010
+MC2SA option apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistorNoption=2, i.e. 000010
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude=0
+MC2SA discri apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistorNoption=2, i.e. 000010
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+MC2SA offset apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistorNoption=2, i.e. 000010
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+MC2SA amplitude apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistorNoption=2, i.e. 000010
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+MC2SA test apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistorNoption=2, i.e. 000010
+ - test=38, i.e. 100110
+ - discri=127
+ - offset=0
+ - amplitude=0
+Temperature apply message data:
+ - temperature=24.375
+ - resolution=0.0625
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistorNoption=2, i.e. 000010
+ - test=38, i.e. 100110
+ - discri=127
+ - offset=0
+ - amplitude=0
+resolution mode=3
+device_setup page
+gain=1, i.e. 000001
+resistor=2, i.e. 000010 resistor 3 higher bits, option 3 lower ones
+test=4, i.e. 000100 5+1 lower bits
+resolution mode=0x3 i.e. 0.0625
+device_setup page
+MC2SA gain apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#3
+ - gain=1, i.e. 000001
+ - resistorNoption=0, i.e. 000000
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude=0
+resistor//R5=000010
+resistor//R5=000010
+MC2SA resistor apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#3
+ - gain=1, i.e. 000001
+ - resistorNoption=2, i.e. 000010
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude=0
+option//R5=000010
+option//R5=000010
+MC2SA option apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#3
+ - gain=1, i.e. 000001
+ - resistorNoption=2, i.e. 000010
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude=0
+MC2SA discri apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#3
+ - gain=1, i.e. 000001
+ - resistorNoption=2, i.e. 000010
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+MC2SA offset apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#3
+ - gain=1, i.e. 000001
+ - resistorNoption=2, i.e. 000010
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+MC2SA amplitude apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#3
+ - gain=1, i.e. 000001
+ - resistorNoption=2, i.e. 000010
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=155
+ - amplitude=0
+MC2SA test apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#3
+ - gain=1, i.e. 000001
+ - resistorNoption=2, i.e. 000010
+ - test=38, i.e. 100110
+ - discri=127
+ - offset=155
+ - amplitude=0
+Temperature apply message data:
+ - temperature=24.25
+ - resolution=0.0625
+ - MC2SA#3
+ - gain=1, i.e. 000001
+ - resistorNoption=2, i.e. 000010
+ - test=38, i.e. 100110
+ - discri=127
+ - offset=155
+ - amplitude=0
+resolution mode=3
+device_setup page
+MC2SA gain apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#3
+ - gain=4, i.e. 000100
+ - resistorNoption=0, i.e. 000000
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude=0
+resistor//R5=000010
+resistor//R5=001010
+MC2SA resistor apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#3
+ - gain=4, i.e. 000100
+ - resistorNoption=10, i.e. 001010
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude=0
+option//R5=001010
+option//R5=001000
+MC2SA option apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#3
+ - gain=4, i.e. 000100
+ - resistorNoption=8, i.e. 001000
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude=0
+MC2SA discri apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#3
+ - gain=4, i.e. 000100
+ - resistorNoption=8, i.e. 001000
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+MC2SA offset apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#3
+ - gain=4, i.e. 000100
+ - resistorNoption=8, i.e. 001000
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+MC2SA amplitude apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#3
+ - gain=4, i.e. 000100
+ - resistorNoption=8, i.e. 001000
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=155
+ - amplitude=0
+MC2SA test apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#3
+ - gain=4, i.e. 000100
+ - resistorNoption=8, i.e. 001000
+ - test=38, i.e. 100110
+ - discri=127
+ - offset=155
+ - amplitude=0
+Temperature apply message data:
+ - temperature=24.3125
+ - resolution=0.0625
+ - MC2SA#3
+ - gain=4, i.e. 000100
+ - resistorNoption=8, i.e. 001000
+ - test=38, i.e. 100110
+ - discri=127
+ - offset=155
+ - amplitude=0
+resolution mode=3
+device_setup page
+gain=1, i.e. 000001
+resistor=2, i.e. 000010 resistor 3 higher bits, option 3 lower ones
+test=38, i.e. 100110 5+1 lower bits
+resolution mode=0x3 i.e. 0.0625
+device_setup page
+MC2SA gain apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistorNoption=0, i.e. 000000
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude=0
+resistor//R5=000010
+resistor//R5=010010
+MC2SA resistor apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistorNoption=18, i.e. 010010
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude=0
+option//R5=010010
+option//R5=010010
+MC2SA option apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistorNoption=18, i.e. 010010
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude=0
+MC2SA discri apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistorNoption=18, i.e. 010010
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+MC2SA offset apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistorNoption=18, i.e. 010010
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+MC2SA amplitude apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistorNoption=18, i.e. 010010
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=155
+ - amplitude=0
+MC2SA test apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistorNoption=18, i.e. 010010
+ - test=38, i.e. 100110
+ - discri=127
+ - offset=155
+ - amplitude=0
+Temperature apply message data:
+ - temperature=24.5
+ - resolution=0.0625
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistorNoption=18, i.e. 010010
+ - test=38, i.e. 100110
+ - discri=127
+ - offset=155
+ - amplitude=0
+resolution mode=3
+device_setup page
+MC2SA gain apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistorNoption=0, i.e. 000000
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude=0
+resistor//R5=010010
+resistor//R5=010010
+MC2SA resistor apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistorNoption=18, i.e. 010010
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude=0
+option//R5=010010
+option//R5=010010
+MC2SA option apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistorNoption=18, i.e. 010010
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude=0
+MC2SA discri apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistorNoption=18, i.e. 010010
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+MC2SA offset apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistorNoption=18, i.e. 010010
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+MC2SA amplitude apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistorNoption=18, i.e. 010010
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=155
+ - amplitude=0
+MC2SA test apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistorNoption=18, i.e. 010010
+ - test=46, i.e. 101110
+ - discri=127
+ - offset=155
+ - amplitude=0
+Temperature apply message data:
+ - temperature=24.375
+ - resolution=0.0625
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistorNoption=18, i.e. 010010
+ - test=46, i.e. 101110
+ - discri=127
+ - offset=155
+ - amplitude=0
+resolution mode=3
+
+I2C devices address(es):0x11, 0x14, 0x15, 0x16, 0x17, 0x18, 0x20, 0x3c, 0x73.
