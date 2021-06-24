@@ -180,8 +180,7 @@ class I2C_Device: public Device
 };//I2C_Device
 //! MCP9808
 class TemperatureDevice:
-//! \todo [medium] FAKE_MC2SA used, define its own, e.g. FAKE_temperature
-#ifdef FAKE_MC2SA
+#ifdef FAKE_TEMPERATURE
 public FakeDevice
 #else
 public I2C_Device
@@ -193,7 +192,7 @@ public I2C_Device
   TemperatureDevice()
   {
     default_register_name="AmbiantTemperature";
-#ifdef FAKE_MC2SA
+#ifdef FAKE_TEMPERATURE
     set_name("FakeTemperatureDevice");
 //! \todo [low] FakeRegisterWord_RO
     create_register(default_register_name,  "FakeRegister");//RW, but should be RO and Word
