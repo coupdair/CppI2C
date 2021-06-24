@@ -107,18 +107,20 @@ namespace content
   {
     cppcms::widgets::checkbox vicm;
     cppcms::widgets::checkbox discri;
-    cppcms::widgets::checkbox diff;
+    cppcms::widgets::select diff;
     info_form_MC2SA_option()
     {
 		///widget titles
         vicm.message("");vicm.name("vicm");vicm.help(" DAC through VICM");
         discri.message("");discri.name("discri");discri.help(" enable discri.");
-        diff.message("");diff.name("diff");diff.help(" select lout analog diff.");
+        diff.message("IOUT");diff.name("diff");diff.help(" mA : select lout analog diff.");
         ///order widgets
         add(vicm);
         add(discri);
         add(diff);
         ///values and behavious
+        diff.add("5","5");//"label", "value"
+        diff.add("10","10");
     }//constructor
     virtual bool validate()
     {

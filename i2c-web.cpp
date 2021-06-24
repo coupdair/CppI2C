@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.2.2"
+#define VERSION "v0.2.3d"
 
 //Program option/documentation
 //{argp
@@ -331,7 +331,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
   //! setup devices: MC2SA and temperature
   void device_setup(std::string id_)
   {std::cout<<__func__<<" page"<<std::endl;
-    int verbose=0;//[0,1,2,3]
+    int verbose=2;//[0,1,2,3]
     int id;std::istringstream(id_)>>id;//string>>int
     if((size_t)id>=vMC2SADev.size()) return;
     ///get device to setup
@@ -403,10 +403,15 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
               //R5
               Register *reg=(MC2SADev->find("resistor"))->second;
               int r=reg->read();
+              //iout
+              int iout_val=0;//5 or 10 mA
+              bool iout=false;
+			  std::istringstream(c.infoMC2SAoption.diff.selected_id())>>iout_val;//string>>int
+			  if(iout_val==10) iout=true;
               //set theses bits in R5 value
               std::bitset<6> resistor(r);//3 lower bits
               if(verbose>1) std::cout<<"option//R5="<<resistor.to_string()<<std::endl;
-              resistor[0]=c.infoMC2SAoption.diff.value();
+              resistor[0]=iout;
               resistor[1]=c.infoMC2SAoption.discri.value();
               resistor[2]=c.infoMC2SAoption.vicm.value();
               if(verbose>1) std::cout<<"option//R5="<<resistor.to_string()<<std::endl;
@@ -507,7 +512,10 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
           //set resistor to c.infoMC2SAresistor.resistor[2,3,5] and infoMC2SAoption.*
           std::bitset<6> resistor(r);//resistor 3 higher bits, option 3 lower ones
           std::cout<<"resistor="<<resistor.to_ulong()<<", i.e. "<<resistor.to_string()<<" resistor 3 higher bits, option 3 lower ones"<<std::endl;
-          c.infoMC2SAoption.diff.value(resistor[0]);
+          //iout
+          std::string val("5");//5 or 10 mA
+          if(resistor[0]) val="10";
+          c.infoMC2SAoption.diff.selected_id(val);
           c.infoMC2SAoption.discri.value(resistor[1]);
           c.infoMC2SAoption.vicm.value(resistor[2]);
           c.infoMC2SAresistor.resistor2.value(resistor[3]);
@@ -552,8 +560,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
           Register *reg=(temperatureDev->find("TemperatureResolution"))->second;
           int r=reg->read();
           std::cout<<"resolution mode=0x"<<r;
-          std::string val;
-          if(r==0x0) val="0.5";
+          std::string val("0.5");
           if(r==0x1) val="0.25";
           if(r==0x2) val="0.125";
           if(r==0x3) val="0.0625";
