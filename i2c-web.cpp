@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.2.2f"
+#define VERSION "v0.2.2g"
 
 //Program option/documentation
 //{argp
@@ -333,7 +333,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
   {std::cout<<__func__<<" page"<<std::endl;
     int verbose=0;//[0,1,2,3]
     int id;std::istringstream(id_)>>id;//string>>int
-    if(id>=vMC2SADev.size()) return;
+    if((size_t)id>=vMC2SADev.size()) return;
     ///get device to setup
     MC2SADevice *MC2SADev=vMC2SADev[id];
     //GUI

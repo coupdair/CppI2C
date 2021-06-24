@@ -18,9 +18,14 @@
 #ifdef USE_I2C_LIB
 #warning "use I2C lib"
 #include "i2c/i2c.h"
-#endif //USE_I2C_LIB
+#else //USE_I2C_LIB
+#ifdef WARNING_NO_I2C_LIB
+#undef WARNING_NO_I2C_LIB
+#endif //undef
+#define WARNING_NO_I2C_LIB std::cerr<<"warning: "<<this->name<<"::"<<__func__<<" empty as no I2C lib. compiled, need to define USE_I2C_LIB or use Fake*."<<std::endl;
+#endif // !USE_I2C_LIB
 
-#define DEVICE_VERSION "v0.2.0g"
+#define DEVICE_VERSION "v0.2.0h"
 
 //version
 //! device library version
@@ -88,7 +93,9 @@ class I2C_Device: public Device
 {
  public:
   int bus,addr;
+#ifdef USE_I2C_LIB
   I2CDevice device;
+#endif //USE_I2C_LIB
  public:
   I2C_Device()
   {
@@ -103,6 +110,7 @@ class I2C_Device: public Device
   virtual int open(int bus_num=1)
   {//Open i2c bus
     bus_num = 1;
+#ifdef USE_I2C_LIB
     char bus_name[32];
     memset(bus_name, 0, sizeof(bus_name));
     if (snprintf(bus_name, sizeof(bus_name), "/dev/i2c-%u", bus_num) < 0)
@@ -116,11 +124,15 @@ class I2C_Device: public Device
        fprintf(stderr, "Open i2c bus:%s error!\n", bus_name);
         return -3;
     }//open
+#else //USE_I2C_LIB
+    WARNING_NO_I2C_LIB
+#endif //!USE_I2C_LIB
     return bus;
   }//open
   virtual int init(int addr_=0x18)
   {//Init i2c device
 	addr=addr_;
+#ifdef USE_I2C_LIB
 	int iaddr_bytes = 1, page_bytes = 16;
 ///setup device desc.
     memset(&device, 0, sizeof(device));
@@ -131,10 +143,14 @@ class I2C_Device: public Device
     device.addr = addr & 0x3ff;
     device.page_bytes = page_bytes;
     device.iaddr_bytes = iaddr_bytes;
+#else //USE_I2C_LIB
+    WARNING_NO_I2C_LIB
+#endif //!USE_I2C_LIB
     return 0;
   }//init
   virtual void create_register(std::string register_name,std::string register_type_name, int id_=0x05)
   {
+#ifdef USE_I2C_LIB
     //! \todo [low] check "I2C" in register_type_name
     //Register *i2c_reg=Register::create_register(register_name,register_type_name);
     Register *reg=RegisterFactory::NewRegister(register_type_name);
@@ -144,26 +160,49 @@ class I2C_Device: public Device
     i2c_reg->addr=addr;
     i2c_reg->id=id_;
     i2c_reg->pDevice=&device;
+#else //USE_I2C_LIB
+    WARNING_NO_I2C_LIB
+#endif //!USE_I2C_LIB
   }//create_register
   virtual int get(const std::string &register_name) {if(this->debug) std::cout<<name<<"::get(...)"<<std::endl;return Device::get(register_name);}
   virtual int set(const std::string &register_name,const int &value) {std::cout<<name<<"::set(...) empty"<<std::endl;return 0;};
   //! destructor (need at least empty one)
-  virtual ~I2C_Device() {i2c_close(bus);}
+  virtual ~I2C_Device()
+  {
+#ifdef USE_I2C_LIB
+    i2c_close(bus);
+#else //USE_I2C_LIB
+    WARNING_NO_I2C_LIB
+#endif //!USE_I2C_LIB
+  }
  private:
   bool mHibernating;//Whether or not the machine is hibernating
 };//I2C_Device
 //! MCP9808
-class TemperatureDevice: public I2C_Device
+class TemperatureDevice:
+//! \todo [medium] FAKE_MC2SA used, define its own, e.g. FAKE_temperature
+#ifdef FAKE_MC2SA
+public FakeDevice
+#else
+public I2C_Device
+#endif
 {
  private:
   std::string default_register_name;
  public:
   TemperatureDevice()
   {
-    set_name("TemperatureDevice");
     default_register_name="AmbiantTemperature";
+#ifdef FAKE_MC2SA
+    set_name("FakeTemperatureDevice");
+//! \todo [low] FakeRegisterWord_RO
+    create_register(default_register_name,  "FakeRegister");//RW, but should be RO and Word
+    create_register("TemperatureResolution","FakeRegister");//RW
+#else
+    set_name("TemperatureDevice");
     create_register(default_register_name,  "I2CRegisterWord_RO",0x05);//RO
     create_register("TemperatureResolution","I2CRegisterByte",0x08);//RW
+#endif
   }//constructor
   virtual void read()
   {if(this->debug) std::cout<<name<<"::read()"<<std::endl;

@@ -16,9 +16,11 @@
 #ifdef USE_I2C_LIB
 #warning "use I2C lib"
 #include "i2c/i2c.h"
-#endif //USE_I2C_LIB
+#else //USE_I2C_LIB
+#define WARNING_NO_I2C_LIB std::cerr<<"warning: "<<this->name<<"::"<<__func__<<" empty as no I2C lib. compiled, need to define USE_I2C_LIB or use FakeRegister."<<std::endl;
+#endif // !USE_I2C_LIB
 
-#define REGISTER_VERSION "v0.1.6"
+#define REGISTER_VERSION "v0.1.7d"
 
 //version
 //! register library version
@@ -160,7 +162,9 @@ class I2CRegister: public RegisterT<T>
  public:
   int bus,addr,id;
   int size;
+#ifdef USE_I2C_LIB
   I2CDevice *pDevice;
+#endif //!USE_I2C_LIB
  public:
   I2CRegister(std::string register_name="virtualI2CRegister",RegAccess access_=REG_READ_WRITE)
   {
@@ -171,24 +175,22 @@ class I2CRegister: public RegisterT<T>
   virtual void print_i2c_data(const unsigned char *data, size_t len)
   {
     size_t i = 0;
-
-    for (i = 0; i < len; i++) {
-
-        if (i % 16 == 0) {
-
-            fprintf(stdout, "\n");
-        }
-
-        fprintf(stdout, "%02x ", data[i]);
+    for (i = 0; i < len; i++)
+    {
+      if (i % 16 == 0)
+      {
+        fprintf(stdout, "\n");
+      }
+      fprintf(stdout, "%02x ", data[i]);
     }
-
     fprintf(stdout, "\n");
   }//print_i2c_data
   virtual int read()
   {if(this->debug) std::cout<<this->name<<"::"<<__func__<<"()"<<std::endl;
   //libI2C read
-    char i2c_dev_desc[128];
     this->value=99;//dummy
+#ifdef USE_I2C_LIB
+    char i2c_dev_desc[128];
 ///show device desc.
     /* Print i2c device description */
     if(this->debug)
@@ -203,7 +205,7 @@ class I2CRegister: public RegisterT<T>
 
     /* Read */
     memset(buf, 0, buf_size);
-
+    
 ///read data
     ret = i2c_read(pDevice, id, buf, this->size);
     if (ret == -1 || ret != this->size)
@@ -219,11 +221,15 @@ class I2CRegister: public RegisterT<T>
     }//debug
     if(size==1) {this->value=(int)buf[0];}
     if(size==2) {short val=(short)buf[0]*256;val+=buf[1];this->value=(int)val;}
+#else //USE_I2C_LIB
+    WARNING_NO_I2C_LIB
+#endif //!USE_I2C_LIB
     return this->value;
    }//read
   virtual int write()
   {if(this->debug) std::cout<<this->name<<"::"<<__func__<<"() value="<<this->value<<std::endl;
     //libI2C write
+#ifdef USE_I2C_LIB
     char i2c_dev_desc[128];
 ///show device desc.
     /* Print i2c device description */
@@ -252,6 +258,9 @@ class I2CRegister: public RegisterT<T>
         fprintf(stderr, "Write i2c error!\n");
         return -4;
     }
+#else //USE_I2C_LIB
+    WARNING_NO_I2C_LIB
+#endif //!USE_I2C_LIB
     return 0;
   }//write
   //! destructor (need at least empty one)
