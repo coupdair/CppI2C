@@ -55,18 +55,42 @@ FakeRegister::write() empty
 FakeRegister::write() empty
 FakeRegister::write() empty
 FakeRegister::write() empty
+2021-06-24 16:24:34; cppcms, error: url_mapper: key `setup' not found for url `/setup'
+0x1a9a8: booster::runtime_error::runtime_error(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x50 in ./fake-web
+0x76e26228: cppcms::url_mapper::data::get_entry(cppcms::string_key const&, unsigned int, cppcms::string_key const&) const + 0x28c in ../CppCMS/cppcms/build/libcppcms.so.1
+0x76e222bc: cppcms::url_mapper::real_map(char const*, cppcms::filters::streamable const* const*, unsigned int, std::ostream&) + 0x1488 in ../CppCMS/cppcms/build/libcppcms.so.1
+0x76e23ab8: cppcms::url_mapper::map(std::ostream&, char const*) + 0x20 in ../CppCMS/cppcms/build/libcppcms.so.1
+0x267b4: ??? + 0x267b4 in ./fake-web
+0x266a0: ??? + 0x266a0 in ./fake-web
+0x76e327e4: cppcms::views::pool::render(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::ostream&, cppcms::base_content&) + 0x50 in ../CppCMS/cppcms/build/libcppcms.so.1
+0x76e33464: cppcms::views::manager::render(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::ostream&, cppcms::base_content&) + 0x2a0 in ../CppCMS/cppcms/build/libcppcms.so.1
+0x76e16f04: cppcms::application::render(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, cppcms::base_content&) + 0x74 in ../CppCMS/cppcms/build/libcppcms.so.1
+0x16694: ??? + 0x16694 in ./fake-web
+0x179a8: ??? + 0x179a8 in ./fake-web
+0x76e1f0f8: ??? + 0x76e1f0f8 in ../CppCMS/cppcms/build/libcppcms.so.1
+0x76e1ae80: cppcms::url_dispatcher::dispatch(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x9c in ../CppCMS/cppcms/build/libcppcms.so.1
+0x76de6800: cppcms::application::main(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x80 in ../CppCMS/cppcms/build/libcppcms.so.1
+0x76e10350: cppcms::http::context::dispatch(booster::intrusive_ptr<cppcms::application> const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, bool) + 0xbc in ../CppCMS/cppcms/build/libcppcms.so.1
+0x76e10644: cppcms::http::context::dispatch(booster::shared_ptr<cppcms::application_specific_pool> const&, booster::shared_ptr<cppcms::http::context> const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x84 in ../CppCMS/cppcms/build/libcppcms.so.1
+0x76e1301c: cppcms::impl::thread_pool::worker() + 0xe0 in ../CppCMS/cppcms/build/libcppcms.so.1
+0x76d5d3bc: booster_thread_func + 0x28 in ../CppCMS/cppcms/build/booster/libbooster.so.0
+ (url_mapper.cpp:432)
 
 I2C devices address(es):0x04, 0x19, 0x1a, 0x1b, 0x1c, 0x1d.
 
 I2C devices address(es):0x04, 0x19, 0x1a, 0x1b, 0x1c, 0x1d.
 device_setup page
-Write i2c internal address error: Remote I/O error
-Read i2c error!
 gain=0, i.e. 000000
 resistor=2, i.e. 000010 resistor 3 higher bits, option 3 lower ones
 test=4, i.e. 000100 5+1 lower bits
-Write i2c internal address error: Remote I/O error
-Read i2c error!
-Write i2c internal address error: Remote I/O error
-Read i2c error!
-resolution mode=0x-5 i.e. 0.5
+resolution mode=0x3 i.e. 0.0625
+device_setup page
+gain=0, i.e. 000000
+resistor=2, i.e. 000010 resistor 3 higher bits, option 3 lower ones
+test=4, i.e. 000100 5+1 lower bits
+resolution mode=0x3 i.e. 0.0625
+device_setup page
+gain=0, i.e. 000000
+resistor=2, i.e. 000010 resistor 3 higher bits, option 3 lower ones
+test=4, i.e. 000100 5+1 lower bits
+resolution mode=0x3 i.e. 0.0625

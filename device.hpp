@@ -25,7 +25,7 @@
 #define WARNING_NO_I2C_LIB std::cerr<<"warning: "<<this->name<<"::"<<__func__<<" empty as no I2C lib. compiled, need to define USE_I2C_LIB or use Fake*."<<std::endl;
 #endif // !USE_I2C_LIB
 
-#define DEVICE_VERSION "v0.2.0"
+#define DEVICE_VERSION "v0.2.1d"
 
 //version
 //! device library version
@@ -199,6 +199,7 @@ public I2C_Device
     create_register("TemperatureResolution","FakeRegister");//RW
 #else
     set_name("TemperatureDevice");
+    this->init(0x19);
     create_register(default_register_name,  "I2CRegisterWord_RO",0x05);//RO
     create_register("TemperatureResolution","I2CRegisterByte",0x08);//RW
 #endif
@@ -290,6 +291,7 @@ public I2C_Device
     create_register("testNdiscri","FakeRegister");//RW
 #else
     set_name("MC2SADevice");
+    this->init(0x14);
     create_register("gain",       "I2CRegisterByte",0x1);//RW
     create_register("resistor",   "I2CRegisterByte",0x5);//RW
     create_register("discri",     "I2CRegisterByte",0x4);//RW
