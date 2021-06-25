@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.2.3k"
+#define VERSION "v0.2.3l"
 
 //Program option/documentation
 //{argp
@@ -573,6 +573,11 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
 
 //debug
 MC2SADev->read();
+///reg. table
+std::vector<int> reg_values;
+MC2SADev->read_list(reg_values);
+for(int i=0;i<reg_values.size();++i)
+  std::cout<<"R"<<i<<"=0x"<<std::hex<<reg_values[i]<<std::dec<<std::endl;
 
   }//device_setup
   virtual void bus();

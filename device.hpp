@@ -25,7 +25,7 @@
 #define WARNING_NO_I2C_LIB std::cerr<<"warning: "<<this->name<<"::"<<__func__<<" empty as no I2C lib. compiled, need to define USE_I2C_LIB or use Fake*."<<std::endl;
 #endif // !USE_I2C_LIB
 
-#define DEVICE_VERSION "v0.2.1l"
+#define DEVICE_VERSION "v0.2.1m"
 
 //version
 //! device library version
@@ -320,7 +320,16 @@ public I2C_Device
     this->register_list("");
     for (std::map<std::string,Register*>::iterator it=this->begin(); it!=this->end(); ++it)
     {
-      std::cout<<"  "<< it->first << " = "<<(it->second)->read()<<std::endl;
+      std::cout<<"  "<< it->first << " = 0x"<<std::hex<<(it->second)->read()<<std::dec<<std::endl;
+    }//register loop
+    this->update_time++;
+  }//read
+  virtual void read_list(std::vector<int> &reg_values)
+  {if(this->debug) std::cout<<name<<"::"<<__func__<<"()"<<std::endl;
+    reg_values.clear();
+    for (std::map<std::string,Register*>::iterator it=this->begin(); it!=this->end(); ++it)
+    {
+      reg_values.push_back((it->second)->read());
     }//register loop
     this->update_time++;
   }//read
