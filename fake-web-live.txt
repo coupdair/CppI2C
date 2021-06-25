@@ -56,7 +56,7 @@ TemperatureDevice::get_Celcius() AmbiantTemperature
 TemperatureDevice::get() AmbiantTemperature
 TemperatureDevice::get(AmbiantTemperature)
 TemperatureDevice::get(...)
-Read data: 0x68 0xc1
+Read data: 0x6d 0xc1
 gain=1, i.e. 000001
 resistor=2, i.e. 000010 resistor 3 higher bits, option 3 lower ones
 test=4, i.e. 000100 5+1 lower bits
@@ -64,29 +64,29 @@ TemperatureDevice::get_Celcius() AmbiantTemperature
 TemperatureDevice::get() AmbiantTemperature
 TemperatureDevice::get(AmbiantTemperature)
 TemperatureDevice::get(...)
-Read data: 0x68 0xc1
+Read data: 0x6d 0xc1
 resolution mode=0x3 i.e. 0.0625
-FakeRegister0 => FakeRegister
-FakeRegister1 => FakeRegister
-amplitude => FakeRegister
-discri => FakeRegister
-gain => FakeRegister
-offset => FakeRegister
-resistor => FakeRegister
-testNdiscri => FakeRegister
-  FakeRegister0 = 0x1
-  FakeRegister1 = 0x1
-  amplitude = 0x0
-  discri = 0x80
-  gain = 0x1
-  offset = 0x0
-  resistor = 0x2
-  testNdiscri = 0x4
+R0_amplitude => FakeRegister
+R1_gain => FakeRegister
+R2_offset => FakeRegister
+R3_testNdiscri => FakeRegister
+R4_discri => FakeRegister
+R5_resistor => FakeRegister
+ZFakeRegister0 => FakeRegister
+ZFakeRegister1 => FakeRegister
+  R0_amplitude = 0x0
+  R1_gain = 0x1
+  R2_offset = 0x0
+  R3_testNdiscri = 0x4
+  R4_discri = 0x80
+  R5_resistor = 0x2
+  ZFakeRegister0 = 0x1
+  ZFakeRegister1 = 0x1
 D\R	R0	R1	R2	R3	R4	R5	R6	R7
-MC2SA#0	0x1	0x1	0x0	0x80	0x1	0x0	0x2	0x4
-MC2SA#1	0x1	0x1	0x0	0x80	0x1	0x0	0x2	0x4
-MC2SA#2	0x1	0x1	0x0	0x80	0x1	0x0	0x2	0x4
-MC2SA#3	0x1	0x1	0x0	0x80	0x1	0x0	0x2	0x4
+MC2SA#0	0x0	0x1	0x0	0x4	0x80	0x2	0x1	0x1
+MC2SA#1	0x0	0x1	0x0	0x4	0x80	0x2	0x1	0x1
+MC2SA#2	0x0	0x1	0x0	0x4	0x80	0x2	0x1	0x1
+MC2SA#3	0x0	0x1	0x0	0x4	0x80	0x2	0x1	0x1
 device_setup page
 TemperatureDevice/set_name("TemperatureDevice")
 TemperatureDevice::init(25)
@@ -94,12 +94,12 @@ TemperatureDevice::get_Celcius() AmbiantTemperature
 TemperatureDevice::get() AmbiantTemperature
 TemperatureDevice::get(AmbiantTemperature)
 TemperatureDevice::get(...)
-Read data: 0x69 0xc1
+Read data: 0x6d 0xc1
 TemperatureDevice::get_Celcius() AmbiantTemperature
 TemperatureDevice::get() AmbiantTemperature
 TemperatureDevice::get(AmbiantTemperature)
 TemperatureDevice::get(...)
-Read data: 0x69 0xc1
+Read data: 0x6d 0xc1
 MC2SA gain apply message data:
  - temperature=0
  - resolution=0
@@ -125,13 +125,13 @@ MC2SA resistor apply message data:
  - amplitude=0
 FakeRegister::write() empty
 option//R5=001010
-option//R5=001100
+option//R5=001000
 MC2SA option apply message data:
  - temperature=0
  - resolution=0
  - MC2SA#0
  - gain=1, i.e. 000001
- - resistorNoption=12, i.e. 001100
+ - resistorNoption=8, i.e. 001000
  - test=0, i.e. 000000
  - discri=0
  - offset=0
@@ -142,7 +142,7 @@ MC2SA discri apply message data:
  - resolution=0
  - MC2SA#0
  - gain=1, i.e. 000001
- - resistorNoption=12, i.e. 001100
+ - resistorNoption=8, i.e. 001000
  - test=0, i.e. 000000
  - discri=127
  - offset=0
@@ -153,7 +153,7 @@ MC2SA offset apply message data:
  - resolution=0
  - MC2SA#0
  - gain=1, i.e. 000001
- - resistorNoption=12, i.e. 001100
+ - resistorNoption=8, i.e. 001000
  - test=0, i.e. 000000
  - discri=127
  - offset=0
@@ -164,7 +164,7 @@ MC2SA amplitude apply message data:
  - resolution=0
  - MC2SA#0
  - gain=1, i.e. 000001
- - resistorNoption=12, i.e. 001100
+ - resistorNoption=8, i.e. 001000
  - test=0, i.e. 000000
  - discri=127
  - offset=0
@@ -175,18 +175,18 @@ MC2SA test apply message data:
  - resolution=0
  - MC2SA#0
  - gain=1, i.e. 000001
- - resistorNoption=12, i.e. 001100
+ - resistorNoption=8, i.e. 001000
  - test=0, i.e. 000000
  - discri=127
  - offset=0
  - amplitude=0
 FakeRegister::write() empty
 Temperature apply message data:
- - temperature=22.5625
+ - temperature=22.8125
  - resolution=0.0625
  - MC2SA#0
  - gain=1, i.e. 000001
- - resistorNoption=12, i.e. 001100
+ - resistorNoption=8, i.e. 001000
  - test=0, i.e. 000000
  - discri=127
  - offset=0
@@ -196,27 +196,27 @@ TemperatureDevice::set(3) TemperatureResolution, e.g. 0x2
 TemperatureDevice::set(TemperatureResolution, 3)
 TemperatureDevice::set(...)
 resolution mode=3
-FakeRegister0 => FakeRegister
-FakeRegister1 => FakeRegister
-amplitude => FakeRegister
-discri => FakeRegister
-gain => FakeRegister
-offset => FakeRegister
-resistor => FakeRegister
-testNdiscri => FakeRegister
-  FakeRegister0 = 0x1
-  FakeRegister1 = 0x1
-  amplitude = 0x0
-  discri = 0x7f
-  gain = 0x1
-  offset = 0x0
-  resistor = 0xc
-  testNdiscri = 0x0
+R0_amplitude => FakeRegister
+R1_gain => FakeRegister
+R2_offset => FakeRegister
+R3_testNdiscri => FakeRegister
+R4_discri => FakeRegister
+R5_resistor => FakeRegister
+ZFakeRegister0 => FakeRegister
+ZFakeRegister1 => FakeRegister
+  R0_amplitude = 0x0
+  R1_gain = 0x1
+  R2_offset = 0x0
+  R3_testNdiscri = 0x0
+  R4_discri = 0x7f
+  R5_resistor = 0x8
+  ZFakeRegister0 = 0x1
+  ZFakeRegister1 = 0x1
 D\R	R0	R1	R2	R3	R4	R5	R6	R7
-MC2SA#0	0x1	0x1	0x0	0x7f	0x1	0x0	0xc	0x0
-MC2SA#1	0x1	0x1	0x0	0x80	0x1	0x0	0x2	0x4
-MC2SA#2	0x1	0x1	0x0	0x80	0x1	0x0	0x2	0x4
-MC2SA#3	0x1	0x1	0x0	0x80	0x1	0x0	0x2	0x4
+MC2SA#0	0x0	0x1	0x0	0x0	0x7f	0x8	0x1	0x1
+MC2SA#1	0x0	0x1	0x0	0x4	0x80	0x2	0x1	0x1
+MC2SA#2	0x0	0x1	0x0	0x4	0x80	0x2	0x1	0x1
+MC2SA#3	0x0	0x1	0x0	0x4	0x80	0x2	0x1	0x1
 device_setup page
 TemperatureDevice/set_name("TemperatureDevice")
 TemperatureDevice::init(25)
@@ -224,7 +224,137 @@ TemperatureDevice::get_Celcius() AmbiantTemperature
 TemperatureDevice::get() AmbiantTemperature
 TemperatureDevice::get(AmbiantTemperature)
 TemperatureDevice::get(...)
-Read data: 0x6a 0xc1
+Read data: 0x6c 0xc1
+TemperatureDevice::get_Celcius() AmbiantTemperature
+TemperatureDevice::get() AmbiantTemperature
+TemperatureDevice::get(AmbiantTemperature)
+TemperatureDevice::get(...)
+Read data: 0x6c 0xc1
+MC2SA gain apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistorNoption=0, i.e. 000000
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude=0
+FakeRegister::write() empty
+resistor//R5=001000
+resistor//R5=001000
+MC2SA resistor apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistorNoption=8, i.e. 001000
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude=0
+FakeRegister::write() empty
+option//R5=001000
+option//R5=001000
+MC2SA option apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistorNoption=8, i.e. 001000
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude=0
+FakeRegister::write() empty
+MC2SA discri apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistorNoption=8, i.e. 001000
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+FakeRegister::write() empty
+MC2SA offset apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistorNoption=8, i.e. 001000
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+FakeRegister::write() empty
+MC2SA amplitude apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistorNoption=8, i.e. 001000
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+FakeRegister::write() empty
+MC2SA test apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistorNoption=8, i.e. 001000
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+FakeRegister::write() empty
+Temperature apply message data:
+ - temperature=22.75
+ - resolution=0.0625
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistorNoption=8, i.e. 001000
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+TemperatureDevice::set_Celcius(0.0625) TemperatureResolution, e.g. 0.25
+TemperatureDevice::set(3) TemperatureResolution, e.g. 0x2
+TemperatureDevice::set(TemperatureResolution, 3)
+TemperatureDevice::set(...)
+resolution mode=3
+R0_amplitude => FakeRegister
+R1_gain => FakeRegister
+R2_offset => FakeRegister
+R3_testNdiscri => FakeRegister
+R4_discri => FakeRegister
+R5_resistor => FakeRegister
+ZFakeRegister0 => FakeRegister
+ZFakeRegister1 => FakeRegister
+  R0_amplitude = 0x0
+  R1_gain = 0x1
+  R2_offset = 0x0
+  R3_testNdiscri = 0x0
+  R4_discri = 0x7f
+  R5_resistor = 0x8
+  ZFakeRegister0 = 0x1
+  ZFakeRegister1 = 0x1
+D\R	R0	R1	R2	R3	R4	R5	R6	R7
+MC2SA#0	0x0	0x1	0x0	0x0	0x7f	0x8	0x1	0x1
+MC2SA#1	0x0	0x1	0x0	0x4	0x80	0x2	0x1	0x1
+MC2SA#2	0x0	0x1	0x0	0x4	0x80	0x2	0x1	0x1
+MC2SA#3	0x0	0x1	0x0	0x4	0x80	0x2	0x1	0x1
+device_setup page
+TemperatureDevice/set_name("TemperatureDevice")
+TemperatureDevice::init(25)
+TemperatureDevice::get_Celcius() AmbiantTemperature
+TemperatureDevice::get() AmbiantTemperature
+TemperatureDevice::get(AmbiantTemperature)
+TemperatureDevice::get(...)
+Read data: 0x6c 0xc1
 gain=1, i.e. 000001
 resistor=2, i.e. 000010 resistor 3 higher bits, option 3 lower ones
 test=4, i.e. 000100 5+1 lower bits
@@ -232,29 +362,29 @@ TemperatureDevice::get_Celcius() AmbiantTemperature
 TemperatureDevice::get() AmbiantTemperature
 TemperatureDevice::get(AmbiantTemperature)
 TemperatureDevice::get(...)
-Read data: 0x6a 0xc1
+Read data: 0x6c 0xc1
 resolution mode=0x3 i.e. 0.0625
-FakeRegister0 => FakeRegister
-FakeRegister1 => FakeRegister
-amplitude => FakeRegister
-discri => FakeRegister
-gain => FakeRegister
-offset => FakeRegister
-resistor => FakeRegister
-testNdiscri => FakeRegister
-  FakeRegister0 = 0x1
-  FakeRegister1 = 0x1
-  amplitude = 0x0
-  discri = 0x80
-  gain = 0x1
-  offset = 0x0
-  resistor = 0x2
-  testNdiscri = 0x4
+R0_amplitude => FakeRegister
+R1_gain => FakeRegister
+R2_offset => FakeRegister
+R3_testNdiscri => FakeRegister
+R4_discri => FakeRegister
+R5_resistor => FakeRegister
+ZFakeRegister0 => FakeRegister
+ZFakeRegister1 => FakeRegister
+  R0_amplitude = 0x0
+  R1_gain = 0x1
+  R2_offset = 0x0
+  R3_testNdiscri = 0x4
+  R4_discri = 0x80
+  R5_resistor = 0x2
+  ZFakeRegister0 = 0x1
+  ZFakeRegister1 = 0x1
 D\R	R0	R1	R2	R3	R4	R5	R6	R7
-MC2SA#0	0x1	0x1	0x0	0x7f	0x1	0x0	0xc	0x0
-MC2SA#1	0x1	0x1	0x0	0x80	0x1	0x0	0x2	0x4
-MC2SA#2	0x1	0x1	0x0	0x80	0x1	0x0	0x2	0x4
-MC2SA#3	0x1	0x1	0x0	0x80	0x1	0x0	0x2	0x4
+MC2SA#0	0x0	0x1	0x0	0x0	0x7f	0x8	0x1	0x1
+MC2SA#1	0x0	0x1	0x0	0x4	0x80	0x2	0x1	0x1
+MC2SA#2	0x0	0x1	0x0	0x4	0x80	0x2	0x1	0x1
+MC2SA#3	0x0	0x1	0x0	0x4	0x80	0x2	0x1	0x1
 device_setup page
 TemperatureDevice/set_name("TemperatureDevice")
 TemperatureDevice::init(25)
@@ -262,12 +392,12 @@ TemperatureDevice::get_Celcius() AmbiantTemperature
 TemperatureDevice::get() AmbiantTemperature
 TemperatureDevice::get(AmbiantTemperature)
 TemperatureDevice::get(...)
-Read data: 0x69 0xc1
+Read data: 0x6d 0xc1
 TemperatureDevice::get_Celcius() AmbiantTemperature
 TemperatureDevice::get() AmbiantTemperature
 TemperatureDevice::get(AmbiantTemperature)
 TemperatureDevice::get(...)
-Read data: 0x69 0xc1
+Read data: 0x6d 0xc1
 MC2SA gain apply message data:
  - temperature=0
  - resolution=0
@@ -350,7 +480,7 @@ MC2SA test apply message data:
  - amplitude=0
 FakeRegister::write() empty
 Temperature apply message data:
- - temperature=22.5625
+ - temperature=22.8125
  - resolution=0.0625
  - MC2SA#1
  - gain=2, i.e. 000010
@@ -364,24 +494,360 @@ TemperatureDevice::set(3) TemperatureResolution, e.g. 0x2
 TemperatureDevice::set(TemperatureResolution, 3)
 TemperatureDevice::set(...)
 resolution mode=3
-FakeRegister0 => FakeRegister
-FakeRegister1 => FakeRegister
-amplitude => FakeRegister
-discri => FakeRegister
-gain => FakeRegister
-offset => FakeRegister
-resistor => FakeRegister
-testNdiscri => FakeRegister
-  FakeRegister0 = 0x1
-  FakeRegister1 = 0x1
-  amplitude = 0x0
-  discri = 0x7f
-  gain = 0x2
-  offset = 0x0
-  resistor = 0x12
-  testNdiscri = 0x0
+R0_amplitude => FakeRegister
+R1_gain => FakeRegister
+R2_offset => FakeRegister
+R3_testNdiscri => FakeRegister
+R4_discri => FakeRegister
+R5_resistor => FakeRegister
+ZFakeRegister0 => FakeRegister
+ZFakeRegister1 => FakeRegister
+  R0_amplitude = 0x0
+  R1_gain = 0x2
+  R2_offset = 0x0
+  R3_testNdiscri = 0x0
+  R4_discri = 0x7f
+  R5_resistor = 0x12
+  ZFakeRegister0 = 0x1
+  ZFakeRegister1 = 0x1
 D\R	R0	R1	R2	R3	R4	R5	R6	R7
-MC2SA#0	0x1	0x1	0x0	0x7f	0x1	0x0	0xc	0x0
-MC2SA#1	0x1	0x1	0x0	0x7f	0x2	0x0	0x12	0x0
-MC2SA#2	0x1	0x1	0x0	0x80	0x1	0x0	0x2	0x4
-MC2SA#3	0x1	0x1	0x0	0x80	0x1	0x0	0x2	0x4
+MC2SA#0	0x0	0x1	0x0	0x0	0x7f	0x8	0x1	0x1
+MC2SA#1	0x0	0x2	0x0	0x0	0x7f	0x12	0x1	0x1
+MC2SA#2	0x0	0x1	0x0	0x4	0x80	0x2	0x1	0x1
+MC2SA#3	0x0	0x1	0x0	0x4	0x80	0x2	0x1	0x1
+device_setup page
+TemperatureDevice/set_name("TemperatureDevice")
+TemperatureDevice::init(25)
+TemperatureDevice::get_Celcius() AmbiantTemperature
+TemperatureDevice::get() AmbiantTemperature
+TemperatureDevice::get(AmbiantTemperature)
+TemperatureDevice::get(...)
+Read data: 0x6d 0xc1
+gain=1, i.e. 000001
+resistor=2, i.e. 000010 resistor 3 higher bits, option 3 lower ones
+test=4, i.e. 000100 5+1 lower bits
+TemperatureDevice::get_Celcius() AmbiantTemperature
+TemperatureDevice::get() AmbiantTemperature
+TemperatureDevice::get(AmbiantTemperature)
+TemperatureDevice::get(...)
+Read data: 0x6d 0xc1
+resolution mode=0x3 i.e. 0.0625
+R0_amplitude => FakeRegister
+R1_gain => FakeRegister
+R2_offset => FakeRegister
+R3_testNdiscri => FakeRegister
+R4_discri => FakeRegister
+R5_resistor => FakeRegister
+ZFakeRegister0 => FakeRegister
+ZFakeRegister1 => FakeRegister
+  R0_amplitude = 0x0
+  R1_gain = 0x1
+  R2_offset = 0x0
+  R3_testNdiscri = 0x4
+  R4_discri = 0x80
+  R5_resistor = 0x2
+  ZFakeRegister0 = 0x1
+  ZFakeRegister1 = 0x1
+D\R	R0	R1	R2	R3	R4	R5	R6	R7
+MC2SA#0	0x0	0x1	0x0	0x0	0x7f	0x8	0x1	0x1
+MC2SA#1	0x0	0x2	0x0	0x0	0x7f	0x12	0x1	0x1
+MC2SA#2	0x0	0x1	0x0	0x4	0x80	0x2	0x1	0x1
+MC2SA#3	0x0	0x1	0x0	0x4	0x80	0x2	0x1	0x1
+device_setup page
+TemperatureDevice/set_name("TemperatureDevice")
+TemperatureDevice::init(25)
+TemperatureDevice::get_Celcius() AmbiantTemperature
+TemperatureDevice::get() AmbiantTemperature
+TemperatureDevice::get(AmbiantTemperature)
+TemperatureDevice::get(...)
+Read data: 0x6d 0xc1
+TemperatureDevice::get_Celcius() AmbiantTemperature
+TemperatureDevice::get() AmbiantTemperature
+TemperatureDevice::get(AmbiantTemperature)
+TemperatureDevice::get(...)
+Read data: 0x6d 0xc1
+MC2SA gain apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=4, i.e. 000100
+ - resistorNoption=0, i.e. 000000
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude=0
+FakeRegister::write() empty
+resistor//R5=000010
+resistor//R5=100010
+MC2SA resistor apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=4, i.e. 000100
+ - resistorNoption=34, i.e. 100010
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude=0
+FakeRegister::write() empty
+option//R5=100010
+option//R5=100001
+MC2SA option apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=4, i.e. 000100
+ - resistorNoption=33, i.e. 100001
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude=0
+FakeRegister::write() empty
+MC2SA discri apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=4, i.e. 000100
+ - resistorNoption=33, i.e. 100001
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+FakeRegister::write() empty
+MC2SA offset apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=4, i.e. 000100
+ - resistorNoption=33, i.e. 100001
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+FakeRegister::write() empty
+MC2SA amplitude apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=4, i.e. 000100
+ - resistorNoption=33, i.e. 100001
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+FakeRegister::write() empty
+MC2SA test apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=4, i.e. 000100
+ - resistorNoption=33, i.e. 100001
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+FakeRegister::write() empty
+Temperature apply message data:
+ - temperature=22.8125
+ - resolution=0.0625
+ - MC2SA#2
+ - gain=4, i.e. 000100
+ - resistorNoption=33, i.e. 100001
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+TemperatureDevice::set_Celcius(0.0625) TemperatureResolution, e.g. 0.25
+TemperatureDevice::set(3) TemperatureResolution, e.g. 0x2
+TemperatureDevice::set(TemperatureResolution, 3)
+TemperatureDevice::set(...)
+resolution mode=3
+R0_amplitude => FakeRegister
+R1_gain => FakeRegister
+R2_offset => FakeRegister
+R3_testNdiscri => FakeRegister
+R4_discri => FakeRegister
+R5_resistor => FakeRegister
+ZFakeRegister0 => FakeRegister
+ZFakeRegister1 => FakeRegister
+  R0_amplitude = 0x0
+  R1_gain = 0x4
+  R2_offset = 0x0
+  R3_testNdiscri = 0x0
+  R4_discri = 0x7f
+  R5_resistor = 0x21
+  ZFakeRegister0 = 0x1
+  ZFakeRegister1 = 0x1
+D\R	R0	R1	R2	R3	R4	R5	R6	R7
+MC2SA#0	0x0	0x1	0x0	0x0	0x7f	0x8	0x1	0x1
+MC2SA#1	0x0	0x2	0x0	0x0	0x7f	0x12	0x1	0x1
+MC2SA#2	0x0	0x4	0x0	0x0	0x7f	0x21	0x1	0x1
+MC2SA#3	0x0	0x1	0x0	0x4	0x80	0x2	0x1	0x1
+device_setup page
+TemperatureDevice/set_name("TemperatureDevice")
+TemperatureDevice::init(25)
+TemperatureDevice::get_Celcius() AmbiantTemperature
+TemperatureDevice::get() AmbiantTemperature
+TemperatureDevice::get(AmbiantTemperature)
+TemperatureDevice::get(...)
+Read data: 0x6e 0xc1
+gain=1, i.e. 000001
+resistor=2, i.e. 000010 resistor 3 higher bits, option 3 lower ones
+test=4, i.e. 000100 5+1 lower bits
+TemperatureDevice::get_Celcius() AmbiantTemperature
+TemperatureDevice::get() AmbiantTemperature
+TemperatureDevice::get(AmbiantTemperature)
+TemperatureDevice::get(...)
+Read data: 0x6e 0xc1
+resolution mode=0x3 i.e. 0.0625
+R0_amplitude => FakeRegister
+R1_gain => FakeRegister
+R2_offset => FakeRegister
+R3_testNdiscri => FakeRegister
+R4_discri => FakeRegister
+R5_resistor => FakeRegister
+ZFakeRegister0 => FakeRegister
+ZFakeRegister1 => FakeRegister
+  R0_amplitude = 0x0
+  R1_gain = 0x1
+  R2_offset = 0x0
+  R3_testNdiscri = 0x4
+  R4_discri = 0x80
+  R5_resistor = 0x2
+  ZFakeRegister0 = 0x1
+  ZFakeRegister1 = 0x1
+D\R	R0	R1	R2	R3	R4	R5	R6	R7
+MC2SA#0	0x0	0x1	0x0	0x0	0x7f	0x8	0x1	0x1
+MC2SA#1	0x0	0x2	0x0	0x0	0x7f	0x12	0x1	0x1
+MC2SA#2	0x0	0x4	0x0	0x0	0x7f	0x21	0x1	0x1
+MC2SA#3	0x0	0x1	0x0	0x4	0x80	0x2	0x1	0x1
+device_setup page
+TemperatureDevice/set_name("TemperatureDevice")
+TemperatureDevice::init(25)
+TemperatureDevice::get_Celcius() AmbiantTemperature
+TemperatureDevice::get() AmbiantTemperature
+TemperatureDevice::get(AmbiantTemperature)
+TemperatureDevice::get(...)
+Read data: 0x6d 0xc1
+TemperatureDevice::get_Celcius() AmbiantTemperature
+TemperatureDevice::get() AmbiantTemperature
+TemperatureDevice::get(AmbiantTemperature)
+TemperatureDevice::get(...)
+Read data: 0x6d 0xc1
+MC2SA gain apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#3
+ - gain=8, i.e. 001000
+ - resistorNoption=0, i.e. 000000
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude=0
+FakeRegister::write() empty
+resistor//R5=000010
+resistor//R5=000010
+MC2SA resistor apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#3
+ - gain=8, i.e. 001000
+ - resistorNoption=2, i.e. 000010
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude=0
+FakeRegister::write() empty
+option//R5=000010
+option//R5=000000
+MC2SA option apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#3
+ - gain=8, i.e. 001000
+ - resistorNoption=0, i.e. 000000
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude=0
+FakeRegister::write() empty
+MC2SA discri apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#3
+ - gain=8, i.e. 001000
+ - resistorNoption=0, i.e. 000000
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+FakeRegister::write() empty
+MC2SA offset apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#3
+ - gain=8, i.e. 001000
+ - resistorNoption=0, i.e. 000000
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+FakeRegister::write() empty
+MC2SA amplitude apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#3
+ - gain=8, i.e. 001000
+ - resistorNoption=0, i.e. 000000
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+FakeRegister::write() empty
+MC2SA test apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#3
+ - gain=8, i.e. 001000
+ - resistorNoption=0, i.e. 000000
+ - test=32, i.e. 100000
+ - discri=127
+ - offset=0
+ - amplitude=0
+FakeRegister::write() empty
+Temperature apply message data:
+ - temperature=22.8125
+ - resolution=0.0625
+ - MC2SA#3
+ - gain=8, i.e. 001000
+ - resistorNoption=0, i.e. 000000
+ - test=32, i.e. 100000
+ - discri=127
+ - offset=0
+ - amplitude=0
+TemperatureDevice::set_Celcius(0.0625) TemperatureResolution, e.g. 0.25
+TemperatureDevice::set(3) TemperatureResolution, e.g. 0x2
+TemperatureDevice::set(TemperatureResolution, 3)
+TemperatureDevice::set(...)
+resolution mode=3
+R0_amplitude => FakeRegister
+R1_gain => FakeRegister
+R2_offset => FakeRegister
+R3_testNdiscri => FakeRegister
+R4_discri => FakeRegister
+R5_resistor => FakeRegister
+ZFakeRegister0 => FakeRegister
+ZFakeRegister1 => FakeRegister
+  R0_amplitude = 0x0
+  R1_gain = 0x8
+  R2_offset = 0x0
+  R3_testNdiscri = 0x20
+  R4_discri = 0x7f
+  R5_resistor = 0x0
+  ZFakeRegister0 = 0x1
+  ZFakeRegister1 = 0x1
+D\R	R0	R1	R2	R3	R4	R5	R6	R7
+MC2SA#0	0x0	0x1	0x0	0x0	0x7f	0x8	0x1	0x1
+MC2SA#1	0x0	0x2	0x0	0x0	0x7f	0x12	0x1	0x1
+MC2SA#2	0x0	0x4	0x0	0x0	0x7f	0x21	0x1	0x1
+MC2SA#3	0x0	0x8	0x0	0x20	0x7f	0x0	0x1	0x1

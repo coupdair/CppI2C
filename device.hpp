@@ -25,7 +25,7 @@
 #define WARNING_NO_I2C_LIB std::cerr<<"warning: "<<this->name<<"::"<<__func__<<" empty as no I2C lib. compiled, need to define USE_I2C_LIB or use Fake*."<<std::endl;
 #endif // !USE_I2C_LIB
 
-#define DEVICE_VERSION "v0.2.1m"
+#define DEVICE_VERSION "v0.2.4d"
 
 //version
 //! device library version
@@ -81,8 +81,8 @@ class FakeDevice: public Device
   FakeDevice()
   {
     set_name("FakeDevice");
-    create_register("FakeRegister0","FakeRegister");
-    create_register("FakeRegister1","FakeRegister");
+    create_register("ZFakeRegister0","FakeRegister");
+    create_register("ZFakeRegister1","FakeRegister");
   }//constructor
   virtual int get(const std::string &register_name) {if(this->debug) std::cout<<name<<"::get(...)"<<std::endl;return Device::get(register_name);}
   virtual int set(const std::string &register_name,const int &value) {std::cout<<name<<"::set(...) empty"<<std::endl;return 0;};
@@ -303,12 +303,12 @@ public I2C_Device
   {
 #ifdef FAKE_MC2SA
     set_name("fakeMC2SADevice");
-    create_register("gain","FakeRegister");//RW
-    create_register("resistor","FakeRegister");//RW
-    create_register("discri","FakeRegister");//RW
-    create_register("offset","FakeRegister");//RW
-    create_register("amplitude","FakeRegister");//RW
-    create_register("testNdiscri","FakeRegister");//RW
+    create_register("R1_gain","FakeRegister");//RW
+    create_register("R5_resistor","FakeRegister");//RW
+    create_register("R4_discri","FakeRegister");//RW
+    create_register("R2_offset","FakeRegister");//RW
+    create_register("R0_amplitude","FakeRegister");//RW
+    create_register("R3_testNdiscri","FakeRegister");//RW
     init();
 #else
     set_name("MC2SADevice");
@@ -345,21 +345,21 @@ public I2C_Device
 #else
     I2C_Device::init(addr_);
 //! \todo [high] I2CRegisterByte_WO
-    create_register("gain",       "I2CRegisterByte_WO",0x1);//WO
-    create_register("resistor",   "I2CRegisterByte_WO",0x5);//WO
-    create_register("discri",     "I2CRegisterByte_WO",0x4);//WO
-    create_register("offset",     "I2CRegisterByte_WO",0x2);//WO
-    create_register("amplitude",  "I2CRegisterByte_WO",0x0);//WO
-    create_register("testNdiscri","I2CRegisterByte_WO",0x3);//WO
+    create_register("R1_gain",       "I2CRegisterByte_WO",0x1);//WO
+    create_register("R5_resistor",   "I2CRegisterByte_WO",0x5);//WO
+    create_register("R4_discri",     "I2CRegisterByte_WO",0x4);//WO
+    create_register("R2_offset",     "I2CRegisterByte_WO",0x2);//WO
+    create_register("R0_amplitude",  "I2CRegisterByte_WO",0x0);//WO
+    create_register("R3_testNdiscri","I2CRegisterByte_WO",0x3);//WO
 #endif
     //register initialisation
 //! \todo [high] put default value to reset function
-    (*this)["gain"]->write(0x1);//0x21);//16 and 1 pF
-    (*this)["resistor"]->write(0x2);//0x28);//200 and 500 kOhm
-    (*this)["discri"]->write(128);//1.65V as byte
-    (*this)["offset"]->write(0);//0V
-    (*this)["amplitude"]->write(0);//0V
-    (*this)["testNdiscri"]->write(0x4);
+    (*this)["R1_gain"]->write(0x1);//0x21);//16 and 1 pF
+    (*this)["R5_resistor"]->write(0x2);//0x28);//200 and 500 kOhm
+    (*this)["R4_discri"]->write(128);//1.65V as byte
+    (*this)["R2_offset"]->write(0);//0V
+    (*this)["R0_amplitude"]->write(0);//0V
+    (*this)["R3_testNdiscri"]->write(0x4);
   }//init
   //! destructor (need at least empty one)
   virtual ~MC2SADevice() {}
