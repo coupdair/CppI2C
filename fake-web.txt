@@ -1,4 +1,6 @@
 ./fake-web is running (Ctrl+C to stop), have look to http://localhost:8080/i2c-bus.
+TemperatureDevice/set_name("TemperatureDevice")
+TemperatureDevice::init(25)
 FakeRegister::write() empty
 FakeRegister::write() empty
 FakeRegister::write() empty
@@ -47,41 +49,61 @@ FakeRegister::write() empty
 FakeRegister::write() empty
 FakeRegister::write() empty
 FakeRegister::write() empty
-FakeRegister::write() empty
-FakeRegister::write() empty
-FakeRegister::write() empty
-FakeRegister::write() empty
-FakeRegister::write() empty
-FakeRegister::write() empty
-FakeRegister::write() empty
-FakeRegister::write() empty
-2021-06-24 23:06:15; cppcms, error: url_mapper: key `setup' not found for url `/setup'
-0x1a9a8: booster::runtime_error::runtime_error(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x50 in ./fake-web
-0xb6eac228: cppcms::url_mapper::data::get_entry(cppcms::string_key const&, unsigned int, cppcms::string_key const&) const + 0x28c in ../CppCMS/cppcms/build/libcppcms.so.1
-0xb6ea82bc: cppcms::url_mapper::real_map(char const*, cppcms::filters::streamable const* const*, unsigned int, std::ostream&) + 0x1488 in ../CppCMS/cppcms/build/libcppcms.so.1
-0xb6ea9ab8: cppcms::url_mapper::map(std::ostream&, char const*) + 0x20 in ../CppCMS/cppcms/build/libcppcms.so.1
-0x266dc: ??? + 0x266dc in ./fake-web
-0x265c8: ??? + 0x265c8 in ./fake-web
-0xb6eb87e4: cppcms::views::pool::render(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::ostream&, cppcms::base_content&) + 0x50 in ../CppCMS/cppcms/build/libcppcms.so.1
-0xb6eb9464: cppcms::views::manager::render(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::ostream&, cppcms::base_content&) + 0x2a0 in ../CppCMS/cppcms/build/libcppcms.so.1
-0xb6e9cf04: cppcms::application::render(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, cppcms::base_content&) + 0x74 in ../CppCMS/cppcms/build/libcppcms.so.1
+2021-06-25 16:11:35; cppcms, error: url_mapper: key `setup' not found for url `/setup'
+0x1aa00: booster::runtime_error::runtime_error(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x50 in ./fake-web
+0x76ebf228: cppcms::url_mapper::data::get_entry(cppcms::string_key const&, unsigned int, cppcms::string_key const&) const + 0x28c in ../CppCMS/cppcms/build/libcppcms.so.1
+0x76ebb2bc: cppcms::url_mapper::real_map(char const*, cppcms::filters::streamable const* const*, unsigned int, std::ostream&) + 0x1488 in ../CppCMS/cppcms/build/libcppcms.so.1
+0x76ebcab8: cppcms::url_mapper::map(std::ostream&, char const*) + 0x20 in ../CppCMS/cppcms/build/libcppcms.so.1
+0x26a3c: ??? + 0x26a3c in ./fake-web
+0x26928: ??? + 0x26928 in ./fake-web
+0x76ecb7e4: cppcms::views::pool::render(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::ostream&, cppcms::base_content&) + 0x50 in ../CppCMS/cppcms/build/libcppcms.so.1
+0x76ecc464: cppcms::views::manager::render(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::ostream&, cppcms::base_content&) + 0x2a0 in ../CppCMS/cppcms/build/libcppcms.so.1
+0x76eaff04: cppcms::application::render(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, cppcms::base_content&) + 0x74 in ../CppCMS/cppcms/build/libcppcms.so.1
 0x16694: ??? + 0x16694 in ./fake-web
-0x179a8: ??? + 0x179a8 in ./fake-web
-0xb6ea50f8: ??? + 0xb6ea50f8 in ../CppCMS/cppcms/build/libcppcms.so.1
-0xb6ea0e80: cppcms::url_dispatcher::dispatch(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x9c in ../CppCMS/cppcms/build/libcppcms.so.1
-0xb6e6c800: cppcms::application::main(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x80 in ../CppCMS/cppcms/build/libcppcms.so.1
-0xb6e96350: cppcms::http::context::dispatch(booster::intrusive_ptr<cppcms::application> const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, bool) + 0xbc in ../CppCMS/cppcms/build/libcppcms.so.1
-0xb6e96644: cppcms::http::context::dispatch(booster::shared_ptr<cppcms::application_specific_pool> const&, booster::shared_ptr<cppcms::http::context> const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x84 in ../CppCMS/cppcms/build/libcppcms.so.1
-0xb6e9901c: cppcms::impl::thread_pool::worker() + 0xe0 in ../CppCMS/cppcms/build/libcppcms.so.1
-0xb6de33bc: booster_thread_func + 0x28 in ../CppCMS/cppcms/build/booster/libbooster.so.0
+0x179a4: ??? + 0x179a4 in ./fake-web
+0x76eb80f8: ??? + 0x76eb80f8 in ../CppCMS/cppcms/build/libcppcms.so.1
+0x76eb3e80: cppcms::url_dispatcher::dispatch(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x9c in ../CppCMS/cppcms/build/libcppcms.so.1
+0x76e7f800: cppcms::application::main(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x80 in ../CppCMS/cppcms/build/libcppcms.so.1
+0x76ea9350: cppcms::http::context::dispatch(booster::intrusive_ptr<cppcms::application> const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, bool) + 0xbc in ../CppCMS/cppcms/build/libcppcms.so.1
+0x76ea9644: cppcms::http::context::dispatch(booster::shared_ptr<cppcms::application_specific_pool> const&, booster::shared_ptr<cppcms::http::context> const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x84 in ../CppCMS/cppcms/build/libcppcms.so.1
+0x76eac01c: cppcms::impl::thread_pool::worker() + 0xe0 in ../CppCMS/cppcms/build/libcppcms.so.1
+0x76df63bc: booster_thread_func + 0x28 in ../CppCMS/cppcms/build/booster/libbooster.so.0
  (url_mapper.cpp:432)
 
-I2C devices address(es):0x11, 0x14, 0x15, 0x16, 0x17, 0x18, 0x20, 0x3c, 0x73.
+I2C devices address(es):0x04, 0x19, 0x1a, 0x1b, 0x1c, 0x1d.
 device_setup page
-gain=0, i.e. 000000
+TemperatureDevice/set_name("TemperatureDevice")
+TemperatureDevice::init(25)
+TemperatureDevice::get_Celcius() AmbiantTemperature
+TemperatureDevice::get() AmbiantTemperature
+TemperatureDevice::get(AmbiantTemperature)
+TemperatureDevice::get(...)
+Read data: 0x60 0xc1
+gain=1, i.e. 000001
 resistor=2, i.e. 000010 resistor 3 higher bits, option 3 lower ones
 test=4, i.e. 000100 5+1 lower bits
+TemperatureDevice::get_Celcius() AmbiantTemperature
+TemperatureDevice::get() AmbiantTemperature
+TemperatureDevice::get(AmbiantTemperature)
+TemperatureDevice::get(...)
+Read data: 0x60 0xc1
 resolution mode=0x3 i.e. 0.0625
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+amplitude => FakeRegister
+discri => FakeRegister
+gain => FakeRegister
+offset => FakeRegister
+resistor => FakeRegister
+testNdiscri => FakeRegister
+  FakeRegister0 = 1
+  FakeRegister1 = 1
+  amplitude = 0
+  discri = 128
+  gain = 1
+  offset = 0
+  resistor = 2
+  testNdiscri = 4
 
 dur=0
 

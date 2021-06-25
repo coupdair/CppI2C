@@ -52,7 +52,7 @@ run-fake-web: fake-web
 	$(LD_LIBRARY_PATH) ./fake-web -c config.js -i 1 2>&1 | tee fake-web-live.txt
 
 browse-web:
-	firefox http://localhost:8080/i2c-bus http://localhost:8080/i2c-bus/bus http://localhost:8080/i2c-bus/devices http://localhost:8080/i2c-bus/setup http://localhost:8080/i2c-bus/system &
+	firefox http://localhost:8080/i2c-bus http://localhost:8080/i2c-bus/bus http://localhost:8080/i2c-bus/devices http://localhost:8080/i2c-bus/setup/0 http://localhost:8080/i2c-bus/system &
 
 run-web-capture: web
 	#sleep a while then get HTML and stop service

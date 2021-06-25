@@ -552,11 +552,6 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
           r=reg->read();
           //set amplitude
           c.infoMC2SAamplitude.set_level(r);//byte to Volt
-/** /
-          std::ostringstream tmp;tmp<<r;//int>>string
-          std::cout<<"FakeReg0="<<tmp.str()<<std::endl;
-          c.infoMC2SAgain.resolution.selected_id(tmp.str());
-/**/
 	      }//MC2SA
           {//get reg. Temperature -> c.infoTemperature.*
           if(verbose>2) temperatureDev->read();

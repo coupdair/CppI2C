@@ -55,13 +55,13 @@ namespace content
         add(gain11);
         add(gain16);
         ///values and behavious
-/** /
+/*
         resolution.add("5","5");//"label", "value"
         resolution.add("10","10");
         resolution.add("15","15");
         resolution.add("20","20");
         resolution.selected_id("5");
-/**/
+*/
 //        name.non_empty();
 //        age.range(0,123);
     }//constructor
