@@ -182,10 +182,10 @@ namespace content
     {
 		setGUI();
     }//constructor
-    void setGUI(bool VCIM=false)
+    void setGUI(bool odd=false)
     {
 		///widget titles
-		if(VCIM)
+		if(odd)
 		{
           level.message("DAC VCIM level");level.name("level_vcim");
         }
@@ -221,7 +221,18 @@ namespace content
         add(gen_clock);
         add(inv_discri);
         ///values and behavious
+   		setGUI();
     }//constructor
+    void setGUI(bool odd=false)
+    {
+        ///values and behavious
+		if(odd)
+		{
+          gen_clock.value(0);gen_clock.readonly(true);gen_clock.disabled(true);
+          power_down.value(0);power_down.readonly(true);power_down.disabled(true);
+          test_gen.value(0);test_gen.readonly(true);test_gen.disabled(true);
+        }
+    }//setGUI
     virtual bool validate()
     {
         if(!form::validate()) 
@@ -246,7 +257,7 @@ namespace content
         ///values and behavious
         TemperatureDevice *temperatureDev=(TemperatureDevice *)DeviceFactory::NewDevice("TemperatureDevice"); if(temperatureDev==NULL) exit(-9);
         temperature.value(temperatureDev->get_Celcius());
-        temperature.readonly(true);temperature.disabled(true);	
+        temperature.readonly(true);temperature.disabled(true);
         resolution.add("0.5","0.5");//"label", "value"
         resolution.add("0.25","0.25");
         resolution.add("0.125","0.125");

@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.2.5e"
+#define VERSION "v0.2.5f"
 
 //Program option/documentation
 //{argp
@@ -344,7 +344,11 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
     MC2SADevice *MC2SADev=vMC2SADev[id];
     //GUI
     content::message c;
-    if((id==1)||(id==3)) c.infoMC2SAamplitudeOrVCIM.setGUI(true);
+    if(id%2)//odd
+    {
+      c.infoMC2SAamplitudeOrVCIM.setGUI(true);
+      c.infoMC2SAtestNdiscri.setGUI(true);
+    }//odd
     ///GUI template
     ini(c);
     ///GUI static
