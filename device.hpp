@@ -25,7 +25,7 @@
 #define WARNING_NO_I2C_LIB std::cerr<<"warning: "<<this->name<<"::"<<__func__<<" empty as no I2C lib. compiled, need to define USE_I2C_LIB or use Fake*."<<std::endl;
 #endif // !USE_I2C_LIB
 
-#define DEVICE_VERSION "v0.2.4d"
+#define DEVICE_VERSION "v0.2.4e"
 
 //version
 //! device library version
@@ -102,7 +102,7 @@ class I2C_Device: public Device
     set_name("I2C_Device");
     bus=-1;open();
     addr=-1;//init();//to call in daughter class
-this->debug=true;
+//this->debug=true;
   }//constructor
   //! open I2C bus
   /**

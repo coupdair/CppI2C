@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.2.4d"
+#define VERSION "v0.2.4e"
 
 //Program option/documentation
 //{argp
