@@ -47,45 +47,7 @@ FakeRegister::write() empty
 FakeRegister::write() empty
 FakeRegister::write() empty
 FakeRegister::write() empty
+
+dur=0
+
 device_setup page
-gain=1, i.e. 000001
-resistor=2, i.e. 000010 resistor 3 higher bits, option 3 lower ones
-test=4, i.e. 000100 5+1 lower bits
-resolution mode=0x3 i.e. 0.0625
-FakeRegister0 => FakeRegister
-FakeRegister1 => FakeRegister
-amplitude => FakeRegister
-discri => FakeRegister
-gain => FakeRegister
-offset => FakeRegister
-resistor => FakeRegister
-testNdiscri => FakeRegister
-  FakeRegister0 = 1
-  FakeRegister1 = 1
-  amplitude = 0
-  discri = 128
-  gain = 1
-  offset = 0
-  resistor = 2
-  testNdiscri = 4
-device_setup page
-gain=1, i.e. 000001
-resistor=2, i.e. 000010 resistor 3 higher bits, option 3 lower ones
-test=4, i.e. 000100 5+1 lower bits
-resolution mode=0x3 i.e. 0.0625
-FakeRegister0 => FakeRegister
-FakeRegister1 => FakeRegister
-amplitude => FakeRegister
-discri => FakeRegister
-gain => FakeRegister
-offset => FakeRegister
-resistor => FakeRegister
-testNdiscri => FakeRegister
-  FakeRegister0 = 1
-  FakeRegister1 = 1
-  amplitude = 0
-  discri = 128
-  gain = 1
-  offset = 0
-  resistor = 2
-  testNdiscri = 4

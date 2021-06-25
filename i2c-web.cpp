@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.2.3i"
+#define VERSION "v0.2.3j"
 
 //Program option/documentation
 //{argp
@@ -161,7 +161,9 @@ public:
     mapper().root("/i2c-bus");
 
     //module
-    temperatureDev=(TemperatureDevice *)DeviceFactory::NewDevice("TemperatureDevice"); if(temperatureDev==NULL) exit(-9);
+    temperatureDev=(TemperatureDevice *)DeviceFactory::NewDevice("TemperatureDevice");
+    if(temperatureDev==NULL) exit(-9);
+    temperatureDev->init(0x19);
     int id=0x14;
     for(int i=0;i<count;++i,++id)
     {
