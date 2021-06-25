@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.2.3l"
+#define VERSION "v0.2.3m"
 
 //Program option/documentation
 //{argp
@@ -575,10 +575,26 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
 MC2SADev->read();
 ///reg. table
 std::vector<int> reg_values;
-MC2SADev->read_list(reg_values);
-for(int i=0;i<reg_values.size();++i)
-  std::cout<<"R"<<i<<"=0x"<<std::hex<<reg_values[i]<<std::dec<<std::endl;
-
+for(unsigned int d=0;d<vMC2SADev.size();++d)
+{
+  MC2SADev=vMC2SADev[d];
+  MC2SADev->read_list(reg_values);
+  //table header
+  if(d==0)
+  {
+    std::cout<<"D\\R";
+    for(int i=0;i<reg_values.size();++i)
+      std::cout<<"\tR"<<i;
+    std::cout<<std::endl;
+  }//table header
+  //table row
+  std::cout<<"MC2SA#"<<d;
+  for(unsigned int i=0;i<reg_values.size();++i)
+  {
+    std::cout<<"\t0x"<<std::hex<<reg_values[i];
+  }//reg. loop
+  std::cout<<std::dec<<std::endl;
+}//dev. loop
   }//device_setup
   virtual void bus();
   virtual void no_template();
