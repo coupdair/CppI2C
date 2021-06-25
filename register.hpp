@@ -20,7 +20,7 @@
 #define WARNING_NO_I2C_LIB std::cerr<<"warning: "<<this->name<<"::"<<__func__<<" empty as no I2C lib. compiled, need to define USE_I2C_LIB or use FakeRegister."<<std::endl;
 #endif // !USE_I2C_LIB
 
-#define REGISTER_VERSION "v0.1.7"
+#define REGISTER_VERSION "v0.1.8d"
 
 //version
 //! register library version
@@ -301,6 +301,8 @@ class RegisterFactory
       return new FakeRegister;
     if(name == "I2CRegisterByte")
       return new I2CRegisterByte;
+    if(name == "I2CRegisterByte_WO")
+      return new I2CRegisterByte("I2CRegisterByte",REG_WRITE_ONLY);
     if(name == "I2CRegisterWord")
       return new I2CRegisterWord;
     if(name == "I2CRegisterWord_RO")
@@ -313,6 +315,7 @@ class RegisterFactory
     std::string list;
     list="FakeRegister";
     list+=", I2CRegisterByte";
+    list+=", I2CRegisterByte_WO";
     list+=", I2CRegisterWord";
     list+=", I2CRegisterWord_RO";
     list+=".";

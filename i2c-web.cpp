@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.2.3e"
+#define VERSION "v0.2.3f"
 
 //Program option/documentation
 //{argp
@@ -162,7 +162,8 @@ public:
 
     //module
     temperatureDev=(TemperatureDevice *)DeviceFactory::NewDevice("TemperatureDevice"); if(temperatureDev==NULL) exit(-9);
-    for(int i=0;i<count;++i)
+    int id=0x14;
+    for(int i=0;i<count;++i,++id)
     {
       vMC2SADev.push_back((MC2SADevice *)DeviceFactory::NewDevice("MC2SADevice"));
       if(vMC2SADev[i]==NULL)
@@ -170,6 +171,7 @@ public:
         std::cerr<<"error: MC2SA device do not exists."<<std::endl;
         exit(-9);
       }
+      vMC2SADev[i]->init(id);
     }//device vector loop
   }//constructor
   void ini(content::master &c)
