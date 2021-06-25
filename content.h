@@ -87,9 +87,9 @@ namespace content
     info_form_MC2SA_resistor()
     {
 		///widget titles
-        resistor2.message("");resistor2.name("resistor2");resistor2.help("200k Ohm");
-        resistor3.message("");resistor3.name("resistor3");resistor3.help("300k Ohm");
-        resistor5.message("");resistor5.name("resistor5");resistor5.help("500k Ohm");
+        resistor2.message("");resistor2.name("resistor2");resistor2.help("200k Ohm (D3)");
+        resistor3.message("");resistor3.name("resistor3");resistor3.help("300k Ohm (D4)");
+        resistor5.message("");resistor5.name("resistor5");resistor5.help("500k Ohm (D5)");
         ///order widgets
         add(resistor2);
         add(resistor3);
