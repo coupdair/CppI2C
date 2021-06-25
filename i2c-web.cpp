@@ -163,7 +163,7 @@ public:
     //module
     temperatureDev=(TemperatureDevice *)DeviceFactory::NewDevice("TemperatureDevice");
     if(temperatureDev==NULL) exit(-9);
-//    temperatureDev->init(0x19);
+    temperatureDev->init(0x19);
     int id=0x14;
     for(int i=0;i<count;++i,++id)
     {

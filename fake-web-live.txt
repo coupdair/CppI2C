@@ -97,13 +97,13 @@ MC2SA resistor apply message data:
  - amplitude=0
 FakeRegister::write() empty
 option//R5=001010
-option//R5=001100
+option//R5=001000
 MC2SA option apply message data:
  - temperature=0
  - resolution=0
  - MC2SA#0
  - gain=1, i.e. 000001
- - resistorNoption=12, i.e. 001100
+ - resistorNoption=8, i.e. 001000
  - test=0, i.e. 000000
  - discri=0
  - offset=0
@@ -114,7 +114,7 @@ MC2SA discri apply message data:
  - resolution=0
  - MC2SA#0
  - gain=1, i.e. 000001
- - resistorNoption=12, i.e. 001100
+ - resistorNoption=8, i.e. 001000
  - test=0, i.e. 000000
  - discri=127
  - offset=0
@@ -125,7 +125,7 @@ MC2SA offset apply message data:
  - resolution=0
  - MC2SA#0
  - gain=1, i.e. 000001
- - resistorNoption=12, i.e. 001100
+ - resistorNoption=8, i.e. 001000
  - test=0, i.e. 000000
  - discri=127
  - offset=0
@@ -136,7 +136,7 @@ MC2SA amplitude apply message data:
  - resolution=0
  - MC2SA#0
  - gain=1, i.e. 000001
- - resistorNoption=12, i.e. 001100
+ - resistorNoption=8, i.e. 001000
  - test=0, i.e. 000000
  - discri=127
  - offset=0
@@ -147,18 +147,18 @@ MC2SA test apply message data:
  - resolution=0
  - MC2SA#0
  - gain=1, i.e. 000001
- - resistorNoption=12, i.e. 001100
+ - resistorNoption=8, i.e. 001000
  - test=0, i.e. 000000
  - discri=127
  - offset=0
  - amplitude=0
 FakeRegister::write() empty
 Temperature apply message data:
- - temperature=23.5625
+ - temperature=23.625
  - resolution=0.0625
  - MC2SA#0
  - gain=1, i.e. 000001
- - resistorNoption=12, i.e. 001100
+ - resistorNoption=8, i.e. 001000
  - test=0, i.e. 000000
  - discri=127
  - offset=0
@@ -178,5 +178,5 @@ testNdiscri => FakeRegister
   discri = 127
   gain = 1
   offset = 0
-  resistor = 12
+  resistor = 8
   testNdiscri = 0
