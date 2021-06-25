@@ -199,9 +199,13 @@ public I2C_Device
     create_register("TemperatureResolution","FakeRegister");//RW
 #else
     set_name("TemperatureDevice");
-    //create_register in .init()
+    I2C_Device::init(0x19);
+    create_register(default_register_name,  "I2CRegisterWord_RO",0x05);//RO
+    create_register("TemperatureResolution","I2CRegisterByte",0x08);//RW
+//    //create_register in .init()
 #endif
   }//constructor
+/*
   virtual void init(int addr_=0x18)
   {
 #ifdef FAKE_TEMPERATURE
@@ -212,6 +216,7 @@ public I2C_Device
     create_register("TemperatureResolution","I2CRegisterByte",0x08);//RW
 #endif
   }//init
+*/
   virtual void read()
   {if(this->debug) std::cout<<name<<"::"<<__func__<<"()"<<std::endl;
     this->register_list("");

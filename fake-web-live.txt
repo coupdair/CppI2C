@@ -51,3 +51,132 @@ FakeRegister::write() empty
 dur=0
 
 device_setup page
+gain=1, i.e. 000001
+resistor=2, i.e. 000010 resistor 3 higher bits, option 3 lower ones
+test=4, i.e. 000100 5+1 lower bits
+resolution mode=0x3 i.e. 0.0625
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+amplitude => FakeRegister
+discri => FakeRegister
+gain => FakeRegister
+offset => FakeRegister
+resistor => FakeRegister
+testNdiscri => FakeRegister
+  FakeRegister0 = 1
+  FakeRegister1 = 1
+  amplitude = 0
+  discri = 128
+  gain = 1
+  offset = 0
+  resistor = 2
+  testNdiscri = 4
+device_setup page
+MC2SA gain apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistorNoption=0, i.e. 000000
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude=0
+FakeRegister::write() empty
+resistor//R5=000010
+resistor//R5=001010
+MC2SA resistor apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistorNoption=10, i.e. 001010
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude=0
+FakeRegister::write() empty
+option//R5=001010
+option//R5=001100
+MC2SA option apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistorNoption=12, i.e. 001100
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude=0
+FakeRegister::write() empty
+MC2SA discri apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistorNoption=12, i.e. 001100
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+FakeRegister::write() empty
+MC2SA offset apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistorNoption=12, i.e. 001100
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+FakeRegister::write() empty
+MC2SA amplitude apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistorNoption=12, i.e. 001100
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+FakeRegister::write() empty
+MC2SA test apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistorNoption=12, i.e. 001100
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+FakeRegister::write() empty
+Temperature apply message data:
+ - temperature=23.5625
+ - resolution=0.0625
+ - MC2SA#0
+ - gain=1, i.e. 000001
+ - resistorNoption=12, i.e. 001100
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude=0
+resolution mode=3
+FakeRegister0 => FakeRegister
+FakeRegister1 => FakeRegister
+amplitude => FakeRegister
+discri => FakeRegister
+gain => FakeRegister
+offset => FakeRegister
+resistor => FakeRegister
+testNdiscri => FakeRegister
+  FakeRegister0 = 1
+  FakeRegister1 = 1
+  amplitude = 0
+  discri = 127
+  gain = 1
+  offset = 0
+  resistor = 12
+  testNdiscri = 0
