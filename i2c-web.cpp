@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.2.4"
+#define VERSION "v0.2.5d"
 
 //Program option/documentation
 //{argp
@@ -360,7 +360,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
             c.infoMC2SAtestNdiscri.load(context());
             c.infoMC2SAdiscri.load(context());
             c.infoMC2SAoffset.load(context());
-            c.infoMC2SAamplitude.load(context());
+            c.infoMC2SAamplitudeOrVCIM.load(context());
             c.infoTemperature.load(context());
             //get reg.
             c.infoTemperature.temperature.value(temperatureDev->get_Celcius());
@@ -451,9 +451,9 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
               if(verbose>2) MC2SADev->read();
               c.infoApply.update_time.value("MC2SAoffset");
             }//valid
-            if(c.infoMC2SAamplitude.validate())
+            if(c.infoMC2SAamplitudeOrVCIM.validate())
             {///MC2SA amplitude
-              c.offset=c.infoMC2SAamplitude.get_level();//Volt to byte
+              c.amplitude=c.infoMC2SAamplitudeOrVCIM.get_level();//Volt to byte
               //print
               if(verbose>0) std::cout<<"MC2SA amplitude apply "<<c.value_list()<<std::flush;
               //setup reg.
@@ -553,7 +553,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
           reg=(MC2SADev->find("R0_amplitude"))->second;
           r=reg->read();
           //set amplitude
-          c.infoMC2SAamplitude.set_level(r);//byte to Volt
+          c.infoMC2SAamplitudeOrVCIM.set_level(r);//byte to Volt
 	      }//MC2SA
           {//get reg. Temperature -> c.infoTemperature.*
           if(verbose>2) temperatureDev->read();

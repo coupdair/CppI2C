@@ -176,14 +176,21 @@ namespace content
         level.message("offset level");level.name("level_offset");
     }//constructor
   };//info_form_MC2SA_offset
-  struct info_form_MC2SA_amplitude : public info_form_MC2SA_level
+  struct info_form_MC2SA_amplitudeOrVCIM : public info_form_MC2SA_level
   {
-    info_form_MC2SA_amplitude()
+    info_form_MC2SA_amplitudeOrVCIM(bool VCIM=false)
     {
 		///widget titles
-        level.message("amplitude level");level.name("level_amplitude");
+		if(VCIM)
+		{
+          level.message("amplitude level");level.name("level_amplitude");
+        }
+        else
+        {
+          level.message("DAC VCIM level");level.name("level_vcim");
+        }
     }//constructor
-  };//info_form_MC2SA_amplitude
+  };//info_form_MC2SA_amplitudeOrVCIM
 
   struct info_form_MC2SA_testNdiscri : public cppcms::form
   {
@@ -303,7 +310,7 @@ namespace content
     info_form_MC2SA_option infoMC2SAoption;
     info_form_MC2SA_discri infoMC2SAdiscri;
     info_form_MC2SA_offset infoMC2SAoffset;
-    info_form_MC2SA_amplitude infoMC2SAamplitude;
+    info_form_MC2SA_amplitudeOrVCIM infoMC2SAamplitudeOrVCIM;
     info_form_MC2SA_testNdiscri infoMC2SAtestNdiscri;
     info_form_temperature infoTemperature;
     info_form_apply infoApply;
@@ -323,7 +330,7 @@ namespace content
       s<<"\n - test="<<bs.to_ulong()<<", i.e. "<<bs.to_string();
       s<<"\n - discri="<<discri;
       s<<"\n - offset="<<offset;
-      s<<"\n - amplitude="<<amplitude;
+      s<<"\n - amplitude or VCIM="<<amplitude;
       s<<std::endl;
       return s.str();
     }//value_list
