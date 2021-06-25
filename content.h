@@ -178,18 +178,22 @@ namespace content
   };//info_form_MC2SA_offset
   struct info_form_MC2SA_amplitudeOrVCIM : public info_form_MC2SA_level
   {
-    info_form_MC2SA_amplitudeOrVCIM(bool VCIM=false)
+    info_form_MC2SA_amplitudeOrVCIM()
+    {
+		setGUI();
+    }//constructor
+    void setGUI(bool VCIM=false)
     {
 		///widget titles
 		if(VCIM)
 		{
-          level.message("amplitude level");level.name("level_amplitude");
+          level.message("DAC VCIM level");level.name("level_vcim");
         }
         else
         {
-          level.message("DAC VCIM level");level.name("level_vcim");
+          level.message("amplitude level");level.name("level_amplitude");
         }
-    }//constructor
+    }//setGUI
   };//info_form_MC2SA_amplitudeOrVCIM
 
   struct info_form_MC2SA_testNdiscri : public cppcms::form
