@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.2.3h"
+#define VERSION "v0.2.3i"
 
 //Program option/documentation
 //{argp
@@ -161,9 +161,7 @@ public:
     mapper().root("/i2c-bus");
 
     //module
-    temperatureDev=(TemperatureDevice *)DeviceFactory::NewDevice("TemperatureDevice");
-    if(temperatureDev==NULL) exit(-9);
-    temperatureDev->init(0x19);
+    temperatureDev=(TemperatureDevice *)DeviceFactory::NewDevice("TemperatureDevice"); if(temperatureDev==NULL) exit(-9);
     int id=0x14;
     for(int i=0;i<count;++i,++id)
     {
@@ -574,11 +572,11 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
 	      c.infoApply.update_time.value("KEEP");
 	      c.infoApply.update_time.value(MC2SADev->get_update_time_str());
 		}//KEEP
+        render("message",c);
 
 //debug
 MC2SADev->read();
 
-        render("message",c);
   }//device_setup
   virtual void bus();
   virtual void no_template();

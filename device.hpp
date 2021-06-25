@@ -25,7 +25,7 @@
 #define WARNING_NO_I2C_LIB std::cerr<<"warning: "<<this->name<<"::"<<__func__<<" empty as no I2C lib. compiled, need to define USE_I2C_LIB or use Fake*."<<std::endl;
 #endif // !USE_I2C_LIB
 
-#define DEVICE_VERSION "v0.2.1h"
+#define DEVICE_VERSION "v0.2.1i"
 
 //version
 //! device library version
@@ -199,23 +199,14 @@ public I2C_Device
     create_register("TemperatureResolution","FakeRegister");//RW
 #else
     set_name("TemperatureDevice");
-    //create_register in .init()
-#endif
-  }//constructor
-  virtual void init(int addr_=0x18)
-  {
-#ifdef FAKE_MC2SA
-    //create_register in constructor
-#else
-    I2C_Device::init(addr_);
+    I2C_Device::init(0x19);
     create_register(default_register_name,  "I2CRegisterWord_RO",0x05);//RO
     create_register("TemperatureResolution","I2CRegisterByte",0x08);//RW
 #endif
-  }//init
+  }//constructor
   virtual void read()
   {if(this->debug) std::cout<<name<<"::read()"<<std::endl;
     this->register_list("");
-    //std::cout<<name<<std::endl;
     for (std::map<std::string,Register*>::iterator it=this->begin(); it!=this->end(); ++it)
     {
       std::cout<<"  "<< it->first << " = ";
@@ -225,7 +216,7 @@ public I2C_Device
   virtual int get(const std::string &register_name) {if(this->debug) std::cout<<name<<"::get("<<register_name<<")"<<std::endl;return Device::get(register_name);}
   virtual int get() {if(this->debug) std::cout<<name<<"::get() "<<default_register_name<<std::endl;return this->get(default_register_name);}
   virtual float get_Celcius()
-  {if(this->debug) std::cout<<name<<"::get_Celcius() "<<default_register_name<<std::endl;
+  {if(this->debug) std::cout<<name<<"::"<<__func__<<"() "<<default_register_name<<std::endl;
     short data=this->get();
     char *buf=(char*)(&data);
     int ub=buf[1];
@@ -246,30 +237,30 @@ public I2C_Device
     return temperature;
   }
   virtual int set(const std::string &register_name,const int &value)
-  {if(this->debug) std::cout<<name<<"::set("<<register_name<<", "<<value<<")"<<std::endl;
+  {if(this->debug) std::cout<<name<<"::"<<__func__<<"("<<register_name<<", "<<value<<")"<<std::endl;
     return Device::set(register_name,value);
   }//set
   virtual int set(const int &value)
-  {if(this->debug) std::cout<<name<<"::set("<<value<<") TemperatureResolution, e.g. 0x2"<<std::endl;
+  {if(this->debug) std::cout<<name<<"::"<<__func__<<"("<<value<<") TemperatureResolution, e.g. 0x2"<<std::endl;
     int r=this->set("TemperatureResolution",value);
     //sleep a while for resolution command to perform on device
     usleep(345678);
     return r;
   }//set default
   virtual int set()
-  {if(this->debug) std::cout<<name<<"::set() TemperatureResolution 0.5Celcius"<<std::endl;
+  {if(this->debug) std::cout<<name<<"::"<<__func__<<"() TemperatureResolution 0.5Celcius"<<std::endl;
     return this->set(0x0);
   }//set default2
   virtual int set_Celcius(const float &value)
   {
     const std::string register_name("TemperatureResolution");
-    if(this->debug) std::cout<<name<<"::set("<<value<<") "<<register_name<<", e.g. 0.25"<<std::endl;
+    if(this->debug) std::cout<<name<<"::"<<__func__<<"("<<value<<") "<<register_name<<", e.g. 0.25"<<std::endl;
     int val=-1; 
     if(value==0.5) val=0x0;
     if(value==0.25) val=0x1;
     if(value==0.125) val=0x2;
     if(value==0.0625) val=0x3;
-    if(val<0) {std::cerr<<name<<"::set("<<register_name<<", "<<value<<") bad value, should be either 0.5, 0.25, 0.125 or 0.0625 !"<<std::endl;return -3;}
+    if(val<0) {std::cerr<<name<<"::"<<__func__<<"("<<register_name<<", "<<value<<") bad value, should be either 0.5, 0.25, 0.125 or 0.0625 !"<<std::endl;return -3;}
     return this->set(val);
   }//set default Celcius
   //! destructor (need at least empty one)
