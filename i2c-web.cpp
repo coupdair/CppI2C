@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.2.5f"
+#define VERSION "v0.2.5g"
 
 //Program option/documentation
 //{argp
@@ -284,12 +284,12 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
     int verbose=1;//[0-2]
     content::devices c;
     ini(c);
-    std::string s;
+    std::string raw_table;
         
     //I2C devices
     ///list of I2C devices
     std::vector<int> device_addresses;
-    i2c_device_list(1,device_addresses,s,(verbose>1));
+    i2c_device_list(1,device_addresses,raw_table,(verbose>1));
 
     //I2C table
     c.content_head
@@ -297,7 +297,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
       "  <h2>as table</h2>\n"
       "  I2C devices table:\n"
       "  <pre>\n"
-    + s
+    + raw_table
     + "  </pre>\n"
     ;
 
@@ -317,6 +317,7 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
     hex.width(2);hex.fill('0');
     hex<<*it;
     //output
+    c.device_list.push_back(hex.str());
     if(verbose>0) std::cout<<hex.str();
     for(++it;it!=device_addresses.end();++it)
     {
