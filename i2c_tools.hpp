@@ -16,7 +16,7 @@
 #include <fstream>  // std::filebuf
 #include <vector>   // std::vector
 
-#define VERSION_I2C_TOOLS "v0.0.8f"
+#define VERSION_I2C_TOOLS "v0.0.8"
 
 //! \todo [medium] . setup i2c_bus_list( with ../i2c-tools/tools/i2cbusses.c[gather_i2c_busses(] as ../i2c-tools/tools/i2cdetect.c[print_i2c_busses(] does
 //! \todo [medium] setup i2c_device_list( with ../i2c-tools/tools/i2cdetect.c[scan_i2c_bus(]

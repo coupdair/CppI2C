@@ -12,7 +12,7 @@ I2C
 
 ## no MC2SA board connected
 
-`make fake-web run-fake-web`
+`make fake-web web-version run-fake-web`
 
 # use
 
@@ -29,12 +29,7 @@ priotity
 
 ## high
 
-- . register: RW, RO, WO
-- module: fake to I2C devices
-
 ## medium
-
-- `fake`and `fake-web`: fake module MC2SA by compiling -DFAKE_MODULE
 
 ## low
 

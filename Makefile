@@ -3,7 +3,7 @@ LD_LIBRARY_PATH=LD_LIBRARY_PATH="../CppCMS/cppcms/build;../CppCMS/cppcms/build/b
 #all: i2c help version  web web-help web-version
 #all: web web-help web-version run-web-capture
 #all: i2c help version
-all: fake-web run-fake-web-capture
+all: fake-web web-version run-fake-web-capture
 #all: web
 
 code:

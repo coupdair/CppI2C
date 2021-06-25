@@ -1,6 +1,4 @@
 ./fake-web is running (Ctrl+C to stop), have look to http://localhost:8080/i2c-bus.
-TemperatureDevice/set_name("TemperatureDevice")
-TemperatureDevice::init(25)
 FakeRegister::write() empty
 FakeRegister::write() empty
 FakeRegister::write() empty
@@ -49,61 +47,104 @@ FakeRegister::write() empty
 FakeRegister::write() empty
 FakeRegister::write() empty
 FakeRegister::write() empty
-2021-06-25 16:11:35; cppcms, error: url_mapper: key `setup' not found for url `/setup'
-0x1aa00: booster::runtime_error::runtime_error(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x50 in ./fake-web
-0x76ebf228: cppcms::url_mapper::data::get_entry(cppcms::string_key const&, unsigned int, cppcms::string_key const&) const + 0x28c in ../CppCMS/cppcms/build/libcppcms.so.1
-0x76ebb2bc: cppcms::url_mapper::real_map(char const*, cppcms::filters::streamable const* const*, unsigned int, std::ostream&) + 0x1488 in ../CppCMS/cppcms/build/libcppcms.so.1
-0x76ebcab8: cppcms::url_mapper::map(std::ostream&, char const*) + 0x20 in ../CppCMS/cppcms/build/libcppcms.so.1
-0x26a3c: ??? + 0x26a3c in ./fake-web
-0x26928: ??? + 0x26928 in ./fake-web
-0x76ecb7e4: cppcms::views::pool::render(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::ostream&, cppcms::base_content&) + 0x50 in ../CppCMS/cppcms/build/libcppcms.so.1
-0x76ecc464: cppcms::views::manager::render(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::ostream&, cppcms::base_content&) + 0x2a0 in ../CppCMS/cppcms/build/libcppcms.so.1
-0x76eaff04: cppcms::application::render(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, cppcms::base_content&) + 0x74 in ../CppCMS/cppcms/build/libcppcms.so.1
-0x16694: ??? + 0x16694 in ./fake-web
-0x179a4: ??? + 0x179a4 in ./fake-web
-0x76eb80f8: ??? + 0x76eb80f8 in ../CppCMS/cppcms/build/libcppcms.so.1
-0x76eb3e80: cppcms::url_dispatcher::dispatch(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x9c in ../CppCMS/cppcms/build/libcppcms.so.1
-0x76e7f800: cppcms::application::main(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x80 in ../CppCMS/cppcms/build/libcppcms.so.1
-0x76ea9350: cppcms::http::context::dispatch(booster::intrusive_ptr<cppcms::application> const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, bool) + 0xbc in ../CppCMS/cppcms/build/libcppcms.so.1
-0x76ea9644: cppcms::http::context::dispatch(booster::shared_ptr<cppcms::application_specific_pool> const&, booster::shared_ptr<cppcms::http::context> const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x84 in ../CppCMS/cppcms/build/libcppcms.so.1
-0x76eac01c: cppcms::impl::thread_pool::worker() + 0xe0 in ../CppCMS/cppcms/build/libcppcms.so.1
-0x76df63bc: booster_thread_func + 0x28 in ../CppCMS/cppcms/build/booster/libbooster.so.0
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+device_setup page
+gain=1, i.e. 000001
+resistor=2, i.e. 000010 resistor 3 higher bits, option 3 lower ones
+test=4, i.e. 000100 5+1 lower bits
+resolution mode=0x3 i.e. 0.0625
+R0_amplitude => FakeRegister
+R1_gain => FakeRegister
+R2_offset => FakeRegister
+R3_testNdiscri => FakeRegister
+R4_discri => FakeRegister
+R5_resistor => FakeRegister
+ZFakeRegister0 => FakeRegister
+ZFakeRegister1 => FakeRegister
+  R0_amplitude = 0x0
+  R1_gain = 0x1
+  R2_offset = 0x0
+  R3_testNdiscri = 0x4
+  R4_discri = 0x80
+  R5_resistor = 0x2
+  ZFakeRegister0 = 0x1
+  ZFakeRegister1 = 0x1
+D\R	R0	R1	R2	R3	R4	R5	R6	R7
+MC2SA#0	0x0	0x1	0x0	0x4	0x80	0x2	0x1	0x1
+MC2SA#1	0x0	0x1	0x0	0x4	0x80	0x2	0x1	0x1
+MC2SA#2	0x0	0x1	0x0	0x4	0x80	0x2	0x1	0x1
+MC2SA#3	0x0	0x1	0x0	0x4	0x80	0x2	0x1	0x1
+2021-06-25 18:54:41; cppcms, error: url_mapper: key `setup' not found for url `/setup'
+0x1ac80: booster::runtime_error::runtime_error(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x50 in ./fake-web
+0x76df5228: cppcms::url_mapper::data::get_entry(cppcms::string_key const&, unsigned int, cppcms::string_key const&) const + 0x28c in ../CppCMS/cppcms/build/libcppcms.so.1
+0x76df12bc: cppcms::url_mapper::real_map(char const*, cppcms::filters::streamable const* const*, unsigned int, std::ostream&) + 0x1488 in ../CppCMS/cppcms/build/libcppcms.so.1
+0x76df2ab8: cppcms::url_mapper::map(std::ostream&, char const*) + 0x20 in ../CppCMS/cppcms/build/libcppcms.so.1
+0x270d8: ??? + 0x270d8 in ./fake-web
+0x26fc4: ??? + 0x26fc4 in ./fake-web
+0x76e017e4: cppcms::views::pool::render(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::ostream&, cppcms::base_content&) + 0x50 in ../CppCMS/cppcms/build/libcppcms.so.1
+0x76e02464: cppcms::views::manager::render(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::ostream&, cppcms::base_content&) + 0x2a0 in ../CppCMS/cppcms/build/libcppcms.so.1
+0x76de5f04: cppcms::application::render(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, cppcms::base_content&) + 0x74 in ../CppCMS/cppcms/build/libcppcms.so.1
+0x1668c: ??? + 0x1668c in ./fake-web
+0x179ac: ??? + 0x179ac in ./fake-web
+0x76dee0f8: ??? + 0x76dee0f8 in ../CppCMS/cppcms/build/libcppcms.so.1
+0x76de9e80: cppcms::url_dispatcher::dispatch(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x9c in ../CppCMS/cppcms/build/libcppcms.so.1
+0x76db5800: cppcms::application::main(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x80 in ../CppCMS/cppcms/build/libcppcms.so.1
+0x76ddf350: cppcms::http::context::dispatch(booster::intrusive_ptr<cppcms::application> const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, bool) + 0xbc in ../CppCMS/cppcms/build/libcppcms.so.1
+0x76ddf644: cppcms::http::context::dispatch(booster::shared_ptr<cppcms::application_specific_pool> const&, booster::shared_ptr<cppcms::http::context> const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x84 in ../CppCMS/cppcms/build/libcppcms.so.1
+0x76de201c: cppcms::impl::thread_pool::worker() + 0xe0 in ../CppCMS/cppcms/build/libcppcms.so.1
+0x76d2c3bc: booster_thread_func + 0x28 in ../CppCMS/cppcms/build/booster/libbooster.so.0
  (url_mapper.cpp:432)
 
 I2C devices address(es):0x04, 0x19, 0x1a, 0x1b, 0x1c, 0x1d.
 device_setup page
-TemperatureDevice/set_name("TemperatureDevice")
-TemperatureDevice::init(25)
-TemperatureDevice::get_Celcius() AmbiantTemperature
-TemperatureDevice::get() AmbiantTemperature
-TemperatureDevice::get(AmbiantTemperature)
-TemperatureDevice::get(...)
-Read data: 0x60 0xc1
 gain=1, i.e. 000001
 resistor=2, i.e. 000010 resistor 3 higher bits, option 3 lower ones
 test=4, i.e. 000100 5+1 lower bits
-TemperatureDevice::get_Celcius() AmbiantTemperature
-TemperatureDevice::get() AmbiantTemperature
-TemperatureDevice::get(AmbiantTemperature)
-TemperatureDevice::get(...)
-Read data: 0x60 0xc1
 resolution mode=0x3 i.e. 0.0625
-FakeRegister0 => FakeRegister
-FakeRegister1 => FakeRegister
-amplitude => FakeRegister
-discri => FakeRegister
-gain => FakeRegister
-offset => FakeRegister
-resistor => FakeRegister
-testNdiscri => FakeRegister
-  FakeRegister0 = 1
-  FakeRegister1 = 1
-  amplitude = 0
-  discri = 128
-  gain = 1
-  offset = 0
-  resistor = 2
-  testNdiscri = 4
+R0_amplitude => FakeRegister
+R1_gain => FakeRegister
+R2_offset => FakeRegister
+R3_testNdiscri => FakeRegister
+R4_discri => FakeRegister
+R5_resistor => FakeRegister
+ZFakeRegister0 => FakeRegister
+ZFakeRegister1 => FakeRegister
+  R0_amplitude = 0x0
+  R1_gain = 0x0x1
+  R2_offset = 0x0
+  R3_testNdiscri = 0x0x4
+  R4_discri = 0x0x80
+  R5_resistor = 0x0x2
+  ZFakeRegister0 = 0x0x1
+  ZFakeRegister1 = 0x0x1
+D\R	R0	R1	R2	R3	R4	R5	R6	R7
+MC2SA#0	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
+MC2SA#1	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
+MC2SA#2	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
+MC2SA#3	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
 
 dur=0
 

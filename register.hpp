@@ -20,7 +20,7 @@
 #define WARNING_NO_I2C_LIB std::cerr<<"warning: "<<this->name<<"::"<<__func__<<" empty as no I2C lib. compiled, need to define USE_I2C_LIB or use FakeRegister."<<std::endl;
 #endif // !USE_I2C_LIB
 
-#define REGISTER_VERSION "v0.1.8e"
+#define REGISTER_VERSION "v0.2.4"
 
 //version
 //! register library version
@@ -100,6 +100,7 @@ class Register
   virtual int write() = 0;
   virtual int write(const int &value) = 0;
   virtual int set() = 0;
+  virtual int set(int value) = 0;
   //! destructor (need at least empty one)
   virtual ~Register() {}
 };//Register
@@ -120,6 +121,7 @@ class RegisterT: public Register
   virtual int set() {std::cout<<this->name<<"::"<<__func__<<"() empty"<<std::endl;return -1;};
   //! set value to softregister, i.e. \c .value
   virtual int set(T value_) {value=value_;return 0;};
+  virtual int set(int value_) {value=(T)value_;return 0;};
   //! write \c .value to register
   virtual int write()
   {

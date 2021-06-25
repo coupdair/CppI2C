@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.2.4e"
+#define VERSION "v0.2.4"
 
 //Program option/documentation
 //{argp
@@ -164,6 +164,7 @@ public:
     temperatureDev=(TemperatureDevice *)DeviceFactory::NewDevice("TemperatureDevice");
     if(temperatureDev==NULL) exit(-9);
 //    temperatureDev->init(0x19);
+    temperatureDev->reset();
     int id=0x14;
     for(int i=0;i<count;++i,++id)
     {
@@ -174,6 +175,7 @@ public:
         exit(-9);
       }
       vMC2SADev[i]->init(id);
+      vMC2SADev[i]->reset();
     }//device vector loop
   }//constructor
   void ini(content::master &c)
@@ -583,7 +585,7 @@ for(unsigned int d=0;d<vMC2SADev.size();++d)
   if(d==0)
   {
     std::cout<<"D\\R";
-    for(int i=0;i<reg_values.size();++i)
+    for(unsigned int i=0;i<reg_values.size();++i)
       std::cout<<"\tR"<<i;
     std::cout<<std::endl;
   }//table header
@@ -595,6 +597,7 @@ for(unsigned int d=0;d<vMC2SADev.size();++d)
   }//reg. loop
   std::cout<<std::dec<<std::endl;
 }//dev. loop
+
   }//device_setup
   virtual void bus();
   virtual void no_template();

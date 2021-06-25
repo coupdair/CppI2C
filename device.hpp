@@ -25,7 +25,7 @@
 #define WARNING_NO_I2C_LIB std::cerr<<"warning: "<<this->name<<"::"<<__func__<<" empty as no I2C lib. compiled, need to define USE_I2C_LIB or use Fake*."<<std::endl;
 #endif // !USE_I2C_LIB
 
-#define DEVICE_VERSION "v0.2.4e"
+#define DEVICE_VERSION "v0.2.4"
 
 //version
 //! device library version
@@ -70,9 +70,10 @@ class Device: public std::map<std::string,Register*>
   virtual /*std::string*/void register_list(const std::string prefix="") {for (std::map<std::string,Register*>::iterator it=this->begin(); it!=this->end(); ++it) std::cout <<prefix<< it->first << " => " << (it->second)->get_name() << '\n';};
   virtual int get(const std::string &register_name) {if(this->debug) std::cout<<name<<"::get(...)"<<std::endl;update_time++;return ((this->find(register_name))->second)->read();};
   virtual int set(const std::string &register_name,const int &value) {if(this->debug) std::cout<<name<<"::set(...)"<<std::endl;update_time++;return ((this->find(register_name))->second)->write(value);};
-  //! destructor (need at least empty one)
+  virtual void reset()=0;
   virtual int get_update_time() {return update_time;}
   virtual std::string get_update_time_str() {std::ostringstream str;str<<update_time;return str.str();}
+  //! destructor (need at least empty one)
   virtual ~Device() {}
 };//Device
 class FakeDevice: public Device
@@ -85,7 +86,8 @@ class FakeDevice: public Device
     create_register("ZFakeRegister1","FakeRegister");
   }//constructor
   virtual int get(const std::string &register_name) {if(this->debug) std::cout<<name<<"::get(...)"<<std::endl;return Device::get(register_name);}
-  virtual int set(const std::string &register_name,const int &value) {std::cout<<name<<"::set(...) empty"<<std::endl;return 0;};
+  virtual int set(const std::string &register_name,const int &value) {Register *reg=(this->find(register_name))->second;reg->set(value);return 0;};
+  virtual void reset() {set("ZFakeRegister0",0x12);set("ZFakeRegister1",0x12);};
   //! destructor (need at least empty one)
   virtual ~FakeDevice() {}
 };//FakeDevice
@@ -211,6 +213,11 @@ public I2C_Device
 //    //create_register in .init()
 #endif //!FAKE_TEMPERATURE
   }//constructor
+  //! reset register values, i.e. write default values to registers
+  virtual void reset()
+  {if(this->debug) std::cout<<this->name<<"::"<<__func__<<"() is empty"<<std::endl;
+    //(*this)["TemperatureResolution"]->write(0x3);
+  }//reset
 /*
   virtual void init(int addr_=0x19)
   {if(this->debug) std::cout<<this->name<<"::"<<__func__<<"("<<addr_<<")"<<std::endl;
@@ -333,6 +340,16 @@ public I2C_Device
     }//register loop
     this->update_time++;
   }//read
+  //! reset register values, i.e. write default values to registers
+  virtual void reset()
+  {if(this->debug) std::cout<<this->name<<"::"<<__func__<<"()"<<std::endl;
+    (*this)["R1_gain"]->write(0x1);//0x21);//16 and 1 pF
+    (*this)["R5_resistor"]->write(0x2);//0x28);//200 and 500 kOhm
+    (*this)["R4_discri"]->write(128);//1.65V as byte
+    (*this)["R2_offset"]->write(0);//0V
+    (*this)["R0_amplitude"]->write(0);//0V
+    (*this)["R3_testNdiscri"]->write(0x4);
+  }//reset
   //! init. device with its I2C address (and create its registers)
   /**
    * \param [in] addr_ : device address on I2C bus
@@ -353,13 +370,8 @@ public I2C_Device
     create_register("R3_testNdiscri","I2CRegisterByte_WO",0x3);//WO
 #endif
     //register initialisation
-//! \todo [high] put default value to reset function
-    (*this)["R1_gain"]->write(0x1);//0x21);//16 and 1 pF
-    (*this)["R5_resistor"]->write(0x2);//0x28);//200 and 500 kOhm
-    (*this)["R4_discri"]->write(128);//1.65V as byte
-    (*this)["R2_offset"]->write(0);//0V
-    (*this)["R0_amplitude"]->write(0);//0V
-    (*this)["R3_testNdiscri"]->write(0x4);
+//! \todo [high] . put default value to reset function
+    this->reset();
   }//init
   //! destructor (need at least empty one)
   virtual ~MC2SADevice() {}
