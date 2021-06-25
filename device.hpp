@@ -25,7 +25,7 @@
 #define WARNING_NO_I2C_LIB std::cerr<<"warning: "<<this->name<<"::"<<__func__<<" empty as no I2C lib. compiled, need to define USE_I2C_LIB or use Fake*."<<std::endl;
 #endif // !USE_I2C_LIB
 
-#define DEVICE_VERSION "v0.2.1e"
+#define DEVICE_VERSION "v0.2.1f"
 
 //version
 //! device library version
@@ -130,7 +130,7 @@ class I2C_Device: public Device
     return bus;
   }//open
   //! init. i2c device
-  virtual int init(int addr_=0x18)
+  virtual void init(int addr_=0x18)
   {if(this->debug) std::cout<<name<<"::"<<__func__<<"("<<addr_<<")"<<std::endl;
 	addr=addr_;
 #ifdef USE_I2C_LIB
@@ -147,7 +147,6 @@ class I2C_Device: public Device
 #else //USE_I2C_LIB
     WARNING_NO_I2C_LIB
 #endif //!USE_I2C_LIB
-    return 0;
   }//init
   virtual void create_register(std::string register_name,std::string register_type_name, int id_=0x05)
   {
@@ -317,12 +316,12 @@ public I2C_Device
 #else
     I2C_Device::init(addr_);
 //! \todo [high] I2CRegisterByte_WO
-    create_register("gain",       "I2CRegisterByte",0x1);//WO
-    create_register("resistor",   "I2CRegisterByte",0x5);//WO
-    create_register("discri",     "I2CRegisterByte",0x4);//WO
-    create_register("offset",     "I2CRegisterByte",0x2);//WO
-    create_register("amplitude",  "I2CRegisterByte",0x0);//WO
-    create_register("testNdiscri","I2CRegisterByte",0x3);//WO
+    create_register("gain",       "I2CRegisterByte_WO",0x1);//WO
+    create_register("resistor",   "I2CRegisterByte_WO",0x5);//WO
+    create_register("discri",     "I2CRegisterByte_WO",0x4);//WO
+    create_register("offset",     "I2CRegisterByte_WO",0x2);//WO
+    create_register("amplitude",  "I2CRegisterByte_WO",0x0);//WO
+    create_register("testNdiscri","I2CRegisterByte_WO",0x3);//WO
 #endif
     //register initialisation
 //! \todo [high] put default value to reset function

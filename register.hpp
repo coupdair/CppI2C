@@ -20,7 +20,7 @@
 #define WARNING_NO_I2C_LIB std::cerr<<"warning: "<<this->name<<"::"<<__func__<<" empty as no I2C lib. compiled, need to define USE_I2C_LIB or use FakeRegister."<<std::endl;
 #endif // !USE_I2C_LIB
 
-#define REGISTER_VERSION "v0.1.8d"
+#define REGISTER_VERSION "v0.1.8e"
 
 //version
 //! register library version
@@ -77,7 +77,7 @@ class Register
   }//constructor
   virtual std::string get_name() {return name;}
   //! get access
-  virtual std::string get_access() {return name;}//get access
+  virtual RegAccess get_access() {return access;}//get access
   //! set access
   virtual void set_access(RegAccess access_) {access=access_;}//set access
   //! set access by string "RW", "RO", "WO"
@@ -187,6 +187,7 @@ class I2CRegister: public RegisterT<T>
   }//print_i2c_data
   virtual int read()
   {if(this->debug) std::cout<<this->name<<"::"<<__func__<<"()"<<std::endl;
+    if(this->access==REG_WRITE_ONLY) {return this->get();}
   //libI2C read
     this->value=99;//dummy
 #ifdef USE_I2C_LIB
