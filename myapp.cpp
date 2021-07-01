@@ -26,7 +26,7 @@ public:
         dispatcher().assign("^/integer/(\\d+)$",&myapp::integer,this,1);
         mapper().assign("integer","/integer");
 
-        mapper().root("/i2c-bus");
+        mapper().root("/i2cweb");
     }//constructor
     void ini(content::master &c)
     {
