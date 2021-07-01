@@ -71,200 +71,282 @@ FakeRegister::write() empty
 FakeRegister::write() empty
 FakeRegister::write() empty
 FakeRegister::write() empty
+2021-06-29 08:49:23; cppcms, error: url_mapper: key `setup' not found for url `/setup'
+0x1ac88: booster::runtime_error::runtime_error(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x50 in ./fake-web
+0xb6e6b228: cppcms::url_mapper::data::get_entry(cppcms::string_key const&, unsigned int, cppcms::string_key const&) const + 0x28c in ../CppCMS/cppcms/build/libcppcms.so.1
+0xb6e672bc: cppcms::url_mapper::real_map(char const*, cppcms::filters::streamable const* const*, unsigned int, std::ostream&) + 0x1488 in ../CppCMS/cppcms/build/libcppcms.so.1
+0xb6e68ab8: cppcms::url_mapper::map(std::ostream&, char const*) + 0x20 in ../CppCMS/cppcms/build/libcppcms.so.1
+0x272a4: ??? + 0x272a4 in ./fake-web
+0x27190: ??? + 0x27190 in ./fake-web
+0xb6e777e4: cppcms::views::pool::render(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::ostream&, cppcms::base_content&) + 0x50 in ../CppCMS/cppcms/build/libcppcms.so.1
+0xb6e78464: cppcms::views::manager::render(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::ostream&, cppcms::base_content&) + 0x2a0 in ../CppCMS/cppcms/build/libcppcms.so.1
+0xb6e5bf04: cppcms::application::render(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, cppcms::base_content&) + 0x74 in ../CppCMS/cppcms/build/libcppcms.so.1
+0x16690: ??? + 0x16690 in ./fake-web
+0x179b8: ??? + 0x179b8 in ./fake-web
+0xb6e640f8: ??? + 0xb6e640f8 in ../CppCMS/cppcms/build/libcppcms.so.1
+0xb6e5fe80: cppcms::url_dispatcher::dispatch(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x9c in ../CppCMS/cppcms/build/libcppcms.so.1
+0xb6e2b800: cppcms::application::main(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x80 in ../CppCMS/cppcms/build/libcppcms.so.1
+0xb6e55350: cppcms::http::context::dispatch(booster::intrusive_ptr<cppcms::application> const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, bool) + 0xbc in ../CppCMS/cppcms/build/libcppcms.so.1
+0xb6e55644: cppcms::http::context::dispatch(booster::shared_ptr<cppcms::application_specific_pool> const&, booster::shared_ptr<cppcms::http::context> const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x84 in ../CppCMS/cppcms/build/libcppcms.so.1
+0xb6e5801c: cppcms::impl::thread_pool::worker() + 0xe0 in ../CppCMS/cppcms/build/libcppcms.so.1
+0xb6da23bc: booster_thread_func + 0x28 in ../CppCMS/cppcms/build/booster/libbooster.so.0
+ (url_mapper.cpp:432)
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+device_setup page
+Write i2c internal address error: Remote I/O error
+Read i2c error!
+gain=1, i.e. 000001
+resistor=2, i.e. 000010 resistor 3 higher bits, option 3 lower ones
+test=4, i.e. 000100 5+1 lower bits
+Write i2c internal address error: Remote I/O error
+Read i2c error!
+Write i2c internal address error: Remote I/O error
+Read i2c error!
+resolution mode=0x-5 i.e. 0.5
+R0_amplitude => FakeRegister
+R1_gain => FakeRegister
+R2_offset => FakeRegister
+R3_testNdiscri => FakeRegister
+R4_discri => FakeRegister
+R5_resistor => FakeRegister
+ZFakeRegister0 => FakeRegister
+ZFakeRegister1 => FakeRegister
+  R0_amplitude = 0x0
+  R1_gain = 0x1
+  R2_offset = 0x0
+  R3_testNdiscri = 0x4
+  R4_discri = 0x80
+  R5_resistor = 0x2
+  ZFakeRegister0 = 0x1
+  ZFakeRegister1 = 0x1
+D\R	R0	R1	R2	R3	R4	R5	R6	R7
+MC2SA#0	0x0	0x1	0x0	0x4	0x80	0x2	0x1	0x1
+MC2SA#1	0x0	0x1	0x0	0x4	0x80	0x2	0x1	0x1
+MC2SA#2	0x0	0x1	0x0	0x4	0x80	0x2	0x1	0x1
+MC2SA#3	0x0	0x1	0x0	0x4	0x80	0x2	0x1	0x1
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+
+dur=0
+
 
 I2C devices address(es):0x18, 0x20, 0x3c.
-device_setup page
-Write i2c internal address error: Remote I/O error
-Read i2c error!
-gain=1, i.e. 000001
-resistor=2, i.e. 000010 resistor 3 higher bits, option 3 lower ones
-test=4, i.e. 000100 5+1 lower bits
-Write i2c internal address error: Remote I/O error
-Read i2c error!
-Write i2c internal address error: Remote I/O error
-Read i2c error!
-resolution mode=0x-5 i.e. 0.5
-R0_amplitude => FakeRegister
-R1_gain => FakeRegister
-R2_offset => FakeRegister
-R3_testNdiscri => FakeRegister
-R4_discri => FakeRegister
-R5_resistor => FakeRegister
-ZFakeRegister0 => FakeRegister
-ZFakeRegister1 => FakeRegister
-  R0_amplitude = 0x0
-  R1_gain = 0x0x1
-  R2_offset = 0x0
-  R3_testNdiscri = 0x0x4
-  R4_discri = 0x0x80
-  R5_resistor = 0x0x2
-  ZFakeRegister0 = 0x0x1
-  ZFakeRegister1 = 0x0x1
-D\R	R0	R1	R2	R3	R4	R5	R6	R7
-MC2SA#0	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
-MC2SA#1	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
-MC2SA#2	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
-MC2SA#3	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
-device_setup page
-Write i2c internal address error: Remote I/O error
-Read i2c error!
-gain=1, i.e. 000001
-resistor=2, i.e. 000010 resistor 3 higher bits, option 3 lower ones
-test=4, i.e. 000100 5+1 lower bits
-Write i2c internal address error: Remote I/O error
-Read i2c error!
-Write i2c internal address error: Remote I/O error
-Read i2c error!
-resolution mode=0x-5 i.e. 0.5
-R0_amplitude => FakeRegister
-R1_gain => FakeRegister
-R2_offset => FakeRegister
-R3_testNdiscri => FakeRegister
-R4_discri => FakeRegister
-R5_resistor => FakeRegister
-ZFakeRegister0 => FakeRegister
-ZFakeRegister1 => FakeRegister
-  R0_amplitude = 0x0
-  R1_gain = 0x0x1
-  R2_offset = 0x0
-  R3_testNdiscri = 0x0x4
-  R4_discri = 0x0x80
-  R5_resistor = 0x0x2
-  ZFakeRegister0 = 0x0x1
-  ZFakeRegister1 = 0x0x1
-D\R	R0	R1	R2	R3	R4	R5	R6	R7
-MC2SA#0	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
-MC2SA#1	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
-MC2SA#2	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
-MC2SA#3	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
-device_setup page
-Write i2c internal address error: Remote I/O error
-Read i2c error!
-gain=1, i.e. 000001
-resistor=2, i.e. 000010 resistor 3 higher bits, option 3 lower ones
-test=4, i.e. 000100 5+1 lower bits
-Write i2c internal address error: Remote I/O error
-Read i2c error!
-Write i2c internal address error: Remote I/O error
-Read i2c error!
-resolution mode=0x-5 i.e. 0.5
-R0_amplitude => FakeRegister
-R1_gain => FakeRegister
-R2_offset => FakeRegister
-R3_testNdiscri => FakeRegister
-R4_discri => FakeRegister
-R5_resistor => FakeRegister
-ZFakeRegister0 => FakeRegister
-ZFakeRegister1 => FakeRegister
-  R0_amplitude = 0x0
-  R1_gain = 0x0x1
-  R2_offset = 0x0
-  R3_testNdiscri = 0x0x4
-  R4_discri = 0x0x80
-  R5_resistor = 0x0x2
-  ZFakeRegister0 = 0x0x1
-  ZFakeRegister1 = 0x0x1
-D\R	R0	R1	R2	R3	R4	R5	R6	R7
-MC2SA#0	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
-MC2SA#1	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
-MC2SA#2	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
-MC2SA#3	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
-device_setup page
-Write i2c internal address error: Remote I/O error
-Read i2c error!
-gain=1, i.e. 000001
-resistor=2, i.e. 000010 resistor 3 higher bits, option 3 lower ones
-test=4, i.e. 000100 5+1 lower bits
-Write i2c internal address error: Remote I/O error
-Read i2c error!
-Write i2c internal address error: Remote I/O error
-Read i2c error!
-resolution mode=0x-5 i.e. 0.5
-R0_amplitude => FakeRegister
-R1_gain => FakeRegister
-R2_offset => FakeRegister
-R3_testNdiscri => FakeRegister
-R4_discri => FakeRegister
-R5_resistor => FakeRegister
-ZFakeRegister0 => FakeRegister
-ZFakeRegister1 => FakeRegister
-  R0_amplitude = 0x0
-  R1_gain = 0x0x1
-  R2_offset = 0x0
-  R3_testNdiscri = 0x0x4
-  R4_discri = 0x0x80
-  R5_resistor = 0x0x2
-  ZFakeRegister0 = 0x0x1
-  ZFakeRegister1 = 0x0x1
-D\R	R0	R1	R2	R3	R4	R5	R6	R7
-MC2SA#0	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
-MC2SA#1	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
-MC2SA#2	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
-MC2SA#3	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
-device_setup page
-Write i2c internal address error: Remote I/O error
-Read i2c error!
-gain=1, i.e. 000001
-resistor=2, i.e. 000010 resistor 3 higher bits, option 3 lower ones
-test=4, i.e. 000100 5+1 lower bits
-Write i2c internal address error: Remote I/O error
-Read i2c error!
-Write i2c internal address error: Remote I/O error
-Read i2c error!
-resolution mode=0x-5 i.e. 0.5
-R0_amplitude => FakeRegister
-R1_gain => FakeRegister
-R2_offset => FakeRegister
-R3_testNdiscri => FakeRegister
-R4_discri => FakeRegister
-R5_resistor => FakeRegister
-ZFakeRegister0 => FakeRegister
-ZFakeRegister1 => FakeRegister
-  R0_amplitude = 0x0
-  R1_gain = 0x0x1
-  R2_offset = 0x0
-  R3_testNdiscri = 0x0x4
-  R4_discri = 0x0x80
-  R5_resistor = 0x0x2
-  ZFakeRegister0 = 0x0x1
-  ZFakeRegister1 = 0x0x1
-D\R	R0	R1	R2	R3	R4	R5	R6	R7
-MC2SA#0	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
-MC2SA#1	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
-MC2SA#2	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
-MC2SA#3	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
-device_setup page
-Write i2c internal address error: Remote I/O error
-Read i2c error!
-gain=1, i.e. 000001
-resistor=2, i.e. 000010 resistor 3 higher bits, option 3 lower ones
-test=4, i.e. 000100 5+1 lower bits
-Write i2c internal address error: Remote I/O error
-Read i2c error!
-Write i2c internal address error: Remote I/O error
-Read i2c error!
-resolution mode=0x-5 i.e. 0.5
-R0_amplitude => FakeRegister
-R1_gain => FakeRegister
-R2_offset => FakeRegister
-R3_testNdiscri => FakeRegister
-R4_discri => FakeRegister
-R5_resistor => FakeRegister
-ZFakeRegister0 => FakeRegister
-ZFakeRegister1 => FakeRegister
-  R0_amplitude = 0x0
-  R1_gain = 0x0x1
-  R2_offset = 0x0
-  R3_testNdiscri = 0x0x4
-  R4_discri = 0x0x80
-  R5_resistor = 0x0x2
-  ZFakeRegister0 = 0x0x1
-  ZFakeRegister1 = 0x0x1
-D\R	R0	R1	R2	R3	R4	R5	R6	R7
-MC2SA#0	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
-MC2SA#1	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
-MC2SA#2	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
-MC2SA#3	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+FakeRegister::write() empty
+
+dur=0
+
 device_setup page
 Write i2c internal address error: Remote I/O error
 Read i2c error!
@@ -299,70 +381,6 @@ MC2SA#2	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
 MC2SA#3	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
 
 I2C devices address(es):0x18, 0x20, 0x3c.
-device_setup page
-Write i2c internal address error: Remote I/O error
-Read i2c error!
-gain=1, i.e. 000001
-resistor=2, i.e. 000010 resistor 3 higher bits, option 3 lower ones
-test=4, i.e. 000100 5+1 lower bits
-Write i2c internal address error: Remote I/O error
-Read i2c error!
-Write i2c internal address error: Remote I/O error
-Read i2c error!
-resolution mode=0x-5 i.e. 0.5
-R0_amplitude => FakeRegister
-R1_gain => FakeRegister
-R2_offset => FakeRegister
-R3_testNdiscri => FakeRegister
-R4_discri => FakeRegister
-R5_resistor => FakeRegister
-ZFakeRegister0 => FakeRegister
-ZFakeRegister1 => FakeRegister
-  R0_amplitude = 0x0
-  R1_gain = 0x0x1
-  R2_offset = 0x0
-  R3_testNdiscri = 0x0x4
-  R4_discri = 0x0x80
-  R5_resistor = 0x0x2
-  ZFakeRegister0 = 0x0x1
-  ZFakeRegister1 = 0x0x1
-D\R	R0	R1	R2	R3	R4	R5	R6	R7
-MC2SA#0	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
-MC2SA#1	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
-MC2SA#2	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
-MC2SA#3	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
-device_setup page
-Write i2c internal address error: Remote I/O error
-Read i2c error!
-gain=1, i.e. 000001
-resistor=2, i.e. 000010 resistor 3 higher bits, option 3 lower ones
-test=4, i.e. 000100 5+1 lower bits
-Write i2c internal address error: Remote I/O error
-Read i2c error!
-Write i2c internal address error: Remote I/O error
-Read i2c error!
-resolution mode=0x-5 i.e. 0.5
-R0_amplitude => FakeRegister
-R1_gain => FakeRegister
-R2_offset => FakeRegister
-R3_testNdiscri => FakeRegister
-R4_discri => FakeRegister
-R5_resistor => FakeRegister
-ZFakeRegister0 => FakeRegister
-ZFakeRegister1 => FakeRegister
-  R0_amplitude = 0x0
-  R1_gain = 0x0x1
-  R2_offset = 0x0
-  R3_testNdiscri = 0x0x4
-  R4_discri = 0x0x80
-  R5_resistor = 0x0x2
-  ZFakeRegister0 = 0x0x1
-  ZFakeRegister1 = 0x0x1
-D\R	R0	R1	R2	R3	R4	R5	R6	R7
-MC2SA#0	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
-MC2SA#1	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
-MC2SA#2	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
-MC2SA#3	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
 device_setup page
 Write i2c internal address error: Remote I/O error
 Read i2c error!
@@ -380,26 +398,26 @@ MC2SA gain apply message data:
  - amplitude or VCIM=0
 FakeRegister::write() empty
 resistor//R5=000010
-resistor//R5=000010
+resistor//R5=001010
 MC2SA resistor apply message data:
  - temperature=0
  - resolution=0
  - MC2SA#0
  - gain=1, i.e. 000001
- - resistorNoption=2, i.e. 000010
+ - resistorNoption=10, i.e. 001010
  - test=0, i.e. 000000
  - discri=0
  - offset=0
  - amplitude or VCIM=0
 FakeRegister::write() empty
-option//R5=000010
-option//R5=000000
+option//R5=001010
+option//R5=001100
 MC2SA option apply message data:
  - temperature=0
  - resolution=0
  - MC2SA#0
  - gain=1, i.e. 000001
- - resistorNoption=0, i.e. 000000
+ - resistorNoption=12, i.e. 001100
  - test=0, i.e. 000000
  - discri=0
  - offset=0
@@ -410,7 +428,7 @@ MC2SA discri apply message data:
  - resolution=0
  - MC2SA#0
  - gain=1, i.e. 000001
- - resistorNoption=0, i.e. 000000
+ - resistorNoption=12, i.e. 001100
  - test=0, i.e. 000000
  - discri=127
  - offset=0
@@ -421,7 +439,7 @@ MC2SA offset apply message data:
  - resolution=0
  - MC2SA#0
  - gain=1, i.e. 000001
- - resistorNoption=0, i.e. 000000
+ - resistorNoption=12, i.e. 001100
  - test=0, i.e. 000000
  - discri=127
  - offset=0
@@ -432,7 +450,7 @@ MC2SA amplitude apply message data:
  - resolution=0
  - MC2SA#0
  - gain=1, i.e. 000001
- - resistorNoption=0, i.e. 000000
+ - resistorNoption=12, i.e. 001100
  - test=0, i.e. 000000
  - discri=127
  - offset=0
@@ -443,8 +461,8 @@ MC2SA test apply message data:
  - resolution=0
  - MC2SA#0
  - gain=1, i.e. 000001
- - resistorNoption=0, i.e. 000000
- - test=4, i.e. 000100
+ - resistorNoption=12, i.e. 001100
+ - test=0, i.e. 000000
  - discri=127
  - offset=0
  - amplitude or VCIM=0
@@ -454,8 +472,8 @@ Temperature apply message data:
  - resolution=0.5
  - MC2SA#0
  - gain=1, i.e. 000001
- - resistorNoption=0, i.e. 000000
- - test=4, i.e. 000100
+ - resistorNoption=12, i.e. 001100
+ - test=0, i.e. 000000
  - discri=127
  - offset=0
  - amplitude or VCIM=0
@@ -475,13 +493,475 @@ ZFakeRegister1 => FakeRegister
   R0_amplitude = 0x0
   R1_gain = 0x0x1
   R2_offset = 0x0
-  R3_testNdiscri = 0x0x4
+  R3_testNdiscri = 0x0
   R4_discri = 0x0x7f
-  R5_resistor = 0x0
+  R5_resistor = 0x0xc
   ZFakeRegister0 = 0x0x1
   ZFakeRegister1 = 0x0x1
 D\R	R0	R1	R2	R3	R4	R5	R6	R7
-MC2SA#0	0x0	0x0x1	0x0	0x0x4	0x0x7f	0x0	0x0x1	0x0x1
+MC2SA#0	0x0	0x0x1	0x0	0x0	0x0x7f	0x0xc	0x0x1	0x0x1
 MC2SA#1	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
 MC2SA#2	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
 MC2SA#3	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
+device_setup page
+Write i2c internal address error: Remote I/O error
+Read i2c error!
+gain=1, i.e. 000001
+resistor=2, i.e. 000010 resistor 3 higher bits, option 3 lower ones
+test=4, i.e. 000100 5+1 lower bits
+Write i2c internal address error: Remote I/O error
+Read i2c error!
+Write i2c internal address error: Remote I/O error
+Read i2c error!
+resolution mode=0x-5 i.e. 0.5
+R0_amplitude => FakeRegister
+R1_gain => FakeRegister
+R2_offset => FakeRegister
+R3_testNdiscri => FakeRegister
+R4_discri => FakeRegister
+R5_resistor => FakeRegister
+ZFakeRegister0 => FakeRegister
+ZFakeRegister1 => FakeRegister
+  R0_amplitude = 0x0
+  R1_gain = 0x0x1
+  R2_offset = 0x0
+  R3_testNdiscri = 0x0x4
+  R4_discri = 0x0x80
+  R5_resistor = 0x0x2
+  ZFakeRegister0 = 0x0x1
+  ZFakeRegister1 = 0x0x1
+D\R	R0	R1	R2	R3	R4	R5	R6	R7
+MC2SA#0	0x0	0x0x1	0x0	0x0	0x0x7f	0x0xc	0x0x1	0x0x1
+MC2SA#1	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
+MC2SA#2	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
+MC2SA#3	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
+device_setup page
+Write i2c internal address error: Remote I/O error
+Read i2c error!
+Write i2c internal address error: Remote I/O error
+Read i2c error!
+MC2SA gain apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#1
+ - gain=2, i.e. 000010
+ - resistorNoption=0, i.e. 000000
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude or VCIM=0
+FakeRegister::write() empty
+resistor//R5=000010
+resistor//R5=010010
+MC2SA resistor apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#1
+ - gain=2, i.e. 000010
+ - resistorNoption=18, i.e. 010010
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude or VCIM=0
+FakeRegister::write() empty
+option//R5=010010
+option//R5=010010
+MC2SA option apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#1
+ - gain=2, i.e. 000010
+ - resistorNoption=18, i.e. 010010
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude or VCIM=0
+FakeRegister::write() empty
+MC2SA discri apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#1
+ - gain=2, i.e. 000010
+ - resistorNoption=18, i.e. 010010
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude or VCIM=0
+FakeRegister::write() empty
+MC2SA offset apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#1
+ - gain=2, i.e. 000010
+ - resistorNoption=18, i.e. 010010
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude or VCIM=0
+FakeRegister::write() empty
+MC2SA amplitude apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#1
+ - gain=2, i.e. 000010
+ - resistorNoption=18, i.e. 010010
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude or VCIM=0
+FakeRegister::write() empty
+MC2SA test apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#1
+ - gain=2, i.e. 000010
+ - resistorNoption=18, i.e. 010010
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude or VCIM=0
+FakeRegister::write() empty
+Temperature apply message data:
+ - temperature=0.3125
+ - resolution=0.5
+ - MC2SA#1
+ - gain=2, i.e. 000010
+ - resistorNoption=18, i.e. 010010
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude or VCIM=0
+I2C write error:: Remote I/O error
+Write i2c error!
+Write i2c internal address error: Remote I/O error
+Read i2c error!
+resolution mode=-5
+R0_amplitude => FakeRegister
+R1_gain => FakeRegister
+R2_offset => FakeRegister
+R3_testNdiscri => FakeRegister
+R4_discri => FakeRegister
+R5_resistor => FakeRegister
+ZFakeRegister0 => FakeRegister
+ZFakeRegister1 => FakeRegister
+  R0_amplitude = 0x0
+  R1_gain = 0x0x2
+  R2_offset = 0x0
+  R3_testNdiscri = 0x0
+  R4_discri = 0x0x7f
+  R5_resistor = 0x0x12
+  ZFakeRegister0 = 0x0x1
+  ZFakeRegister1 = 0x0x1
+D\R	R0	R1	R2	R3	R4	R5	R6	R7
+MC2SA#0	0x0	0x0x1	0x0	0x0	0x0x7f	0x0xc	0x0x1	0x0x1
+MC2SA#1	0x0	0x0x2	0x0	0x0	0x0x7f	0x0x12	0x0x1	0x0x1
+MC2SA#2	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
+MC2SA#3	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
+device_setup page
+Write i2c internal address error: Remote I/O error
+Read i2c error!
+gain=1, i.e. 000001
+resistor=2, i.e. 000010 resistor 3 higher bits, option 3 lower ones
+test=4, i.e. 000100 5+1 lower bits
+Write i2c internal address error: Remote I/O error
+Read i2c error!
+Write i2c internal address error: Remote I/O error
+Read i2c error!
+resolution mode=0x-5 i.e. 0.5
+R0_amplitude => FakeRegister
+R1_gain => FakeRegister
+R2_offset => FakeRegister
+R3_testNdiscri => FakeRegister
+R4_discri => FakeRegister
+R5_resistor => FakeRegister
+ZFakeRegister0 => FakeRegister
+ZFakeRegister1 => FakeRegister
+  R0_amplitude = 0x0
+  R1_gain = 0x0x1
+  R2_offset = 0x0
+  R3_testNdiscri = 0x0x4
+  R4_discri = 0x0x80
+  R5_resistor = 0x0x2
+  ZFakeRegister0 = 0x0x1
+  ZFakeRegister1 = 0x0x1
+D\R	R0	R1	R2	R3	R4	R5	R6	R7
+MC2SA#0	0x0	0x0x1	0x0	0x0	0x0x7f	0x0xc	0x0x1	0x0x1
+MC2SA#1	0x0	0x0x2	0x0	0x0	0x0x7f	0x0x12	0x0x1	0x0x1
+MC2SA#2	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
+MC2SA#3	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
+device_setup page
+Write i2c internal address error: Remote I/O error
+Read i2c error!
+Write i2c internal address error: Remote I/O error
+Read i2c error!
+MC2SA gain apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=4, i.e. 000100
+ - resistorNoption=0, i.e. 000000
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude or VCIM=0
+FakeRegister::write() empty
+resistor//R5=000010
+resistor//R5=100010
+MC2SA resistor apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=4, i.e. 000100
+ - resistorNoption=34, i.e. 100010
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude or VCIM=0
+FakeRegister::write() empty
+option//R5=100010
+option//R5=100001
+MC2SA option apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=4, i.e. 000100
+ - resistorNoption=33, i.e. 100001
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude or VCIM=0
+FakeRegister::write() empty
+MC2SA discri apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=4, i.e. 000100
+ - resistorNoption=33, i.e. 100001
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude or VCIM=0
+FakeRegister::write() empty
+MC2SA offset apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=4, i.e. 000100
+ - resistorNoption=33, i.e. 100001
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude or VCIM=0
+FakeRegister::write() empty
+MC2SA amplitude apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=4, i.e. 000100
+ - resistorNoption=33, i.e. 100001
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude or VCIM=0
+FakeRegister::write() empty
+MC2SA test apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#2
+ - gain=4, i.e. 000100
+ - resistorNoption=33, i.e. 100001
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude or VCIM=0
+FakeRegister::write() empty
+Temperature apply message data:
+ - temperature=0.3125
+ - resolution=0.5
+ - MC2SA#2
+ - gain=4, i.e. 000100
+ - resistorNoption=33, i.e. 100001
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude or VCIM=0
+I2C write error:: Remote I/O error
+Write i2c error!
+Write i2c internal address error: Remote I/O error
+Read i2c error!
+resolution mode=-5
+R0_amplitude => FakeRegister
+R1_gain => FakeRegister
+R2_offset => FakeRegister
+R3_testNdiscri => FakeRegister
+R4_discri => FakeRegister
+R5_resistor => FakeRegister
+ZFakeRegister0 => FakeRegister
+ZFakeRegister1 => FakeRegister
+  R0_amplitude = 0x0
+  R1_gain = 0x0x4
+  R2_offset = 0x0
+  R3_testNdiscri = 0x0
+  R4_discri = 0x0x7f
+  R5_resistor = 0x0x21
+  ZFakeRegister0 = 0x0x1
+  ZFakeRegister1 = 0x0x1
+D\R	R0	R1	R2	R3	R4	R5	R6	R7
+MC2SA#0	0x0	0x0x1	0x0	0x0	0x0x7f	0x0xc	0x0x1	0x0x1
+MC2SA#1	0x0	0x0x2	0x0	0x0	0x0x7f	0x0x12	0x0x1	0x0x1
+MC2SA#2	0x0	0x0x4	0x0	0x0	0x0x7f	0x0x21	0x0x1	0x0x1
+MC2SA#3	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
+device_setup page
+Write i2c internal address error: Remote I/O error
+Read i2c error!
+gain=1, i.e. 000001
+resistor=2, i.e. 000010 resistor 3 higher bits, option 3 lower ones
+test=4, i.e. 000100 5+1 lower bits
+Write i2c internal address error: Remote I/O error
+Read i2c error!
+Write i2c internal address error: Remote I/O error
+Read i2c error!
+resolution mode=0x-5 i.e. 0.5
+R0_amplitude => FakeRegister
+R1_gain => FakeRegister
+R2_offset => FakeRegister
+R3_testNdiscri => FakeRegister
+R4_discri => FakeRegister
+R5_resistor => FakeRegister
+ZFakeRegister0 => FakeRegister
+ZFakeRegister1 => FakeRegister
+  R0_amplitude = 0x0
+  R1_gain = 0x0x1
+  R2_offset = 0x0
+  R3_testNdiscri = 0x0x4
+  R4_discri = 0x0x80
+  R5_resistor = 0x0x2
+  ZFakeRegister0 = 0x0x1
+  ZFakeRegister1 = 0x0x1
+D\R	R0	R1	R2	R3	R4	R5	R6	R7
+MC2SA#0	0x0	0x0x1	0x0	0x0	0x0x7f	0x0xc	0x0x1	0x0x1
+MC2SA#1	0x0	0x0x2	0x0	0x0	0x0x7f	0x0x12	0x0x1	0x0x1
+MC2SA#2	0x0	0x0x4	0x0	0x0	0x0x7f	0x0x21	0x0x1	0x0x1
+MC2SA#3	0x0	0x0x1	0x0	0x0x4	0x0x80	0x0x2	0x0x1	0x0x1
+device_setup page
+Write i2c internal address error: Remote I/O error
+Read i2c error!
+Write i2c internal address error: Remote I/O error
+Read i2c error!
+MC2SA gain apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#3
+ - gain=8, i.e. 001000
+ - resistorNoption=0, i.e. 000000
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude or VCIM=0
+FakeRegister::write() empty
+resistor//R5=000010
+resistor//R5=011010
+MC2SA resistor apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#3
+ - gain=8, i.e. 001000
+ - resistorNoption=26, i.e. 011010
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude or VCIM=0
+FakeRegister::write() empty
+option//R5=011010
+option//R5=011000
+MC2SA option apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#3
+ - gain=8, i.e. 001000
+ - resistorNoption=24, i.e. 011000
+ - test=0, i.e. 000000
+ - discri=0
+ - offset=0
+ - amplitude or VCIM=0
+FakeRegister::write() empty
+MC2SA discri apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#3
+ - gain=8, i.e. 001000
+ - resistorNoption=24, i.e. 011000
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude or VCIM=0
+FakeRegister::write() empty
+MC2SA offset apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#3
+ - gain=8, i.e. 001000
+ - resistorNoption=24, i.e. 011000
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude or VCIM=0
+FakeRegister::write() empty
+MC2SA amplitude apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#3
+ - gain=8, i.e. 001000
+ - resistorNoption=24, i.e. 011000
+ - test=0, i.e. 000000
+ - discri=127
+ - offset=0
+ - amplitude or VCIM=0
+FakeRegister::write() empty
+MC2SA test apply message data:
+ - temperature=0
+ - resolution=0
+ - MC2SA#3
+ - gain=8, i.e. 001000
+ - resistorNoption=24, i.e. 011000
+ - test=32, i.e. 100000
+ - discri=127
+ - offset=0
+ - amplitude or VCIM=0
+FakeRegister::write() empty
+Temperature apply message data:
+ - temperature=0.3125
+ - resolution=0.5
+ - MC2SA#3
+ - gain=8, i.e. 001000
+ - resistorNoption=24, i.e. 011000
+ - test=32, i.e. 100000
+ - discri=127
+ - offset=0
+ - amplitude or VCIM=0
+I2C write error:: Remote I/O error
+Write i2c error!
+Write i2c internal address error: Remote I/O error
+Read i2c error!
+resolution mode=-5
+R0_amplitude => FakeRegister
+R1_gain => FakeRegister
+R2_offset => FakeRegister
+R3_testNdiscri => FakeRegister
+R4_discri => FakeRegister
+R5_resistor => FakeRegister
+ZFakeRegister0 => FakeRegister
+ZFakeRegister1 => FakeRegister
+  R0_amplitude = 0x0
+  R1_gain = 0x0x8
+  R2_offset = 0x0
+  R3_testNdiscri = 0x0x20
+  R4_discri = 0x0x7f
+  R5_resistor = 0x0x18
+  ZFakeRegister0 = 0x0x1
+  ZFakeRegister1 = 0x0x1
+D\R	R0	R1	R2	R3	R4	R5	R6	R7
+MC2SA#0	0x0	0x0x1	0x0	0x0	0x0x7f	0x0xc	0x0x1	0x0x1
+MC2SA#1	0x0	0x0x2	0x0	0x0	0x0x7f	0x0x12	0x0x1	0x0x1
+MC2SA#2	0x0	0x0x4	0x0	0x0	0x0x7f	0x0x21	0x0x1	0x0x1
+MC2SA#3	0x0	0x0x8	0x0	0x0x20	0x0x7f	0x0x18	0x0x1	0x0x1

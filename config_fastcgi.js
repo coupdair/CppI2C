@@ -1,6 +1,6 @@
 {
-	"service" : {
-		"api" : "fastcgi",
-		"socket" : "stdin" // use server's socket
-	}
+  "service" : {
+    "api" : "fastcgi",
+    "socket" : "stdin" // use server's socket
+  }
 }
