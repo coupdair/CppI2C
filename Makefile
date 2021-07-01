@@ -31,7 +31,9 @@ run: i2c
 web: i2c-web.cpp config.js i2c_tools.hpp os_tools.hpp device.hpp register.hpp module.hpp
 	../CppCMS/cppcms/bin/cppcms_tmpl_cc master.tmpl main.tmpl page.tmpl devices.tmpl setup.tmpl -o web_skin.cpp
 #	g++ -DUSE_I2C_LIB -I../libI2C/include -fpermissive -L../libI2C/ -li2c  -I../CppCMS/cppcms/ -I../CppCMS/cppcms/booster -I../CppCMS/cppcms/build -I../CppCMS/cppcms/build/booster  -O2 -Wall -g i2c-web.cpp web_skin.cpp -o i2c-web -L../CppCMS/cppcms/build -L../CppCMS/cppcms/build/booster -lcppcms -lbooster
+	echo "lighttpd: STOP"; sudo service lighttpd stop
 	g++ -DUSE_I2C_LIB -I../libI2C/include -fpermissive -L../libI2C/ -li2c  -I../CppCMS/cppcms/ -I../CppCMS/cppcms/booster -I../CppCMS/cppcms/build -I../CppCMS/cppcms/build/booster  -O2 -Wall -g i2c-web.cpp web_skin.cpp -o i2cweb -L../CppCMS/cppcms/build -L../CppCMS/cppcms/build/booster -lcppcms -lbooster
+	echo "lighttpd: START"; sudo service lighttpd start
 
 fake-web: i2c-web.cpp config.js i2c_tools.hpp os_tools.hpp device.hpp register.hpp module.hpp
 	../CppCMS/cppcms/bin/cppcms_tmpl_cc master.tmpl main.tmpl page.tmpl devices.tmpl setup.tmpl -o web_skin.cpp
@@ -42,7 +44,8 @@ web-help: web
 	$(LD_LIBRARY_PATH) ./i2c-web --help | tee i2c-web.help.output
 
 web-version: web
-	$(LD_LIBRARY_PATH) ./i2c-web --version | tee VERSION | tee VERSION.i2c-web
+#	$(LD_LIBRARY_PATH) ./i2c-web --version | tee VERSION | tee VERSION.i2c-web
+	$(LD_LIBRARY_PATH) ./i2cweb --version | tee VERSION | tee VERSION.i2c-web
 
 run-web: web
 	#run i2c-web
