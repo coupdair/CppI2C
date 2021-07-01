@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.2.6f"
+#define VERSION "v0.2.6g"
 
 //Program option/documentation
 //{argp
@@ -345,15 +345,13 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
     content::page c;
     ini(c);
     c.page_title = "setup page links";
-
-  //I2C bus
-  std::string s;
-  i2c_bus_list(s);
-  c.page_content
-  = "  <pre>\n"
-  + s
-  + "  </pre>\n";
-
+    std::ostringstream count;count<<vMC2SADev.size();//int>>string
+    c.page_content
+    = "  <p>\nThere are "
+    + count.str()
+    + " MC2SA devices."
+    + "  </p>\n";
+    
     render("page",c);
   }//device_setup_page
 
