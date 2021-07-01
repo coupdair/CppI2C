@@ -3,6 +3,10 @@ I2C
 - i2c:      I2C info on terminal
 - i2c-web:  I2C info on HTTP
 
+# lighttpd
+
+`sudo service lighttpd stop && make web && sudo service lighttpd start && ps aux | grep i2cweb --color`
+
 # compile
 
 ## MC2SA board on I2C
