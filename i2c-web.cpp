@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.2.5g"
+#define VERSION "v0.2.6d"
 
 //Program option/documentation
 //{argp
@@ -158,7 +158,7 @@ public:
     dispatcher().assign("/system",&http_service::system,this);
     mapper().assign("system","/system");
 
-    mapper().root("/i2c-bus");
+    mapper().root("/i2cweb");
 
     //module
     temperatureDev=(TemperatureDevice *)DeviceFactory::NewDevice("TemperatureDevice");
