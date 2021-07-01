@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.2.6e"
+#define VERSION "v0.2.6f"
 
 //Program option/documentation
 //{argp
@@ -153,6 +153,9 @@ public:
     mapper().assign("devices","/devices");
 
 //setup pages
+    dispatcher().assign("/setup",&http_service::device_setup_page,this);
+    mapper().assign("setup","/setup");
+
     dispatcher().assign("^/setup/(\\d+)$",&http_service::device_setup,this,1);
 
     dispatcher().assign("/system",&http_service::system,this);
@@ -334,6 +337,25 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
     std::cout<<'.'<<std::endl;
     render("devices",c);
   }//devices
+
+  //! setup page for devices
+  void device_setup_page()
+  {
+  //  int verbose=1;//[0-2]
+    content::page c;
+    ini(c);
+    c.page_title = "setup page links";
+
+  //I2C bus
+  std::string s;
+  i2c_bus_list(s);
+  c.page_content
+  = "  <pre>\n"
+  + s
+  + "  </pre>\n";
+
+    render("page",c);
+  }//device_setup_page
 
   //! setup devices: MC2SA and temperature
   void device_setup(std::string id_)
