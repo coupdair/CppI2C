@@ -1,3 +1,9 @@
+# compile and run httpd
+
+~~~ { .bash }
+sudo service lighttpd stop && make web && sudo service lighttpd start
+ps aux  | grep -e hello -e forms -e myapp -e i2cweb -e web -e template | grep fastcgi
+~~~
 
 #compile
 
