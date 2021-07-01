@@ -35,7 +35,7 @@
 //CppCMS data
 #include "content.h"
 
-#define VERSION "v0.2.6g"
+#define VERSION "v0.2.6h"
 
 //Program option/documentation
 //{argp
@@ -153,7 +153,7 @@ public:
     mapper().assign("devices","/devices");
 
 //setup pages
-    dispatcher().assign("/setup",&http_service::device_setup_page,this);
+    dispatcher().assign("/setup",&http_service::device_setup_links,this);
     mapper().assign("setup","/setup");
 
     dispatcher().assign("^/setup/(\\d+)$",&http_service::device_setup,this,1);
@@ -339,21 +339,20 @@ std::cout<<std::endl<<"dur="<<i<<std::endl<<std::endl;
   }//devices
 
   //! setup page for devices
-  void device_setup_page()
-  {
+  void device_setup_links()
+  {std::cout<<__func__<<" page"<<std::endl;
   //  int verbose=1;//[0-2]
-    content::page c;
+    content::setup_link c;
     ini(c);
-    c.page_title = "setup page links";
     std::ostringstream count;count<<vMC2SADev.size();//int>>string
-    c.page_content
+    c.content_head
     = "  <p>\nThere are "
     + count.str()
-    + " MC2SA devices."
+    + " MC2SA devices:"
     + "  </p>\n";
-    
-    render("page",c);
-  }//device_setup_page
+    c.list_create(vMC2SADev.size());
+    render("setup_link",c);
+  }//device_setup_links
 
   //! setup devices: MC2SA and temperature
   void device_setup(std::string id_)

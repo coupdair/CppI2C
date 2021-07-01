@@ -1,0 +1,27 @@
+<% skin web_skin %>
+<% view setup_link uses content::setup_link extends master %>
+<% template title() %>setup page links on <% include master::title() %><% end %>
+<% template page_content() %>
+  <%= content_head | raw %>
+<!--{ device links -->
+    <table>
+    <tr>
+    <% foreach tab in device_list %>
+      <% item %>
+        <th>
+        <% if not empty tab.link %><!-- no link on empty link, as this is current page -->
+        <a href="<%= tab.link %>">
+        <% end %>
+        <%= tab.name %>
+        <% if not empty tab.link %>
+        </a>
+        <% end %>
+        </th>
+      <% end item %>
+    <% end foreach %>
+    </tr>
+    </table>
+<!--} device links -->
+<% end template %> 
+<% end view %>
+<% end skin %>

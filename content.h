@@ -7,6 +7,14 @@
 
 namespace content
 {
+  //! name and its link
+  struct nav_tab
+  {
+//	nav_tab() : id(0) {}
+	std::string name;
+	std::string link;
+  };//link
+
   struct master: public cppcms::base_content
   {
     std::string title;
@@ -20,6 +28,27 @@ namespace content
     std::string content_head;
     std::list<std::string> device_list;
   };//devices
+  struct setup_link: public master
+  {
+    std::string content_head;
+    std::vector<nav_tab> device_list;
+    //! device link list
+    void list_create(const int count)
+    {
+        content::nav_tab item;
+        for(int i=0;i<count;++i)
+        {
+		  //format
+		  std::ostringstream name_;name_<<"MC2SA#"<<i;//int>>string
+		  std::ostringstream link_;link_<<"setup/"<<i;//int>>string
+		  //fill tab
+          item.name=name_.str();
+          item.link=link_.str();
+          //store tab
+          device_list.push_back(item);
+        }//tab loop
+    }//list_create
+  };//setup_link
 
   //forms
   struct info_form_MC2SA_gain : public cppcms::form
@@ -294,13 +323,6 @@ namespace content
     }//validate
   };//info_form_apply
   
-  struct nav_tab
-  {
-//	nav_tab() : id(0) {}
-	std::string name;
-	std::string link;
-  };
-
   struct message : public master
   {
     //data
@@ -357,7 +379,7 @@ namespace content
         {
 		  //format
 		  std::ostringstream name_;name_<<"MC2SA#"<<i;//int>>string
-		  std::ostringstream link_;link_<<"/setup/"<<i;//int>>string
+		  std::ostringstream link_;link_<<i;//int>>string
 		  //fill tab
           tab.name=name_.str();
           if(i==id_) tab.link=""; else tab.link=link_.str();
